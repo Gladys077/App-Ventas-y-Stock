@@ -10,14 +10,17 @@ header{
     padding: 0px 16px;
     margin: 0 auto;
     span{
-        font-size: x-large;
+        font-size: 24px;
         font-weight: bold;
+    }
+    h2{
+        font-size: 20px;
     }
 
     button{
         background-color: transparent;
         border: none;
-        font-size: 20px;
+        font-size: 24px;
     }
     
 }
