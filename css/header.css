@@ -4,7 +4,20 @@ header{
     align-items: end;
     justify-content: space-between;
     text-align: center;
+    width: calc(100% - 32px);
     height: 100px;
-    margin: 16px 16px 0px 16px;
+    /* margin: auto; */
+    padding: 0px 16px;
+    margin: 0 auto;
+    span{
+        font-size: x-large;
+        font-weight: bold;
+    }
+
+    button{
+        background-color: transparent;
+        border: none;
+        font-size: 20px;
+    }
     
 }
