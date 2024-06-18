@@ -1,0 +1,29 @@
+@import url(header.css);
+@import url(main.css);
+
+
+:root{
+    --color-fondo: linear-gradient(#caa5fb, #ffffff);
+    --color-blanco: #efefef;
+    --color-border-articulo:#adabab;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}    
+
+
+body{
+    background-color: #caa5fb;
+    max-width: 800px;
+    width: 100vw;
+    height: auto;
+    font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center; */
+}
