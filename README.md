@@ -2,6 +2,11 @@
 
 <div align="center">
 
+<a href="https://www.figma.com/design/FdrW08BbNYJC1YH8usejwI/Ventas-y--Stock?node-id=0-1&t=0BB7LsRzYQRHmIue-1">Vistas en figma aqui!!</a>
+
+<h4>Link para probar el front:</h4>
+<a href="https://www.figma.com/proto/FdrW08BbNYJC1YH8usejwI/Ventas-y--Stock?page-id=0%3A1&node-id=4050-850&viewport=-446%2C-6611%2C0.5&t=YVab0eYW6JHE1v7v-1&scaling=scale-down&starting-point-node-id=4050%3A850&show-proto-sidebar=1"><img src="./img/app_front.jpeg"></a>
+
 # Colaboradores:
 
 <img src="img/FotoLio.png" width="70px"> | <img src="img/gladys.png"  width="115px" style="border-radius: 50%"> | <img src="img/Luma.jpg" width="72px" style="border-radius: 40%" > |
