@@ -1,0 +1,28 @@
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    text-align: center;
+    width: calc(100% - 32px);
+    height: 100px;
+    /* margin: auto; */
+    padding: 0px 16px;
+    margin: 0 auto;
+    img{
+        height: 24px;
+    }
+    h2{
+        font-size: 20px;
+    }
+
+    button{
+        background-color: transparent;
+        border: none;
+        font-size: 24px;
+        img{
+            height: 24px;
+        }
+    }
+    
+}
