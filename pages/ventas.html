@@ -5,19 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App Ventas y Stock - Ventas</title>
     <link rel="stylesheet" href="../css/index.css">
-    <script src="https://kit.fontawesome.com/2d9fe71672.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header class="header">
         <div>
-            <span></span>
+            <img src="../iconos/volver.png" alt="<volver" title="Volver">
         </div>
         <div>
             <h2>Pedido Actual</h2>
         </div>
         <div>
             <nav></nav>
-            <button class="nav-toggle" aria-label="Abrir Menú"><i class="fas fa-bars"></i></button>
+            <button class="nav-toggle" aria-label="Abrir Menú"><img src="../iconos/menu.png" alt="Menú"></button>
             
         </div>
     </header>   
@@ -29,12 +28,12 @@
         </section>
         <section class="tabla_detalles">
             <div class="tabla_lineaArticulo">
-                <div class="cant">2</div>
+                <input class="cant" value="2"></input>
                 <div class="producto">Cuaderno Rivadavia T.dura 48h</div>
                 <div class="precio">1000</div>
             </div>
             <div class="tabla_lineaArticulo">
-                <div class="cant">10</div>
+                <input class="cant" value="10"></input>
                 <div class="producto">Cuaderno Rivadavia T.dura 24h</div>
                 <div class="precio">3000</div>
             </div>
@@ -46,8 +45,8 @@
         <button class="adicionarArticulo"><span>+</span></button>
     </main>     
     <footer>
-        <button class="btn_eliminarPedido"> <span>♻</span> Eliminar</button>
-        <button class="btn_cerrarPedido"><span>✔</span> Cerrar Pedido</button>
+        <button class="btn_eliminarPedido"> <img src="../iconos/trashViolet.PNG" alt="Tacho de Basura"><span>Eliminar</span></button>
+        <button class="btn_cerrarPedido"><span>✔</span> <span>Cerrar Pedido</span></button>
     </footer>
 </body>
 </html>

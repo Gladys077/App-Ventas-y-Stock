@@ -44,7 +44,11 @@ main{
             font-style: normal;
             text-align: end;
             .cant{
-                width: 40px;
+                width: 39px;
+                height: 39px;
+                border: 0;
+                text-align: end;
+                
 
             }
         }/*tabla_lineaArticulo*/
