@@ -6,8 +6,8 @@
 :root{
     --color-primario: #6810ad;
     --color-fondo: #caa5fb;
-    --color-blanco: #efefef;
-    --color-border-articulo:#adabab;
+    --color-blanco: #ffffff;
+    --color-border-articulo: #dadada;
     --color-verde: #31c140;
     --color-sombra: rgba(0,0,0,0.25);
 }
