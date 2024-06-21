@@ -1,0 +1,40 @@
+Antes que todo hay que descargar el manejador de paquetes de versiones de node:
+https://github.com/coreybutler/nvm-windows/releases
+
+instalarlo sin tener versiones  node.
+luego instalar node:
+nvm install node lts
+
+versiones instaladas:
+nvm list
+version 20.14.0
+
+usar una verison 
+nvm use 20.14.0
+
+ver la version de node actual
+node -v
+20.14.0
+
+mostrar la version actual que esta usando el sistema:
+nvm current
+20.14.0
+
+desisnstalar versiones:
+nvm unistall 20.14.0
+
+instalar el gestor de paquetes por cada version de node:
+npm install -g yarn
+
+setear una version por defecto:
+nvm alias default 20.14.0
+
+ejecutar archivo:
+node index.js
+
+ctr + c : para parar el servicio
+
+para usar variables de entorno se colocan antes de ejecutar el archivo:
+PORT=1234 node index.js
+y para leerla se saca del objeto process:
+const variable = process.env.PORT
