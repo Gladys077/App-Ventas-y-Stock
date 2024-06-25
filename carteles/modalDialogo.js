@@ -1,4 +1,6 @@
- class ModalDialogo {
+ 
+ 
+export class ModalDialogo {
 
   constructor(icon, message = 'Confirmar al accion',ConfirmCallback, padre='body') {
     this._icon = icon;
@@ -22,7 +24,7 @@
           <div class="modal-icon">
             <img src="" alt="Icono" />
           </div>
-          <h3 class="modal-message"></h3>
+          <h3 class="modal-message">${this._message}</h3>
           <div class="modal-actions">
             <button class="btn-cancel">NO</button>
             <button class="btn-confirm">SI</button>
@@ -56,9 +58,4 @@
 
 
 
-// Instancias:
- new ModalDialogo('emoji.png', '¿Deseas cancelar el pedido?', () => {
-  alert('Ejecutando el callback');
-  // Aquí pondría la lógica para cancelar el pedido
-});
 

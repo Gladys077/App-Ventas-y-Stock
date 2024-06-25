@@ -1,4 +1,4 @@
-class Notification {
+export class Notification {
   constructor(iconSrc, message, type = 'success') {
     this.iconSrc = iconSrc;
     this.message = message;
@@ -127,7 +127,7 @@ class Notification {
 }
 
 // Instancias 
- new Notification('../img/emojis/like.png', '¡Descarga Exitosa!', 'success');
+ //new Notification('../img/emojis/like.png', '¡Descarga Exitosa!', 'success');
 
 
 /*
