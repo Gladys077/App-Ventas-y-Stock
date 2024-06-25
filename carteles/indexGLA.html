@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>App Ventas y Stock - Ventas</title>
-    <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="cartel.css" />
+    <link rel="stylesheet" href="../views/css/index.css" />
+    <link rel="stylesheet" href="modalDialogo.css" />
+    
+    <link rel="stylesheet" href="notification.css" />
     <script
       src="https://kit.fontawesome.com/2d9fe71672.js"
       crossorigin="anonymous"
@@ -26,10 +28,11 @@
         </button>
       </div>
     </header>
-    <div class="modal" id="modalTemplate">
+    <!-- MODAL DIALOGO -->
+    <div class="modalDialogo">
       <div class="modal-content">
         <div class="modal-icon">
-          <img src="like.png" alt="" />
+          <img src="../img/emojis/like.png" alt="" />
         </div>
         <h3 class="modal-mesagge">Mensaje</h3>
         <div class="modal-actions">
@@ -38,6 +41,18 @@
         </div>
       </div>
     </div>
+<!-- FIN MODAL DIALOGO -->
+
+<!-- NOTIFICACION -->
+    <div class="ad">
+      <div class="ad-content">
+        <div class="ad-icon">
+          <img src="../img/emojis/like.png" alt="Emoji-Guiño">
+        </div>
+        <p class="ad-message">¡Muy bien, finalizaste la venta!</p>
+      </div>
+    </div>
+<!-- FIN NOTIFICACION -->
 
     <main class="main">
       <section class="tabla_encabezados">
@@ -67,6 +82,6 @@
       <button class="btn_eliminarPedido"><span>♻</span> Eliminar</button>
       <button class="btn_cerrarPedido"><span>✔</span> Cerrar Pedido</button>
     </footer>
-    <script src="js/cartel.js"></script>
+    <!-- <script src="cartel.js"></script> -->
   </body>
 </html>
