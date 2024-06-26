@@ -1,9 +1,14 @@
 export class Notification {
-  constructor(iconSrc, message, type = 'success') {
-    this.iconSrc = iconSrc;
-    this.message = message;
-    this.type = type; //Para diferenciar si la notif. es verde (success) o roja (error)
-    this.notificationElement = null;
+
+  constructor(iconSrc, message, type = 'success', padre='body', colors = {}) {
+    this._iconSrc = iconSrc;
+    this._message = message;
+    this._type = type; //Para diferenciar si la notif. es verde (success) o roja (error)
+    this._padre = document.querySelector(padre);
+    this._colors = {
+      success: {background: '#7BF087', border: '#31c140'},
+      error: {background: '#fa9f9f', border: '#C00D0D'},
+    }
 
     this.createNotification();
   }
@@ -13,34 +18,26 @@ export class Notification {
     this.agregarCss();
 
     // Contenedor del aviso
-    this.notificationElement = document.createElement('div');
-    this.notificationElement.classList.add('ad', `ad-${this.type}`);
+    this._notificationElement = document.createElement('div');
+    this._notificationElement.classList.add(`ad`, `ad-${this._type}`); // Agregar clase específica
 
     // Crear el contenido del aviso
-    this.notificationElement.innerHTML = `
+    const styles = `
+    background-color: ${this._colors[this._type].background};
+    border: 1px solid ${this._colors[this._type].border};
+    `;
+
+    // Crear el contenido del aviso
+    this._notificationElement.innerHTML = `
         <div class="ad-content">
           <div class="ad-icon">
-            <img src="${this.iconSrc}" alt="Emoji" />
+            <img src="${this._iconSrc}" alt="Emoji" />
           </div>
-          <p class="ad-message">${this.message}</p>
+          <p class="ad-message">${this._message}</p>
         </div>
       `;
 
-    // Añadir el aviso al body
-    document.body.appendChild(this.notificationElement);
-  }
-
-  showNotification() {
-    this.createNotification();
-    // Muestra el aviso
-    setTimeout(() => {
-      this.notificationElement.style.display = 'block';
-    }, 10);
-
-    setTimeout(() => {
-      this.notificationElement.style.display = 'none';
-      this.notificationElement.remove();
-    }, 5000);
+    this._padre.appendChild(this._notificationElement);
   }
 
   agregarCss() {
@@ -100,6 +97,7 @@ export class Notification {
 }
 
 .ad-message {
+    min-width: 280px;
     min-height: 48px;
     border-radius: 4px;
     font-family: Roboto, sans-serif;
@@ -107,18 +105,16 @@ export class Notification {
     font-weight:500;
     padding: 10px 20px; 
     align-content: center;
-    
-    background-color: var(--color-verde-claro);
-    border-color: 1px solid var(--color-verde);
+    text-align: center;
 }
 
 .ad-success .ad-message{
-    background-color: var(--color-verde-claro);
-    border-color: 1px solid var(--color-verde);
+    background-color: #7BF087;
+    border-color: 1px solid #31c140;
 }
 .ad-error .ad-message{
-    background-color: var(--color-rojo-claro);
-    border-color: 1px solid var(--color-rojo);
+    background-color: #fa9f9f;
+    border-color: 1px solid #C00D0D;
 }
 `
 
@@ -127,33 +123,5 @@ export class Notification {
 }
 
 // Instancias 
- //new Notification('../img/emojis/like.png', '¡Descarga Exitosa!', 'success');
-
-
-/*
-const pedidoFinalizado = new Notification('../img/emojis/like.png', '¡Excelente, pedido finalizado!', 'success');
-pedidoFinalizado.showNotification();
- 
-const modificacionGuardada = new Notification('../img/emojis/guiño.jpg', '¡Bien hecho, tu modificación ya se guardó!', 'success');
-modificacionGuardada.showNotification();
-
-const modificacionCancelada = new Notification('../img/emojis/guiño.jpg', '¡Cancelaste la modificación!', 'success');
-modificacionCancelada.showNotification();
-
-const seleccionaVendedor = new Notification('../img/emojis/like.png', '¡Primero debes seleccionar un vendedor!', 'success');
-seleccionaVendedor.showNotification();
- 
-const agregasteElProducto = new Notification('../img/emojis/like.png', '¡Listo, agregaste los productos a tu stock!', 'success');
-agregasteElProducto.showNotification();
-
-const cambiosGuardados = new Notification('../img/emojis/like.png', '¡Listo, cambios guardados!', 'success');
-cambiosGuardados.showNotification();
-
-const datoIncorrecto = new Notification('../img/emojis/like.png', '¡Ups, algún dato es incorrecto!', 'error');
-datoIncorrecto.showNotification();
-
-const errorAlDescargar = new Notification('../img/emojis/like.png', '¡Ouch, hubo un error al descargar!', 'error');
-errorAlDescargar.showNotification();
- 
-const noExisteEnStock = new Notification('../img/emojis/like.png', '¡No existe en tu stock!', 'error');
-noExisteEnStock.showNotification();*/
+// const pedidoFinalizado = new Notification('../img/emojis/like.png', '¡Excelente, pedido finalizado!', 'success');
+// const datoIncorrecto = new Notification('../img/emojis/like.png', '¡Ups, algún dato es incorrecto!', 'error');
