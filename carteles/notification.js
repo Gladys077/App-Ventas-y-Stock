@@ -31,7 +31,7 @@ export class Notification {
     this._notificationElement.innerHTML = `
         <div class="ad-content">
           <div class="ad-icon">
-            <img src="${this._iconSrc}" alt="Emoji" />
+             <img src="${this._iconSrc}" alt="Icono" />
           </div>
           <p class="ad-message">${this._message}</p>
         </div>
@@ -80,6 +80,7 @@ export class Notification {
     margin-bottom: -4px;
     z-index: 11;
     animation: roll-in 1s forwards;
+    
 }
 
 @keyframes roll-in {
@@ -93,7 +94,7 @@ export class Notification {
 
 .ad-icon img{
     height: 50px;
-    width: 50px;
+    // width: 50px;
 }
 
 .ad-message {
@@ -123,5 +124,29 @@ export class Notification {
 }
 
 // Instancias 
-// const pedidoFinalizado = new Notification('../img/emojis/like.png', '¡Excelente, pedido finalizado!', 'success');
-// const datoIncorrecto = new Notification('../img/emojis/like.png', '¡Ups, algún dato es incorrecto!', 'error');
+
+// const datoIncorrecto = new Notification('../img/emojis/mueca.png', '¡Ups, algún dato es incorrecto!', 'error');
+
+// const errorAlDescargar = new Notification('../img/emojis/asombro.png', '¡Error al descargar!', 'error');
+
+// const pedidoFinalizado = new Notification('../img/emojis/guiño.png', '¡Excelente, pedido finalizado!', 'success');
+
+// const descargaExitosa = new Notification('../img/emojis/like.png', '¡Descarga exitosa!', 'success');
+
+// const seleccionaVendedor = new Notification('../img/emojis/señalar.png', '¡Primero debes seleccionar un vendedor!', 'success');
+
+// const guardado = new Notification('../img/emojis/ok.png', '¡Listo, guardado!', 'success');
+
+// const agregasteAStock1 = new Notification('../img/emojis/check.png', '¡Listo, lo agregaste a tu stock!', 'success');
+
+// const agregasteAStock2 = new Notification('../img/emojis/check.png', '¡Agregaste los productos a tu stock!', 'success');
+
+// const modificacionGuardada = new Notification('../img/emojis/ok.png', '¡Bien hecho, tu modificación se guardó!', 'success');
+
+// const eliminaDelStock = new Notification('../img/emojis/trash.png', '¡Eliminaste el producto de tu stock!', 'success');
+
+// const agregasteNuevoPerfil = new Notification('../img/emojis/perfil.png', '¡Agregaste un nuevo perfil!', 'success');
+
+// const eliminado = new Notification('../img/emojis/like.png', '¡Listo, eliminado!', 'success');
+
+// const guardarCambios = new Notification('../img/emojis/ok.png', '¡Guardaste los cambios!', 'success');

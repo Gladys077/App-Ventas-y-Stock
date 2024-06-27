@@ -1,7 +1,7 @@
  export class ModalDialogo {
 
-  constructor(icon, message = 'Confirmar al accion',ConfirmCallback, padre='body') {
-    this._icon = icon;
+  constructor(iconSrc, message = 'Confirmar la acción',ConfirmCallback, padre='body') {
+    this._iconSrc = iconSrc;
     this._message = message;
     this._confirmCallback = ConfirmCallback;
     this._cancelCallback;
@@ -11,6 +11,8 @@
     this.createModal();
   }
   createModal() {
+
+    this.agregarCss();
     // Crear el modal solo si no existe
     const modal = document.querySelector('.modalDialogo')
     if (modal==null || modal==NaN || modal=={}) {
@@ -20,7 +22,7 @@
       this._modalElement.innerHTML = `
         <div class="modal-content">
           <div class="modal-icon">
-            <img src="" alt="Icono" />
+            <img src="${this._iconSrc}" alt="Icono" />
           </div>
           <h3 class="modal-message">${this._message}</h3>
           <div class="modal-actions">
@@ -70,7 +72,7 @@
       width: 80%;
       max-width: 300px;
       background-color: #ffffff;
-      border: 1px solid var(--color-primario);
+      border: 1px solid #6810ad;
       margin: 15% auto;
       padding: 24px;
       border-radius: 28px;
@@ -83,28 +85,31 @@
   .modal-icon{
       height: 100px;
       width: 100px;
-      background-color: var(--color-blanco);
+      background-color: #ffffff;
       border-radius: 100%;
-      box-shadow: 0px 4px 4px 0px var(--color-sombra);
+      box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
       margin-top: -70px;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
   }
   .modal-icon img{
-      height: 50px;
-      width: 50px;
-      margin-top: 22px;
+      height: 65%;
+      
   }
   .modal-message{
       font-family: Roboto, sans-serif;
       font-size: 18px;
+      line-height: 22px;
   }
   .modal-actions{
       display: flex;
       justify-content: space-between;
-      margin-top: 16px;
+      margin-top: 24px;
       width: 100%;
       max-width: 250px;
-      height: 56px;
+      height: 48px;
       gap: 8px;
   }
   .btn-cancel, .btn-confirm{
@@ -112,16 +117,16 @@
       min-width: 110px;
       padding: 16px;
       border-radius: 28px;
-      border: 1px solid var(--color-primario);
+      border: 1.5px solid #6810ad;
       text-align: center;
   }
   .btn-cancel{
-      background-color: var(--color-border-articulo);
-      color: var(--color-primario);
+      background-color: #dadada;
+      color: #6810ad;
   }
   .btn-confirm{
-      background-color: var(--color-primario);
-      color: var(--color-blanco);
+      background-color: #6810ad;
+      color: #fff;
   }
       `
     head.appendChild(style);
