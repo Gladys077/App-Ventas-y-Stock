@@ -3,8 +3,11 @@
     --secondary-color: #CAA5FB;
     --text-color: #333333;
     --background-color: #efefef;
-    --text-claro: #fff;
+    --on-primary-color: #ffffff;
     --color-hover: #9747FF;
+    --fondo-monto: #DEC9FA;
+    --input-border-color: #9747FF;
+    --input-focus-color: #1A73E8;
   }
   *{
     font-family: Roboto, sans-serif;
@@ -40,32 +43,24 @@
   .dia{
     font-size: 16px;
   }
-  h3.card-monto{
-    font-size: 19px;
-    height: 56px;
-    border-radius: 4px;
-    border: 1px solid var(--primary-color)
-
-  }
   .desdeHasta{
     font-size: 16px;
     margin-bottom: 4px;
   }
-
   .card-input {
     border: 1px solid var(--secondary-color);
     border-radius: 50px;
     font-size: 18px;
     margin-bottom: 24px;
     padding: 8px;
-    height: 56px;
+    height: 48px;
     width: 80%;
     max-width: 250px;
     text-align: center;
   }
 
   .card-button {
-    height: 56px;
+    height: 48px;
     width: 80%;
     max-width: 250px;
     background-color: var(--primary-color);
@@ -81,18 +76,21 @@
   .card-button:hover {
     background-color: var(--color-hover);
   }
+  .card-button:active{
+    transform: scale(90%);
+  }
 
   .card-monto{
     height: 48px;
     min-width: 150px;
     max-width: 210px;
     width: 75%;
-    border: 1px solid var(--primary-color);
-    background-color: #fff;
+    /* border: 1px solid var(--primary-color); */
+    background-color: #dec9fa;
     color: var(--text-color);
     display: block;
     font-size: 12px;
-    margin: 24px auto;
+    margin: 36px auto;
     text-align: center;
     align-items: center;
   }
@@ -136,5 +134,6 @@
   }
   .card-link:active {
     color: var(--secondary-color)
+    
   }
   

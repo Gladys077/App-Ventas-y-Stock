@@ -6,8 +6,17 @@ export class CardVtaPorVendedor {
         this._onClick = onClick;
         this._element = null;
 
-      this.armarCardVtaPorVendedor();
+        this.cargarCss();
+
+        this.armarCardVtaPorVendedor();
     }
+
+    cargarCss(){
+      const link = document.createElement('link');
+      link.rel='stylesheet';
+      link.href = './cardBase.css';
+      document.head.appendChild(link);
+  }
   
     armarCardVtaPorVendedor() {
       this._element = document.createElement('div');

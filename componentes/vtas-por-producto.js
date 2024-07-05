@@ -7,10 +7,19 @@ export class CardVtasPorProducto {
         this._cuadroInferiorTitulo = cuadroInferiorTitulo;
         this._element = null;
 
+        this.cargarCss();
         this.armarCardVtasPorProducto();
     }
 
+    cargarCss(){
+        const link = document.createElement('link');
+        link.rel='stylesheet';
+        link.href = './cardBase.css';
+        document.head.appendChild(link);
+    }
+
     armarCardVtasPorProducto() {
+
         this._element = document.createElement('div');
         this._element.className = 'card';
 
@@ -71,7 +80,6 @@ export class CardVtasPorProducto {
             cuadroInferior.appendChild(headerCuadroInferior);
             cuadroInferior.appendChild(boxCuadroInferior);
 
-            // this._element.appendChild(unidadesVendidas);
             this._element.appendChild(cuadroInferior);
         }
 
@@ -79,24 +87,27 @@ export class CardVtasPorProducto {
 
         return this._element;
     }
+
 }
+
+
 
 function onClick() {
     console.log('btn clickeado');
 }
-//con cuadro 'unidades vendidas'
-const miCardConUnidadesVendidas = new CardVtasPorProducto('nombre_del_producto', 'Buscar', onClick, true);
-
-//sin cuadro de unidades vendidas
-// const miCardSinUnidadesVendidas = new CardVtasPorProducto('nombre_del_producto', 'Buscar', onClick, false);
-
 const mainElement = document.querySelector('main');
-// mainElement.appendChild(miCardConUnidadesVendidas.armarCardVtasPorProducto());
 
-//sin cuadro unid.vendidas
+
+//---------------------------VENTAS POR PRODUCTOS---------------------------
+//----------------------CON cuadro 'unidades vendidas'
+const miCardConUnidadesVendidas = new CardVtasPorProducto('nombre_del_producto', 'Buscar', onClick, true);
+mainElement.appendChild(miCardConUnidadesVendidas.armarCardVtasPorProducto());
+
+// -------------------SIN cuadro de 'unidades vendidas'
+// const miCardSinUnidadesVendidas = new CardVtasPorProducto('nombre_del_producto', 'Buscar', onClick, false);
 // mainElement.appendChild(miCardSinUnidadesVendidas.armarCardVtasPorProducto());
 
 
-//CARD VENTAS por FECHA - Importe facturado
-const miCardVentasPorFecha = new CardVtasPorProducto('', 'Buscar', onClick, true, 'Importe facturado')
-mainElement.appendChild(miCardVentasPorFecha.armarCardVtasPorProducto());
+//---------------------------  CARD VENTAS por FECHA - Importe facturado  ---------------------------
+// const miCardVentasPorFecha = new CardVtasPorProducto('', 'Buscar', onClick, true, 'Importe facturado')
+// mainElement.appendChild(miCardVentasPorFecha.armarCardVtasPorProducto());

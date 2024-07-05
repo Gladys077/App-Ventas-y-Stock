@@ -1,6 +1,6 @@
-@import url(footer.css);
+/* @import url(footer.css);
 @import url(header.css);
-@import url(main.css);
+@import url(main.css); */
 
 
 :root{
@@ -25,12 +25,12 @@
 
 body{
     background: linear-gradient(var(--color-fondo), var(--color-blanco));
-    max-width: 800px;
+    /* max-width: 800px; */
     width: 100vw;
     height: 100vh;
     font-family: Roboto, sans-serif;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    /* justify-content: center; */
-}
+    /* align-items: center; */ 
+    /* justify-content: center;*/
+} 
