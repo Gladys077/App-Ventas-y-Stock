@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Ventas y Stock - Ventas</title>
+    <title>App Ventas y Stock - Movimientos del Día</title>
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
             <img src="../../img/iconos/volver.png" alt="< Volver" title="Volver">
         </div>
         <div>
-            <h2>Ventas por Fecha</h2>
+            <h2>Movimientos del Día</h2>
         </div>
         <div>
             <nav></nav>
@@ -20,23 +20,15 @@
         </div>
     </header>   
     <main class="main">
-        <section class="contenedor-filtro-fecha">
-            <div class="fechas-datos">
-                <input type="date" class="fecha-desde">
-                <input type="date" class="fecha-hasta">
-            </div>
-        </section>
-        <section class="contenedor-monto-total">
+
+        <section class="contenedor-monto-total  hoy"><!--este estilo en ventas.css-->
             <span>$99999,9999</span>
         </section>
-        <section class="tabla_encabezados">
+        <section class="tabla_encabezados _deldia">
             <h3 class="th">Producto</h3>
             <h3 class="th">Cant.</h3>
         </section>
         <section class="tabla_detalles">
-            <div class="contenedor-fecha-venta">
-                <span>10/02/1923</span>
-            </div>
             <div class="tabla_lineaArticulo">
                 <div class="producto">Cuaderno</div>
                 <div class="cantidad">10</div>
@@ -44,32 +36,7 @@
             <div class="tabla_lineaArticulo">
                 <div class="producto">Hojas</div>
                 <div class="cantidad">12</div>
-            </div>
-            <div class="contenedor-fecha-venta">
-                <span>14/02/1923</span>
-            </div>            
-            <div class="tabla_lineaArticulo">
-                <div class="producto">Goma</div>
-                <div class="cantidad">10</div>
-            </div>
-            <div class="tabla_lineaArticulo">
-                <div class="producto">Colores</div>
-                <div class="cantidad">4</div>
-            </div>
-            <div class="contenedor-fecha-venta">
-                <span>10/02/1923</span>
-            </div>
-            <div class="tabla_lineaArticulo">
-                <div class="producto">Cuaderno</div>
-                <div class="cantidad">10</div>
-            </div>
-            <div class="tabla_lineaArticulo">
-                <div class="producto">Hojas</div>
-                <div class="cantidad">12</div>
-            </div>
-            <div class="contenedor-fecha-venta">
-                <span>14/02/1923</span>
-            </div>            
+            </div>           
             <div class="tabla_lineaArticulo">
                 <div class="producto">Goma</div>
                 <div class="cantidad">10</div>
@@ -82,7 +49,7 @@
         </section>
         <section class="tabla_footer">
             <h3 class="total">Total</h3>
-            <h3 class="valorTotal">66</h3>
+            <h3 class="valorTotal">36</h3>
         </section>
         
     </main>     
