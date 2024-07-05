@@ -1,10 +1,13 @@
 footer{
+    width: calc(100% - 32px);
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    margin-top: 14px;
+    margin: 14px 16px 0px 16px;
+    position: relative;
+    
     
     button{
         display:flex;
@@ -30,6 +33,7 @@ footer{
             height: 24px;
         }
     }
+
     .btn_cerrarPedido{
         background-color: var(--color-primario);
         color: var(--color-blanco);
@@ -38,4 +42,28 @@ footer{
         background-color: var(--color-blanco);
         color: var(--color-primario);
     }
+}
+
+.footer-movimientos{
+    height: 68px;
+    nav{
+        background-color: var(--color-primario);
+        display: flex;
+        flex-direction: column;
+        justify-content:start ;
+        align-items: center;
+        width: calc(100% - 32px);
+        gap: 4px;
+        padding: 16px;
+        img{
+            width: 24px;
+            height: 24px;
+        }
+        span{
+            color: var(--color-blanco);
+            line-height: auto;
+            font-size: 12px;
+        }
+    }
+
 }

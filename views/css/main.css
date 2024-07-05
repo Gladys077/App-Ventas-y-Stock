@@ -1,6 +1,6 @@
 main{
     width: calc(100% - 32px);
-    max-height: 420px;
+    max-height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,8 +16,8 @@ main{
             width: calc(100% - 32px);
             height: 40px;
             padding: 16px;
-            margin-top: 16px;
-            background: var(--color-blanco);
+            /* margin-top: 16px; */
+            background: var(--color-header-tabla);
             border-bottom: 1px solid var(--color-border-articulo);
             font-size: 14px;
             font-weight: 400;
@@ -55,7 +55,7 @@ main{
 
     }/*fin tabla_detalles*/
 
-    .tabla_footerPedido{
+    .tabla_footer{
         font-size: 14px;
         font-weight: 400;
         width: calc(100% - 32px);
@@ -68,7 +68,8 @@ main{
         align-items: center;
         justify-content: end;
         gap: 16px;
-    }
+    }/*fin tabla_footer*/
+    
     .adicionarArticulo{
         background: var(--color-verde);
         border: 1px solid var(--color-verde);
@@ -83,6 +84,6 @@ main{
         position: absolute;
         
 
-    }
+    }/*fin adicionarArticulo*/
 
-}
+}/*Fin main*/

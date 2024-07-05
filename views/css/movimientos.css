@@ -1,0 +1,50 @@
+main{
+    .contenedor-filtro-fecha{
+        width: calc(100% - 32px);
+        
+        .fechas-encabezado{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4px;
+            h3{
+                color:var(--color-blanco);
+                background-color: var(--color-primario);
+                width:calc(50% - 2px);
+                height: 27px;
+                font-size: 14px;
+                padding-top: 4px;
+                text-align: center;
+
+            }
+        }/*fin fechas-encabezado*/
+
+        .fechas-datos{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4px;
+            margin-top: 4px;
+            input{
+                color:var(--color-blanco);
+                background-color: var(--color-primario);
+                width:calc(50% - 2px);
+                height: 32px;
+                font-size: 18px;
+                padding-top: 4px;
+                text-align: center;
+                border: none;
+
+            }
+        }/*fin fechas-datos*/
+
+
+
+    }/*fin contenedor-filtro-fecha*/
+}

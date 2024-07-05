@@ -1,6 +1,9 @@
 @import url(footer.css);
 @import url(header.css);
 @import url(main.css);
+@import url(ventas.css);
+@import url(movimientos.css);
+
 
 
 :root{
@@ -13,6 +16,7 @@
     --color-rojo: #C00D0D; /*NUEVO*/
     --color-rojo-claro: #fa9f9f; /*NUEVO*/
     --color-sombra: rgba(0,0,0,0.25);
+    --color-header-tabla: #efefef;
 }
 
 

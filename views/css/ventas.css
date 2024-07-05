@@ -1,1 +1,26 @@
+@import url(footer.css);
+@import url(header.css);
+@import url(main.css);
 
+
+main{
+    section.filtro-fecha, section.monto-total{
+            height: 32px;
+            padding: 8px;
+            width: calc(100% - 32px);
+            background-color: var(--color-primario);
+            font-family: Roboto, sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--color-blanco);
+            text-align: center;
+            margin-top: 4px;
+            
+    }/*fin filtro-fecha*/
+
+    section.monto-total{
+        background-color: var(--color-blanco);
+        color: var(--color-primario);
+
+    }
+}/*fin main*/

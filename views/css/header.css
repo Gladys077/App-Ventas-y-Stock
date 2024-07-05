@@ -1,4 +1,4 @@
-header{
+.header{
     display: flex;
     flex-direction: row;
     align-items: end;
@@ -6,22 +6,28 @@ header{
     text-align: center;
     width: calc(100% - 32px);
     height: 100px;
-    /* margin: auto; */
     padding: 0px 16px;
     margin: 0 auto;
-    img{
-        height: 24px;
-    }
-    h2{
-        font-size: 20px;
-    }
-
-    button{
-        background-color: transparent;
-        border: none;
-        font-size: 24px;
+    margin-bottom: 16px;
+    div{
         img{
             height: 24px;
+        }
+    }
+    div{
+        h2{
+            font-size: 20px;
+        }
+    }
+
+    div{
+        button{
+            background-color: transparent;
+            border: none;
+            font-size: 24px;
+            img{
+                height: 24px;
+            }
         }
     }
     

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Ventas y Stock - Movimientos del Producto</title>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+    <header class="header">
+        <div>
+            <img src="../../img/iconos/volver.png" alt="< Volver" title="Volver">
+        </div>
+        <div>
+            <h2>Nombre_del_Producto</h2><!-- aca va el nombre del producto consultado -->
+        </div>
+        <div>
+            <nav></nav>
+            <button class="nav-toggle" aria-label="Abrir Menú"><img src="../../img/iconos/menu.png" alt="Menú"></button>
+        </div>
+    </header>   
+    <main class="main">
+        <section class="contenedor-filtro-fecha">
+            <div class="fechas-encabezado">
+                <h3>DESDE</h3>
+                <h3>HASTA</h3>
+            </div>
+            <div class="fechas-datos">
+                <input type="date" class="fecha-desde">
+                <input type="date" class="fecha-hasta">
+            </div>
+        </section>
+        <section class="tabla_encabezados">
+            <h3 class="th">Fecha</h3>
+            <h3 class="th">Cantidad</h3>
+        </section>
+        <section class="tabla_detalles">
+            <div class="tabla_lineaArticulo">
+                <div class="fecha">12/01/2024</div>
+                <div class="cantidad">10</div>
+            </div>
+            <div class="tabla_lineaArticulo">
+                <div class="fecha">13/01/2024</div>
+                <div class="cantidad">15</div>
+            </div>
+            <div class="tabla_lineaArticulo">
+                <div class="fecha">14/01/2024</div>
+                <div class="cantidad">11</div>
+            </div>
+            <div class="tabla_lineaArticulo">
+                <div class="fecha">15/01/2024</div>
+                <div class="cantidad">10</div>
+            </div>
+            <div class="tabla_lineaArticulo">
+                <div class="fecha">16/01/2024</div>
+                <div class="cantidad">10</div>
+            </div>
+            <div class="tabla_lineaArticulo">
+                <div class="fecha">17/01/2024</div>
+                <div class="cantidad">10</div>
+            </div>
+        </section>
+        <section class="tabla_footer">
+            <h3 class="total">Total Unidades</h3>
+            <h3 class="valorTotal">66</h3>
+        </section>
+        
+    </main>     
+    <footer class="footer-movimientos">
+        <nav class="nav-footer">
+            <img src="../../img/iconos/descargarBlanco.PNG" alt="Descargar">
+            <span>Descargar</span>
+        </nav>
+    </footer>
+</body>
+</html>
