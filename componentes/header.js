@@ -136,7 +136,7 @@ document.head.appendChild(style);
 }
 }
 
-const iconoVolver = `
+export const iconoVolver = `
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
@@ -157,7 +157,7 @@ fill="#000000" stroke="none">
 </svg>
 `;
 
-const iconoEditar = `
+export const iconoEditar = `
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
          width="24px" height="24px" viewBox="0 0 512.000000 512.000000"
          preserveAspectRatio="xMidYMid meet">
@@ -179,7 +179,7 @@ const iconoEditar = `
     </svg>
 `;
 
-const iconoMenu = `
+export const iconoMenu = `
         <?xml version="1.0" standalone="no"?>
     <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
     "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
@@ -204,7 +204,7 @@ const iconoMenu = `
     </svg>
 `;
 
-const iconoAjustes = `
+export const iconoAjustes = `
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">

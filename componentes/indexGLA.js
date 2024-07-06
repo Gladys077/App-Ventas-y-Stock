@@ -1,14 +1,8 @@
-import {ModalDialogo} from './modalDialogo.js';
-import {Notification} from './notification.js';
-import {Header} from './header.js';
-// import {CardVtaPorVendedor} from './vtas-por-vendedor.js';
-// import {CardVtasPorProducto} from './vtas-por-producto.js';
-// import {CardCantCargarStock} from "./cardCantCargaStock.js";
-import {CardNewProduct} from "./cardNewProduct.js";
+import { ModalDialogo } from './modalDialogo.js';
+import { Notification } from './notification.js';
+import { Header, iconoMenu, iconoVolver, iconoEditar } from './header.js';
+import { ButtonContainer } from './btnsContainer.js';
+import { NewProductPage } from './newProductPage.js'; // Importa la clase de tu nueva página
 
-
-// Instancia del formulario 'Nuevo Producto'
-const formNewProd = new CardNewProduct();
-
-// Agrego el formulario al DOM
-document.body.appendChild(formNewProd.element);
+// // Inicializa la nueva página
+// new NewProductPage();
