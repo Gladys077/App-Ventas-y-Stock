@@ -1,10 +1,8 @@
 import { Header, iconoVolver, iconoMenu, navigateToMenu } from './header.js';
-
 import { CardNewProduct } from './cardNewProduct.js';
 
 export class NewProductPage {
     constructor() {
-        // Crear elementos header, main y footer
         this.createHeader();
         this.createMain();
         document.addEventListener('DOMContentLoaded', () =>{
@@ -22,10 +20,7 @@ export class NewProductPage {
         document.body.appendChild(this.cardNewProduct.getElement());
     }
 
-    // createFooter() {
-    //     this.footerButtons = new ButtonContainer('Guardar', 'Cancelar', this.onPrimaryBtnClick.bind(this), this.onSecondaryBtnClick.bind(this));
-    //     document.body.appendChild(this.footerButtons.getButtonContainer());
-    // }
+
 
     onPrimaryBtnClick() {
         this.cardNewProduct.guardarProducto();
@@ -41,7 +36,7 @@ export class NewProductPage {
         const headerElement = document.querySelector('header');
         const mainElement = document.querySelector('main');
 
-        // Verificar que los elementos existan antes de tratar de manipularlos
+        // Verifica que los elementos existan antes de tratar de manipularlos
         if (headerElement && mainElement) {
             headerElement.innerHTML = '';
             mainElement.innerHTML = '';
@@ -54,4 +49,4 @@ export class NewProductPage {
     }
 }
 
-new NewProductPage(); // Crear una instancia de la página de nuevo producto
+new NewProductPage();

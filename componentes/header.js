@@ -105,7 +105,7 @@ style.textContent = `
         border-bottom: 1px solid #ccc;
         box-sizing: border-box;
         max-width: calc(100% - 32px);
-        width: 400px;
+        width: 360px;
         
     }
 
