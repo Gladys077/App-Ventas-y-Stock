@@ -1,19 +1,27 @@
+import { ButtonContainer } from './btnsContainer.js';
+
 export class CardNewProduct {
-    constructor() {
+    constructor(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback) {
+        this.btnPrimary = btnPrimary;
+        this.btnSecondary = btnSecondary;
+        this.btnPrimaryCallback = btnPrimaryCallback;
+        this.btnSecondaryCallback = btnSecondaryCallback;
         this.element = this.createForm();
     }
 
     createForm() {
         this.cargarCss();
 
-        const form = document.createElement('div');
+        const form = document.createElement('form');
         form.className = 'nuevo-producto-form';
 
         form.appendChild(this.createProductInput());
         form.appendChild(this.createProveedorSelect());
         form.appendChild(this.createCostoPorcentaje());
         form.appendChild(this.createPrecioVenta());
+        form.appendChild(this.createDivider());
         form.appendChild(this.createPedidoOptional());
+        form.appendChild(this.createButtonContainer()); 
 
         return form;
     }
@@ -53,7 +61,7 @@ export class CardNewProduct {
             const selectedOption = select.options[select.selectedIndex];
             selectedOption.classList.add('selected-option');
 
-            // Redirigir a otra página si el proveedor es "Nuevo proveedor"
+            // Redirige a otra página si el proveedor es "Nuevo proveedor"
             if (selectedOption.textContent === 'Nuevo proveedor') {
                 window.location.href = '/ruta-a-la-pagina-de-nuevo-proveedor';
             }
@@ -75,7 +83,6 @@ export class CardNewProduct {
         const porcentajeInput = porcentajeGroup.querySelector('input');
         costoInput.classList.add('interiorInput');
         porcentajeInput.classList.add('interiorInput');
-
 
         costoInput.addEventListener('input', () => this.calculaPrecioVenta());
         porcentajeInput.addEventListener('input', () => this.calculaPrecioVenta());
@@ -108,17 +115,31 @@ export class CardNewProduct {
     createPrecioVenta() {
         const precioVenta = document.createElement('div');
         precioVenta.className = 'precio-venta';
-        this.precioVentaLabel = document.createElement('span');
-        this.precioVentaLabel.textContent = 'Precio de venta: $ 0';
-        precioVenta.appendChild(this.precioVentaLabel);
+
+        const label = document.createElement('label');
+        label.textContent = 'Precio de venta';
+
+        this.precioVentaDisplay = document.createElement('div');
+        this.precioVentaDisplay.className = 'precio-venta-display';
+        this.precioVentaDisplay.textContent = '$ 0';
+
+        precioVenta.appendChild(label);
+        precioVenta.appendChild(this.precioVentaDisplay);
+
         return precioVenta;
+    }
+
+    createDivider() {
+        const divider = document.createElement('div');
+        divider.className = 'divider';
+        return divider;
     }
 
     calculaPrecioVenta() {
         const costo = parseFloat(document.getElementById('costo').value) || 0;
         const porcentaje = parseFloat(document.getElementById('porcentaje').value) || 0;
         const precioVenta = costo * (1 + porcentaje / 100);
-        this.precioVentaLabel.textContent = `Precio de venta: ${precioVenta.toFixed(2)}`;
+        this.precioVentaDisplay.textContent = `$${precioVenta.toFixed(2)}`;
     }
 
     createPedidoOptional() {
@@ -126,19 +147,15 @@ export class CardNewProduct {
         pedidoOptional.className = 'pedido-optional';
 
         const h4 = document.createElement('h4');
-        h4.textContent = 'Agrega al próximo pedido (Opcional)';
+        h4.textContent = 'Agregar al próximo pedido cuando el stock sea menor a:';
 
         const stockCheck = document.createElement('div');
         stockCheck.className = 'stock-check';
 
-        const p = document.createElement('p');
-        p.textContent = 'Cuando en stock haya menos de:';
-
         const input = document.createElement('input');
         input.type = 'number';
-        input.placeholder = 'Cant.';
+        input.placeholder = 'Cantidad';
 
-        stockCheck.appendChild(p);
         stockCheck.appendChild(input);
 
         pedidoOptional.appendChild(h4);
@@ -147,10 +164,14 @@ export class CardNewProduct {
         return pedidoOptional;
     }
 
+    createButtonContainer() {
+        const btnsContainer = new ButtonContainer(this.btnPrimary, this.btnSecondary, this.btnPrimaryCallback, this.btnSecondaryCallback);
+        return btnsContainer.getButtonContainer();
+    }
 
-    cargarCss(){
+    cargarCss() {
         const link = document.createElement('link');
-        link.rel='stylesheet';
+        link.rel = 'stylesheet';
         link.href = './cardNewProd.css';
         document.head.appendChild(link);
     }
@@ -160,7 +181,7 @@ export class CardNewProduct {
         document.querySelector('.proveedorSelect').selectedIndex = 0;
         document.getElementById('costo').value = '';
         document.getElementById('porcentaje').value = '';
-        this.precioVentaLabel.textContent = 'Precio de venta: $ 0';
+        this.precioVentaDisplay.textContent = '$ 0';
         document.querySelector('.stock-check input').value = '';
     }
 

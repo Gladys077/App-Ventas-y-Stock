@@ -1,28 +1,56 @@
-import {iconoVolver, iconoMenu} from './header.js'
-import { Header } from './header.js';
-import { Footer } from './footer.js';
+import { Header, iconoVolver, iconoMenu, navigateToMenu } from './header.js';
+
 import { CardNewProduct } from './cardNewProduct.js';
-import { ButtonContainer } from './btnsContainer.js'; // Asegúrate de importar el contenedor de botones
 
 export class NewProductPage {
     constructor() {
-         // Instancia del header
-        this.header = new Header('Pedido finalizado', iconoVolver, iconoMenu, null, function(){ navigateToMenu('stock'); } ); 
-        
-        // Instancia del contenido main
-        this.cardNewProduct = new CardNewProduct(); 
-
-        // Instancia del pie de página con btns
-        this.footer = new Footer('Guardar', 'Cancelar', () => this.onPrimaryBtnClick(), () => this.onSecondaryBtnClick()); 
-
-        document.querySelector('main').appendChild(this.cardNewProduct.getElement());
-        document.querySelector('footer').appendChild(this.footer.getElement());
-
-        this.createPage(); // Método para renderizar la página completa
+        // Crear elementos header, main y footer
+        this.createHeader();
+        this.createMain();
+        document.addEventListener('DOMContentLoaded', () =>{
+            this.createPage();
+        });
     }
 
-    onGuardarClick() {
-        console.log('cliqueó en btnGuardar')
+    createHeader() {
+        this.header = new Header('Nuevo Producto', iconoVolver, iconoMenu, null, function(){ navigateToMenu('stock'); });
+        document.body.appendChild(this.header.getElement());
+    }
+
+    createMain() {
+        this.cardNewProduct = new CardNewProduct('Guardar', 'Cancelar', this.onPrimaryBtnClick.bind(this), this.onSecondaryBtnClick.bind(this));
+        document.body.appendChild(this.cardNewProduct.getElement());
+    }
+
+    // createFooter() {
+    //     this.footerButtons = new ButtonContainer('Guardar', 'Cancelar', this.onPrimaryBtnClick.bind(this), this.onSecondaryBtnClick.bind(this));
+    //     document.body.appendChild(this.footerButtons.getButtonContainer());
+    // }
+
+    onPrimaryBtnClick() {
+        this.cardNewProduct.guardarProducto();
+        console.log('click en btn guardar');
+    }
+
+    onSecondaryBtnClick() {
+        this.cardNewProduct.resetForm();
+        console.log('click btn cancelar')
+    }
+
+    createPage() {
+        const headerElement = document.querySelector('header');
+        const mainElement = document.querySelector('main');
+
+        // Verificar que los elementos existan antes de tratar de manipularlos
+        if (headerElement && mainElement) {
+            headerElement.innerHTML = '';
+            mainElement.innerHTML = '';
+
+            headerElement.appendChild(this.header.getElement());
+            mainElement.appendChild(this.cardNewProduct.getElement());
+        } else {
+            console.error('Los elementos header y main no se encontraron en el DOM.');
+        }
     }
 }
 

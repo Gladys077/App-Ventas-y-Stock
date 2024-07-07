@@ -16,10 +16,10 @@ export class Header {
             });
         }
 
-        this.armarHeader();
+        this.element = this.createHeaderElement();
     }
 
-    armarHeader() {
+    createHeaderElement() {
         this.agregarCss();
 
         const headerContainer = document.createElement('header');
@@ -69,6 +69,12 @@ export class Header {
         } else {
             document.body.prepend(headerContainer);
         }
+
+        return headerContainer;
+        
+    }
+    getElement() {
+        return this.element;
     }
 
 updateTitle(newTitle) {
@@ -98,6 +104,9 @@ style.textContent = `
         align-items: center;
         border-bottom: 1px solid #ccc;
         box-sizing: border-box;
+        max-width: calc(100% - 32px);
+        width: 400px;
+        
     }
 
     .icon-container {
@@ -134,6 +143,25 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 }
+}
+
+export function navigateToMenu(destino){
+    switch(destino){
+        case "ventas":
+            console.log('Navegando al menú de ventas');
+            //aquí va la lógica para ir allí
+            break;
+        case "stock":
+            console.log('Navegando al menú de stock');
+            //aquí va la lógica para ir allí
+            break;        
+        case "perfiles":
+            console.log('Navegando al menú de perfiles');
+            //aquí va la lógica para ir allí
+            break;
+        default:
+            console.log('Destino no especificado');
+    }
 }
 
 export const iconoVolver = `
@@ -243,24 +271,7 @@ l-29 27 -270 0 c-264 0 -269 0 -295 -22z m491 -1368 c274 -70 493 -295 560
 </svg>
 `;
 
-function navigateToMenu(destino){
-    switch(destino){
-        case "ventas":
-            console.log('Navegando al menú de ventas');
-            //aquí va la lógica para ir allí
-            break;
-        case "stock":
-            console.log('Navegando al menú de stock');
-            //aquí va la lógica para ir allí
-            break;        
-        case "perfiles":
-            console.log('Navegando al menú de perfiles');
-            //aquí va la lógica para ir allí
-            break;
-        default:
-            console.log('Destino no especificado');
-    }
-}
+
  
 // Probando INSTANCIAS:
 /*
