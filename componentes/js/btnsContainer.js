@@ -47,7 +47,7 @@ export class ButtonContainer {
     cargarCss(){
         const link = document.createElement('link');
         link.rel='stylesheet';
-        link.href = './btnsContainer.css';
+        link.href = './css/btnsContainer.css';
         document.head.appendChild(link);
     }
 }

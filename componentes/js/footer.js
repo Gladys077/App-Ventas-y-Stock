@@ -1,4 +1,4 @@
-import { ButtonContainer } from './btnsContainer.js';
+import { ButtonContainer } from '../js/btnsContainer.js';
 
 export class Footer {
     constructor(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback) {

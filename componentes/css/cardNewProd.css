@@ -20,7 +20,7 @@
 .nuevo-producto-form {
     font-family: 'Roboto', sans-serif;
     border-radius: 4px 4px 12px 12px;
-    max-width: 360px;
+    max-width: 400px;
     width: calc(100% - 32px);
     margin: 16px auto;
     display: flex;

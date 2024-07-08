@@ -14,7 +14,7 @@ export class CardVtasPorProducto {
     cargarCss(){
         const link = document.createElement('link');
         link.rel='stylesheet';
-        link.href = './cardBase.css';
+        link.href = '../css/cardBase.css';
         document.head.appendChild(link);
     }
 

@@ -42,7 +42,7 @@
 }
 .modal-actions{
     display: flex;
-    justify-content: space-between;
+    justify-content:space-around;
     margin-top: 16px;
     width: 100%;
     max-width: 250px;

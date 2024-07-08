@@ -1,4 +1,4 @@
-import { ButtonContainer } from './btnsContainer.js';
+import { ButtonContainer } from '../js/btnsContainer.js';
 
 export class CardNewProduct {
     constructor(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback) {
@@ -172,7 +172,7 @@ export class CardNewProduct {
     cargarCss() {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = './cardNewProd.css';
+        link.href = './css/cardNewProd.css';
         document.head.appendChild(link);
     }
 
@@ -201,7 +201,7 @@ export class CardNewProduct {
             precioVenta,
             stockMinimo
         };
-
+        
         // Lógica para enviar los datos a la base de datos usando fetch (ver con LIO)
         fetch('/ruta-a-la-api-de-bbdd', {
             method: 'POST',
@@ -211,9 +211,9 @@ export class CardNewProduct {
             body: JSON.stringify(data)
         }).then(response => response.json())
           .then(data => {
-              console.log('Producto guardado:', data);
+              console.log('Producto guardado: ', data);
           }).catch(error => {
-              console.error('Error al guardar el producto:', error);
+              console.error('Error al guardar el producto', error);
           });
     }
 

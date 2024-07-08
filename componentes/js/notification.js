@@ -21,13 +21,13 @@ export class Notification {
     this._notificationElement = document.createElement('div');
     this._notificationElement.classList.add(`ad`, `ad-${this._type}`); // Agregar clase específica
 
-    // Crear el contenido del aviso
+    // Crea el contenido del aviso
     const styles = `
     background-color: ${this._colors[this._type].background};
     border: 1px solid ${this._colors[this._type].border};
     `;
 
-    // Crear el contenido del aviso
+    // Crea el contenido del aviso
     this._notificationElement.innerHTML = `
         <div class="ad-content">
           <div class="ad-icon">
@@ -38,86 +38,92 @@ export class Notification {
       `;
 
     this._padre.appendChild(this._notificationElement);
+
+    setTimeout(() => {
+      this._notificationElement.style.animation = 'slide-down 2s forwards';
+  }, 10000);
+
   }
+  
 
   agregarCss() {
     const head = document.querySelector('head');
     const style = document.createElement('style');
     style.innerText = `
-.ad {
- width: 100%;
- height: 100%;
- /* display: none; */
- position: fixed;
- z-index: 10;
- bottom: -100%;
- transform: translateY(64%);
- animation: slide-up 2s forwards;
-}
-@keyframes slide-up {
-    from {
-        bottom: -100px;
-    }
-    to {
-        bottom: 20px;
-    }
-}
+      .ad {
+      width: 100%;
+      height: 100%;
+      /* display: none; */
+      position: fixed;
+      z-index: 10;
+      bottom: -80%;
+      transform: translateY(55%);
+      animation: slide-up 3s forwards;
+      }
+      @keyframes slide-up {
+          from {
+              bottom: -100px;
+          }
+          to {
+              bottom: 20px;
+          }
+      }
 
-.ad-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.ad-icon {
-    width: 72px;
-    height: 72px;
-    background-color: #fff;
-    border-radius: 100%;
-    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    margin-bottom: -4px;
-    z-index: 11;
-    animation: roll-in 1s forwards;
-    
-}
+      .ad-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+      .ad-icon {
+          width: 72px;
+          height: 72px;
+          background-color: #fff;
+          border-radius: 100%;
+          box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+          display: flex; 
+          justify-content: center; 
+          align-items: center; 
+          margin-bottom: -4px;
+          z-index: 11;
+          // animation: roll-in 1s forwards;
+          
+      }
 
-@keyframes roll-in {
-    from{
-        transform: translateX(100px) rotate(360deg);
-    }
-    to {
-        transform: translateX(0) rotate(0deg);
-    }
-}
+      // @keyframes roll-in {
+      //     from{
+      //         transform: translateX(100px) rotate(360deg);
+      //     }
+      //     to {
+      //         transform: translateX(0) rotate(0deg);
+      //     }
+      // }
 
-.ad-icon img{
-    height: 50px;
-    // width: 50px;
-}
+      .ad-icon img{
+          height: 50px;
+          // width: 50px;
+      }
 
-.ad-message {
-    min-width: 280px;
-    min-height: 48px;
-    border-radius: 4px;
-    font-family: Roboto, sans-serif;
-    font-size: 15px;
-    font-weight:500;
-    padding: 10px 20px; 
-    align-content: center;
-    text-align: center;
-}
+      .ad-message {
+          min-width: 280px;
+          min-height: 48px;
+          border-radius: 4px;
+          font-family: Roboto, sans-serif;
+          font-size: 15px;
+          font-weight:500;
+          padding: 10px 20px; 
+          align-content: center;
+          text-align: center;
+      }
 
-.ad-success .ad-message{
-    background-color: #7BF087;
-    border-color: 1px solid #31c140;
-}
-.ad-error .ad-message{
-    background-color: #fa9f9f;
-    border-color: 1px solid #C00D0D;
-}
-`
+      .ad-success .ad-message{
+          background-color: #7BF087;
+          border-color: 1px solid #31c140;
+      }
+      .ad-error .ad-message{
+          background-color: #fa9f9f;
+          border-color: 1px solid #C00D0D;
+      }
+      `
 
     head.appendChild(style);
   }
@@ -150,4 +156,4 @@ export class Notification {
 
 // const eliminado = new Notification('../img/emojis/like.png', '¡Listo, eliminado!', 'success');
 
-// const guardarCambios = new Notification('../img/emojis/ok.png', '¡Guardaste los cambios!', 'success');
+// const guardarCambios = new Notification('../img/emojis/ok.png', '¡Guardaste los cambios!', 'success') 

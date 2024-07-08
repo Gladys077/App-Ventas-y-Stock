@@ -1,26 +1,18 @@
-export class CardVtaPorVendedor {
+export class CardVtasPorVendedor {
     constructor(title, subtitle, textBtn, onClick) {
         this._title = title;
         this._subtitle = subtitle;
         this._textBtn = textBtn;
         this._onClick = onClick;
-        this._element = null;
-
+        this.element = this.armarCardVtasPorVendedor();
         this.cargarCss();
-
-        this.armarCardVtaPorVendedor();
     }
 
-    cargarCss(){
-      const link = document.createElement('link');
-      link.rel='stylesheet';
-      link.href = './cardBase.css';
-      document.head.appendChild(link);
-  }
-  
-    armarCardVtaPorVendedor() {
-      this._element = document.createElement('div');
-      this._element.className = 'card';
+    armarCardVtasPorVendedor() {
+      this.cargarCss(); 
+
+      this.element = document.createElement('div');
+      this.element.className = 'card';
       
       const titleElement = document.createElement('h2');
       titleElement.textContent = this._title;
@@ -52,25 +44,34 @@ export class CardVtaPorVendedor {
         console.log('Mostrar listado');
       });
       
-      this._element.appendChild(titleElement);
-      this._element.appendChild(subtitle);
-      this._element.appendChild(input);
-      this._element.appendChild(button);
-      this._element.appendChild(monto);
-      this._element.appendChild(verListado);
+      this.element.appendChild(titleElement);
+      this.element.appendChild(subtitle);
+      this.element.appendChild(input);
+      this.element.appendChild(button);
+      this.element.appendChild(monto);
+      this.element.appendChild(verListado);
       
-      return this._element;
+      return this.element;
+    }
+    cargarCss(){
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = './css/cardBase.css';
+      document.head.appendChild(link);
   }
-}
+    getElement() {
+      return this.element;
+  }
+  }
 
 
     function onClick(){
         console.log('btn clickeado');
     }
 
-const miCard = new CardVtaPorVendedor('nombre_del_vendedor', 'DIA', 'Buscar', onClick);
-const mainElement = document.querySelector('main');
-mainElement.appendChild(miCard.armarCardVtaPorVendedor());
+// const miCard = new CardVtaPorVendedor('nombre_del_vendedor', 'DIA', 'Buscar', onClick);
+// const mainElement = document.querySelector('main');
+// mainElement.appendChild(miCard.armarCardVtaPorVendedor());
 
 // miCard.addButton('Buscar', () => console.log('Botón clickeado'));
 

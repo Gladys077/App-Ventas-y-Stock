@@ -104,8 +104,8 @@ style.textContent = `
         align-items: center;
         border-bottom: 1px solid #ccc;
         box-sizing: border-box;
-        max-width: calc(100% - 32px);
-        width: 360px;
+        width: calc(100% - 32px);
+        max-width: 400px;
         
     }
 
