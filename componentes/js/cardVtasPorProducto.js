@@ -5,23 +5,16 @@ export class CardVtasPorProducto {
         this._onClick = onClick;
         this._includeUnidadesVendidas = includeUnidadesVendidas;
         this._cuadroInferiorTitulo = cuadroInferiorTitulo;
-        this._element = null;
+        this.element = this.armarCardVtasPorProducto();
 
         this.cargarCss();
-        this.armarCardVtasPorProducto();
-    }
-
-    cargarCss(){
-        const link = document.createElement('link');
-        link.rel='stylesheet';
-        link.href = '../css/cardBase.css';
-        document.head.appendChild(link);
     }
 
     armarCardVtasPorProducto() {
+        // this.cargarCss();
 
-        this._element = document.createElement('div');
-        this._element.className = 'card';
+        this.element = document.createElement('div');
+        this.element.className = 'card';
 
         const titleElement = document.createElement('h2');
         titleElement.textContent = this._title;
@@ -50,7 +43,7 @@ export class CardVtasPorProducto {
         const button = document.createElement('button');
         button.textContent = this._textBtn;
         button.className = 'card-button';
-        button.addEventListener('click', this._onClick);
+        button.addEventListener('click', ()=>this.handleClick());
 
         const verListado = document.createElement('a');
         verListado.textContent = "Listado por fecha";
@@ -61,10 +54,10 @@ export class CardVtasPorProducto {
             console.log('Mostrar listado');
         });
 
-        this._element.appendChild(titleElement);
-        this._element.appendChild(desdeInput);
-        this._element.appendChild(hastaInput);
-        this._element.appendChild(button);
+        this.element.appendChild(titleElement);
+        this.element.appendChild(desdeInput);
+        this.element.appendChild(hastaInput);
+        this.element.appendChild(button);
 
         if (this._includeUnidadesVendidas) {
             const cuadroInferior = document.createElement('div');
@@ -80,14 +73,57 @@ export class CardVtasPorProducto {
             cuadroInferior.appendChild(headerCuadroInferior);
             cuadroInferior.appendChild(boxCuadroInferior);
 
-            this._element.appendChild(cuadroInferior);
+            this.element.appendChild(cuadroInferior);
         }
 
-        this._element.appendChild(verListado);
+        this.element.appendChild(verListado);
 
-        return this._element;
+        return this.element;
+    }
+    // Este método maneja el clic y actualiza la visualización de la cant. de unid. vendidas
+    handleClick() {
+        this._includeUnidadesVendidas = !this._includeUnidadesVendidas;
+        this._onClick(); // llamo al callback original
+        this.actualizarVisualizacion(); //actualiza la visualización
+        console.log('Valor de includeUnidadesVendidas', this._includeUnidadesVendidas);
     }
 
+       // NUEVO MÉTODO: Actualiza la visualización basada en _includeUnidadesVendidas
+       actualizarVisualizacion() {
+        const cuadroInferior = this.element.querySelector('.cuadroInferior');
+        if (this._includeUnidadesVendidas) {
+            if (!cuadroInferior) {
+                const nuevoCuadroInferior = document.createElement('div');
+                nuevoCuadroInferior.className = 'cuadroInferior';
+
+                const headerCuadroInferior = document.createElement('div');
+                headerCuadroInferior.textContent = this._cuadroInferiorTitulo;
+                headerCuadroInferior.className = 'headerCuadroInferior';
+
+                const boxCuadroInferior = document.createElement('span');
+                boxCuadroInferior.className = 'boxCuadroInferior';
+
+                nuevoCuadroInferior.appendChild(headerCuadroInferior);
+                nuevoCuadroInferior.appendChild(boxCuadroInferior);
+
+                this.element.insertBefore(nuevoCuadroInferior, this.element.lastElementChild);
+            }
+        } else {
+            if (cuadroInferior) {
+                cuadroInferior.remove();
+            }
+        }
+    }
+
+    cargarCss(){
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = './css/cardBase.css';
+        document.head.appendChild(link);
+    }
+    getElement() {
+        return this.element;
+    }
 }
 
 
@@ -99,11 +135,11 @@ const mainElement = document.querySelector('main');
 
 
 //---------------------------VENTAS POR PRODUCTOS---------------------------
-//----------------------CON cuadro 'unidades vendidas'
-const miCardConUnidadesVendidas = new CardVtasPorProducto('nombre_del_producto', 'Buscar', onClick, true);
-mainElement.appendChild(miCardConUnidadesVendidas.armarCardVtasPorProducto());
+//           >>>>>>> CON cuadro 'unidades vendidas' <<<<<<
+// const miCardConUnidadesVendidas = new CardVtasPorProducto('nombre_del_producto', 'Buscar', onClick, true);
+// mainElement.appendChild(miCardConUnidadesVendidas.armarCardVtasPorProducto());
 
-// -------------------SIN cuadro de 'unidades vendidas'
+//           >>>>>>> SIN cuadro de 'unidades vendidas' <<<<<<<
 // const miCardSinUnidadesVendidas = new CardVtasPorProducto('nombre_del_producto', 'Buscar', onClick, false);
 // mainElement.appendChild(miCardSinUnidadesVendidas.armarCardVtasPorProducto());
 
