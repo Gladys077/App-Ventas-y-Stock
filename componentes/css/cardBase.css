@@ -113,13 +113,16 @@
   }
   .boxCuadroInferior{
     display: block;
-    padding: 8px;
     border-radius: 0 0 4px 4px;
     font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--primary-color);
     margin: auto;
     border: 1px solid var(--color-hover);
     height: 48px;
     background-color: white;
+    line-height: 48px;
   }
   .card-link {
     color: var(--primary-color);
