@@ -92,7 +92,7 @@ export class CardVtasPorProducto {
     handleDateChange(e, label) {
         const value = e.target.value;
         if (value && !isValidDate(value)) {
-            new Notification('../img/emojis/mueca.png', 'Fecha inválida. Use el formato DD/MM/AAAA', 'error');
+            // new Notification('../img/emojis/mueca.png', 'Fecha inválida. Use el formato DD/MM/AAAA', 'error');
             e.target.value = '';
             return;
         }

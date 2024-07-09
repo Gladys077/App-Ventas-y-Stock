@@ -8,6 +8,10 @@ export class CardNewProduct {
         this.btnSecondaryCallback = btnSecondaryCallback;
         this.element = this.createForm();
     }
+    
+    getElement() {
+        return this.element;
+    }
 
     createForm() {
         this.cargarCss();
@@ -170,10 +174,13 @@ export class CardNewProduct {
     }
 
     cargarCss() {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = './css/cardNewProd.css';
-        document.head.appendChild(link);
+        const nuevo_producto_form = document.querySelector('.nuevo-producto-form') ?? null;
+        if(nuevo_producto_form == null){
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = './css/cardNewProd.css';
+            document.head.appendChild(link);
+        }
     }
 
     resetForm() {
@@ -217,7 +224,4 @@ export class CardNewProduct {
           });
     }
 
-    getElement() {
-        return this.element;
-    }
 }

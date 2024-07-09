@@ -7,11 +7,12 @@ export class NewProductPage {
         this.createHeader();
         this.createMain();
         this.createPage();
+        this.cardNewProduct;
     }
 
     createHeader() {
-        this.header = new Header('Nuevo Producto', iconoVolver, iconoMenu, null, function(){ navigateToMenu('stock'); });
-        document.body.appendChild(this.header.getElement());
+        const header = new Header('Nuevo Producto', iconoVolver, iconoMenu, null, function(){ navigateToMenu('stock'); });
+        document.body.appendChild(header.getElement());
     }
 
     createMain() {
@@ -26,7 +27,7 @@ export class NewProductPage {
         guardado.show();
     }
 
-    btnSecondaryCallback() {
+    btnSecondaryCallback() { //terminar método LIMPIEZA
         this.cardNewProduct.resetForm();
         console.log('click btn cancelar')
     }

@@ -156,31 +156,3 @@ input[type="number"]::-webkit-outer-spin-button {
     text-align: center;
 }
 
-/*-----------Buttons-----------*/
-/*.button-container {
-    display: flex;
-    justify-content:flex-end;
-    padding: 10px;
-
-}
-
-.button-container button {
-    height: 48px;
-    flex: 1;
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--primary-color);
-    border: none;
-    align-content: right;
-}
-
-.button-container .cancelar {
-    align-items: right;
-
-}
-
-.button-container .guardar {
-    align-items: right;
-
-}
-*/

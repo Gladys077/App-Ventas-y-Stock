@@ -1,4 +1,5 @@
 export class Header {
+    
     constructor(title, leftIcon, rightIcon, leftIconCallback, rightIconCallback, iconoMenu, onMenuClick) {
         this._title = title;
         this._leftIcon = leftIcon;
