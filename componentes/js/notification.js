@@ -41,7 +41,7 @@ export class Notification {
 
     setTimeout(() => {
       this._notificationElement.style.animation = 'slide-down 2s forwards';
-  }, 10000);
+  }, 2000);
 
   }
   
@@ -58,7 +58,7 @@ export class Notification {
       z-index: 10;
       bottom: -80%;
       transform: translateY(55%);
-      animation: slide-up 3s forwards;
+      animation: slide-up 0.5s forwards;
       }
       @keyframes slide-up {
           from {

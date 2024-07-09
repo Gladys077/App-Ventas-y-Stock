@@ -1,4 +1,4 @@
-import { Header, iconoVolver, iconoMenu } from '../js/header.js';
+import { Header, iconoVolver, iconoMenu, navigateToMenu } from '../js/header.js';
 import { CardVtasPorProducto } from '../js/cardVtasPorProducto.js';
 
 export class VentasPorProductoPage {
@@ -14,7 +14,7 @@ export class VentasPorProductoPage {
     }
 
     createMain() {
-        this.ventasPorProducto = new CardVtasPorProducto('nombre_del_vendedor', 'Buscar', () => this.onClick(), false);
+        this.ventasPorProducto = new CardVtasPorProducto('Nombre_del_producto', 'Buscar', () => this.onClick(), false);
         document.body.appendChild(this.ventasPorProducto.getElement());
     }
     createPage() {
