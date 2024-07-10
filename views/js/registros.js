@@ -32,7 +32,7 @@ export class Pedidoactual {
     }
 }/*fin  class Pedidoactual*/ 
 
-export class Movimientodeldia{
+export class Ventasdeldia{
     constructor(){
 
     }
@@ -45,15 +45,15 @@ export class Movimientodeldia{
 
         const producto = document.createElement("div");
             producto.className="producto";
-        const unidad = document.createElement("div");
-            unidad.className="unidad";
+        const cantidad = document.createElement("div");
+            cantidad.className="cantidad";
 
     //asignar valor a celdas
         producto.textContent = item.producto;
-        unidad.textContent = item.unidad;
+        cantidad.textContent = item.cantidad;
     
     //agregar item a lineaArtículo    
-        lineaArticulo.append(producto, unidad);
+        lineaArticulo.append(producto, cantidad);
 
     //agregar lineaArticulo a detalles    
         detalles.appendChild(lineaArticulo);
@@ -61,16 +61,22 @@ export class Movimientodeldia{
     }
     
     
-}/*fin class Movimientodeldia*/
+}/*fin class Ventasdeldia*/
 
 export class Movimientosproducto{
-    constructor(){
-
+    constructor(item){
+        this.llamandoProducto(item);
+        this.agregarItem(item);
     }
 
+    llamandoProducto = (item)=>{
+        const producto = document.querySelector(".nombreProducto")
+        //Asignando valor a producto
+        producto.textContent=item.producto;
+    }
     agregarItem =(item) =>{
         const detalles = document.querySelector(".tabla_detalles")
-    
+        
     // creando elementos y asignando clases    
         const lineaArticulo = document.createElement("div");
             lineaArticulo.className="tabla_lineaArticulo";
@@ -92,3 +98,81 @@ export class Movimientosproducto{
 
     }
 }/*fin class Movimientosproducto */
+
+export class Ventastotales{/*Falta desarrollar */
+    constructor(){
+
+    }
+    llamandofecha=(item)=>{
+        const contenedorFecha =document.querySelector(".contenedor-fecha-venta");
+        const fecha = document.createElement("span");
+        fecha.textContent= item.fecha;
+        contenedorFecha.appendChild(fecha);
+    }
+    agregarItem =(item) =>{
+        const detalles = document.querySelector(".tabla_detalles")
+    
+    // creando elementos y asignando clases    
+        const lineaArticulo = document.createElement("div");
+            lineaArticulo.className="tabla_lineaArticulo";
+
+        const producto = document.createElement("div");
+            producto.className="producto";
+        const cantidad = document.createElement("div");
+            cantidad.className="cantidad";
+
+    //asignar valor a celdas
+        producto.textContent = item.producto;
+        cantidad.textContent = item.cantidad;
+    
+    //agregar item a lineaArtículo    
+        lineaArticulo.append(producto, cantidad);
+
+    //agregar lineaArticulo a detalles    
+        detalles.appendChild(lineaArticulo);
+
+    }
+    
+    
+}/*fin class Ventastotales*/
+
+export class Ventasporvendedor{
+    constructor(item, fecha){
+        this.fecha=fecha
+
+        this.llamandoVendedor(item);
+        this.agregarItem(item);
+    }
+
+    llamandoVendedor = (item)=>{
+        const contenedorVendedor = document.querySelector(".contenedor-vendedor")
+        const vendedor = document.createElement("span");
+        vendedor.textContent= item.vendedor;//colocar nombre celda como figura en tabla de bd
+        contenedorVendedor.appendChild(vendedor)
+    }
+    
+    agregarItem =(item) =>{
+        const detalles = document.querySelector(".tabla_detalles")
+        // const fecha = document.querySelector(".fecha-consulta").value
+        
+    // creando elementos y asignando clases    
+        const lineaArticulo = document.createElement("div");
+            lineaArticulo.className="tabla_lineaArticulo";
+
+        const producto = document.createElement("div");
+            producto.className="producto";
+        const cantidad = document.createElement("div");
+            cantidad.className="cantidad";
+
+    //asignar valor a celdas
+        producto.textContent = item.producto;
+        cantidad.textContent = item.cantidad;
+    
+    //agregar item a lineaArtículo    
+        lineaArticulo.append(producto, cantidad);
+
+    //agregar lineaArticulo a detalles    
+        detalles.appendChild(lineaArticulo);
+
+    }
+}/*fin class ventasporvendedor */
