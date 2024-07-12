@@ -1,3 +1,6 @@
+import { Notification } from './notificacion.js';
+
+
 export class ButtonContainer {
     constructor(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback) {
         this.buttonContainer = this.createButtonContainer(btnPrimary, btnSecondary);

@@ -1,4 +1,4 @@
-import { Notification } from './notification.js';
+import { Notification } from './notificacion.js';
 import { isValidDate, formatDateInput } from './utils.js';
 
 export class CardVtasPorProducto {
@@ -12,11 +12,51 @@ export class CardVtasPorProducto {
         this._fechaDesde = null;
         this._fechaHasta = null;
         this.element = this.armarCardVtasPorProducto();
-        this.cargarCss();
         this.addInputListeners(); // Para añadir listeners a los inputs
     }
 
+    get title() { 
+        return this._title; 
+    }
+    set title(title) {
+        this._title = title;
+    }
+    get textBtn() { 
+        return this._textBtn; 
+    }
+    set textBtn(textBtn) { 
+        this._textBtn = textBtn; 
+    }
+    get includeUnidadesVendidas(){
+        return this._includeUnidadesVendidas;
+    }
+    get cuadroInferiorTitulo(){
+        return this._cuadroInferiorTitulo;
+    }
+    set cuadroInferiorTitulo(cuadroInferiorTitulo){
+        this._cuadroInferiorTitulo = cuadroInferiorTitulo;
+    }
+    get isBuscarMode() {
+        return this._isBuscarMode;
+    }
+    // set isBuscarMode(value){
+    //     this._isBuscarMode = value;
+    // }
+    get fechaDesde() {
+        return this._fechaDesde;
+    }
+    set fechaDesde(value) {
+        this._fechaDesde = value;
+    }
+    get fechaHasta() {
+        return this._fechaHasta;
+    }
+    set fechaHasta(value) {
+        this._fechaHasta = value;
+    }
+
     armarCardVtasPorProducto() {
+        this.cargarCss();
         this.element = document.createElement('div');
         this.element.className = 'card';
 
@@ -119,7 +159,7 @@ export class CardVtasPorProducto {
             }
             this.realizarBusqueda();
             this._includeUnidadesVendidas = true;
-            this.button.textContent = 'Limpiar';
+            this.button.textContent = 'Borrar';
             this._isBuscarMode = false;
             this.mostrarUnidadesVendidas();
         } else {
@@ -129,7 +169,7 @@ export class CardVtasPorProducto {
         this._onClick(); // Llamada al callback original
     }
 
-    // Nuevo método para añadir listeners a los inputs
+    // Añade listeners a los inputs
     addInputListeners() {
         const inputs = [
             this.desdeInput.querySelector('input'),
@@ -139,7 +179,7 @@ export class CardVtasPorProducto {
             input.addEventListener('input', () => this.handleInputChange());
         });
     }
-    // Nuevo método para manejar cambios en los inputs
+    // Para manejar cambios en los inputs
     handleInputChange(e, label) {
         const value = e.target.value;
         if (value && !isValidDate(value)) {
@@ -151,23 +191,6 @@ export class CardVtasPorProducto {
             this._fechaDesde = value || null;
         } else {
             this._fechaHasta = value || null;
-        }
-    }
-    realizarBusqueda() {
-        // Aquí iría la lógica para buscar en la base de datos
-        console.log('Realizando búsqueda:');
-        console.log('Fecha desde:', this._fechaDesde);
-        console.log('Fecha hasta:', this._fechaHasta);
-        // Implementa la lógica de búsqueda según si hay una o dos fechas
-        if (this._fechaDesde && this._fechaHasta) {
-            console.log('Búsqueda por período');
-            // Lógica para buscar en un período
-        } else if (this._fechaDesde) {
-            console.log('Búsqueda para la fecha:', this._fechaDesde);
-            // Lógica para buscar en una fecha específica (desde)
-        } else if (this._fechaHasta) {
-            console.log('Búsqueda para la fecha:', this._fechaHasta);
-            // Lógica para buscar en una fecha específica (hasta)
         }
     }
 
@@ -211,12 +234,31 @@ export class CardVtasPorProducto {
         const inputs = this.element.querySelectorAll('input');
         inputs.forEach(input => input.value = '');
     }
-
+    realizarBusqueda() {
+        // Aquí iría la lógica para buscar en la base de datos
+        console.log('Realizando búsqueda:');
+        console.log('Fecha desde:', this._fechaDesde);
+        console.log('Fecha hasta:', this._fechaHasta);
+        // Implementa la lógica de búsqueda según si hay una o dos fechas
+        if (this._fechaDesde && this._fechaHasta) {
+            console.log('Búsqueda por período');
+            // Lógica para buscar en un período
+        } else if (this._fechaDesde) {
+            console.log('Búsqueda para la fecha:', this._fechaDesde);
+            // Lógica para buscar en una fecha específica (desde)
+        } else if (this._fechaHasta) {
+            console.log('Búsqueda para la fecha:', this._fechaHasta);
+            // Lógica para buscar en una fecha específica (hasta)
+        }
+    }
     cargarCss() {
+        const estilos = document.querySelector('.dia') ?? null;
+        if(estilos == null){
         const link = document.createElement('link');
         link.rel = 'stylesheet';
         link.href = './css/cardBase.css';
         document.head.appendChild(link);
+        }
     }
 
     getElement() {
@@ -226,4 +268,5 @@ export class CardVtasPorProducto {
 
 function onClick() {
     console.log('btn clickeado');
+    realizarBusqueda()
 }

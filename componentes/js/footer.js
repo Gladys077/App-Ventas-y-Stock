@@ -1,18 +1,12 @@
-import { ButtonContainer } from '../js/btnsContainer.js';
-
 export class Footer {
-    constructor(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback) {
-        this.element = this.createFooter(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback);
+    constructor() {
+        this.element = this.createFooter();
         this.addStyles();
     }
 
-    createFooter(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback) {
+    createFooter() {
         const footer = document.createElement('footer');
         footer.className = 'app-footer';
-
-        const btnsContainer = new ButtonContainer(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback);
-        footer.appendChild(btnsContainer.getButtonContainer());
-
         return footer;
     }
 
@@ -21,12 +15,23 @@ export class Footer {
     }
 
     addStyles() {
-        // Agrega estilos CSS al footer aquí
-        this.element.style.display = 'flex';
-        this.element.style.justifyContent = 'center';
-        this.element.style.alignItems = 'flex-end'; // Ajusta la alineación vertical según sea necesario
-        this.element.style.position = 'fixed';
-        this.element.style.bottom = '0';
-        this.element.style.width = '100%';
+        Object.assign(this.element.style, {
+            position: 'fixed',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'flex-end',
+            bottom: '0',
+            left: '0',
+            width: 'calc(100% - 32px)',
+            maxWidth: '400px',
+            // height: '60px',
+            padding: '0 16px', // Añadido para compensar el ancho reducido
+            backgroundColor: '#ffffff', // Añadido para dar un fondo al footer
+            boxShadow: '0 -2px 5px rgba(0,0,0,0.1)' // Opcional: añade una sombra sutil
+        });
+    }
+
+    addTabButton(tabButton) {
+        this.element.appendChild(tabButton.getElement());
     }
 }

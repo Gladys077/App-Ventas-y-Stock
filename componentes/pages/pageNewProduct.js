@@ -1,13 +1,12 @@
 import { Header, iconoVolver, iconoMenu, navigateToMenu } from '../js/header.js';
 import { CardNewProduct } from '../js/cardNewProduct.js';
-import { Notification } from '../js/notification.js';
+import { Notification } from '../js/notificacion.js';
 
 export class NewProductPage {
     constructor() {
         this.createHeader();
         this.createMain();
         this.createPage();
-        this.cardNewProduct;
     }
 
     createHeader() {
@@ -16,36 +15,48 @@ export class NewProductPage {
     }
 
     createMain() {
-        this.cardNewProduct = new CardNewProduct('Guardar', 'Cancelar', this.btnPrimaryCallback.bind(this), this.btnSecondaryCallback.bind(this));
+        this.cardNewProduct = new CardNewProduct(
+            'Guardar', 
+            'Cancelar', 
+            this.btnPrimaryCallback.bind(this), 
+            this.btnSecondaryCallback.bind(this)
+        );
         document.body.appendChild(this.cardNewProduct.getElement());
     }
 
-    btnPrimaryCallback() {
-        this.cardNewProduct.guardarProducto();
-        console.log('click en btn guardar');
-        const guardado = new Notification('../img/emojis/ok.png', '¡Listo, guardado!', 'success');
-        guardado.show();
-    }
+    async btnPrimaryCallback(event) {
+        if (event) event.preventDefault(); // Previene la recarga de la página
+        console.group('Callback del botón Guardar');
+        console.log('Botón Guardar clickeado');
+        
+        if (this.cardNewProduct.validarCampos()) {
+          try {
+            const guardadoExitoso = await this.cardNewProduct.guardarProducto();
+            if (guardadoExitoso) {
+              console.log('Producto guardado exitosamente');
+              this.cardNewProduct.resetForm();
+            } else {
+              console.log('Error al guardar el producto');
+            }
+          } catch (error) {
+            console.error('Error durante el guardado:', error);
+            new Notification('../img/emojis/pare.png', 'Error inesperado al guardar el producto', 'error');
+          }
+        } else {
+          console.log('Validación de campos fallida');
+        }
+        
+        console.groupEnd();
+      }
 
-    btnSecondaryCallback() { //terminar método LIMPIEZA
+    btnSecondaryCallback(event) {
+        console.log('Click en btn cancelar');
         this.cardNewProduct.resetForm();
-        console.log('click btn cancelar')
     }
 
     createPage() {
         const headerElement = document.querySelector('header');
         const mainElement = document.querySelector('main');
-
-        // Verifica que los elementos existan antes de tratar de manipularlos
-        // if (headerElement && mainElement) {
-        //     headerElement.innerHTML = '';
-        //     mainElement.innerHTML = '';
-
-        //     headerElement.appendChild(this.header.getElement());
-        //     mainElement.appendChild(this.cardNewProduct.getElement());
-        // } else {
-        //     console.error('Los elementos header y main no se encontraron en el DOM.');
-        // }
     }
 }
 

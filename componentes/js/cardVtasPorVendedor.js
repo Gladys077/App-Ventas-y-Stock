@@ -1,5 +1,5 @@
 import { isValidDate, formatDateInput } from './utils.js';
-import { Notification } from './notification.js';
+import { Notification } from './notificacion.js';
 
 export class CardVtasPorVendedor {
   constructor(title, subtitle, textBtn, onClick) {
@@ -12,6 +12,27 @@ export class CardVtasPorVendedor {
       this._monto = '';
       this.element = this.armarCardVtasPorVendedor();
   }
+  get title(){
+    return this._title;
+  }
+  set title(title){
+    this._title = title;
+  }
+  get subtitle(){
+    return this._subtitle;
+  }
+  set subtitle(subtitle){
+    this._subtitle = subtitle;
+  }
+  get textBtn(){
+    return this._textBtn;
+  }
+  set textBtn(textBtn){
+    this._textBtn = textBtn;
+  }
+  getElement() {
+    return this.element;
+}
 
   armarCardVtasPorVendedor() {
       this.cargarCss();
@@ -96,7 +117,7 @@ export class CardVtasPorVendedor {
   handleDateChange(e) {
     const value = e.target.value;
     if (value && !isValidDate(value)) {
-        new Notification('../img/emojis/mueca.png', 'Fecha inválida. Use el formato DD/MM/AAAA', 'error');
+        // new Notification('../img/emojis/mueca.png', 'Fecha inválida. Use el formato DD/MM/AAAA', 'error');
         e.target.value = '';
         this._fecha = null;
     } else {
@@ -118,15 +139,16 @@ export class CardVtasPorVendedor {
   }
 
   cargarCss() {
+    const vendedorSelect = document.querySelector('.vendedor-select') ?? null;
+    if(vendedorSelect == null){
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = './css/cardBase.css';
       document.head.appendChild(link);
   }
+}
 
-  getElement() {
-      return this.element;
-  }
+
 }
 
 function onClick(){

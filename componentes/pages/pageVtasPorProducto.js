@@ -7,6 +7,8 @@ export class VentasPorProductoPage {
         this.createHeader();
         this.createMain();
         this.createPage();
+        this.header;
+        this.ventasPorProducto;
     }
     createHeader() {
         this.header = new Header('Unidades vendidas', iconoVolver, iconoMenu, null, function(){ navigateToMenu('ventas');});
@@ -17,6 +19,7 @@ export class VentasPorProductoPage {
         this.ventasPorProducto = new CardVtasPorProducto('Nombre_del_producto', 'Buscar', () => this.onClick(), false);
         document.body.appendChild(this.ventasPorProducto.getElement());
     }
+
     createPage() {
         const headerElement = document.querySelector('header');
         const mainElement = document.querySelector('main');
