@@ -239,13 +239,19 @@ export class CardNewProduct {
         return true;
     }
 
-    obtenerDatosProducto() {
+    obtenerDatosProducto() { 
+        const producto = document.querySelector('.productInput').value;
+        const proveedor = document.querySelector('.proveedorSelect').value;
+        const costo = parseFloat(document.querySelector('.costoInput').value);
+        const porcentaje = parseFloat(document.querySelector('.porcentajeInput').value);
+        const stock = parseInt(document.querySelector('.stock-check input').value, 10) || 0;
+    
         return {
-            nombre: document.querySelector('.productInput').value,
-            proveedor: document.querySelector('.proveedorSelect').value,
-            costo: parseFloat(document.querySelector('.costoInput').value),
-            porcentaje: parseFloat(document.querySelector('.porcentajeInput').value),
-            stock: parseInt(document.querySelector('.stock-check input').value, 10) || 0
+            nombre: producto,
+            proveedor: proveedor,
+            costo: costo,
+            porcentaje: porcentaje,
+            stock: stock
         };
     }
 }

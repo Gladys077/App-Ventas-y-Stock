@@ -35,10 +35,9 @@ export class NewProductPage {
                     new Notification('../img/emojis/like.png', '¡Producto guardado exitosamente!', 'success');
                     this.cardNewProduct.resetForm();
                 } else {
-                    new Notification('../img/emojis/pare.png', 'Error al guardar el producto. Por favor, intenta de nuevo.', 'error');
+                    new Notification('../img/emojis/pare.png', '¡Ups! Hubo un fallo. Por favor, intenta de nuevo.', 'error');
                 }
             } catch (error) {
-                console.error('Error durante el guardado:', error);
                 new Notification('../img/emojis/pare.png', 'Error inesperado al guardar el producto', 'error');
             }
         }
@@ -48,29 +47,13 @@ export class NewProductPage {
         try {
             const productosGuardados = JSON.parse(localStorage.getItem('productos')) || [];
             productosGuardados.push(datosProducto);
-            localStorage.setItem('productos', JSON.stringify(productosGuardados));
+            // localStorage.setItem('productos', JSON.stringify(productosGuardados));
             return true;
         } catch (error) {
-            console.error('Error al guardar el producto:', error);
+            new Notification('../img/emojis/pare.png', '¡Ups! Hubo un fallo. Por favor, intenta de nuevo.', 'error');
             return false;
         }
     }
-    obtenerDatosProducto() {
-        const producto = document.querySelector('.productInput').value;
-        const proveedor = document.querySelector('.proveedorSelect').value;
-        const costo = parseFloat(document.querySelector('.costoInput').value);
-        const porcentaje = parseFloat(document.querySelector('.porcentajeInput').value);
-        const stock = parseInt(document.querySelector('.stock-check input').value, 10) || 0;
-    
-        return {
-            nombre: producto,
-            proveedor: proveedor,
-            costo: costo,
-            porcentaje: porcentaje,
-            stock: stock
-        };
-    }
-    
 
     btnSecondaryCallback(event) {
         console.log('Click en btn cancelar');
