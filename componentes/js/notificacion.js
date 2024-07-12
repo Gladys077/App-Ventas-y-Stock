@@ -3,8 +3,7 @@ export class Notification {
     this._iconSrc = iconSrc;
     this._message = message;
     this._type = type;
-    // this._padre = document.querySelector(padre);
-    this._padre = document.body;
+    this._padre = document.querySelector(padre);
     this._colors = {
       success: { background: '#7BF087', border: '#31c140' },
       error: { background: '#fa9f9f', border: '#C00D0D' },
@@ -15,13 +14,10 @@ export class Notification {
   }
 
   createNotification() {
-    console.log('creando notificación. this._message9');
 
     this.agregarCss();
 
     this._notificationElement = document.createElement('div');
-    console.log('Elemento de notificación creado: ', this._notificationElement);
-
 
     this._notificationElement.classList.add('ad', `ad-${this._type}`);
 
@@ -35,21 +31,10 @@ export class Notification {
     `;
 
     this._padre.appendChild(this._notificationElement);
-    console.log('Notificación añadida al DOM: ', this._padre.contains(this._notificationElement));
-    setTimeout(() => {
-      const rect = this._notificationElement.getBoundingClientRect();
-      console.log('Posición y dimensiones de la notificación:', {
-        top: rect.top,
-        left: rect.left,
-        width: rect.width,
-        height: rect.height
-      });
-    }, 100);
 
-    // Usar requestAnimationFrame para asegurar que el elemento esté renderizado
+    // Usé requestAnimationFrame para asegurar que el elemento esté renderizado
     requestAnimationFrame(() => {
       this._notificationElement.style.animation = 'slide-up 0.5s forwards';
-      console.log('Animación aplicada:', this._notificationElement.style.animation);
 
     });
 
@@ -84,16 +69,12 @@ export class Notification {
         pointer-events: none;
         z-index: 9999;
       }
-      // @keyframes slide-up {
-      //   to { top: 350px; }
-      // }
-
-@keyframes slide-up {
-      to { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+      
+    @keyframes slide-up {
+      to { top: 50%; left: 50%; 
+      transform: translate(-50%, -50%); 
+      }
     }
-
-
-
 
       @keyframes slide-down {
         to { top: -400px; }

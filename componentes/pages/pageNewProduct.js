@@ -25,29 +25,52 @@ export class NewProductPage {
     }
 
     async btnPrimaryCallback(event) {
-        if (event) event.preventDefault(); // Previene la recarga de la página
-        console.group('Callback del botón Guardar');
-        console.log('Botón Guardar clickeado');
+        if (event) event.preventDefault();
         
         if (this.cardNewProduct.validarCampos()) {
-          try {
-            const guardadoExitoso = await this.cardNewProduct.guardarProducto();
-            if (guardadoExitoso) {
-              console.log('Producto guardado exitosamente');
-              this.cardNewProduct.resetForm();
-            } else {
-              console.log('Error al guardar el producto');
+            try {
+                const datosProducto = this.cardNewProduct.obtenerDatosProducto();
+                const guardadoExitoso = await this.guardarProducto(datosProducto);
+                if (guardadoExitoso) {
+                    new Notification('../img/emojis/like.png', '¡Producto guardado exitosamente!', 'success');
+                    this.cardNewProduct.resetForm();
+                } else {
+                    new Notification('../img/emojis/pare.png', 'Error al guardar el producto. Por favor, intenta de nuevo.', 'error');
+                }
+            } catch (error) {
+                console.error('Error durante el guardado:', error);
+                new Notification('../img/emojis/pare.png', 'Error inesperado al guardar el producto', 'error');
             }
-          } catch (error) {
-            console.error('Error durante el guardado:', error);
-            new Notification('../img/emojis/pare.png', 'Error inesperado al guardar el producto', 'error');
-          }
-        } else {
-          console.log('Validación de campos fallida');
         }
-        
-        console.groupEnd();
-      }
+    }
+
+    async guardarProducto(datosProducto) {
+        try {
+            const productosGuardados = JSON.parse(localStorage.getItem('productos')) || [];
+            productosGuardados.push(datosProducto);
+            localStorage.setItem('productos', JSON.stringify(productosGuardados));
+            return true;
+        } catch (error) {
+            console.error('Error al guardar el producto:', error);
+            return false;
+        }
+    }
+    obtenerDatosProducto() {
+        const producto = document.querySelector('.productInput').value;
+        const proveedor = document.querySelector('.proveedorSelect').value;
+        const costo = parseFloat(document.querySelector('.costoInput').value);
+        const porcentaje = parseFloat(document.querySelector('.porcentajeInput').value);
+        const stock = parseInt(document.querySelector('.stock-check input').value, 10) || 0;
+    
+        return {
+            nombre: producto,
+            proveedor: proveedor,
+            costo: costo,
+            porcentaje: porcentaje,
+            stock: stock
+        };
+    }
+    
 
     btnSecondaryCallback(event) {
         console.log('Click en btn cancelar');

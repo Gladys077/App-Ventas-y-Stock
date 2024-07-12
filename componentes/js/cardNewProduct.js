@@ -226,18 +226,10 @@ export class CardNewProduct {
     
         let camposIncompletos = [];
     
-        if (!product.value.trim()) {
-            camposIncompletos.push('producto');
-        }
-        if (proveedor.selectedIndex === 0) {
-            camposIncompletos.push('proveedor');
-        }
-        if (!costo.value || isNaN(parseFloat(costo.value)) || parseFloat(costo.value) <= 0) {
-            camposIncompletos.push('costo');
-        }
-        if (!porcentaje.value || isNaN(parseFloat(porcentaje.value)) || parseFloat(porcentaje.value) < 0) {
-            camposIncompletos.push('porcentaje');
-        }
+        if (!product.value.trim()) camposIncompletos.push('producto');
+        if (proveedor.selectedIndex === 0) camposIncompletos.push('proveedor');
+        if (!costo.value || isNaN(parseFloat(costo.value)) || parseFloat(costo.value) <= 0) camposIncompletos.push('costo');
+        if (!porcentaje.value || isNaN(parseFloat(porcentaje.value)) || parseFloat(porcentaje.value) < 0) camposIncompletos.push('porcentaje');
     
         if (camposIncompletos.length > 0) {
             new Notification('../../img/emojis/pare.png', '¡Espera! Falta completar datos.', 'error');
@@ -247,32 +239,14 @@ export class CardNewProduct {
         return true;
     }
 
-    async guardarProducto() {
-        const producto = document.querySelector('.productInput').value;
-        const proveedor = document.querySelector('.proveedorSelect').value;
-        const costo = parseFloat(document.querySelector('.costoInput').value);
-        const porcentaje = parseFloat(document.querySelector('.porcentajeInput').value);
-        const stock = parseInt(document.querySelector('.stock-check input').value, 10) || 0;
-    
-        const datosProducto = {
-            nombre: producto,
-            proveedor: proveedor,
-            costo: costo,
-            porcentaje: porcentaje,
-            stock: stock
+    obtenerDatosProducto() {
+        return {
+            nombre: document.querySelector('.productInput').value,
+            proveedor: document.querySelector('.proveedorSelect').value,
+            costo: parseFloat(document.querySelector('.costoInput').value),
+            porcentaje: parseFloat(document.querySelector('.porcentajeInput').value),
+            stock: parseInt(document.querySelector('.stock-check input').value, 10) || 0
         };
-    
-        try {
-            const productosGuardados = JSON.parse(localStorage.getItem('productos')) || [];
-            productosGuardados.push(datosProducto);
-            localStorage.setItem('productos', JSON.stringify(productosGuardados));
-            new Notification('../img/emojis/ok.png', '¡Producto guardado exitosamente!', 'success');
-            return true;
-        } catch (error) {
-            new Notification('../img/emojis/pare.png', 'Error al guardar el producto. Por favor, intenta de nuevo.', 'error');
-            return false;
-
-        }
     }
 }
 
