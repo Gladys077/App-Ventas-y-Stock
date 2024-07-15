@@ -2,26 +2,22 @@
 main{
     /*estilo contenedor-filtro-fecha es igual que en movimiento.css*/
     .contenedor-monto-total, .contenedor-vendedor{
-            height: 32px;
+            color: var(--color-blanco);
+            height: 40px;
+            background: var(--color-primario);
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
             padding: 8px;
             width: calc(100% - 32px);
             font-family: Roboto, sans-serif;
             font-size: 18px;
             font-weight: bold;
-            background-color: var(--color-blanco);
-            color: var(--color-primario);/*no se especifica en figma*/
             text-align: center;
             margin-top: 4px;
             margin-bottom: 4px;
             
     }/*fin contenedor-monto-total*/
-     .hoy, .contenedor-vendedor{
-        color: var(--color-blanco);
-        height: 40px;
-        background: var(--color-primario);
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
-     }
+
 
     .contenedor-fecha-venta{
         display: flex;

@@ -1,4 +1,4 @@
-export class Main {
+export default class Main {
     constructor() {
         this.element = document.createElement('main');
         this.element.className = 'main-container';
