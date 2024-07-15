@@ -1,16 +1,46 @@
 import { ButtonContainer } from '../js/btnsContainer.js';
+import { Notification } from './notificacion.js';
 
 export class CardNewProduct {
     constructor(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback) {
-        this.btnPrimary = btnPrimary;
-        this.btnSecondary = btnSecondary;
-        this.btnPrimaryCallback = btnPrimaryCallback;
-        this.btnSecondaryCallback = btnSecondaryCallback;
-        this.element = this.createForm();
+        this._btnPrimary = btnPrimary;
+        this._btnSecondary = btnSecondary;
+        this._btnPrimaryCallback = btnPrimaryCallback;
+        this._btnSecondaryCallback = btnSecondaryCallback;
+        this._element = this.createForm();
+    }
+    get btnPrimary(){ 
+        return this._btnPrimary; 
+    }
+    get btnSecondary(){
+        return this._btnSecondary;
+    }
+    get btnPrimaryCallback(){
+        return this._btnPrimaryCallback;
+    }
+    get btnSecondaryCallback(){
+        return this._btnSecondaryCallback;
+    }
+
+    set btnPrimary(value){
+        this._btnPrimary = value;
+    }
+    set btnSecondary(value){
+        this._btnSecondary = value;
+    }
+    set btnPrimaryCallback(value){
+        this._btnPrimaryCallback = value;
+    }
+    set btnSecondaryCallback(value){
+        this._btnSecondaryCallback = value;
+    }
+
+    getElement() {
+        return this._element;
     }
 
     createForm() {
-        this.cargarCss();
+        // this.cargarCss();
 
         const form = document.createElement('form');
         form.className = 'nuevo-producto-form';
@@ -30,12 +60,12 @@ export class CardNewProduct {
         const inputGroup = document.createElement('div');
         inputGroup.className = 'input-group';
 
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.className = 'productInput';
-        input.placeholder = 'Ingresa el nuevo producto';
+        const productInput = document.createElement('input');
+        productInput.type = 'text';
+        productInput.className = 'productInput';
+        productInput.placeholder = 'Ingresa el nuevo producto';
 
-        inputGroup.appendChild(input);
+        inputGroup.appendChild(productInput);
         return inputGroup;
     }
 
@@ -169,12 +199,15 @@ export class CardNewProduct {
         return btnsContainer.getButtonContainer();
     }
 
-    cargarCss() {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = './css/cardNewProd.css';
-        document.head.appendChild(link);
-    }
+    // cargarCss() {
+    //     const nuevo_producto_form = document.querySelector('.nuevo-producto-form') ?? null;
+    //     if(nuevo_producto_form == null){
+    //         const link = document.createElement('link');
+    //         link.rel = 'stylesheet';
+    //         link.href = './css/cardNewProd.css';
+    //         document.head.appendChild(link);
+    //     }
+    // }
 
     resetForm() {
         document.querySelector('.productInput').value = '';
@@ -185,39 +218,38 @@ export class CardNewProduct {
         document.querySelector('.stock-check input').value = '';
     }
 
-    guardarProducto() {
-        const product = document.querySelector('.productInput').value;
-        const proveedor = document.querySelector('.proveedorSelect').value;
-        const costo = parseFloat(document.getElementById('costo').value) || 0;
-        const porcentaje = parseFloat(document.getElementById('porcentaje').value) || 0;
-        const precioVenta = costo * (1 + porcentaje / 100);
-        const stockMinimo = parseInt(document.querySelector('.stock-check input').value) || 0;
-
-        const data = {
-            product,
-            proveedor,
-            costo,
-            porcentaje,
-            precioVenta,
-            stockMinimo
-        };
-        
-        // Lógica para enviar los datos a la base de datos usando fetch (ver con LIO)
-        fetch('/ruta-a-la-api-de-bbdd', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }).then(response => response.json())
-          .then(data => {
-              console.log('Producto guardado: ', data);
-          }).catch(error => {
-              console.error('Error al guardar el producto', error);
-          });
+    validarCampos() {
+        const product = document.querySelector('.productInput');
+        const proveedor = document.querySelector('.proveedorSelect');
+        const costo = document.querySelector('.costoInput');
+        const porcentaje = document.querySelector('.porcentajeInput');
+    
+        if (!product.value.trim() || 
+            proveedor.selectedIndex === 0 || 
+            !costo.value || isNaN(parseFloat(costo.value)) || parseFloat(costo.value) <= 0 ||
+            !porcentaje.value || isNaN(parseFloat(porcentaje.value)) || parseFloat(porcentaje.value) < 0) {
+            
+            new Notification('../../img/emojis/pare.png', '¡Espera! Falta completar datos.', 'error');
+            return false;
+        }
+    
+        return true;
     }
 
-    getElement() {
-        return this.element;
+    obtenerDatosProducto() { 
+        const producto = document.querySelector('.productInput').value;
+        const proveedor = document.querySelector('.proveedorSelect').value;
+        const costo = parseFloat(document.querySelector('.costoInput').value);
+        const porcentaje = parseFloat(document.querySelector('.porcentajeInput').value);
+        const stockMinimo = parseInt(document.querySelector('.stock-check input').value, 10) || 0;
+    
+        return {
+            nombre: producto,
+            proveedor: proveedor,
+            costo: costo,
+            porcentaje: porcentaje,
+            stockMinimo: stockMinimo
+        };
     }
 }
+

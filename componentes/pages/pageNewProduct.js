@@ -1,6 +1,6 @@
 import { Header, iconoVolver, iconoMenu, navigateToMenu } from '../js/header.js';
 import { CardNewProduct } from '../js/cardNewProduct.js';
-import { Notification } from '../js/notification.js';
+import { Notification } from '../js/notificacion.js';
 
 export class NewProductPage {
     constructor() {
@@ -10,41 +10,61 @@ export class NewProductPage {
     }
 
     createHeader() {
-        this.header = new Header('Nuevo Producto', iconoVolver, iconoMenu, null, function(){ navigateToMenu('stock'); });
-        document.body.appendChild(this.header.getElement());
+        const header = new Header('Nuevo Producto', iconoVolver, iconoMenu, null, function(){ navigateToMenu('stock'); });
+        document.body.appendChild(header.getElement());
     }
 
     createMain() {
-        this.cardNewProduct = new CardNewProduct('Guardar', 'Cancelar', this.btnPrimaryCallback.bind(this), this.btnSecondaryCallback.bind(this));
+        this.cardNewProduct = new CardNewProduct(
+            'Guardar', 
+            'Cancelar', 
+            this.btnPrimaryCallback.bind(this), 
+            this.btnSecondaryCallback.bind(this)
+        );
         document.body.appendChild(this.cardNewProduct.getElement());
     }
 
-    btnPrimaryCallback() {
-        this.cardNewProduct.guardarProducto();
-        console.log('click en btn guardar');
-        const guardado = new Notification('../img/emojis/ok.png', '¡Listo, guardado!', 'success');
-        guardado.show();
+
+    
+    async btnPrimaryCallback(event) {
+        if (event) event.preventDefault();
+        
+        if (this.cardNewProduct.validarCampos()) {
+            try {
+                const datosProducto = this.cardNewProduct.obtenerDatosProducto();
+                const guardadoExitoso = await this.guardarProducto(datosProducto);
+                if (guardadoExitoso) {
+                    new Notification('../img/emojis/like.png', '¡Producto guardado exitosamente!', 'success');
+                    this.cardNewProduct.resetForm();
+                } else {
+                    new Notification('../img/emojis/pare.png', '¡Ups! Hubo un fallo. Por favor, intenta de nuevo.', 'error');
+                }
+            } catch (error) {
+                new Notification('../img/emojis/pare.png', 'Error inesperado al guardar el producto', 'error');
+            }
+        }
     }
 
-    btnSecondaryCallback() {
+    async guardarProducto(datosProducto) {
+        try {
+            const productosGuardados = JSON.parse(localStorage.getItem('productos')) || [];
+            productosGuardados.push(datosProducto);
+            localStorage.setItem('productos', JSON.stringify(productosGuardados));
+            return true;
+        } catch (error) {
+            new Notification('../img/emojis/pare.png', '¡Ups! Hubo un fallo. Por favor, intenta de nuevo.', 'error');
+            return false;
+        }
+    }
+
+    btnSecondaryCallback(event) {
+        console.log('Click en btn cancelar');
         this.cardNewProduct.resetForm();
-        console.log('click btn cancelar')
     }
 
     createPage() {
         const headerElement = document.querySelector('header');
         const mainElement = document.querySelector('main');
-
-        // Verifica que los elementos existan antes de tratar de manipularlos
-        // if (headerElement && mainElement) {
-        //     headerElement.innerHTML = '';
-        //     mainElement.innerHTML = '';
-
-        //     headerElement.appendChild(this.header.getElement());
-        //     mainElement.appendChild(this.cardNewProduct.getElement());
-        // } else {
-        //     console.error('Los elementos header y main no se encontraron en el DOM.');
-        // }
     }
 }
 

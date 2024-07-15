@@ -1,0 +1,13 @@
+.footer-container {
+    position: fixed;
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;
+    bottom: 16px;
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: calc(100% - 32px);
+    max-width: 400px;
+    height: 60px;
+    box-sizing: border-box;
+}

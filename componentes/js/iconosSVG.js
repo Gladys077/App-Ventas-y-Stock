@@ -1,124 +1,4 @@
-export class Header {
-    
-    constructor(title, leftIcon, rightIcon, leftIconCallback, rightIconCallback, iconoMenu, onMenuClick) {
-        this._title = title;
-        this._leftIcon = leftIcon;
-        this._rightIcon = rightIcon;
-        this._leftIconCallback = leftIconCallback;
-        this._rightIconCallback = rightIconCallback;
-        this._iconoMenu = iconoMenu;
-        this._onMenuClick = onMenuClick;
-
-        if(this._iconoMenu){
-            this._iconoMenu.addEventListener('click', () =>{
-                if(this._onMenuClick){
-                    this._onMenuClick();
-                }
-            });
-        }
-
-        this.element = this.createHeaderElement();
-    }
-
-    createHeaderElement() {
-
-        const headerContainer = document.createElement('header');
-        headerContainer.classList.add('header');
-
-        // Contenedor izquierdo (siempre presente)
-        const leftContainer = document.createElement('div');
-        leftContainer.classList.add('icon-container', 'left-icon-container');
-        if (this._leftIcon) {
-            const leftIcon = document.createElement('button');
-            leftIcon.classList.add('icon', 'leftIcon');
-            leftIcon.innerHTML = this._leftIcon;
-            leftIcon.addEventListener('click', this._leftIconCallback || (() => {
-                window.history.back();
-                console.log('Volver atrás');
-            }));
-            leftContainer.appendChild(leftIcon);
-        }
-        headerContainer.appendChild(leftContainer);
-
-        // Título (siempre presente)
-        const titleContainer = document.createElement('div');
-        titleContainer.classList.add('title-container');
-        const titleElement = document.createElement('h2');
-        titleElement.innerText = this._title;
-        titleElement.classList.add('headerTitle');
-        titleContainer.appendChild(titleElement);
-        headerContainer.appendChild(titleContainer);
-
-        // Contenedor derecho (siempre presente)
-        const rightContainer = document.createElement('div');
-        rightContainer.classList.add('icon-container', 'right-icon-container');
-        if (this._rightIcon) {
-            const rightIcon = document.createElement('button');
-            rightIcon.classList.add('icon', 'rightIcon');
-            rightIcon.innerHTML = this._rightIcon;
-            rightIcon.addEventListener('click', this._rightIconCallback || (() => {
-                console.log('Right icon clicked');
-            }));
-            rightContainer.appendChild(rightIcon);
-        }
-        headerContainer.appendChild(rightContainer);
-
-        const headerElement = document.querySelector('header');
-        if (headerElement) {
-            headerElement.replaceWith(headerContainer);
-        } else {
-            document.body.prepend(headerContainer);
-        }
-
-        return headerContainer;
-        
-    }
-    getElement() {
-        return this.element;
-    }
-
-updateTitle(newTitle) {
-this._title = newTitle;
-const titleElement = document.querySelector('.headerTitle');
-if (titleElement) {
-    titleElement.innerText = newTitle;
-}
-}
-
-updateRightIconCallback(newCallback) {
-this._rightIconCallback = newCallback;
-const rightIcon = document.querySelector('.rightIcon');
-if (rightIcon) {
-    rightIcon.removeEventListener('click', this._rightIconCallback);
-    rightIcon.addEventListener('click', this._rightIconCallback);
-}
-}
-
-}
-
-export function navigateToMenu(destino){
-    switch(destino){
-        case "ventas":
-            console.log('Navegando al menú de ventas');
-            //aquí va la lógica para ir allí
-            break;
-        case "stock":
-            console.log('Navegando al menú de stock');
-            //aquí va la lógica para ir allí
-            break;        
-        case "perfiles":
-            console.log('Navegando al menú de perfiles');
-            //aquí va la lógica para ir allí
-            break;
-        default:
-            console.log('Destino no especificado');
-    }
-}
-
 export const iconoVolver = `
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
- "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="24px" height="24px" viewBox="0 0 512.000000 512.000000"
  preserveAspectRatio="xMidYMid meet">
@@ -159,10 +39,7 @@ export const iconoEditar = `
 `;
 
 export const iconoMenu = `
-        <?xml version="1.0" standalone="no"?>
-    <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
-    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+     <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
     width="24px" height="24px" viewBox="0 0 512.000000 512.000000"
     preserveAspectRatio="xMidYMid meet">
     <metadata>
@@ -184,11 +61,8 @@ export const iconoMenu = `
 `;
 
 export const iconoAjustes = `
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
- "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000"
+ width="24px" height="24px" viewBox="0 0 512.000000 512.000000"
  preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.16, written by Peter Selinger 2001-2019
@@ -222,12 +96,34 @@ l-29 27 -270 0 c-264 0 -269 0 -295 -22z m491 -1368 c274 -70 493 -295 560
 </svg>
 `;
 
-export const iconoBuscar = `
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
- "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+export const iconoDescargar = `
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000"
+ width="24px" height="24px" viewBox="0 0 512 512"
+ preserveAspectRatio="xMidYMid meet">
+    <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+       fill="#000000" stroke="none">
+       <path d="M2485 4685 c-51 -18 -120 -91 -134 -141 -8 -27 -11 -360 -11 -1069
+        l0 -1030 -367 367 c-203 202 -381 372 -396 378 -40 14 -132 13 -170 -4 -39
+        -17 -102 -81 -116 -119 -15 -40 -14 -132 3 -170 8 -18 258 -275 587 -604 603
+        -600 595 -593 679 -593 84 0 76 -7 679 593 329 329 579 586 587 604 18 41 18
+        134 0 176 -17 39 -81 102 -119 116 -36 14 -127 14 -164 1 -15 -6 -193 -176
+        -395 -378 l-368 -367 0 1030 c0 722 -3 1042 -11 1070 -7 25 -29 58 -58 86 -66
+        66 -141 84 -226 54z"/>
+       <path d="M565 2125 c-53 -19 -120 -91 -135 -145 -8 -30 -10 -183 -7 -534 4
+        -544 3 -533 73 -675 54 -108 174 -226 286 -279 149 -72 27 -67 1778 -67 1298
+        0 1595 2 1640 14 223 54 410 235 477 461 14 47 17 129 20 546 3 358 1 503 -7
+        535 -23 83 -123 159 -210 159 -85 0 -187 -76 -209 -155 -7 -27 -11 -195 -11
+        -501 0 -490 0 -494 -49 -555 -11 -15 -41 -36 -66 -48 l-45 -21 -1540 0 -1540
+        0 -45 21 c-25 12 -55 33 -66 48 -49 61 -49 65 -49 555 0 306 -4 474 -11 501
+        -7 25 -29 58 -58 86 -66 66 -141 84 -226 54z"/>
+    </g>
+</svg>
+`;
+
+
+export const iconoBuscar = `
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="24px" height="24px" viewBox="0 0 512.000000 512.000000"
  preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.16, written by Peter Selinger 2001-2019
@@ -248,13 +144,10 @@ fill="#000000" stroke="none">
 </g>
 </svg>
 `;
-//icono para ordenar alfabeticamente AZ
+
 export const iconoAZ = `
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
- "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000"
+ width="24px" height="24px" viewBox="0 0 512.000000 512.000000"
  preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.16, written by Peter Selinger 2001-2019
@@ -275,125 +168,3 @@ fill="#000000" stroke="none">
 </g>
 </svg>
 `;
-
- 
-// Probando INSTANCIAS:
-/*
-const recuperaContraseña = new Header(
-    'Recupera tu contraseña',
-    iconoVolver,
-    null,
-    null,
-    function() { navigateToMenu('ventas'); }
-);
-
-const cambioContraseña = new Header(
-    'Cambio de contraseña',
-    iconoVolver,
-    null,
-    null
-);
-
-const administrador = new Header(
-    'Administrador',
-    iconoVolver,
-    iconoAjustes,
-    null,
-    function() { console.log('Va a la página configuración'); }
-);
-
-const configuracion = new Header(
-    'Configuración',
-    iconoVolver,
-    null,
-    null
-);
-
-const VenderEligeProducto = new Header(
-    'Vender / Elige el producto',
-    iconoVolver,
-    iconoMenu,
-    null,
-    function() { navigateToMenu('ventas'); }
-);
-
-const PedidoActual = new Header(
-    'Pedido actual',
-    iconoVolver,
-    iconoMenu,
-    null,
-    function() { navigateToMenu('ventas'); }
-);
-
-const pedidoFinalizado = new Header(
-    'Pedido finalizado',
-    iconoVolver,
-    iconoMenu,
-    null,
-    function(){ navigateToMenu('ventas'); }
-)
-
-const movimientoDelDia = new Header(
-    'Movimientos del día',
-    iconoVolver,
-    null,
-    null
-);
-
-const ventasPorVendedor = new Header(
-    'Ventas por vendedor',
-    iconoVolver,
-    null,
-    null
-);
-
-const ventasPorProducto = new Header(
-    'Ventas por producto',
-    iconoVolver,
-    null,
-    null
-);
-
-const unidadesVendidas = new Header(
-    'Unidades vendidas',
-    iconoVolver,
-    iconoMenu,
-    null,
-    function(){ navigateToMenu('ventas'); }
-);
-
-const listadoPorFecha = new Header(
-    'listadoPorFecha',
-    iconoVolver,
-    iconoMenu,
-    null,
-    function(){ navigateToMenu('ventas'); }
-);
-
-const ventasPorFecha = new Header(
-    'Ventas por fecha',
-    iconoVolver,
-    null,
-    null
-);
-
-
-
-//STOCK
-const productoAEliminar = new Header(
-    'Elige el producto a eliminar',
-    iconoVolver,
-    iconoMenu,
-    null,
-    function(){ navigateToMenu('stock'); }
-);
-*/
-//PERFILES
-// const modificaElPerfil = new Header(
-//     'Modifica el perfil',
-//     iconoVolver,
-//     iconoMenu,
-//     null,
-//     function(){ navigateToMenu('perfiles'); }
-// );
-

@@ -1,5 +1,13 @@
-/* @import url(footer.css);
-@import url(header.css);
+@import url(./header.css);
+@import url(./footer.css);
+@import url(./searchContainer.css);
+@import url(./btnsContainer.css);
+@import url(./cardBase.css);
+@import url(./cardNewProd.css);
+@import url(./fabButton.css);
+
+
+/* @import url(header.css);
 @import url(main.css); */
 
 
@@ -25,12 +33,13 @@
 
 body{
     background: linear-gradient(var(--color-fondo), var(--color-blanco));
-    /* max-width: 800px; */
     width: 100vw;
     height: 100vh;
     font-family: Roboto, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center; 
-    /* justify-content: center; */
+    align-content: center; 
 } 
+
+
