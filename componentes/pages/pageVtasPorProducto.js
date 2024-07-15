@@ -1,11 +1,16 @@
 import { Header, iconoVolver, iconoMenu, navigateToMenu } from '../js/header.js';
 import { CardVtasPorProducto } from '../js/cardVtasPorProducto.js';
+import { Footer } from '../js/footer.js';
+import { FabButton } from '../js/utils.js';
+import { iconoDescargar } from '../js/iconosSVG.js';
+import { Notification } from '../js/notificacion.js';
 
 export class VentasPorProductoPage {
     constructor() {
         this.ventasPorProducto = null;
         this.createHeader();
         this.createMain();
+        this.createFooter();
         this.createPage();
         this.header;
         this.ventasPorProducto;
@@ -16,13 +21,23 @@ export class VentasPorProductoPage {
     }
 
     createMain() {
-        this.ventasPorProducto = new CardVtasPorProducto('Nombre_del_producto', 'Buscar', () => this.onClick(), false);
+        const selectedProductName = 'Nombre_del_producto'; // Aquí debo obtener el nombre del producto seleccionado
+        this.ventasPorProducto = new CardVtasPorProducto('Nombre_del_producto', 'Buscar', () => this.onClick(), 'Unidades Vendidas');
         document.body.appendChild(this.ventasPorProducto.getElement());
     }
+
+    createFooter() {
+      this.footer = new Footer();
+      document.body.appendChild(this.footer.getElement());
+  
+      const downloadButton = new FabButton(iconoDescargar, this.handleDownloadClick);
+      this.footer.addFabButton(downloadButton);
+  }
 
     createPage() {
         const headerElement = document.querySelector('header');
         const mainElement = document.querySelector('main');
+        const footerElement = document.querySelector('footer');
     }
   
     onClick() {

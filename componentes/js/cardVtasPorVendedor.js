@@ -2,12 +2,12 @@ import { isValidDate, formatDateInput } from './utils.js';
 import { Notification } from './notificacion.js';
 
 export class CardVtasPorVendedor {
-  constructor(title, subtitle, textBtn, onClick) {
+  constructor(title, subtitle, textBtn, onSearch) {
       this._title = title;
       this._subtitle = subtitle;
       this._fecha = null;
       this._textBtn = textBtn;
-      this._onClick = onClick;
+      this._onSearch = onSearch;
       this._selectedVendedor = null;
       this._monto = '';
       this.element = this.armarCardVtasPorVendedor();
@@ -35,8 +35,6 @@ export class CardVtasPorVendedor {
 }
 
   armarCardVtasPorVendedor() {
-      this.cargarCss();
-
       this.element = document.createElement('div');
       this.element.className = 'card';
 
@@ -131,27 +129,12 @@ export class CardVtasPorVendedor {
         return;
     }
     if (!this._fecha) {
-        new Notification('../img/emojis/mueca.png', '¡Ingresa una fecha válida!', 'error');
+        new Notification('../img/emojis/pare.png', '¡Ingresa una fecha válida!', 'error');
         return;
     }
     // Si ambos están seleccionados, procede con la búsqueda
-    this._onClick(this._selectedVendedor, this._fecha);
+    this._onSearch(this._selectedVendedor, this._fecha);
   }
 
-  cargarCss() {
-    const vendedorSelect = document.querySelector('.vendedor-select') ?? null;
-    if(vendedorSelect == null){
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = './css/cardBase.css';
-      document.head.appendChild(link);
-  }
 }
 
-
-}
-
-function onClick(){
-  // Aquí va la lógica que añade en el display this._monto, el importe que el vendedor vendió
-  console.log('$ 12343,34')
-}

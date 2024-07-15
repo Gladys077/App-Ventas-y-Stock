@@ -21,7 +21,6 @@ export class Header {
     }
 
     createHeaderElement() {
-        this.agregarCss();
 
         const headerContainer = document.createElement('header');
         headerContainer.classList.add('header');
@@ -95,55 +94,6 @@ if (rightIcon) {
 }
 }
 
-agregarCss() {
-const style = document.createElement('style');
-style.textContent = `
-    .header {
-        font-family: Roboto, sans-serif;
-        display: grid;
-        grid-template-columns: 60px 1fr 60px;
-        align-items: center;
-        border-bottom: 1px solid #ccc;
-        box-sizing: border-box;
-        width: calc(100% - 32px);
-        max-width: 400px;
-        
-    }
-
-    .icon-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 60px;
-    }
-
-    .title-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .headerTitle {
-        margin: 0;
-        font-size: 16px;
-        text-align: center;
-    }
-
-    .icon {
-        background: none;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-        padding: 12px;
-        width: 48px;
-        height: 48px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-`;
-document.head.appendChild(style);
-}
 }
 
 export function navigateToMenu(destino){
@@ -272,6 +222,59 @@ l-29 27 -270 0 c-264 0 -269 0 -295 -22z m491 -1368 c274 -70 493 -295 560
 </svg>
 `;
 
+export const iconoBuscar = `
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000"
+ preserveAspectRatio="xMidYMid meet">
+<metadata>
+Created by potrace 1.16, written by Peter Selinger 2001-2019
+</metadata>
+<g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+fill="#000000" stroke="none">
+<path d="M2015 4694 c-234 -27 -374 -60 -529 -123 -462 -189 -820 -574 -976
+-1050 -66 -199 -84 -316 -84 -536 0 -169 3 -205 28 -320 36 -174 74 -285 150
+-440 88 -178 194 -323 349 -471 243 -233 506 -371 847 -445 147 -31 432 -38
+586 -14 245 38 481 128 678 258 l119 79 586 -585 c322 -322 600 -592 618 -601
+40 -20 144 -21 181 -2 31 17 94 81 111 113 16 32 14 139 -5 176 -9 18 -279
+295 -600 617 l-584 585 65 100 c124 187 206 385 256 611 16 76 22 146 26 299
+4 175 2 215 -16 320 -51 283 -154 527 -316 745 -146 196 -405 410 -625 517
+-250 121 -626 194 -865 167z m375 -459 c512 -112 897 -506 996 -1020 23 -121
+23 -350 -1 -460 -58 -272 -171 -485 -351 -667 -179 -180 -397 -295 -669 -353
+-110 -24 -339 -24 -460 -1 -514 99 -909 485 -1020 996 -25 117 -30 315 -11
+442 82 548 511 984 1055 1073 110 18 357 13 461 -10z"/>
+</g>
+</svg>
+`;
+//icono para ordenar alfabeticamente AZ
+export const iconoAZ = `
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000"
+ preserveAspectRatio="xMidYMid meet">
+<metadata>
+Created by potrace 1.16, written by Peter Selinger 2001-2019
+</metadata>
+<g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+fill="#000000" stroke="none">
+<path d="M1277 4237 c-16 -45 -130 -360 -253 -699 l-224 -616 0 -101 0 -101
+160 0 160 0 0 63 c1 44 10 89 34 157 l34 95 252 0 252 0 34 -95 c24 -68 33
+-113 34 -157 l0 -63 160 0 160 0 0 101 0 101 -224 616 c-123 339 -237 654
+-253 699 l-28 83 -135 0 -135 0 -28 -83z m229 -700 l61 -172 -63 -3 c-35 -2
+-93 -2 -128 0 l-63 3 61 172 c33 95 63 173 66 173 3 0 33 -78 66 -173z"/>
+<path d="M3520 2828 l0 -1493 -208 208 -207 207 -115 -115 -115 -115 403 -403
+402 -402 402 402 403 403 -115 115 -115 115 -207 -207 -208 -208 0 1493 0
+1492 -160 0 -160 0 0 -1492z"/>
+<path d="M800 2240 l0 -160 442 0 443 0 -443 -443 -442 -442 0 -198 0 -197
+640 0 640 0 0 160 0 160 -442 0 -443 0 443 443 442 442 0 198 0 197 -640 0
+-640 0 0 -160z"/>
+</g>
+</svg>
+`;
 
  
 // Probando INSTANCIAS:
@@ -386,11 +389,11 @@ const productoAEliminar = new Header(
 );
 */
 //PERFILES
-const modificaElPerfil = new Header(
-    'Modifica el perfil',
-    iconoVolver,
-    iconoMenu,
-    null,
-    function(){ navigateToMenu('perfiles'); }
-);
+// const modificaElPerfil = new Header(
+//     'Modifica el perfil',
+//     iconoVolver,
+//     iconoMenu,
+//     null,
+//     function(){ navigateToMenu('perfiles'); }
+// );
 

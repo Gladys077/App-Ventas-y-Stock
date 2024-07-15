@@ -51,7 +51,6 @@
     transition: border-color 0.3s;
 }
 
-
 .proveedorSelect {
     appearance: none;
     background-image: url('data:image/svg+xml;utf8,<svg fill="%236810AD" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
@@ -59,7 +58,6 @@
     background-position: right 12px center;
     min-width: 100%;
 }
-
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
@@ -129,7 +127,6 @@ input[type="number"]::-webkit-outer-spin-button {
     padding: 12px;
     width: 90%;
     text-align: center;
-
 }
 
 .pedido-optional h4 {

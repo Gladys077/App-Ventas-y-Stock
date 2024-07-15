@@ -24,6 +24,8 @@ export class NewProductPage {
         document.body.appendChild(this.cardNewProduct.getElement());
     }
 
+
+    
     async btnPrimaryCallback(event) {
         if (event) event.preventDefault();
         
@@ -47,7 +49,7 @@ export class NewProductPage {
         try {
             const productosGuardados = JSON.parse(localStorage.getItem('productos')) || [];
             productosGuardados.push(datosProducto);
-            // localStorage.setItem('productos', JSON.stringify(productosGuardados));
+            localStorage.setItem('productos', JSON.stringify(productosGuardados));
             return true;
         } catch (error) {
             new Notification('../img/emojis/pare.png', '¡Ups! Hubo un fallo. Por favor, intenta de nuevo.', 'error');

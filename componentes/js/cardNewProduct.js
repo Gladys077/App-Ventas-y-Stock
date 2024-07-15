@@ -40,7 +40,7 @@ export class CardNewProduct {
     }
 
     createForm() {
-        this.cargarCss();
+        // this.cargarCss();
 
         const form = document.createElement('form');
         form.className = 'nuevo-producto-form';
@@ -199,15 +199,15 @@ export class CardNewProduct {
         return btnsContainer.getButtonContainer();
     }
 
-    cargarCss() {
-        const nuevo_producto_form = document.querySelector('.nuevo-producto-form') ?? null;
-        if(nuevo_producto_form == null){
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = './css/cardNewProd.css';
-            document.head.appendChild(link);
-        }
-    }
+    // cargarCss() {
+    //     const nuevo_producto_form = document.querySelector('.nuevo-producto-form') ?? null;
+    //     if(nuevo_producto_form == null){
+    //         const link = document.createElement('link');
+    //         link.rel = 'stylesheet';
+    //         link.href = './css/cardNewProd.css';
+    //         document.head.appendChild(link);
+    //     }
+    // }
 
     resetForm() {
         document.querySelector('.productInput').value = '';
@@ -224,14 +224,11 @@ export class CardNewProduct {
         const costo = document.querySelector('.costoInput');
         const porcentaje = document.querySelector('.porcentajeInput');
     
-        let camposIncompletos = [];
-    
-        if (!product.value.trim()) camposIncompletos.push('producto');
-        if (proveedor.selectedIndex === 0) camposIncompletos.push('proveedor');
-        if (!costo.value || isNaN(parseFloat(costo.value)) || parseFloat(costo.value) <= 0) camposIncompletos.push('costo');
-        if (!porcentaje.value || isNaN(parseFloat(porcentaje.value)) || parseFloat(porcentaje.value) < 0) camposIncompletos.push('porcentaje');
-    
-        if (camposIncompletos.length > 0) {
+        if (!product.value.trim() || 
+            proveedor.selectedIndex === 0 || 
+            !costo.value || isNaN(parseFloat(costo.value)) || parseFloat(costo.value) <= 0 ||
+            !porcentaje.value || isNaN(parseFloat(porcentaje.value)) || parseFloat(porcentaje.value) < 0) {
+            
             new Notification('../../img/emojis/pare.png', '¡Espera! Falta completar datos.', 'error');
             return false;
         }
@@ -244,14 +241,14 @@ export class CardNewProduct {
         const proveedor = document.querySelector('.proveedorSelect').value;
         const costo = parseFloat(document.querySelector('.costoInput').value);
         const porcentaje = parseFloat(document.querySelector('.porcentajeInput').value);
-        const stock = parseInt(document.querySelector('.stock-check input').value, 10) || 0;
+        const stockMinimo = parseInt(document.querySelector('.stock-check input').value, 10) || 0;
     
         return {
             nombre: producto,
             proveedor: proveedor,
             costo: costo,
             porcentaje: porcentaje,
-            stock: stock
+            stockMinimo: stockMinimo
         };
     }
 }

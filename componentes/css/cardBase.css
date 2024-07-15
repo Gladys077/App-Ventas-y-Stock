@@ -160,7 +160,6 @@
     color: var(--color-hover)
   }
   .card-link:active {
-    color: var(--secondary-color)
-    
+    transform: scale(90%)
   }
   

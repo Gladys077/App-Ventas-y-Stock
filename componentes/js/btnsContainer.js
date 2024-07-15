@@ -1,4 +1,3 @@
-import { Notification } from './notificacion.js';
 
 
 export class ButtonContainer {
@@ -8,9 +7,6 @@ export class ButtonContainer {
     }
 
     createButtonContainer(btnPrimary, btnSecondary) {
-
-        this.cargarCss();
-
         const buttonContainer = document.createElement('div');
         buttonContainer.className = 'button-container';
 
@@ -45,12 +41,5 @@ export class ButtonContainer {
 
     getButtonContainer() {
         return this.buttonContainer;
-    }
-
-    cargarCss(){
-        const link = document.createElement('link');
-        link.rel='stylesheet';
-        link.href = './css/btnsContainer.css';
-        document.head.appendChild(link);
     }
 }
