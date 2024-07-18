@@ -1,3 +1,5 @@
+import { createVentasButtons } from "./utils.js";
+
 export class Header {
     
     constructor(title, leftIcon, rightIcon, leftIconCallback, rightIconCallback, iconoMenu, onMenuClick) {
@@ -97,23 +99,37 @@ if (rightIcon) {
 }
 
 export function navigateToMenu(destino){
+    const content = document.getElementById('content');
+    content.innerHTML = '';
+
+    // Reinicio estilos de botones
+    document.querySelectorAll('.main-menu').forEach(btn => {
+        btn.className.remove('active');
+    });
+
+    // Aplico estilo active al botón seleccionado
+    const selectedButton = document.getElementById(`${destino}-btn`);
+    selectedButton.className = 'btn-active';
+
     switch(destino){
         case "ventas":
             console.log('Navegando al menú de ventas');
-            //aquí va la lógica para ir allí
+            const ventasButtons = createVentasButtons();
+            content.appendChild(ventasButtons); // Muestra la botonera de ventas
             break;
         case "stock":
             console.log('Navegando al menú de stock');
-            //aquí va la lógica para ir allí
+            // Lógica para mostrar los botones de stock
             break;        
         case "perfiles":
             console.log('Navegando al menú de perfiles');
-            //aquí va la lógica para ir allí
+            // Lógica para mostrar los botones de perfiles
             break;
         default:
             console.log('Destino no especificado');
     }
 }
+
 
 export const iconoVolver = `
 <?xml version="1.0" standalone="no"?>

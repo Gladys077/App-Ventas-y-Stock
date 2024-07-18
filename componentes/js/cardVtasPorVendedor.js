@@ -115,7 +115,7 @@ export class CardVtasPorVendedor {
   handleDateChange(e) {
     const value = e.target.value;
     if (value && !isValidDate(value)) {
-        // new Notification('../img/emojis/mueca.png', 'Fecha inválida. Use el formato DD/MM/AAAA', 'error');
+        // new Notification('../../img/emojis/mueca.png', 'Fecha inválida. Use el formato DD/MM/AAAA', 'error');
         e.target.value = '';
         this._fecha = null;
     } else {
@@ -125,11 +125,11 @@ export class CardVtasPorVendedor {
 
   handleButtonClick() {
     if (!this._selectedVendedor) {
-        new Notification('../img/emojis/pensando.png', '¿Has elegido un vendedor?', 'error');
+        new Notification('../../img/emojis/pensando.png', '¿Has elegido un vendedor?', 'error');
         return;
     }
     if (!this._fecha) {
-        new Notification('../img/emojis/pare.png', '¡Ingresa una fecha válida!', 'error');
+        new Notification('../../img/emojis/pare.png', '¡Ingresa una fecha válida!', 'error');
         return;
     }
     // Si ambos están seleccionados, procede con la búsqueda

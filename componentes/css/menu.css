@@ -1,0 +1,117 @@
+/* Estilos del main menu */
+.menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* Pestañas: ventas-stock-perfiles */
+.main-menu {
+    max-width: 400px;
+    max-height: 48px;
+    width: calc(100vw - 32px);
+    display: flex;
+    margin-top: 60px;
+}
+
+.tab {
+    max-height: 48px;
+    flex: 1;
+    padding: 10px;
+    background-color: var(-background-fondo);
+    border: 1px solid var(--secondary-color);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--primary-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+}
+.left-btn{
+    border-radius: 50px 0 0 50px;
+}
+.left-btn:active {
+    background-color: var(--primary-color);
+    color: white;
+}
+.right-btn{
+    border-radius: 0 50px 50px 0;
+}
+
+.tab:hover {
+    transform: scale(90%);
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.tab:active {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+}
+
+/* Estilos del contenedor de botones de ventas */
+.botonera-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    background-color: #fff;
+    width: calc(100% - 32px);
+    max-width: 400px;
+    margin-top: -20px;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+}
+
+.botonera-container button {
+    background-color: var(--background-color);
+    border: 1px solid var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: calc(50% - 5px); 
+    height: 20vh;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;
+}
+.botonera-container button:first-child {
+    margin-top: 20px;
+    min-width: 100%;
+    
+}
+
+.botonera-container button img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+
+
+.botonera-container button:hover {
+    background-color: var(--color-hover);
+    transform: scale(95%);
+    color: white;
+    
+}
+
+/* Estilos del footer */
+footer {
+    background-color: transparent; /* Remove background color */
+    color: #6A1B9A; /* Change text color */
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer button {
+    background-color: transparent; /* Remove background color */
+    border: none; /* Remove border */
+    color: #6A1B9A; /* Set text color */
+    font-size: 16px; /* Increase font size */
+    cursor: pointer;
+}

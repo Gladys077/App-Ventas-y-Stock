@@ -1,4 +1,5 @@
-import { iconoDescargar } from "./iconosSVG.js";
+import { iconoDescargar } from "../js/iconosSVG.js";
+import { navigateToMenu } from "./header.js";
 
 // ---------- Valida fecha ---------- 
 export function isValidDate(dateString) {
@@ -137,3 +138,67 @@ export function createList(searchWord) {
 
     return productList;
 }
+
+// -------------- Main Menu (Pestañas: Ventas - Stock - Perfiles ) --------------------
+
+// export function createMainMenu() {
+
+//     // ------Tabs de Ventas-Stock-Perfiles-----  
+//     const mainMenu = document.createElement('div');
+//     mainMenu.className = 'main-menu';
+
+//     const btnVentasMenu = document.createElement('button');
+//     btnVentasMenu.className = 'left-Ventas tabs';
+//     btnVentasMenu.id = 'ventas-btn'
+//     btnVentasMenu.innerHTML = 'Ventas';
+//     btnVentasMenu.addEventListener('click', () => navigateToMenu('ventas'));
+
+//     const btnStockMenu = document.createElement('button');
+//     btnStockMenu.className = 'center-Stock tabs';
+//     btnStockMenu.id = 'stock-btn'
+//     btnStockMenu.innerHTML = 'Stock';
+//     btnStockMenu.addEventListener('click', () => navigateToMenu('stock'));
+
+//     const btnPerfilesMenu = document.createElement('button');
+//     btnPerfilesMenu.className = 'right-Perfiles tabs';
+//     btnPerfilesMenu.id = 'perfiles-btn';
+//     btnPerfilesMenu.innerHTML = 'Perfiles';
+//     btnPerfilesMenu.addEventListener('click', () => navigateToMenu('perfiles'));
+
+//     mainMenu.appendChild(btnVentasMenu);
+//     mainMenu.appendChild(btnStockMenu);
+//     mainMenu.appendChild(btnPerfilesMenu);
+
+//     return mainMenu;
+//     }
+
+    // -------Botonera de la Sección Ventas--------
+    // export function createVentasButtons() {
+    //     const buttonsContainer = document.createElement('div');
+    //     buttonsContainer.className = 'buttons-container';
+
+    //     const buttons = [
+    //         {text: 'Vender', icon: '../../img/iconos/vender1.png'},
+    //         {text: 'Movimientos del día', icon: '../../img/iconos/Movim-Dia.png'},
+    //         {text: 'Ventas por vendedor', icon: '../../img/iconos/ventasPorPersona.png'},
+    //         {text: 'Ventas por producto', icon: '../../img/iconos/Movimiento.png'},
+    //         {text: 'Ventas por fecha', icon: '../../img/iconos/VtasPorFecha.png'},
+    //     ];
+
+    //     buttons.forEach(button => {
+    //         const btn = document.createElement('button');
+    //     btn.innerHTML = `
+    //         <img src="${button.icon}" alt="${button.text}">
+    //         <span>${button.text}</span>
+    //     `;
+    //     buttonsContainer.appendChild(btn);
+    //     });
+
+    //     return buttonsContainer;
+    // }
+
+
+
+
+
+

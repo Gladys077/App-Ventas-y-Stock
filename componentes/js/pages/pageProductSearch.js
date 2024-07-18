@@ -1,6 +1,6 @@
-import { Header, iconoVolver, iconoMenu } from '../js/header.js';
-import { createSearchContainer, createList } from '../js/utils.js';
-import { Footer } from '../js/footer.js';
+import { Header, iconoVolver, iconoMenu } from '../header.js';
+import { createSearchContainer, createList } from '../utils.js';
+import { Footer } from '../footer.js';
 
 export class ProductSearchPage {
     constructor() {

@@ -1,9 +1,9 @@
-import { Header, iconoVolver } from '../js/header.js';
-import { CardVtasPorVendedor } from '../js/cardVtasPorVendedor.js';
-import { Footer } from '../js/footer.js';
-import { FabButton } from '../js/utils.js';
-import { iconoDescargar } from '../js/iconosSVG.js';
-import { Notification, pare } from '../js/notificacion.js';
+import { Header, iconoVolver } from '../header.js';
+import { CardVtasPorVendedor } from '../cardVtasPorVendedor.js';
+import { Footer } from '../footer.js';
+import { FabButton } from '../utils.js';
+import { iconoDescargar } from '../iconosSVG.js';
+import { Notification } from '../notificacion.js';
 
 // const { jsPDF } = window.jspdf;
 
@@ -48,7 +48,7 @@ export class VentasPorVendedorPage {
         this.salesDate = this.datosDePrueba(seller, date);
         console.log('Resultados: ', this.salesDate);
         if (this.salesDate == ''){
-        new Notification('../../img/emojis/pare.png', 'Sin ventas en esa fecha', 'success');
+        new Notification('../img/emojis/pare.png', 'Sin ventas en esa fecha', 'success');
     }
     }
 
@@ -71,12 +71,12 @@ export class VentasPorVendedorPage {
     handleDownloadClick() {
         console.log('Descargando contenido...');
         if (this.salesData.length === 0) {
-            new Notification('../../img/emojis/asombro.png', 'No hay datos para descargar', 'error');
+            new Notification('../../../img/emojis/asombro.png', 'No hay datos para descargar', 'error');
             return;
         }
 
         this.generatePDF(this.salesData);
-        new Notification('../../img/emojis/like.png', '¡Descarga exitosa!', 'success');
+        new Notification('../../../img/emojis/like.png', '¡Descarga exitosa!', 'success');
     }
 
     generatePDF(data) {

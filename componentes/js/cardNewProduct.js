@@ -1,4 +1,4 @@
-import { ButtonContainer } from '../js/btnsContainer.js';
+import { ButtonContainer } from './btnsContainer.js';
 import { Notification } from './notificacion.js';
 
 export class CardNewProduct {

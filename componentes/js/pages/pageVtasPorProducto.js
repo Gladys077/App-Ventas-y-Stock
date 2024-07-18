@@ -1,9 +1,9 @@
-import { Header, iconoVolver, iconoMenu, navigateToMenu } from '../js/header.js';
-import { CardVtasPorProducto } from '../js/cardVtasPorProducto.js';
-import { Footer } from '../js/footer.js';
-import { FabButton } from '../js/utils.js';
-import { iconoDescargar } from '../js/iconosSVG.js';
-import { Notification } from '../js/notificacion.js';
+import { Header, iconoVolver, iconoMenu, navigateToMenu } from '../header.js';
+import { CardVtasPorProducto } from '../cardVtasPorProducto.js';
+import { Footer } from '../footer.js';
+import { FabButton } from '../utils.js';
+import { iconoDescargar } from '../iconosSVG.js';
+import { Notification } from '../notificacion.js';
 
 export class VentasPorProductoPage {
     constructor() {

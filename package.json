@@ -1,11 +1,12 @@
 {
   "name": "app-ventas-y-stock",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Gestor de inventario y venta de productos",
   "type": "module",
-  "main": "index.js",
+  "main": "indexGLA.js",
   "scripts": {
-    "dev": "node --watch index.js",
+    "start": "node indexGLA.js",
+    "dev": "node --watch indexGla.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "LuMa, Gladys, Lion",

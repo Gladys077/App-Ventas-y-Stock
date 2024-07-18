@@ -1,6 +1,6 @@
-import { Header, iconoVolver, iconoMenu, navigateToMenu } from '../js/header.js';
-import { CardNewProduct } from '../js/cardNewProduct.js';
-import { Notification } from '../js/notificacion.js';
+import { Header, iconoVolver, iconoMenu, navigateToMenu } from '../header.js';
+import { CardNewProduct } from '../cardNewProduct.js';
+import { Notification } from '../notificacion.js';
 
 export class NewProductPage {
     constructor() {
@@ -23,8 +23,6 @@ export class NewProductPage {
         );
         document.body.appendChild(this.cardNewProduct.getElement());
     }
-
-
     
     async btnPrimaryCallback(event) {
         if (event) event.preventDefault();
@@ -34,13 +32,13 @@ export class NewProductPage {
                 const datosProducto = this.cardNewProduct.obtenerDatosProducto();
                 const guardadoExitoso = await this.guardarProducto(datosProducto);
                 if (guardadoExitoso) {
-                    new Notification('../img/emojis/like.png', '¡Producto guardado exitosamente!', 'success');
+                    new Notification('../../../img/emojis/like.png', '¡Producto guardado exitosamente!', 'success');
                     this.cardNewProduct.resetForm();
                 } else {
-                    new Notification('../img/emojis/pare.png', '¡Ups! Hubo un fallo. Por favor, intenta de nuevo.', 'error');
+                    new Notification('../../../img/emojis/pare.png', '¡Ups! Hubo un fallo. Por favor, intenta de nuevo.', 'error');
                 }
             } catch (error) {
-                new Notification('../img/emojis/pare.png', 'Error inesperado al guardar el producto', 'error');
+                new Notification('../../../img/emojis/pare.png', 'Error inesperado al guardar el producto', 'error');
             }
         }
     }
@@ -52,7 +50,7 @@ export class NewProductPage {
             localStorage.setItem('productos', JSON.stringify(productosGuardados));
             return true;
         } catch (error) {
-            new Notification('../img/emojis/pare.png', '¡Ups! Hubo un fallo. Por favor, intenta de nuevo.', 'error');
+            new Notification('../img/emojis/triste.png', '¡Ups! Hubo un fallo. Por favor, intenta de nuevo.', 'error');
             return false;
         }
     }

@@ -1,12 +1,22 @@
+// import { ModalDialogo } from './modalDialogo.js';
+// import { Notification } from './notificacion.js';
+// import { Header, iconoMenu, iconoVolver, iconoEditar } from './header.js';
+// import { ButtonContainer } from './btnsContainer.js';
 
-import { ModalDialogo } from '../js/modalDialogo.js';
-import { Notification } from './notificacion.js';
-// import { Header, iconoMenu, iconoVolver, iconoEditar } from '../js/header.js';
-// import { ButtonContainer } from '../js/btnsContainer.js';
-// import { NewProductPage } from '../pages/pageNewProduct.js'; 
-// import { VentasPorVendedorPage } from '../pages/pageVtasPorVendedor.js';
-// import { VentasPorProductoPage } from '../pages/pageVtasPorProducto.js';
-import { ProductSearchPage } from '../pages/pageProductSearch.js';
+// import { createLoginPage } from "./LoginPage.js";
+// import { RecoverPasswordPage } from './pages/pageRecoverPassword.js';
+// import { ChangePassword } from './pages/pageChangePassword.js';
+// import { ConfigurationPage } from './pages/pageConfig.js';
 
-// // Inicializa la nueva página
+// import { VentasPorVendedorPage } from './pages/pageVtasPorVendedor.js';
+// import { VentasPorProductoPage } from './pages/pageVtasPorProducto.js';
 
+// import { NewProductPage } from './pages/pageNewProduct.js'; 
+
+// import { ProductSearchPage } from './pages/pageProductSearch.js';
+
+
+// Inicializa la nueva página
+// document.addEventListener("DOMContentLoaded", function() {
+//     createLoginPage();
+// });

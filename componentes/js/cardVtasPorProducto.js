@@ -152,7 +152,7 @@ export class CardVtasPorProducto {
     handleInputChange(e, label) {
         const value = e.target.value;
         if (value && !isValidDate(value)) {
-            // new Notification('../img/emojis/mueca.png', 'Fecha inválida. Use el formato DD/MM/AAAA', 'error');
+            // new Notification('../../img/emojis/mueca.png', 'Fecha inválida. Use el formato DD/MM/AAAA', 'error');
             e.target.value = '';
             return;
         }
@@ -225,7 +225,7 @@ export class CardVtasPorProducto {
         if(estilos == null){
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = './css/cardBase.css';
+        link.href = '../css/cardBase.css';
         document.head.appendChild(link);
         }
     }
