@@ -12,8 +12,6 @@ export class PlanillaMovimiento {
         this.createTablaEncabezado();
         this.createTablaDetalles();
         this.createTablaFooter();
-        
-
     }
 
     createHeader=(producto ="Nombre_del_Producto")=>{

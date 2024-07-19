@@ -15,11 +15,8 @@ export class ChangePassword {
         document.body.appendChild(this.header.getElement());
     }
 
-    
-
     createMain() {
         const main = document.createElement('main');
-        // container.classList.add('main-password');
 
         const container = document.createElement('div');
         container.classList.add('container-password');
@@ -75,7 +72,8 @@ export class ChangePassword {
         container.appendChild(button);
 
         main.appendChild(container);
-        document.body.appendChild(main);
+        document.body.appendChild(main); 
+
     }
 }    
     

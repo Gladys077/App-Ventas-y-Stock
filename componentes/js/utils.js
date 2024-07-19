@@ -1,4 +1,4 @@
-import { iconoDescargar } from "../js/iconosSVG.js";
+import { iconoDescargar, iconoVerPedido } from "../js/iconosSVG.js";
 import { navigateToMenu } from "./header.js";
 
 // ---------- Valida fecha ---------- 
@@ -73,6 +73,46 @@ const footerElement = document.querySelector('footer');
 footerElement.appendChild(downloadButton.getElement());
 */
 
+// ------------- FAB EXTENDED ---------------
+export class ExtendedFabButton {
+    constructor(iconSVG, label, navigateToRoute) {
+        this._iconSVG = iconSVG;
+        this._label = label;
+        this._navigateToRoute = navigateToRoute;
+        this._element = this.createExtendedFabButton();
+    }
+
+    getElement() {
+        return this._element;
+    }
+
+    createExtendedFabButton() {
+        const button = document.createElement('button');
+        button.className = 'fab-button-extended';
+
+        button.innerHTML = `${this._iconSVG} <span class="fab-label">${this._label}</span>`;
+        
+        button.addEventListener('click', () => this.handleButtonClick());
+        return button;
+    }
+
+    handleButtonClick() {
+        if (this._navigateToRoute) {
+            navigateTo(this._navigateToRoute);
+        }
+    }
+}
+
+// Función para manejar la navegación (verlo con LIO)
+function navigateTo(route) {
+    window.location.href = route;
+}
+
+
+
+
+
+
 // ------------- Búsqueda de productos -----------------
 export function createSearchContainer() {
     const container = document.createElement('div');
@@ -134,6 +174,13 @@ export function createList(searchWord) {
 
         listItem.textContent = productInfo;
         productList.appendChild(listItem);    
+
+        // Agregar evento click para ejecutar el callback proporcionado
+        listItem.addEventListener('click', () => {
+            if (typeof itemClickCallback === 'function') {
+                itemClickCallback(product);
+            }
+        });
     });
 
     return productList;

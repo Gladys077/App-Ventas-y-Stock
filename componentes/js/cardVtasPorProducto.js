@@ -56,7 +56,7 @@ export class CardVtasPorProducto {
     }
 
     armarCardVtasPorProducto() {
-        this.cargarCss();
+        // this.cargarCss();
         this.element = document.createElement('div');
         this.element.className = 'card';
 
@@ -220,15 +220,15 @@ export class CardVtasPorProducto {
             // Lógica para buscar en una fecha específica (hasta)
         }
     }
-    cargarCss() {
-        const estilos = document.querySelector('.dia') ?? null;
-        if(estilos == null){
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = '../css/cardBase.css';
-        document.head.appendChild(link);
-        }
-    }
+    // cargarCss() {
+    //     const estilos = document.querySelector('.dia') ?? null;
+    //     if(estilos == null){
+    //     const link = document.createElement('link');
+    //     link.rel = 'stylesheet';
+    //     link.href = '../css/cardBase.css';
+    //     document.head.appendChild(link);
+    //     }
+    // }
 
     getElement() {
         return this.element;

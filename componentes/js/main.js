@@ -5,7 +5,7 @@ export default class Main {
         document.body.appendChild(this.element);
     }
 
-//     getElement() {
-//         return this.element;
-//     }
+    getElement() {
+        return this.element;
+    }
 }

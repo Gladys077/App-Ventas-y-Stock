@@ -1,5 +1,5 @@
-// import {createMainPage} from '.'
-// import {createForgotPasswordPage} from '.'
+
+
 import { Notification } from "../notificacion.js";
 
 export function createLoginPage() {
@@ -29,9 +29,7 @@ export function createLoginPage() {
     loginButton.innerHTML = 'Ingresar';
     loginButton.className = 'search-button';
     loginButton.addEventListener('click', (event)=> {
-        
-        event.preventDefault(); // Evita el comportamiento predeterminado del btn
-
+        event.preventDefault(); 
 
         // Ejemplo: lista de usuarios permitidos
         const userNameList = ['usuario1', 'usuario2', 'usuario3'];
@@ -48,7 +46,8 @@ export function createLoginPage() {
             new Notification('../../img/emojis/pare.png', 'Por favor, ingresa un email válido.', 'error');
         } else {
             // Tendría que ir a la página del menú de VENTAS
-            createMainPage();
+            // createMainPage();
+            console.log('navigateToRoute(mainMenuPage)')
         }
     });
     
@@ -58,7 +57,7 @@ export function createLoginPage() {
     forgotPassword.innerHTML = 'Olvidé mi contraseña';
     forgotPassword.className = 'forgot-password';
     forgotPassword.addEventListener('click', ()=> {
-        createForgotPasswordPage();
+        console.log('navigateToRoute(olvidéContraseña)')
     })
 
 
@@ -73,3 +72,4 @@ export function createLoginPage() {
     
 }
 
+createLoginPage()
