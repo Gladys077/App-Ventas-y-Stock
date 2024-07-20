@@ -16,6 +16,7 @@
 // import { VentasPorProductoPage } from './pages/pageVtasPorProducto.js';
 
 // import { NewProductPage } from './pages/pageNewProduct.js'; 
+// import { EditProductPage } from './pages/editProductPage.js';
 
 import { ProductSearchPage } from './pages/pageProductSearch.js';
 

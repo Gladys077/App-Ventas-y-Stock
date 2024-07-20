@@ -1,5 +1,6 @@
 import { ButtonContainer } from './btnsContainer.js';
 import { Notification } from './notificacion.js';
+import { Producto } from './producto.js';
 
 export class CardNewProduct {
     constructor(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback) {
@@ -8,33 +9,36 @@ export class CardNewProduct {
         this._btnPrimaryCallback = btnPrimaryCallback;
         this._btnSecondaryCallback = btnSecondaryCallback;
         this._element = this.createForm();
+        this._producto = new Producto('', '', 0, 0, 0);
     }
     get btnPrimary(){ 
         return this._btnPrimary; 
     }
-    get btnSecondary(){
-        return this._btnSecondary;
-    }
-    get btnPrimaryCallback(){
-        return this._btnPrimaryCallback;
-    }
-    get btnSecondaryCallback(){
-        return this._btnSecondaryCallback;
-    }
-
     set btnPrimary(value){
         this._btnPrimary = value;
+    }
+
+    get btnSecondary(){
+        return this._btnSecondary;
     }
     set btnSecondary(value){
         this._btnSecondary = value;
     }
+
+    get btnPrimaryCallback(){
+        return this._btnPrimaryCallback;
+    }
     set btnPrimaryCallback(value){
         this._btnPrimaryCallback = value;
+    }
+
+    get btnSecondaryCallback(){
+        return this._btnSecondaryCallback;
     }
     set btnSecondaryCallback(value){
         this._btnSecondaryCallback = value;
     }
-
+    
     getElement() {
         return this._element;
     }
@@ -63,7 +67,11 @@ export class CardNewProduct {
         const productInput = document.createElement('input');
         productInput.type = 'text';
         productInput.className = 'productInput';
-        productInput.placeholder = 'Ingresa el nuevo producto';
+        productInput.placeholder = 'Escriba el nombre del producto';
+
+        productInput.addEventListener('input', (e)=>{
+            this._producto.nombre = e.target.value;
+        })
 
         inputGroup.appendChild(productInput);
         return inputGroup;
@@ -84,10 +92,12 @@ export class CardNewProduct {
             select.appendChild(option);
         });
 
-        select.addEventListener('change', function() {
-            select.querySelectorAll('option').forEach(option => {
-                option.classList.remove('selected-option');
-            });
+        select.addEventListener('change', (e)=> {
+            this._producto.proveedor = e.target.value;
+
+            // select.querySelectorAll('option').forEach(option => {
+            //     option.classList.remove('selected-option');
+            // });
             const selectedOption = select.options[select.selectedIndex];
             selectedOption.classList.add('selected-option');
 
@@ -111,11 +121,19 @@ export class CardNewProduct {
         // Calcular el precio de venta
         const costoInput = costoGroup.querySelector('input');
         const porcentajeInput = porcentajeGroup.querySelector('input');
+
         costoInput.classList.add('interiorInput');
         porcentajeInput.classList.add('interiorInput');
 
-        costoInput.addEventListener('input', () => this.calculaPrecioVenta());
-        porcentajeInput.addEventListener('input', () => this.calculaPrecioVenta());
+        costoInput.addEventListener('input', (e) => {
+            this._producto.costo = parseFloat(e.target.value) || 0;
+            this.mostrarPrecioVenta();
+        });
+
+        porcentajeInput.addEventListener('input', (e) => {
+            this._producto.porcentaje = parseFloat(e.target.value) || 0;
+            this.mostrarPrecioVenta();
+        });
 
         costoPorcentaje.appendChild(costoGroup);
         costoPorcentaje.appendChild(porcentajeGroup);
@@ -165,10 +183,8 @@ export class CardNewProduct {
         return divider;
     }
 
-    calculaPrecioVenta() {
-        const costo = parseFloat(document.getElementById('costo').value) || 0;
-        const porcentaje = parseFloat(document.getElementById('porcentaje').value) || 0;
-        const precioVenta = costo * (1 + porcentaje / 100);
+    mostrarPrecioVenta() {
+        const precioVenta = this._producto.calcularPrecioVenta();
         this.precioVentaDisplay.textContent = `$${precioVenta.toFixed(2)}`;
     }
 
@@ -185,6 +201,10 @@ export class CardNewProduct {
         const input = document.createElement('input');
         input.type = 'number';
         input.placeholder = 'Cantidad';
+
+        input.addEventListener('input', (e) => {
+            this._producto.stockMinimo = parseInt(e.target.value, 10) || 0; //CHAT¿para qué es el 10?
+        });
 
         stockCheck.appendChild(input);
 
@@ -216,18 +236,17 @@ export class CardNewProduct {
         document.getElementById('porcentaje').value = '';
         this.precioVentaDisplay.textContent = '$ 0';
         document.querySelector('.stock-check input').value = '';
+        this._producto = new Producto('', '', 0, 0, 0); // Resetea el producto CHAT¿para qué resetearía el producto?
+
     }
 
     validarCampos() {
-        const product = document.querySelector('.productInput');
-        const proveedor = document.querySelector('.proveedorSelect');
-        const costo = document.querySelector('.costoInput');
-        const porcentaje = document.querySelector('.porcentajeInput');
+        const producto = this._producto;
     
-        if (!product.value.trim() || 
-            proveedor.selectedIndex === 0 || 
-            !costo.value || isNaN(parseFloat(costo.value)) || parseFloat(costo.value) <= 0 ||
-            !porcentaje.value || isNaN(parseFloat(porcentaje.value)) || parseFloat(porcentaje.value) < 0) {
+        if (!producto.nombre.trim() || 
+        producto.proveedor === 'Selecciona el proveedor' || 
+        producto.costo <= 0 ||
+        producto.porcentaje < 0) {
             
             new Notification('../../img/emojis/pare.png', '¡Espera! Falta completar datos.', 'error');
             return false;
