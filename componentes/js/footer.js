@@ -9,9 +9,9 @@ export class Footer {
         return footer;
     }
 
-    addFabButton(tabButton) {
-        this.element.appendChild(tabButton.getElement());
-    }
+    // addFabButton(tabButton) {
+    //     this.element.appendChild(tabButton.getElement());
+    // }
 
     getElement() {
         return this.element;

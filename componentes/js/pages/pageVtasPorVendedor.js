@@ -33,7 +33,8 @@ export class VentasPorVendedorPage {
         document.body.appendChild(this.footer.getElement());
     
         const downloadButton = new FabButton(iconoDescargar, this.handleDownloadClick.bind(this));
-        this.footer.addFabButton(downloadButton);
+       
+        this.footer.getElement().appendChild(downloadButton.getElement());
     }
     
     createPage() {
@@ -58,8 +59,8 @@ export class VentasPorVendedorPage {
             { date: '2024-07-01', seller: 'Dibu Martinez', amount: 4500 },
             { date: '2024-07-14', seller: 'Juan Pérez', amount: 1500 },
             { date: '2024-07-14', seller: 'María García', amount: 2000 },
-            { date: '2024-07-15', seller: 'Juan Pérez', amount: 1800 },
-            { date: '2024-07-15', seller: 'María García', amount: 2200 },
+            { date: '2024-07-15', seller: 'Juanita Pérez', amount: 1800 },
+            { date: '2024-07-15', seller: 'Mariano García', amount: 2200 },
         ];
 
         return data.filter(sale =>

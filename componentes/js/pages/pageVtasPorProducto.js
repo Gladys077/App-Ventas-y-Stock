@@ -31,7 +31,7 @@ export class VentasPorProductoPage {
       document.body.appendChild(this.footer.getElement());
   
       const downloadButton = new FabButton(iconoDescargar, this.handleDownloadClick);
-      this.footer.addFabButton(downloadButton);
+      this.footer.getElement().appendChild(downloadButton.getElement());
   }
 
     createPage() {

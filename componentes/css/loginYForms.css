@@ -28,7 +28,7 @@
     max-width: 400px;
     width: calc(100vw - 32px);
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 60px;
 }
 .candado-class {
     width: 60px;
@@ -59,7 +59,10 @@
     font-size: 16px;
     font-weight: 500;
     margin-top: 32px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
+
 }
+
 
 /* configuration  */
 #configList {

@@ -1,4 +1,4 @@
-import { iconoDescargar, iconoVerPedido } from "../js/iconosSVG.js";
+import { iconoDescargar, iconoVerPedido, iconoComprar } from "../js/iconosSVG.js";
 import { navigateToMenu } from "./header.js";
 
 // ---------- Valida fecha ---------- 
@@ -152,7 +152,6 @@ export function createSearchContainer() {
 }
 
 // --------------- Listado de productos ------------
-/* 'products'= array con todos los productos y 'searchWord'= palabra o frase que el usuario ingrese en el buscador */
 export function createList(searchWord) {
     const productList = document.createElement('ul');
     productList.className = 'ul-product-list';
@@ -160,21 +159,36 @@ export function createList(searchWord) {
     // Traje los productos desde el localStorage
     const products = JSON.parse(localStorage.getItem('productos')) || [];
 
-    // filtra productos que contienen la palabra de búsqueda
     const filteredProducts = products.filter(product => {
         return product.nombre.toLowerCase().includes(searchWord.toLowerCase());
     });
 
+    // Ordena los productos alfabéticamente por nombre
+    filteredProducts.sort((a, b) => a.nombre.localeCompare(b.nombre));
+
     filteredProducts.forEach(product => {
         const listItem = document.createElement('li');
         listItem.className = 'li-product-list';
-
-        // En la variable se guarda el nombre (o si quiero agregar otros datos)
-        const productInfo = `${product.nombre}`;
-
-        listItem.textContent = productInfo;
+    
+        // Crear un contenedor para el texto del producto
+        const productTextSpan = document.createElement('span');
+        productTextSpan.textContent = product.nombre;
+    
+        // Crear el icono
+        const icon = document.createElement('i');
+        icon.innerHTML = iconoComprar; 
+    
+        // EStilos para alinear el icono a la derecha
+        listItem.style.display = 'flex';
+        listItem.style.justifyContent = 'space-between';
+        listItem.style.alignItems = 'center';
+    
+        // Agregar el texto y el icono al listItem
+        listItem.appendChild(productTextSpan);
+        listItem.appendChild(icon);
+    
         productList.appendChild(listItem);    
-
+    
         // Agregar evento click para ejecutar el callback proporcionado
         listItem.addEventListener('click', () => {
             if (typeof itemClickCallback === 'function') {
@@ -186,63 +200,46 @@ export function createList(searchWord) {
     return productList;
 }
 
-// -------------- Main Menu (Pestañas: Ventas - Stock - Perfiles ) --------------------
+// -------------- Menú ventas --------(ventas, stock, perfiles)
+export function createMenuPrincipal() {
+    const menuPrincipal = document.createElement('div');
+    menuPrincipal.className = 'main-menu';
+    menuPrincipal.innerHTML = `
+        <button class="tab left-btn active">Ventas</button>
+        <button class="tab center-btn">Stock</button>
+        <button class="tab right-btn">Perfiles</button>
+    `;
+    return menuPrincipal;
+}
 
-// export function createMainMenu() {
+export function createMenuVentas() {
+    const menuVentas = document.createElement('div');
+    menuVentas.className = 'botonera-container';
+    menuVentas.innerHTML = `
+        <button class="botonera">
+          <img src="../img/iconos/vender1.png" alt="">
+          <h3>Vender</h3>
+        </button>
+        <button class="botonera">
+          <img src="../img/iconos/Movim-Dia.png" alt="">
+          <h3>Movimientos del día</h3>
+        </button>
+        <button class="botonera">
+          <img src="../img/iconos/ventasPorPersona.png" alt="">
+          <h3>Ventas por vendedor</h3>
+        </button>
+        <button class="botonera">
+          <img src="../img/iconos/Movimiento.png" alt="">
+          <h3>Ventas por producto</h3>
+        </button>
+        <button class="botonera">
+          <img src="../img/iconos/VtasPorFecha.png" alt="">
+          <h3>Ventas por fecha</h3>
+        </button>
+    `;
+    return menuVentas;
+}
 
-//     // ------Tabs de Ventas-Stock-Perfiles-----  
-//     const mainMenu = document.createElement('div');
-//     mainMenu.className = 'main-menu';
-
-//     const btnVentasMenu = document.createElement('button');
-//     btnVentasMenu.className = 'left-Ventas tabs';
-//     btnVentasMenu.id = 'ventas-btn'
-//     btnVentasMenu.innerHTML = 'Ventas';
-//     btnVentasMenu.addEventListener('click', () => navigateToMenu('ventas'));
-
-//     const btnStockMenu = document.createElement('button');
-//     btnStockMenu.className = 'center-Stock tabs';
-//     btnStockMenu.id = 'stock-btn'
-//     btnStockMenu.innerHTML = 'Stock';
-//     btnStockMenu.addEventListener('click', () => navigateToMenu('stock'));
-
-//     const btnPerfilesMenu = document.createElement('button');
-//     btnPerfilesMenu.className = 'right-Perfiles tabs';
-//     btnPerfilesMenu.id = 'perfiles-btn';
-//     btnPerfilesMenu.innerHTML = 'Perfiles';
-//     btnPerfilesMenu.addEventListener('click', () => navigateToMenu('perfiles'));
-
-//     mainMenu.appendChild(btnVentasMenu);
-//     mainMenu.appendChild(btnStockMenu);
-//     mainMenu.appendChild(btnPerfilesMenu);
-
-//     return mainMenu;
-//     }
-
-    // -------Botonera de la Sección Ventas--------
-    // export function createVentasButtons() {
-    //     const buttonsContainer = document.createElement('div');
-    //     buttonsContainer.className = 'buttons-container';
-
-    //     const buttons = [
-    //         {text: 'Vender', icon: '../../img/iconos/vender1.png'},
-    //         {text: 'Movimientos del día', icon: '../../img/iconos/Movim-Dia.png'},
-    //         {text: 'Ventas por vendedor', icon: '../../img/iconos/ventasPorPersona.png'},
-    //         {text: 'Ventas por producto', icon: '../../img/iconos/Movimiento.png'},
-    //         {text: 'Ventas por fecha', icon: '../../img/iconos/VtasPorFecha.png'},
-    //     ];
-
-    //     buttons.forEach(button => {
-    //         const btn = document.createElement('button');
-    //     btn.innerHTML = `
-    //         <img src="${button.icon}" alt="${button.text}">
-    //         <span>${button.text}</span>
-    //     `;
-    //     buttonsContainer.appendChild(btn);
-    //     });
-
-    //     return buttonsContainer;
-    // }
 
 
 
