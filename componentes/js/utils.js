@@ -1,5 +1,5 @@
-import { iconoDescargar, iconoVerPedido, iconoComprar } from "../js/iconosSVG.js";
-import { navigateToMenu } from "./header.js";
+import { iconoComprar } from "../js/iconosSVG.js";
+import { navigateToPage } from "./navigateToPage.js";
 
 // ---------- Valida fecha ---------- 
 export function isValidDate(dateString) {
@@ -103,18 +103,13 @@ export class ExtendedFabButton {
     }
 }
 
-// Función para manejar la navegación (verlo con LIO)
+// Función para manejar la navegación (ver con LIO)
 function navigateTo(route) {
     window.location.href = route;
 }
 
-
-
-
-
-
-// ------------- Búsqueda de productos -----------------
-export function createSearchContainer() {
+// ------------- Búsqueda de productos (pageProductSearch.js) -----------------
+export function createSearchContainer(onProductClick) {
     const container = document.createElement('div');
     container.className = 'search-container';
 
@@ -136,7 +131,7 @@ export function createSearchContainer() {
 
     button.addEventListener('click', () => {
         const searchWord = input.value;
-        const productList = createList(searchWord);
+        const productList = createList(searchWord, onProductClick);
         resultContainer.innerHTML = '';
         resultContainer.appendChild(productList);
     });
@@ -151,94 +146,105 @@ export function createSearchContainer() {
     return container;
 }
 
-// --------------- Listado de productos ------------
-export function createList(searchWord) {
+// --------------- Listado de productos (pageProductSearch.js)------------
+export function createList(searchWord, onProductClick) {
+    console.log('createList called with searchWord:', searchWord);
+    console.log('onProductClick type: ', typeof onProductClick);
+
     const productList = document.createElement('ul');
     productList.className = 'ul-product-list';
     
     // Traje los productos desde el localStorage
     const products = JSON.parse(localStorage.getItem('productos')) || [];
+    console.log('Products from localStorage:', products);
+
 
     const filteredProducts = products.filter(product => {
         return product.nombre.toLowerCase().includes(searchWord.toLowerCase());
     });
+    console.log('Filtered products:', filteredProducts);
 
     // Ordena los productos alfabéticamente por nombre
     filteredProducts.sort((a, b) => a.nombre.localeCompare(b.nombre));
 
-    filteredProducts.forEach(product => {
-        const listItem = document.createElement('li');
-        listItem.className = 'li-product-list';
+    if (filteredProducts.length === 0) {
+        const noResultsMessage = document.createElement('p');
+        noResultsMessage.textContent = 'No hay productos en stock.';
+        productList.appendChild(noResultsMessage);
+    } else {
+        filteredProducts.forEach(product => {
+            const listItem = document.createElement('li');
+            listItem.className = 'li-product-list';
     
-        // Crear un contenedor para el texto del producto
-        const productTextSpan = document.createElement('span');
-        productTextSpan.textContent = product.nombre;
-    
-        // Crear el icono
-        const icon = document.createElement('i');
-        icon.innerHTML = iconoComprar; 
-    
-        // EStilos para alinear el icono a la derecha
-        listItem.style.display = 'flex';
-        listItem.style.justifyContent = 'space-between';
-        listItem.style.alignItems = 'center';
-    
-        // Agregar el texto y el icono al listItem
-        listItem.appendChild(productTextSpan);
-        listItem.appendChild(icon);
+            // contenedor para el texto del producto
+            const productTextSpan = document.createElement('span');
+            productTextSpan.textContent = product.nombre;
+        
+            const icon = document.createElement('i');
+            icon.innerHTML = iconoComprar;
+            icon.className = 'product-icon'; 
+        
+            // EStilos para alinear el icono a la derecha
+            listItem.style.display = 'flex';
+            listItem.style.justifyContent = 'space-between';
+            listItem.style.alignItems = 'center';
+            listItem.style.marginRight = '8px';
+        
+            listItem.appendChild(productTextSpan);
+            listItem.appendChild(icon);
     
         productList.appendChild(listItem);    
     
         // Agregar evento click para ejecutar el callback proporcionado
-        listItem.addEventListener('click', () => {
-            if (typeof itemClickCallback === 'function') {
-                itemClickCallback(product);
+        listItem.addEventListener('click', (event) => {
+            console.log('Product item clicked:', product.nombre);
+
+            if (event.target.closest('.product-icon')) {
+                console.log('Icon clicked for product:', product.nombre);
+                if (typeof onProductClick === 'function') {
+                    console.log('Calling onProductClick');
+                    onProductClick(product, event);
+                } else {
+                    console.error('onProductClick is not a function, it is:', onProductClick);
+                }
             }
         });
     });
 
     return productList;
-}
+}}
 
 // -------------- Menú ventas --------(ventas, stock, perfiles)
 export function createMenuPrincipal() {
     const menuPrincipal = document.createElement('div');
-    menuPrincipal.className = 'main-menu';
-    menuPrincipal.innerHTML = `
-        <button class="tab left-btn active">Ventas</button>
-        <button class="tab center-btn">Stock</button>
-        <button class="tab right-btn">Perfiles</button>
-    `;
+    menuPrincipal.classList.add('main-menu');
+
+    const ventasButton = document.createElement('button');
+    ventasButton.classList.add('tab', 'left-btn', 'active');
+    ventasButton.textContent = 'Ventas';
+    ventasButton.addEventListener('click', ()=> navigateToPage('menuVentas'));
+
+    const stockButton = document.createElement('button');
+    stockButton.classList.add('tab', 'center-btn');
+    stockButton.textContent = 'Stock';
+    ventasButton.addEventListener('click', ()=> navigateToPage('menuStock'));
+
+
+    const perfilesButton = document.createElement('button');
+    perfilesButton.classList.add('tab', 'right-btn');
+    perfilesButton.textContent = 'Perfiles';
+    ventasButton.addEventListener('click', ()=> navigateToPage('menuPerfiles'));
+
+
+    menuPrincipal.appendChild(ventasButton);
+    menuPrincipal.appendChild(stockButton);
+    menuPrincipal.appendChild(perfilesButton);
+
     return menuPrincipal;
 }
 
-export function createMenuVentas() {
-    const menuVentas = document.createElement('div');
-    menuVentas.className = 'botonera-container';
-    menuVentas.innerHTML = `
-        <button class="botonera">
-          <img src="../img/iconos/vender1.png" alt="">
-          <h3>Vender</h3>
-        </button>
-        <button class="botonera">
-          <img src="../img/iconos/Movim-Dia.png" alt="">
-          <h3>Movimientos del día</h3>
-        </button>
-        <button class="botonera">
-          <img src="../img/iconos/ventasPorPersona.png" alt="">
-          <h3>Ventas por vendedor</h3>
-        </button>
-        <button class="botonera">
-          <img src="../img/iconos/Movimiento.png" alt="">
-          <h3>Ventas por producto</h3>
-        </button>
-        <button class="botonera">
-          <img src="../img/iconos/VtasPorFecha.png" alt="">
-          <h3>Ventas por fecha</h3>
-        </button>
-    `;
-    return menuVentas;
-}
+
+
 
 
 

@@ -55,8 +55,10 @@
   }
 
   agregarCss(){
+    if (!document.querySelector('#modalDialogoStyles')) {
     const head = document.querySelector('head');
     const style = document.createElement('style');
+    style.id = 'modalDialogoStyles';
     style.innerText = `
       .modalDialogo {
       width: 100%;
@@ -66,7 +68,7 @@
       z-index: 5;
       margin: auto;
       overflow: auto;
-      background-color: rgba(0,0,0,0.4);
+      background-color: rgba(0,0,0,0.6);
   }
   .modal-content{
       width: 80%;

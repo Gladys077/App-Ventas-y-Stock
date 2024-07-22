@@ -11,9 +11,6 @@ export class VentasPorProductoPage {
         this.createHeader();
         this.createMain();
         this.createFooter();
-        this.createPage();
-        this.header;
-        this.ventasPorProducto;
     }
     createHeader() {
         this.header = new Header('Unidades vendidas', iconoVolver, iconoMenu, null, function(){ navigateToMenu('ventas');});
@@ -34,12 +31,6 @@ export class VentasPorProductoPage {
       this.footer.getElement().appendChild(downloadButton.getElement());
   }
 
-    createPage() {
-        const headerElement = document.querySelector('header');
-        const mainElement = document.querySelector('main');
-        const footerElement = document.querySelector('footer');
-    }
-  
     onClick() {
       console.log('btn clickeado');
       if (this.ventasPorProducto){
@@ -49,3 +40,17 @@ export class VentasPorProductoPage {
   }
   
   new VentasPorProductoPage();
+
+  //---------------------------VENTAS POR PRODUCTOS---------------------------
+//           >>>>>>> CON cuadro 'unidades vendidas' <<<<<<
+// const miCardConUnidadesVendidas = new CardVtasPorProducto('nombre_del_producto', 'Buscar', onClick, true);
+// mainElement.appendChild(miCardConUnidadesVendidas.armarCardVtasPorProducto());
+
+//           >>>>>>> SIN cuadro de 'unidades vendidas' <<<<<<<
+// const miCardSinUnidadesVendidas = new CardVtasPorProducto('nombre_del_producto', 'Buscar', onClick, false);
+// mainElement.appendChild(miCardSinUnidadesVendidas.armarCardVtasPorProducto());
+
+
+//---------------------------  CARD VENTAS por FECHA - Importe facturado  ---------------------------
+// const miCardVentasPorFecha = new CardVtasPorProducto('', 'Buscar', onClick, true, 'Importe facturado')
+// mainElement.appendChild(miCardVentasPorFecha.armarCardVtasPorProducto());

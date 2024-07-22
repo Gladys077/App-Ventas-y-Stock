@@ -86,6 +86,4 @@ export class RecoverPasswordPage {
     }
 }    
     
-
-
 new RecoverPasswordPage;

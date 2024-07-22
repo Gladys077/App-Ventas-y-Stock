@@ -7,6 +7,7 @@ import { ModalInput } from '../modalInput.js';
 
 export class ProductSearchPage {
     constructor() {
+        this.selectedProducts = [];
         this.createHeader();
         this.createMain();
         this.createFooter();
@@ -24,8 +25,16 @@ export class ProductSearchPage {
     createMain(){
         const main = document.createElement('main');
         
+        console.log('About to call createSearchContainer');
+        console.log('this.onProductClick is:', typeof this.onProductClick);
         const productSearch = createSearchContainer(this.onProductClick.bind(this));
         main.appendChild(productSearch);
+
+        // Si el resultado de la búsqueda está vacío, muestra una notificación
+        const resultContainer = main.querySelector('.search-results');
+        if (resultContainer && resultContainer.textContent.includes('No hay productos en stock.')) {
+            new Notification('../img/emojis/asombro.png', '¡No hay productos en stock!', 'error');
+        }
 
         document.body.appendChild(main);
     }
@@ -36,37 +45,37 @@ export class ProductSearchPage {
 
         // Fab extended (ver pedido)
         const iconSVG = iconoVerPedido; 
-        const navigateToRoute = '/ruta/a/pedido/actual';
+        const navigateToRoute = 'ruta a la pág. Pedido Actual';
     
         const extendedFabButton = new ExtendedFabButton(iconSVG, 'Ver Pedido', navigateToRoute);
     
         const footerElement = document.querySelector('footer');
         footerElement.appendChild(extendedFabButton.getElement());
-
     }
+
 
     onProductClick(product, event) {
         if (event.target.closest('.product-icon')) {
-            // Si se hizo clic en el icono
             this.openQuantityModal(product);
         } else {
-            // Si se hizo clic en el resto del ítem
             console.log('Producto clickeado:', product.nombre);
-            // Aquí puedes agregar otra lógica si es necesario
         }
     }
 
     openQuantityModal(product) {
-        // new ModalInput('Cantidad', (value) => {
-            //   console.log('Cantidad confirmada:', value);
-            // }, () => {
-            //   console.log('Acción cancelada');
-            // });
+        new ModalInput(`Cantidad:`,
+            (cantidad) => {    
+                const selectedProduct = {
+                    nombre: product.nombre,
+                    precio: product.precio,
+                    cantidad: parseInt(cantidad, 10)
+                };
+                console.log('Producto seleccionado:', selectedProduct);  // Verificación en consola
 
-        new ModalInput(`Cantidad de ${product.nombre}`, (cantidad) => {
-            console.log('Cantidad confirmada para:', product.nombre, 'Cantidad:', cantidad);
-            // Aquí puedes agregar la lógica para añadir el producto al pedido
-        }, '1'); // Pasamos '1' como valor por defecto
+                this.selectedProducts.push(selectedProduct);
+    
+                localStorage.setItem('selectedProducts', JSON.stringify(this.selectedProducts));
+            },'1');
     }
 }
 

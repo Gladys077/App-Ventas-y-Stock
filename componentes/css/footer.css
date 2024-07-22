@@ -1,8 +1,8 @@
 .footer-container {
     position: fixed;
     display: flex;
-    justify-content: right;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
     bottom: 40px;
     left: 50%; 
     transform: translateX(-50%); 

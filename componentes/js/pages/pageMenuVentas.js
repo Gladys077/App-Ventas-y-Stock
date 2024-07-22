@@ -1,6 +1,7 @@
 import { Header, navigateToMenu, iconoAjustes, iconoVolver } from "../header.js";
-import { createMenuPrincipal, createMenuVentas } from "../utils.js";
+import { createMenuPrincipal } from "../utils.js";
 import { Footer } from "../footer.js";
+import { navigateToPage } from "../navigateToPage.js";
 
 export class PageMenuVentas {
     constructor() {
@@ -53,9 +54,44 @@ export class PageMenuVentas {
         document.body.appendChild(footerElement);
     }
 }
-// Instancia la clase PageMenuVentas cuando la página cargue ¿es necesario hacerlo así?
+
+function createMenuVentas() {
+    const menuVentas = document.createElement('div');
+    menuVentas.classList.add('botonera-container');
+
+    const buttonsData = [
+        { src: '../img/iconos/vender1.png', alt: '', text: 'Vender', page: 'pageProductSearch' },
+        { src: '../img/iconos/Movim-Dia.png', alt: '', text: 'Movimientos del día', page: 'movimiento' },
+        { src: '../img/iconos/ventasPorPersona.png', alt: '', text: 'Ventas por vendedor', page: 'ventasPorVendedor' },
+        { src: '../img/iconos/Movimiento.png', alt: '', text: 'Ventas por producto', page: 'ventasPorProducto' },
+        { src: '../img/iconos/VtasPorFecha.png', alt: '', text: 'Ventas por fecha', page: 'ventasPorFecha' }
+    ];
+
+    buttonsData.forEach(data => {
+        const button = document.createElement('button');
+        button.classList.add('botonera');
+
+        const img = document.createElement('img');
+        img.src = data.src;
+        img.alt = data.alt;
+        
+        const h3 = document.createElement('h3');
+        h3.textContent = data.text;
+
+        button.appendChild(img);
+        button.appendChild(h3);
+        button.addEventListener('click', () => navigateToPage(data.page));
+
+        menuVentas.appendChild(button);
+    });
+
+    return menuVentas;
+}
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     new PageMenuVentas();
     // Llama a navigateToMenu después de crear todos los elementos
-    navigateToMenu('ventas');
+    // navigateToPage('menuVentas');
 });
