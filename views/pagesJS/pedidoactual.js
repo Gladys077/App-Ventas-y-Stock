@@ -1,5 +1,5 @@
 import { Header, iconoVolver, iconoMenu, navigateToMenu } from "../../componentes/js/header.js";
-import Main from "../../componentes/js/main.js";
+import {Main }from "../../componentes/js/main.js";
 import { TablaEncabezado, TablaDetalles, Pedidoactual, TablaFooter } from "../js/registros.js"
 
  

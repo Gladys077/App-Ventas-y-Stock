@@ -23,8 +23,12 @@ import { createLoginPage } from "./pages/LoginPage.js";
 
 
 
-
 // Inicializa la nueva página
 // document.addEventListener("DOMContentLoaded", function() {
 //     createLoginPage();
 // });
+
+
+// -------> De Luma
+// import { PlanillaMovimiento } from '../../views/pagesJS/movimiento.js';
+// import { PlanillaPedido } from '../../views/pagesJS/pedidoactual.js';

@@ -1,13 +1,13 @@
 export class Producto {
     constructor(id, nombre, codigoBarras, descripcion, precioVenta, stockMinimo, stock, activo) {
-        this.id = id;
-        this.nombre = nombre;
-        this.codigoBarras = codigoBarras;
-        this.descripcion = descripcion;
-        this.precioVenta = precioVenta;
-        this.stockMinimo = stockMinimo;
-        this.stock = stock;
-        this.activo = activo;
+        this._id = id;
+        this._nombre = nombre;
+        this._codigoBarras = codigoBarras;
+        this._descripcion = descripcion;
+        this._precioVenta = precioVenta;
+        this._stockMinimo = stockMinimo;
+        this._stock = stock;
+        this._activo = activo;
     }
 
     get nombre(){
@@ -64,14 +64,14 @@ export class Producto {
     // Convierto el objeto a JSON para almacenamiento
     toJSON() {
         return {
-            id: this.id,
-            nombre: this.nombre,
-            codigoBarras: this.codigoBarras,
-            descripcion: this.descripcion,
-            precioVenta: this.precioVenta,
-            stockMinimo: this.stockMinimo,
-            stock: this.stock,
-            activo: this.activo
+            id: this._id,
+            nombre: this._nombre,
+            codigoBarras: this._codigoBarras,
+            descripcion: this._descripcion,
+            precioVenta: this._precioVenta,
+            stockMinimo: this._stockMinimo,
+            stock: this._stock,
+            activo: this._activo
         };
     }
 
@@ -89,3 +89,4 @@ export class Producto {
         );
     }
 }
+

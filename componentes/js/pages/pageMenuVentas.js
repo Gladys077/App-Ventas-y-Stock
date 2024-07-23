@@ -60,7 +60,7 @@ function createMenuVentas() {
     menuVentas.classList.add('botonera-container');
 
     const buttonsData = [
-        { src: '../img/iconos/vender1.png', alt: '', text: 'Vender', page: 'pageProductSearch' },
+        { src: '../img/iconos/vender1.png', alt: '', text: 'Vender', page: 'productSearch' },
         { src: '../img/iconos/Movim-Dia.png', alt: '', text: 'Movimientos del día', page: 'movimiento' },
         { src: '../img/iconos/ventasPorPersona.png', alt: '', text: 'Ventas por vendedor', page: 'ventasPorVendedor' },
         { src: '../img/iconos/Movimiento.png', alt: '', text: 'Ventas por producto', page: 'ventasPorProducto' },

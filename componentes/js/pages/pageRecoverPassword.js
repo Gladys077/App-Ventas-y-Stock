@@ -2,8 +2,10 @@ import { Header, iconoVolver } from '../header.js';
 
 export class RecoverPasswordPage {
     constructor() {
-        this.createHeader();
-        this.createMain();
+        if (!document.querySelector('.container-password')) {
+            this.createHeader();
+            this.createMain();
+        }
     }
 
     getElement() {
@@ -33,13 +35,13 @@ export class RecoverPasswordPage {
             if (user) {
                 // Lógica para el envío de correo
                 console.log(`Enviando la contraseña a ${email}: ${user.password}`);
-                alert(`La contraseña ha sido enviada a ${email}`);
+                new Notification('../../../img/emojis/ok.png', `La contraseña ha sido enviada a ${email}`, 'success')
             } else {
-                alert('No se encontró una cuenta con ese email.');
+                new Notification('../../../img/emojis/triste.png', 'No se encontró una cuenta con ese email.', 'error');
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('Hubo un problema al intentar recuperar tu contraseña. Intenta nuevamente más tarde.');
+            new Notification('../../../img/emojis/preocupado.png', 'Hubo un problema al intentar recuperar tu contraseña. Intenta nuevamente más tarde.', 'error');
         }
     }
 
@@ -73,7 +75,7 @@ export class RecoverPasswordPage {
             if (email) {
                 sendPassword(email);
             } else {
-                alert('Por favor, ingresa un email válido.');
+                new Notification('../../../img/emojis/ok.png', `Por favor, ingresa un email válido.`, 'error');
             }
         });
 
@@ -82,7 +84,8 @@ export class RecoverPasswordPage {
         container.appendChild(input);
         container.appendChild(button);
 
-        document.body.appendChild(container);
+        main.appendChild(container);
+        document.body.appendChild(main);
     }
 }    
     

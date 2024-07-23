@@ -1,4 +1,4 @@
-// import { createVentasButtons } from "./utils.js";
+import { navigateToPage } from './navigateToPage.js';
 
 export class Header {
     
@@ -6,7 +6,6 @@ export class Header {
         this._title = title;
         this._leftIcon = leftIcon;
         this._rightIcon = rightIcon;
-        this._leftIconCallback = leftIconCallback;
         this._rightIconCallback = rightIconCallback;
         this._iconoMenu = iconoMenu;
         this._onMenuClick = onMenuClick;
@@ -34,10 +33,14 @@ export class Header {
             const leftIcon = document.createElement('button');
             leftIcon.classList.add('icon', 'leftIcon');
             leftIcon.innerHTML = this._leftIcon;
-            leftIcon.addEventListener('click', this._leftIconCallback || (() => {
-                window.history.back();
-                console.log('Volver atrás');
-            }));
+            leftIcon.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (this._backPage) {
+                    navigateToPage(this._backPage);
+                } else {
+                    window.history.back();
+                }
+            });
             leftContainer.appendChild(leftIcon);
         }
         headerContainer.appendChild(leftContainer);
@@ -58,9 +61,9 @@ export class Header {
             const rightIcon = document.createElement('button');
             rightIcon.classList.add('icon', 'rightIcon');
             rightIcon.innerHTML = this._rightIcon;
-            rightIcon.addEventListener('click', this._rightIconCallback || (() => {
-                console.log('Right icon clicked');
-            }));
+            if (this._rightIconCallback) {
+                rightIcon.addEventListener('click', this._rightIconCallback);
+            }
             rightContainer.appendChild(rightIcon);
         }
         headerContainer.appendChild(rightContainer);

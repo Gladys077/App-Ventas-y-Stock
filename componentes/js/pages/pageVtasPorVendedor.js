@@ -9,14 +9,19 @@ import { Notification } from '../notificacion.js';
 
 export class VentasPorVendedorPage {
     constructor() {
+        if (!document.querySelector('.card')){
         this.createHeader();
         this.createMain();
         this.createFooter();
         this.createPage();
-        this.cardVtasPorVendedor = new CardVtasPorVendedor('nombre_del_vendedor', 'DIA', 'Buscar', this.handleSearchBBDD.bind(this));
+
+        // Obtengo la lista de los vendedores y creo la con esa info
+        const SellersList = this.getSellersList();
+        this.cardVtasPorVendedor = new CardVtasPorVendedor(SellersList, 'DIA', 'Buscar', this.handleSearchBBDD.bind(this));
+        
         //para probar función de descarga:
         this.salesData = [];
-    }
+    }}
 
     createHeader() {
         this.header = new Header('Ventas por vendedor', iconoVolver, null, null, null);
@@ -42,7 +47,7 @@ export class VentasPorVendedorPage {
         const mainElement = document.querySelector('main');
     }
 
-// Métodos para buscar en la BBDD
+    // Métodos para buscar en la BBDD
     handleSearchBBDD(seller, date) {
         console.log('Buscando  ventas de: ', seller, 'en la fecha: ', date);
         // Aquí iría la lógica para buscar en la BBDD
@@ -53,6 +58,12 @@ export class VentasPorVendedorPage {
     }
     }
 
+
+    getSellersList() {
+        const data = this.datosDePrueba();
+        const SellersList = [...new Set(data.map(item => item.seller))];
+        return SellersList;
+    }
     datosDePrueba(seller, date){
         const data = [
             { date: '2024-07-10', seller: 'Lionel Messi', amount: 5000 },
@@ -63,11 +74,13 @@ export class VentasPorVendedorPage {
             { date: '2024-07-15', seller: 'Mariano García', amount: 2200 },
         ];
 
-        return data.filter(sale =>
-            (!seller || sale.seller === seller) && (!date || sale.date === date)
-        );
+        if (seller || date) {
+            return data.filter(sale =>
+                (!seller || sale.seller === seller) && (!date || sale.date === date)
+            );
+        }
+        return data;
     }
-
 
     handleDownloadClick() {
         console.log('Descargando contenido...');
@@ -93,9 +106,6 @@ export class VentasPorVendedorPage {
         
         doc.save('reporte_ventas_por_vendedor.pdf');
     }
-
 }
 
 new VentasPorVendedorPage();
-
-

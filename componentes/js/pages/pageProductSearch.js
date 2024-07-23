@@ -7,10 +7,12 @@ import { ModalInput } from '../modalInput.js';
 
 export class ProductSearchPage {
     constructor() {
+        if (!document.querySelector('.search-results')) {
         this.selectedProducts = [];
         this.createHeader();
         this.createMain();
         this.createFooter();
+        }
     }
 
     getElement() {
@@ -25,8 +27,6 @@ export class ProductSearchPage {
     createMain(){
         const main = document.createElement('main');
         
-        console.log('About to call createSearchContainer');
-        console.log('this.onProductClick is:', typeof this.onProductClick);
         const productSearch = createSearchContainer(this.onProductClick.bind(this));
         main.appendChild(productSearch);
 
