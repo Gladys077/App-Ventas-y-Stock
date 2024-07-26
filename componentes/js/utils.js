@@ -1,5 +1,6 @@
-import { iconoComprar } from "../js/iconosSVG.js";
 import { navigateToPage } from "./navigateToPage.js";
+import { Notification } from "./notificacion.js";
+import { ProductList } from "./ProductList.js";
 
 // ---------- Valida fecha ---------- 
 export function isValidDate(dateString) {
@@ -75,10 +76,10 @@ footerElement.appendChild(downloadButton.getElement());
 
 // ------------- FAB EXTENDED ---------------
 export class ExtendedFabButton {
-    constructor(iconSVG, label, navigateToRoute) {
+    constructor(iconSVG, label, onClick) {
         this._iconSVG = iconSVG;
         this._label = label;
-        this._navigateToRoute = navigateToRoute;
+        this._onClick = onClick;
         this._element = this.createExtendedFabButton();
     }
 
@@ -97,16 +98,14 @@ export class ExtendedFabButton {
     }
 
     handleButtonClick() {
-        if (this._navigateToRoute) {
-            navigateTo(this._navigateToRoute);
+        
+        if (typeof this._onClick === 'function') {
+            this._onClick();
         }
     }
+    
 }
 
-// Función para manejar la navegación (ver con LIO)
-function navigateTo(route) {
-    window.location.href = route;
-}
 
 // ------------- Búsqueda de productos (pageProductSearch.js) -----------------
 export function createSearchContainer(onProductClick) {
@@ -124,16 +123,22 @@ export function createSearchContainer(onProductClick) {
 
     const resultContainer = document.createElement('div');
     resultContainer.className = 'search-results';
-;
+
     container.appendChild(input);
     container.appendChild(button);
     container.appendChild(resultContainer);
 
     button.addEventListener('click', () => {
         const searchWord = input.value;
-        const productList = createList(searchWord, onProductClick);
+        const productListInstance = new ProductList(searchWord, onProductClick);
+        const productListElement = productListInstance.render();
+
         resultContainer.innerHTML = '';
-        resultContainer.appendChild(productList);
+        if (productListElement.children.length === 0) {
+            new Notification('../../img/emojis/triste.png', '¡No hay en stock!', 'error');
+        } else {
+            resultContainer.appendChild(productListElement);
+        }
     });
 
     // AddEventListener para la tecla 'Enter'
@@ -146,95 +151,96 @@ export function createSearchContainer(onProductClick) {
     return container;
 }
 
-// --------------- Listado de productos (pageProductSearch.js)------------
-export function createList(searchWord, onProductClick) {
-    console.log('createList called with searchWord:', searchWord);
-    console.log('onProductClick type: ', typeof onProductClick);
-
-    const productList = document.createElement('ul');
-    productList.className = 'ul-product-list';
-    
-    // Traje los productos desde el localStorage
-    const products = JSON.parse(localStorage.getItem('productos')) || [];
-    console.log('Products from localStorage:', products);
 
 
-    const filteredProducts = products.filter(product => {
-        return product.nombre.toLowerCase().includes(searchWord.toLowerCase());
-    });
-    console.log('Filtered products:', filteredProducts);
+//--------------nueva Lista de productos con radio ------------
+export class RadioProductList {
+    constructor(searchWord, onProductClick) {
+        this.searchWord = searchWord;
+        this.onProductClick = onProductClick;
+        this.products = this.getProductsFromStorage();
+    }
 
-    // Ordena los productos alfabéticamente por nombre
-    filteredProducts.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    getProductsFromStorage() {
+        try {
+            const storedProducts = localStorage.getItem('productos');
+            return storedProducts ? JSON.parse(storedProducts) : [];
+        } catch (error) {
+            console.error('Error al obtener productos del localStorage:', error);
+            return [];
+        }
+    }
 
-    if (filteredProducts.length === 0) {
-        const noResultsMessage = document.createElement('p');
-        noResultsMessage.textContent = 'No hay productos en stock.';
-        productList.appendChild(noResultsMessage);
-    } else {
-        filteredProducts.forEach(product => {
-            const listItem = document.createElement('li');
-            listItem.className = 'li-product-list';
-    
-            // contenedor para el texto del producto
-            const productTextSpan = document.createElement('span');
-            productTextSpan.textContent = product.nombre;
-        
-            const icon = document.createElement('i');
-            icon.innerHTML = iconoComprar;
-            icon.className = 'product-icon'; 
-        
-            // EStilos para alinear el icono a la derecha
-            listItem.style.display = 'flex';
-            listItem.style.justifyContent = 'space-between';
-            listItem.style.alignItems = 'center';
-            listItem.style.marginRight = '8px';
-        
-            listItem.appendChild(productTextSpan);
-            listItem.appendChild(icon);
-    
-        productList.appendChild(listItem);    
-    
-        // Agregar evento click para ejecutar el callback proporcionado
+    filterAndSortProducts() {
+        return this.products
+            .filter(product => product.nombre.toLowerCase().includes(this.searchWord.toLowerCase()))
+            .sort((a, b) => a.nombre.localeCompare(b.nombre));
+    }
+
+    createListItem(product) {
+        const listItem = document.createElement('li');
+        listItem.className = 'li-product-list';
+
+        const productTextSpan = document.createElement('span');
+        productTextSpan.textContent = product.nombre;
+
+        const radioButton = document.createElement('input');
+        radioButton.type = 'radio';
+        radioButton.className = 'product-radio';
+        radioButton.name = 'product-selection';
+
+        listItem.style.display = 'flex';
+        listItem.style.justifyContent = 'space-between';
+        listItem.style.alignItems = 'center';
+        listItem.style.marginRight = '8px';
+
+        listItem.appendChild(productTextSpan);
+        listItem.appendChild(radioButton);
+
         listItem.addEventListener('click', (event) => {
-            console.log('Product item clicked:', product.nombre);
-
-            if (event.target.closest('.product-icon')) {
-                console.log('Icon clicked for product:', product.nombre);
-                if (typeof onProductClick === 'function') {
-                    console.log('Calling onProductClick');
-                    onProductClick(product, event);
-                } else {
-                    console.error('onProductClick is not a function, it is:', onProductClick);
-                }
+            if (event.target.closest('.product-radio')) {
+                this.onProductClick(product, event);
             }
         });
-    });
 
-    return productList;
-}}
+        return listItem;
+    }
 
-// -------------- Menú ventas --------(ventas, stock, perfiles)
+    render() {
+        const productList = document.createElement('ul');
+        productList.className = 'ul-product-list';
+
+        const filteredProducts = this.filterAndSortProducts();
+        
+        filteredProducts.forEach(product => {
+            const listItem = this.createListItem(product);
+            productList.appendChild(listItem);
+        });
+
+        return productList;
+    }
+}
+
+
+// -------------- Menú principal --------(ventas, stock, perfiles)
 export function createMenuPrincipal() {
     const menuPrincipal = document.createElement('div');
     menuPrincipal.classList.add('main-menu');
 
     const ventasButton = document.createElement('button');
-    ventasButton.classList.add('tab', 'left-btn', 'active');
+    ventasButton.classList.add('tab', 'left-btn');
     ventasButton.textContent = 'Ventas';
-    ventasButton.addEventListener('click', ()=> navigateToPage('menuVentas'));
+    ventasButton.addEventListener('click', () => handleMenuClick(ventasButton, 'menuVentas'));
 
     const stockButton = document.createElement('button');
     stockButton.classList.add('tab', 'center-btn');
     stockButton.textContent = 'Stock';
-    ventasButton.addEventListener('click', ()=> navigateToPage('menuStock'));
-
+    stockButton.addEventListener('click', () => handleMenuClick(stockButton, 'menuStock'));
 
     const perfilesButton = document.createElement('button');
     perfilesButton.classList.add('tab', 'right-btn');
     perfilesButton.textContent = 'Perfiles';
-    ventasButton.addEventListener('click', ()=> navigateToPage('menuPerfiles'));
-
+    perfilesButton.addEventListener('click', () => handleMenuClick(perfilesButton, 'menuPerfiles'));
 
     menuPrincipal.appendChild(ventasButton);
     menuPrincipal.appendChild(stockButton);
@@ -242,6 +248,16 @@ export function createMenuPrincipal() {
 
     return menuPrincipal;
 }
+
+export function handleMenuClick(button, page) {
+    const activeButton = document.querySelector('.main-menu .tab.active');
+    if (activeButton) {
+        activeButton.classList.remove('active');
+    }
+    button.classList.add('active');
+    navigateToPage(page);
+}
+
 
 
 

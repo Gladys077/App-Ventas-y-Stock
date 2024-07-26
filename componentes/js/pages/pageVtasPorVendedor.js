@@ -4,6 +4,7 @@ import { Footer } from '../footer.js';
 import { FabButton } from '../utils.js';
 import { iconoDescargar } from '../iconosSVG.js';
 import { Notification } from '../notificacion.js';
+import { navigateToPage } from '../navigateToPage.js';
 
 // const { jsPDF } = window.jspdf;
 
@@ -24,7 +25,7 @@ export class VentasPorVendedorPage {
     }}
 
     createHeader() {
-        this.header = new Header('Ventas por vendedor', iconoVolver, null, null, null);
+        this.header = new Header('Ventas por vendedor', iconoVolver, null, function() { navigateToPage('menuVentas')});
         document.body.appendChild(this.header.getElement());
     }
 
@@ -83,7 +84,6 @@ export class VentasPorVendedorPage {
     }
 
     handleDownloadClick() {
-        console.log('Descargando contenido...');
         if (this.salesData.length === 0) {
             new Notification('../../../img/emojis/asombro.png', 'No hay datos para descargar', 'error');
             return;

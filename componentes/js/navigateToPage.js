@@ -28,26 +28,6 @@ export function navigateToPage(page) {
                 new module.PageMenuVentas();
             });
             break;
-        case 'movimientos':
-            import('../../views/pagesJS/movimiento.js').then(module => {
-                new module.PlanillaMovimiento();
-            });
-            break;
-        case 'ventasPorVendedor':
-            import('../js/pages/pageVtasPorVendedor.js').then(module => {
-                new module.VentasPorVendedorPage();
-            });
-            break;
-        case 'ventasPorProducto':
-            import('../js/pages/pageVtasPorProducto.js').then(module => {
-                new module.VentasPorProductoPage();
-            });
-            break;
-        case 'ventasPorFecha':
-            import('./pages/ventasPorFechaPage.js').then(module => {
-                new module.VentasPorFechaPage();
-            });
-            break;
         case 'productSearch':
             import('../js/pages/pageProductSearch.js').then(module => {
                 new module.ProductSearchPage();
@@ -58,6 +38,48 @@ export function navigateToPage(page) {
                 new module.PlanillaPedido();
             });
             break;
+
+        case 'movimientos':
+            import('../../views/pagesJS/movimiento.js').then(module => {
+                new module.PlanillaMovimiento();
+            });
+            break;
+
+        case 'ventasPorVendedor':
+            import('../js/pages/pageVtasPorVendedor.js').then(module => {
+                new module.VentasPorVendedorPage();
+            });
+            break;
+        case 'ventasPorVendedorListado':
+            import('../../views/pagesJS/ventasporvendedor.js').then(module => {
+                new module.PlanillaVtasxVendedor();
+            });
+            break;
+
+        case 'BuscadorVentasPorProducto':
+            import('../js/pages/buscadorVtasXProducto.js').then(module => {
+                new module.BuscadorVtasXProducto();
+            })
+        case 'ventasPorProducto':
+            import('../js/pages/pageVtasPorProducto.js').then(module => {
+                new module.VentasPorProductoPage();
+            });
+            break;
+
+        
+
+
+        
+
+
+            
+        case 'ventasPorFecha':
+            import('./pages/ventasPorFechaPage.js').then(module => {
+                new module.VentasPorFechaPage();
+            });
+            break;
+        
+
 
 
         default:

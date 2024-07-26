@@ -2,7 +2,9 @@ import { isValidDate, formatDateInput } from './utils.js';
 import { Notification } from './notificacion.js';
 
 export class CardVtasPorVendedor {
+  
   constructor(title, subtitle, textBtn, onSearch) {
+    if(!document.querySelector('.card')){
       this._title = title;
       this._subtitle = subtitle;
       this._fecha = null;
@@ -11,7 +13,7 @@ export class CardVtasPorVendedor {
       this._selectedVendedor = null;
       this._monto = '';
       this.element = this.armarCardVtasPorVendedor();
-  }
+  }}
   get title(){
     return this._title;
   }
@@ -98,7 +100,7 @@ export class CardVtasPorVendedor {
       verListado.className = 'card-link';
       verListado.href = "#";
       verListado.addEventListener('click', () => {
-          console.log('Mostrar listado');
+          navigateToPage('');
       });
       
       // Añade todos los elementos al contenedor principal de la card

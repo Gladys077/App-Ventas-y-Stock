@@ -17,6 +17,13 @@
 .forgot-password {
     margin-top: 16px;
     color: var(--primary-color);
+
+    &:hover{
+        font-weight: 700;
+    }
+    &:active {
+        transform: scale(90%);
+    }
 }
 
 /* page Recupera contraseña */

@@ -1,4 +1,5 @@
 import { Header, iconoVolver } from '../header.js';
+import { navigateToPage } from '../navigateToPage.js';
 
 export class RecoverPasswordPage {
     constructor() {
@@ -13,7 +14,9 @@ export class RecoverPasswordPage {
     }
 
     createHeader() {
-        this.header = new Header('Recupera tu contraseña', iconoVolver);
+        this.header = new Header('Recupera tu contraseña', iconoVolver, null, function() {
+            navigateToPage('Login');
+        }, null);
         document.body.appendChild(this.header.getElement());
     }
 
@@ -40,7 +43,6 @@ export class RecoverPasswordPage {
                 new Notification('../../../img/emojis/triste.png', 'No se encontró una cuenta con ese email.', 'error');
             }
         } catch (error) {
-            console.error('Error:', error);
             new Notification('../../../img/emojis/preocupado.png', 'Hubo un problema al intentar recuperar tu contraseña. Intenta nuevamente más tarde.', 'error');
         }
     }

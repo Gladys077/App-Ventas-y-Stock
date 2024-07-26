@@ -1,19 +1,21 @@
-import { Header, iconoVolver, iconoMenu, navigateToMenu } from '../header.js';
+import { Header, iconoVolver, iconoMenu} from '../header.js';
 import { CardVtasPorProducto } from '../cardVtasPorProducto.js';
 import { Footer } from '../footer.js';
 import { FabButton } from '../utils.js';
 import { iconoDescargar } from '../iconosSVG.js';
 import { Notification } from '../notificacion.js';
+import { navigateToPage } from '../navigateToPage.js';
 
 export class VentasPorProductoPage {
     constructor() {
+      if(!document.querySelector('.card')){
         this.ventasPorProducto = null;
         this.createHeader();
         this.createMain();
         this.createFooter();
-    }
+    }}
     createHeader() {
-        this.header = new Header('Unidades vendidas', iconoVolver, iconoMenu, null, function(){ navigateToMenu('ventas');});
+        this.header = new Header('Unidades vendidas', iconoVolver, iconoMenu, ()=>{ navigateToPage('BuscadorVentasPorProducto')}, ()=>{ navigateToPage('menuVentas')});
         document.body.appendChild(this.header.getElement());
     }
 

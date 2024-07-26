@@ -1,17 +1,19 @@
 import { Header, iconoVolver } from '../header.js';
+import { navigateToPage } from '../navigateToPage.js';
 
 export class ConfigurationPage {
     constructor() {
+        if(!document.querySelector('.list-item')){
         this.createHeader();
         this.createMain();
-    }
+    }}
 
     getElement() {
         return this.element;
     }
 
     createHeader() {
-        this.header = new Header('Configuración', iconoVolver);
+        this.header = new Header('Configuración', iconoVolver, null, ()=> navigateToPage('menuVentas'));
         document.body.appendChild(this.header.getElement());
     }
 

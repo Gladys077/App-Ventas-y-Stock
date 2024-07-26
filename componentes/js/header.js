@@ -1,4 +1,5 @@
 import { navigateToPage } from './navigateToPage.js';
+import { createMenuVentas } from '../js/pages/pageMenuVentas.js'
 
 export class Header {
     
@@ -6,6 +7,7 @@ export class Header {
         this._title = title;
         this._leftIcon = leftIcon;
         this._rightIcon = rightIcon;
+        this._leftIconCallback = leftIconCallback;
         this._rightIconCallback = rightIconCallback;
         this._iconoMenu = iconoMenu;
         this._onMenuClick = onMenuClick;
@@ -35,10 +37,14 @@ export class Header {
             leftIcon.innerHTML = this._leftIcon;
             leftIcon.addEventListener('click', (e) => {
                 e.preventDefault();
-                if (this._backPage) {
-                    navigateToPage(this._backPage);
+                if (this._leftIconCallback) {
+                    this._leftIconCallback();
                 } else {
-                    window.history.back();
+                    if (this._backPage) {
+                        navigateToPage(this._backPage);
+                    } else {
+                        window.history.back();
+                    }
                 }
             });
             leftContainer.appendChild(leftIcon);
@@ -101,37 +107,37 @@ if (rightIcon) {
 
 }
 
-export function navigateToMenu(destino){
-    const content = document.getElementById('content');
-    content.innerHTML = '';
+// export function navigateToMenu(destino){
+//     const content = document.getElementById('content');
+//     content.innerHTML = '';
 
-    // Reinicio estilos de botones
-    document.querySelectorAll('.main-menu').forEach(btn => {
-        btn.className.remove('active');
-    });
+//     // Reinicio estilos de botones
+//     document.querySelectorAll('.main-menu').forEach(btn => {
+//         btn.className.remove('active');
+//     });
 
-    // Aplico estilo active al botón seleccionado
-    const selectedButton = document.getElementById(`${destino}-btn`);
-    selectedButton.className = 'btn-active';
+//     // Aplico estilo active al botón seleccionado
+//     const selectedButton = document.getElementById(`${destino}-btn`);
+//     selectedButton.className = 'btn-active';
 
-    switch(destino){
-        case "ventas":
-            console.log('Navegando al menú de ventas');
-            const ventasButtons = createVentasButtons();
-            content.appendChild(ventasButtons); // Muestra la botonera de ventas
-            break;
-        case "stock":
-            console.log('Navegando al menú de stock');
-            // Lógica para mostrar los botones de stock
-            break;        
-        case "perfiles":
-            console.log('Navegando al menú de perfiles');
-            // Lógica para mostrar los botones de perfiles
-            break;
-        default:
-            console.log('Destino no especificado');
-    }
-}
+//     switch(destino){
+//         case "ventas":
+//             console.log('Navegando al menú de ventas');
+//             const ventasButtons = createMenuVentas();
+//             content.appendChild(ventasButtons); // Muestra la botonera de ventas
+//             break;
+//         case "stock":
+//             console.log('Navegando al menú de stock');
+//             // Lógica para mostrar los botones de stock
+//             break;        
+//         case "perfiles":
+//             console.log('Navegando al menú de perfiles');
+//             // Lógica para mostrar los botones de perfiles
+//             break;
+//         default:
+//             console.log('Destino no especificado');
+//     }
+// }
 
 
 export const iconoVolver = `

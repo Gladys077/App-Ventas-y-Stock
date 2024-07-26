@@ -1,8 +1,10 @@
-import { Header, iconoVolver, iconoMenu } from '../header.js';
+import { Header, iconoVolver } from '../header.js';
 import { createSearchContainer, ExtendedFabButton } from '../utils.js';
 import { Footer } from '../footer.js';
 import { iconoVerPedido } from '../iconosSVG.js';
 import { ModalInput } from '../modalInput.js';
+import { navigateToPage } from '../navigateToPage.js';
+import { Notification } from '../notificacion.js';
 
 
 export class ProductSearchPage {
@@ -20,7 +22,7 @@ export class ProductSearchPage {
     }
 
     createHeader() {
-        this.header = new Header('Elige el producto', iconoVolver, iconoMenu, null, function() { navigateToMenu('ventas'); });
+        this.header = new Header('Vender', iconoVolver, null, function() { navigateToPage('menuVentas')});
         document.body.appendChild(this.header.getElement());
     }
 
@@ -30,11 +32,10 @@ export class ProductSearchPage {
         const productSearch = createSearchContainer(this.onProductClick.bind(this));
         main.appendChild(productSearch);
 
-        // Si el resultado de la búsqueda está vacío, muestra una notificación
-        const resultContainer = main.querySelector('.search-results');
-        if (resultContainer && resultContainer.textContent.includes('No hay productos en stock.')) {
-            new Notification('../img/emojis/asombro.png', '¡No hay productos en stock!', 'error');
-        }
+        // Container para la lista de productos
+        this.resultContainer = document.createElement('div');
+        this.resultContainer.classList.add('search-results');
+        main.appendChild(this.resultContainer);
 
         document.body.appendChild(main);
     }
@@ -45,38 +46,47 @@ export class ProductSearchPage {
 
         // Fab extended (ver pedido)
         const iconSVG = iconoVerPedido; 
-        const navigateToRoute = 'ruta a la pág. Pedido Actual';
-    
-        const extendedFabButton = new ExtendedFabButton(iconSVG, 'Ver Pedido', navigateToRoute);
+        const extendedFabButton = new ExtendedFabButton(iconSVG, 'Ver Pedido', () => navigateToPage('pedidoActual'));
     
         const footerElement = document.querySelector('footer');
         footerElement.appendChild(extendedFabButton.getElement());
     }
 
 
-    onProductClick(product, event) {
+    onProductClick(producto, event) {
         if (event.target.closest('.product-icon')) {
-            this.openQuantityModal(product);
-        } else {
-            console.log('Producto clickeado:', product.nombre);
-        }
+            this.openQuantityModal(producto);
+        } 
     }
 
-    openQuantityModal(product) {
+    openQuantityModal(producto) {
         new ModalInput(`Cantidad:`,
             (cantidad) => {    
                 const selectedProduct = {
-                    nombre: product.nombre,
-                    precio: product.precio,
+                    nombre: producto.nombre,
+                    precio: producto.precio,
                     cantidad: parseInt(cantidad, 10)
                 };
-                console.log('Producto seleccionado:', selectedProduct);  // Verificación en consola
-
+                
                 this.selectedProducts.push(selectedProduct);
     
                 localStorage.setItem('selectedProducts', JSON.stringify(this.selectedProducts));
             },'1');
     }
+
+    updateProductList(searchWord) {
+        this.resultContainer.innerHTML = ''; 
+        const productList = new ProductList(searchWord, this.onProductClick.bind(this));
+        const productListElement = productList.render();
+
+        if (productListElement.children.length === 0) {
+            new Notification('../img/emojis/asombro.png', '¡No hay producto en stock!', 'error');
+        }
+
+        this.resultContainer.appendChild(productListElement);
+    }
 }
 
-new ProductSearchPage();
+document.addEventListener('DOMContentLoaded', () => {
+    new ProductSearchPage();
+});

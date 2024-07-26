@@ -1,8 +1,9 @@
 import { Notification } from "../notificacion.js";
 import { navigateToPage } from '../navigateToPage.js';
 
-
 export function createLoginPage() {
+    console.log('Creando página de Login');
+
     document.body.innerHTML = '';
 
     const loginContainer = document.createElement('div');
@@ -19,11 +20,11 @@ export function createLoginPage() {
     userName.className = 'search-input';
     userName.required = true;
 
-    const emailInput = document.createElement('input');
-    emailInput.type = 'email';
-    emailInput.placeholder = 'email@domain.com';
-    emailInput.className = 'search-input';
-    emailInput.required = true;
+    const passwordInput = document.createElement('input');
+    passwordInput.type = 'password';
+    passwordInput.placeholder = 'Contraseña';
+    passwordInput.className = 'search-input';
+    passwordInput.required = true;
 
     const loginButton = document.createElement('button');
     loginButton.innerHTML = 'Ingresar';
@@ -33,18 +34,18 @@ export function createLoginPage() {
 
         // Ejemplo: lista de usuarios permitidos
         const userNameList = ['usuario1', 'usuario2', 'usuario3'];
-        const userEmailList = ['usuario1@gmail.com', 'usuario2@gmail.com', 'usuario3@gmail.com'];
+        const userPasswordList = ['usu1', 'usu2', 'usu3'];
 
         // Obtengo el valor del campo de nombre de usuario (con .trim quito espacios y retornos que haya al principio o final de la cadena)
         const userNameValue = userName.value.trim();
-        const emailValue = emailInput.value.trim();
+        const passwordValue = passwordInput.value.trim();
 
         // Valido si el usuario está en el array userNameList
         if (!userNameList.includes(userNameValue)) {
             new Notification('../../img/emojis/pare.png', 'No tienes acceso. Contacta al dueño para ser agregado como nuevo vendedor.', 'error');
             return;
         }
-        else if (!userEmailList.includes(emailValue)) {
+        else if (!userPasswordList.includes(passwordValue)) {
             new Notification('../../img/emojis/pare.png', 'Por favor, ingresa un email válido.', 'error');
         } else {
             // Tendría que ir a la página del menú de VENTAS
@@ -62,7 +63,7 @@ export function createLoginPage() {
 
     loginContainer.appendChild(titulo);
     loginContainer.appendChild(userName);
-    loginContainer.appendChild(emailInput);
+    loginContainer.appendChild(passwordInput);
     loginContainer.appendChild(loginButton);
     loginContainer.appendChild(forgotPassword);
 

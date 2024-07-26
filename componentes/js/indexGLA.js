@@ -12,10 +12,18 @@ import { createLoginPage } from "./pages/LoginPage.js";
 
 //-------------Sección Ventas ---------------
 // import { PageMenuVentas } from './pages/pageMenuVentas.js';
+
+//---VENDER
 // import { ProductSearchPage } from './pages/pageProductSearch.js';
 
+//---VENTAS POR VENDEDOR
 // import { VentasPorVendedorPage } from './pages/pageVtasPorVendedor.js';
+
+//---VENTAS POR PRODUCTO
+// import { BuscadorVtasXProducto } from './pages/buscadorVtasXProducto.js';
 // import { VentasPorProductoPage } from './pages/pageVtasPorProducto.js';
+
+
 // import { VentasPorFechaPage } from './pages/VentasPorFechaPage.js';
 
 // import { NewProductPage } from './pages/pageNewProduct.js'; 
@@ -32,3 +40,4 @@ import { createLoginPage } from "./pages/LoginPage.js";
 // -------> De Luma
 // import { PlanillaMovimiento } from '../../views/pagesJS/movimiento.js';
 // import { PlanillaPedido } from '../../views/pagesJS/pedidoactual.js';
+// import { PlanillaVtasxVendedor } from '../../views/pagesJS/ventasporvendedor.js;

@@ -1,4 +1,4 @@
-import { Header, navigateToMenu, iconoAjustes, iconoVolver } from "../header.js";
+import { Header, iconoAjustes, iconoVolver } from "../header.js";
 import { createMenuPrincipal } from "../utils.js";
 import { Footer } from "../footer.js";
 import { navigateToPage } from "../navigateToPage.js";
@@ -8,6 +8,7 @@ export class PageMenuVentas {
         this.createHeader();
         this.createMain();
         this.createFooter();
+        this.setActiveTab('Ventas');
     }
 
     getElement() {
@@ -15,7 +16,8 @@ export class PageMenuVentas {
     }
 
     createHeader() {
-        this.header = new Header('Administrador', iconoVolver, iconoAjustes, null, function(){navigateToMenu("ventas")});
+        this.header = new Header('Administrador', iconoVolver, iconoAjustes, ()=> { navigateToPage('Login') }, ()=> { navigateToPage('Config') });
+        
         document.body.appendChild(this.header.getElement());
     }
 
@@ -29,18 +31,17 @@ export class PageMenuVentas {
 
         main.appendChild(menu);
         document.body.appendChild(main);
-
     }
 
     createFooter() {
-        const footer = new Footer(); 
+        const footer = new Footer();
         const footerElement = footer.getElement();
 
         const logoutContainer = document.createElement('button');
         logoutContainer.className = 'logout-container';
 
         const icon = document.createElement('img');
-        icon.src = '../../../img/iconos/CerrarSesion.png'; 
+        icon.src = '../../../img/iconos/CerrarSesion.png';
         icon.alt = 'Icono Salida';
         logoutContainer.appendChild(icon);
 
@@ -53,9 +54,20 @@ export class PageMenuVentas {
 
         document.body.appendChild(footerElement);
     }
+
+    setActiveTab(tabName) {
+        const buttons = document.querySelectorAll('.main-menu .tab');
+        buttons.forEach(button => {
+            if (button.textContent === tabName) {
+                button.classList.add('active');
+            } else {
+                button.classList.remove('active');
+            }
+        });
+    }
 }
 
-function createMenuVentas() {
+export function createMenuVentas() {
     const menuVentas = document.createElement('div');
     menuVentas.classList.add('botonera-container');
 
@@ -63,7 +75,7 @@ function createMenuVentas() {
         { src: '../img/iconos/vender1.png', alt: '', text: 'Vender', page: 'productSearch' },
         { src: '../img/iconos/Movim-Dia.png', alt: '', text: 'Movimientos del día', page: 'movimiento' },
         { src: '../img/iconos/ventasPorPersona.png', alt: '', text: 'Ventas por vendedor', page: 'ventasPorVendedor' },
-        { src: '../img/iconos/Movimiento.png', alt: '', text: 'Ventas por producto', page: 'ventasPorProducto' },
+        { src: '../../../img/iconos/vta-x-producto.png', alt: '', text: 'Ventas por producto', page: 'BuscadorVentasPorProducto' },
         { src: '../img/iconos/VtasPorFecha.png', alt: '', text: 'Ventas por fecha', page: 'ventasPorFecha' }
     ];
 
@@ -74,7 +86,7 @@ function createMenuVentas() {
         const img = document.createElement('img');
         img.src = data.src;
         img.alt = data.alt;
-        
+
         const h3 = document.createElement('h3');
         h3.textContent = data.text;
 
@@ -88,10 +100,6 @@ function createMenuVentas() {
     return menuVentas;
 }
 
-
-
 document.addEventListener('DOMContentLoaded', () => {
     new PageMenuVentas();
-    // Llama a navigateToMenu después de crear todos los elementos
-    // navigateToPage('menuVentas');
 });

@@ -43,7 +43,7 @@
     color: white;
 }
 
-.tab:active {
+.tab.active {
     background-color: var(--primary-color);
     color: white;
     font-weight: bold;
