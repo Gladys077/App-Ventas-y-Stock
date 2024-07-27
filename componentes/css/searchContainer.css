@@ -53,7 +53,9 @@
     margin-top: 16px;
     list-style-type: none;
     text-align: left;
-    max-height: calc(100vh - 350px); 
+    /* max-height: calc(100vh - 350px);  */
+    max-height: var(--product-list-max-height, calc(100vh - 350px)); 
+
     overflow-y: auto; 
     background-color: #fff;
 }

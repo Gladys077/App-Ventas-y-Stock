@@ -54,12 +54,15 @@ export function createLoginPage() {
     });
     
 
+    
     const forgotPassword = document.createElement('a');
     // forgotPassword.href = '#';
     forgotPassword.innerHTML = 'Olvidé mi contraseña';
     forgotPassword.className = 'forgot-password';
     forgotPassword.addEventListener('click', ()=>  navigateToPage('RecoverPassword'));
 
+    
+    
 
     loginContainer.appendChild(titulo);
     loginContainer.appendChild(userName);

@@ -4,9 +4,10 @@ import { navigateToPage } from '../navigateToPage.js';
 import { Notification } from '../notificacion.js';
 
 export class BuscadorVtasXProducto {
-    constructor() {
+    constructor(useFullHeight = true) {
         if (!document.querySelector('.search-results')) {
             this.selectedProducts = [];
+            this.useFullHeight = useFullHeight;
             this.createHeader();
             this.createMain();
         }
@@ -17,15 +18,20 @@ export class BuscadorVtasXProducto {
     }
 
     createHeader() {
-        this.header = new Header('Ventas por Producto', iconoVolver, null, function() { navigateToPage('menuVentas')});
+        this.header = new Header('Ventas por Producto', iconoVolver, null, ()=> { navigateToPage('menuVentas')});
         document.body.appendChild(this.header.getElement());
     }
 
     createMain(){
         const main = document.createElement('main');
         
-        const productSearch = createSearchContainer(this.onProductClick.bind(this));
+        const productSearch = createSearchContainer(this.onProductClick.bind(this), RadioProductList, true);
         main.appendChild(productSearch);
+
+        // Para modificar la alt. de la lista de productos de forma dinámica
+        if (this.useFullHeight) {
+            document.documentElement.style.setProperty('--product-list-max-height', 'calc(100vh - 260px)');
+        }
 
         // Container para la lista de productos
         this.resultContainer = document.createElement('div');
@@ -56,5 +62,5 @@ export class BuscadorVtasXProducto {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new BuscadorVtasXProducto();
+    new BuscadorVtasXProducto(true);
 });

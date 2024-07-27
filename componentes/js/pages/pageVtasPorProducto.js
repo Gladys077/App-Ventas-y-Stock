@@ -3,7 +3,6 @@ import { CardVtasPorProducto } from '../cardVtasPorProducto.js';
 import { Footer } from '../footer.js';
 import { FabButton } from '../utils.js';
 import { iconoDescargar } from '../iconosSVG.js';
-import { Notification } from '../notificacion.js';
 import { navigateToPage } from '../navigateToPage.js';
 
 export class VentasPorProductoPage {
@@ -25,23 +24,31 @@ export class VentasPorProductoPage {
         document.body.appendChild(this.ventasPorProducto.getElement());
     }
 
-    createFooter() {
-      this.footer = new Footer();
-      document.body.appendChild(this.footer.getElement());
-  
-      const downloadButton = new FabButton(iconoDescargar, this.handleDownloadClick);
-      this.footer.getElement().appendChild(downloadButton.getElement());
-  }
-
     onClick() {
-      console.log('btn clickeado');
-      if (this.ventasPorProducto){
-        this.ventasPorProducto.toggleLastValue;
-      }
+        // Aquí se maneja la lógica de los botones Buscar y Borrar
+        if (this.ventasPorProducto.isBuscarMode) {
+            // Aquí iría la lógica para realizar la búsqueda
+        } else {
+            this.ventasPorProducto.resetToBuscarMode();
+            this.ventasPorProducto.limpiarInputs();
+        }
     }
-  }
-  
-  new VentasPorProductoPage();
+
+    createFooter() {
+        const fabButton = new FabButton(iconoDescargar, 'Descargar', () => {
+            console.log('Descargar informe');
+        });
+        this.footer = new Footer();
+        this.footer.getElement().appendChild(fabButton.getElement());
+        document.body.appendChild(this.footer.getElement());
+    }
+}
+
+// Inicializa la página cuando el DOM esté completamente cargado
+document.addEventListener('DOMContentLoaded', () => {
+    new VentasPorProductoPage();
+});
+
 
   //---------------------------VENTAS POR PRODUCTOS---------------------------
 //           >>>>>>> CON cuadro 'unidades vendidas' <<<<<<

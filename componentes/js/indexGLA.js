@@ -29,7 +29,7 @@ import { createLoginPage } from "./pages/LoginPage.js";
 // import { NewProductPage } from './pages/pageNewProduct.js'; 
 // import { EditProductPage } from './pages/editProductPage.js';
 
-
+// import { RadioProductList } from "./utils.js";
 
 // Inicializa la nueva página
 // document.addEventListener("DOMContentLoaded", function() {

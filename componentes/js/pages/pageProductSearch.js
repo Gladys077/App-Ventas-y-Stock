@@ -1,5 +1,5 @@
 import { Header, iconoVolver } from '../header.js';
-import { createSearchContainer, ExtendedFabButton } from '../utils.js';
+import { createSearchContainer, ProductList, ExtendedFabButton } from '../utils.js';
 import { Footer } from '../footer.js';
 import { iconoVerPedido } from '../iconosSVG.js';
 import { ModalInput } from '../modalInput.js';
@@ -29,7 +29,7 @@ export class ProductSearchPage {
     createMain(){
         const main = document.createElement('main');
         
-        const productSearch = createSearchContainer(this.onProductClick.bind(this));
+        const productSearch = createSearchContainer(this.onProductClick.bind(this), ProductList);
         main.appendChild(productSearch);
 
         // Container para la lista de productos

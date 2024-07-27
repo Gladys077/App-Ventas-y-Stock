@@ -1,6 +1,7 @@
 import { Notification } from './notificacion.js';
 import { isValidDate, formatDateInput } from './utils.js';
 
+
 export class CardVtasPorProducto {
     constructor(title, textBtn, onClick, includeUnidadesVendidas = true, cuadroInferiorTitulo = "Unidades vendidas") {
         this._title = title;
@@ -39,9 +40,6 @@ export class CardVtasPorProducto {
     get isBuscarMode() {
         return this._isBuscarMode;
     }
-    // set isBuscarMode(value){
-    //     this._isBuscarMode = value;
-    // }
     get fechaDesde() {
         return this._fechaDesde;
     }
@@ -56,7 +54,6 @@ export class CardVtasPorProducto {
     }
 
     armarCardVtasPorProducto() {
-        // this.cargarCss();
         this.element = document.createElement('div');
         this.element.className = 'card';
 
@@ -78,7 +75,7 @@ export class CardVtasPorProducto {
         verListado.className = 'card-link';
         verListado.addEventListener('click', () => {
             console.log('Mostrar listado');
-            //Aquí va el cód. que muestra la página con el listado
+            // Aquí va el cód. que muestra la página con el listado
         });
 
         this.element.appendChild(titleElement);
@@ -109,7 +106,6 @@ export class CardVtasPorProducto {
     handleDateChange(e, label) {
         const value = e.target.value;
         if (value && !isValidDate(value)) {
-            // new Notification('../img/emojis/mueca.png', 'Fecha inválida. Use el formato DD/MM/AAAA', 'error');
             e.target.value = '';
             return;
         }
@@ -138,7 +134,6 @@ export class CardVtasPorProducto {
         this._onClick(); // Llamada al callback original
     }
 
-    // Añade listeners a los inputs
     addInputListeners() {
         const inputs = [
             this.desdeInput.querySelector('input'),
@@ -148,11 +143,10 @@ export class CardVtasPorProducto {
             input.addEventListener('input', () => this.handleInputChange());
         });
     }
-    // Para manejar cambios en los inputs
+
     handleInputChange(e, label) {
         const value = e.target.value;
         if (value && !isValidDate(value)) {
-            // new Notification('../../img/emojis/mueca.png', 'Fecha inválida. Use el formato DD/MM/AAAA', 'error');
             e.target.value = '';
             return;
         }
@@ -190,7 +184,6 @@ export class CardVtasPorProducto {
         }
     }
 
-    // Nuevo método para resetear al modo "Buscar"
     resetToBuscarMode() {
         this._isBuscarMode = true;
         this.button.textContent = 'Buscar';
@@ -203,39 +196,21 @@ export class CardVtasPorProducto {
         const inputs = this.element.querySelectorAll('input');
         inputs.forEach(input => input.value = '');
     }
+
     realizarBusqueda() {
-        // Aquí iría la lógica para buscar en la base de datos
         console.log('Realizando búsqueda:');
         console.log('Fecha desde:', this._fechaDesde);
         console.log('Fecha hasta:', this._fechaHasta);
-        // Implementa la lógica de búsqueda según si hay una o dos fechas
         if (this._fechaDesde && this._fechaHasta) {
             console.log('Búsqueda por período');
-            // Lógica para buscar en un período
         } else if (this._fechaDesde) {
             console.log('Búsqueda para la fecha:', this._fechaDesde);
-            // Lógica para buscar en una fecha específica (desde)
         } else if (this._fechaHasta) {
             console.log('Búsqueda para la fecha:', this._fechaHasta);
-            // Lógica para buscar en una fecha específica (hasta)
         }
     }
-    // cargarCss() {
-    //     const estilos = document.querySelector('.dia') ?? null;
-    //     if(estilos == null){
-    //     const link = document.createElement('link');
-    //     link.rel = 'stylesheet';
-    //     link.href = '../css/cardBase.css';
-    //     document.head.appendChild(link);
-    //     }
-    // }
 
     getElement() {
         return this.element;
     }
-}
-
-function onClick() {
-    console.log('btn clickeado');
-    realizarBusqueda()
 }

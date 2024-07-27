@@ -136,7 +136,7 @@
     head.appendChild(style);
   }
  }
-
+ }
 // Instancias:
 // new ModalDialogo('../img/emojis/cerrarSesion.png', '¿Deseas cerrar sesión?', () => {
 //   alert('Cerrar sesión');
