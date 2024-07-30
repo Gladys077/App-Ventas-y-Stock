@@ -25,7 +25,7 @@ export class VentasPorVendedorPage {
     }}
 
     createHeader() {
-        this.header = new Header('Ventas por vendedor', iconoVolver, null, function() { navigateToPage('menuVentas')});
+        this.header = new Header('Ventas por vendedor', iconoVolver, null, function() { navigateToPage('MenuVentas')});
         document.body.appendChild(this.header.getElement());
     }
 

@@ -5,7 +5,7 @@ import { iconoVerPedido } from '../iconosSVG.js';
 import { ModalInput } from '../modalInput.js';
 import { navigateToPage } from '../navigateToPage.js';
 import { Notification } from '../notificacion.js';
-
+import { Producto } from '../producto.js';
 
 export class ProductSearchPage {
     constructor() {
@@ -22,7 +22,7 @@ export class ProductSearchPage {
     }
 
     createHeader() {
-        this.header = new Header('Vender', iconoVolver, null, function() { navigateToPage('menuVentas')});
+        this.header = new Header('Vender', iconoVolver, null, function() { navigateToPage('MenuVentas')});
         document.body.appendChild(this.header.getElement());
     }
 
@@ -46,7 +46,7 @@ export class ProductSearchPage {
 
         // Fab extended (ver pedido)
         const iconSVG = iconoVerPedido; 
-        const extendedFabButton = new ExtendedFabButton(iconSVG, 'Ver Pedido', () => navigateToPage('pedidoActual'));
+        const extendedFabButton = new ExtendedFabButton(iconSVG, 'Ver Pedido', () => navigateToPage('PedidoActual'));
     
         const footerElement = document.querySelector('footer');
         footerElement.appendChild(extendedFabButton.getElement());
@@ -64,12 +64,33 @@ export class ProductSearchPage {
             (cantidad) => {    
                 const selectedProduct = {
                     nombre: producto.nombre,
-                    precio: producto.precio,
+                    precio: producto.precioVenta,
                     cantidad: parseInt(cantidad, 10)
                 };
-                
+                // Añadir la venta con fecha y cantidad
+                const currentDate = new Date().toISOString(); // Fecha en formato ISO
+                const venta = {
+                    fecha: currentDate,
+                    cantidad: parseInt(cantidad, 10)
+                };
+                if (!producto.ventas) {
+                    producto.ventas = [];
+                }
+                producto.ventas.push(venta);
+
+                // Guardando el producto actualizado en el almacenamiento local
+                const productos = JSON.parse(localStorage.getItem('productos')) || [];
+                const productoIndex = productos.findIndex(p => p.id === producto.id);
+
+                if (productoIndex > -1) {
+                    const productoActualizado = Producto.fromJSON(productos[productoIndex]);
+                    productoActualizado.stock -= parseInt(cantidad, 10); // Actualiza el stock
+                    productos[productoIndex] = productoActualizado.toJSON(); // Convierto de nuevo a JSON
+                }
+
+                localStorage.setItem('productos', JSON.stringify(productos));
+
                 this.selectedProducts.push(selectedProduct);
-    
                 localStorage.setItem('selectedProducts', JSON.stringify(this.selectedProducts));
             },'1');
     }

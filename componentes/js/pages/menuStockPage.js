@@ -3,12 +3,12 @@ import { createMenuPrincipal } from "../utils.js";
 import { Footer } from "../footer.js";
 import { navigateToPage } from "../navigateToPage.js";
 
-export class PageMenuVentas {
+export class MenuStockPage {
     constructor() {
         this.createHeader();
         this.createMain();
         this.createFooter();
-        this.setActiveTab('Ventas');
+        this.setActiveTab('Stock');
     }
 
     getElement() {
@@ -72,20 +72,18 @@ export function createMenuVentas() {
     menuVentas.classList.add('botonera-container');
 
     const buttonsData = [
-        { src: '../../../img/iconos/vender1.png', alt: '', text: 'Vender', page: 'BuscadorParaVender' },
-        { src: '../../../img/iconos/Movim-Dia.png', alt: '', text: 'Movimientos del día', page: 'Movimiento' },
-        { src: '../../../img/iconos/ventasPorPersona.png', alt: '', text: 'Ventas por vendedor', page: 'VentasPorVendedor' },
-        { src: '../../../img/iconos/vta-x-producto.png', alt: '', text: 'Ventas por producto', page: 'BuscadorVentasPorProducto' },
-        { src: '../../../img/iconos/VtasPorFecha.png', alt: '', text: 'Ventas por fecha', page: 'VentasPorFecha' }
+        { src: '../../../img/iconos/cargarStock.png', alt: '', text: 'Cargar Stock', page: 'CargarStock' },
+        { src: '../../../img/iconos/stock.png', alt: '', text: 'Ver Stock', page: 'VerStock' },
+        { src: '../../../img/iconos/editarProducto.png', alt: '', text: 'Editar Producto', page: 'EditarProducto' },
+        { src: '../../../img/iconos/agregarProducto.png', alt: '', text: 'Nuevo Producto', page: 'NuevoProducto' },
+        { src: '../../../img/iconos/proximoPedido.png', alt: '', text: 'Próximo Pedido', page: 'ProximoPedido' },
+        { src: '../../../img/iconos/eliminarProducto.png', alt: '', text: 'Eliminar Producto', page: 'EliminarProducto' },
+        { src: '../../../img/iconos/proveedores.png', alt: '', text: 'Proveedores', page: 'Proveedores' }
     ];
 
-    buttonsData.forEach((data, index) => {
+    buttonsData.forEach(data => {
         const button = document.createElement('button');
         button.classList.add('botonera');
-
-        if (index === 0) {
-            button.classList.add('btn-large');
-        }
 
         const img = document.createElement('img');
         img.src = data.src;

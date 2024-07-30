@@ -239,7 +239,8 @@ export class RadioProductList {
             const storedProducts = localStorage.getItem('productos');
             return storedProducts ? JSON.parse(storedProducts) : [];
         } catch (error) {
-            console.error('Error al obtener productos del localStorage:', error);
+            new Notification('../img/emojis/preocupado.png', '¡Error al descargar!', 'error');
+            
             return [];
         }
     }
@@ -303,17 +304,17 @@ export function createMenuPrincipal() {
     const ventasButton = document.createElement('button');
     ventasButton.classList.add('tab', 'left-btn');
     ventasButton.textContent = 'Ventas';
-    ventasButton.addEventListener('click', () => handleMenuClick(ventasButton, 'menuVentas'));
+    ventasButton.addEventListener('click', () => handleMenuClick(ventasButton, 'MenuVentas'));
 
     const stockButton = document.createElement('button');
     stockButton.classList.add('tab', 'center-btn');
     stockButton.textContent = 'Stock';
-    stockButton.addEventListener('click', () => handleMenuClick(stockButton, 'menuStock'));
+    stockButton.addEventListener('click', () => handleMenuClick(stockButton, 'MenuStock'));
 
     const perfilesButton = document.createElement('button');
     perfilesButton.classList.add('tab', 'right-btn');
     perfilesButton.textContent = 'Perfiles';
-    perfilesButton.addEventListener('click', () => handleMenuClick(perfilesButton, 'menuPerfiles'));
+    perfilesButton.addEventListener('click', () => handleMenuClick(perfilesButton, 'MenuPerfiles'));
 
     menuPrincipal.appendChild(ventasButton);
     menuPrincipal.appendChild(stockButton);

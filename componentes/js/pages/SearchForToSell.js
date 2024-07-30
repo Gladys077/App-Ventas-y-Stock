@@ -3,22 +3,26 @@ import { createSearchContainer, RadioProductList } from '../utils.js';
 import { navigateToPage } from '../navigateToPage.js';
 import { Notification } from '../notificacion.js';
 
-export class BuscadorVtasXProducto {
+export class SearchForToSell {
     constructor(useFullHeight = true) {
-        if (!document.querySelector('.search-results')) {
             this.selectedProducts = [];
             this.useFullHeight = useFullHeight;
             this.createHeader();
+            this.render();
+        }
+    
+        render() {
+            document.body.innerHTML = ''; // Limpio el contenido existente
+            this.createHeader();
             this.createMain();
         }
-    }
 
     getElement() {
         return this.element;
     }
 
     createHeader() {
-        this.header = new Header('Ventas por Producto', iconoVolver, null, ()=> { navigateToPage('menuVentas')});
+        this.header = new Header('Ventas por Producto', iconoVolver, null, ()=> { navigateToPage('MenuVentas')});
         document.body.appendChild(this.header.getElement());
     }
 
@@ -28,7 +32,7 @@ export class BuscadorVtasXProducto {
         const productSearch = createSearchContainer(this.onProductClick.bind(this), RadioProductList, true);
         main.appendChild(productSearch);
 
-        // Para modificar la alt. de la lista de productos de forma dinámica
+        // Para modificar la alt. de la lista de productos 
         if (this.useFullHeight) {
             document.documentElement.style.setProperty('--product-list-max-height', 'calc(100vh - 260px)');
         }
@@ -62,5 +66,5 @@ export class BuscadorVtasXProducto {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new BuscadorVtasXProducto(true);
+    new SearchForToSell(true);
 });

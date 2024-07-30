@@ -92,7 +92,7 @@ export class NewProductPage {
                 true // Activo por default
             );
     
-            productosGuardados.push(nuevoProducto);
+            productosGuardados.push(nuevoProducto.toJSON());
             localStorage.setItem('productos', JSON.stringify(productosGuardados));
             return true;
         } catch (error) {

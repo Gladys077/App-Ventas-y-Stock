@@ -7,20 +7,26 @@ import { navigateToPage } from '../navigateToPage.js';
 
 export class VentasPorProductoPage {
     constructor() {
-      if(!document.querySelector('.card')){
         this.ventasPorProducto = null;
+        this.render();
+    }
+
+    render() {
+        document.body.innerHTML = ''; // Limpio el contenido existente
         this.createHeader();
         this.createMain();
         this.createFooter();
-    }}
+    }
+
     createHeader() {
         this.header = new Header('Unidades vendidas', iconoVolver, iconoMenu, ()=>{ navigateToPage('BuscadorVentasPorProducto')}, ()=>{ navigateToPage('menuVentas')});
         document.body.appendChild(this.header.getElement());
     }
 
     createMain() {
-        const selectedProductName = 'Nombre_del_producto'; // Aquí debo obtener el nombre del producto seleccionado
-        this.ventasPorProducto = new CardVtasPorProducto('Nombre_del_producto', 'Buscar', () => this.onClick(), 'Unidades Vendidas');
+        const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
+        const selectedProductName = selectedProduct ? selectedProduct.nombre : 'Nombre_del_producto';
+        this.ventasPorProducto = new CardVtasPorProducto(selectedProductName, 'Buscar', () => this.onClick(), 'Unidades Vendidas');
         document.body.appendChild(this.ventasPorProducto.getElement());
     }
 

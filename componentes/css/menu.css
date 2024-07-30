@@ -11,6 +11,7 @@
     width: calc(100vw - 32px);
     display: flex;
     margin-top: 10px;
+    margin-bottom: 16px;
     z-index: 2;
 }
 
@@ -56,12 +57,13 @@
     justify-content: center;
     gap: 10px;
     padding: 20px;
-    background-color: #fff;
     width: calc(100% - 32px);
+    height: calc(100vh - 185px);
     max-width: 400px;
     margin-top: -20px;
     border-radius: 0 0 20px 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    overflow-y: auto; 
 }
 
 .botonera-container button {
@@ -72,12 +74,14 @@
     align-items: center;
     justify-content: center;
     width: calc(50% - 5px); 
-    height: 20vh;
+    /* min-height: 100px; 
+    max-height: 18vh;  */
+    height: auto; 
     border-radius: 20px;
     padding: 10px;
     cursor: pointer;
 }
-.botonera-container button:first-child {
+.botonera-container .btn-large {
     margin-top: 20px;
     min-width: 100%;
 }
@@ -99,8 +103,8 @@
 
 /* Estilos del footer */
 footer {
-    background-color: transparent; /* Remove background color */
-    color: #6A1B9A; /* Change text color */
+    background-color: transparent; 
+    color: var(--primary-color); 
     text-align: center;
     padding: 10px;
     position: fixed;
@@ -109,9 +113,9 @@ footer {
 }
 
 footer button {
-    background-color: transparent; /* Remove background color */
-    border: none; /* Remove border */
-    color: #6A1B9A; /* Set text color */
-    font-size: 16px; /* Increase font size */
+    background-color: transparent; 
+    border: none; 
+    color: var(--primary-color); 
+    font-size: 16px; 
     cursor: pointer;
 }

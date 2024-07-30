@@ -48,8 +48,7 @@ export function createLoginPage() {
         else if (!userPasswordList.includes(passwordValue)) {
             new Notification('../../img/emojis/pare.png', 'Por favor, ingresa un email válido.', 'error');
         } else {
-            // Tendría que ir a la página del menú de VENTAS
-            navigateToPage('menuVentas');
+            navigateToPage('MenuVentas');
         }
     });
     
