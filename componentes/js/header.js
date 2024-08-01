@@ -1,3 +1,6 @@
+import { navigateToPage } from './navigateToPage.js';
+import { createMenuVentas } from '../js/pages/pageMenuVentas.js'
+
 export class Header {
     
     constructor(title, leftIcon, rightIcon, leftIconCallback, rightIconCallback, iconoMenu, onMenuClick) {
@@ -32,10 +35,18 @@ export class Header {
             const leftIcon = document.createElement('button');
             leftIcon.classList.add('icon', 'leftIcon');
             leftIcon.innerHTML = this._leftIcon;
-            leftIcon.addEventListener('click', this._leftIconCallback || (() => {
-                window.history.back();
-                console.log('Volver atrás');
-            }));
+            leftIcon.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (this._leftIconCallback) {
+                    this._leftIconCallback();
+                } else {
+                    if (this._backPage) {
+                        navigateToPage(this._backPage);
+                    } else {
+                        window.history.back();
+                    }
+                }
+            });
             leftContainer.appendChild(leftIcon);
         }
         headerContainer.appendChild(leftContainer);
@@ -56,9 +67,9 @@ export class Header {
             const rightIcon = document.createElement('button');
             rightIcon.classList.add('icon', 'rightIcon');
             rightIcon.innerHTML = this._rightIcon;
-            rightIcon.addEventListener('click', this._rightIconCallback || (() => {
-                console.log('Right icon clicked');
-            }));
+            if (this._rightIconCallback) {
+                rightIcon.addEventListener('click', this._rightIconCallback);
+            }
             rightContainer.appendChild(rightIcon);
         }
         headerContainer.appendChild(rightContainer);
@@ -96,24 +107,38 @@ if (rightIcon) {
 
 }
 
-export function navigateToMenu(destino){
-    switch(destino){
-        case "ventas":
-            console.log('Navegando al menú de ventas');
-            //aquí va la lógica para ir allí
-            break;
-        case "stock":
-            console.log('Navegando al menú de stock');
-            //aquí va la lógica para ir allí
-            break;        
-        case "perfiles":
-            console.log('Navegando al menú de perfiles');
-            //aquí va la lógica para ir allí
-            break;
-        default:
-            console.log('Destino no especificado');
-    }
-}
+// export function navigateToMenu(destino){
+//     const content = document.getElementById('content');
+//     content.innerHTML = '';
+
+//     // Reinicio estilos de botones
+//     document.querySelectorAll('.main-menu').forEach(btn => {
+//         btn.className.remove('active');
+//     });
+
+//     // Aplico estilo active al botón seleccionado
+//     const selectedButton = document.getElementById(`${destino}-btn`);
+//     selectedButton.className = 'btn-active';
+
+//     switch(destino){
+//         case "ventas":
+//             console.log('Navegando al menú de ventas');
+//             const ventasButtons = createMenuVentas();
+//             content.appendChild(ventasButtons); // Muestra la botonera de ventas
+//             break;
+//         case "stock":
+//             console.log('Navegando al menú de stock');
+//             // Lógica para mostrar los botones de stock
+//             break;        
+//         case "perfiles":
+//             console.log('Navegando al menú de perfiles');
+//             // Lógica para mostrar los botones de perfiles
+//             break;
+//         default:
+//             console.log('Destino no especificado');
+//     }
+// }
+
 
 export const iconoVolver = `
 <?xml version="1.0" standalone="no"?>

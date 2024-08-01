@@ -1,0 +1,44 @@
+.fab-button-extended {
+    height: 56px;
+    width: auto;
+    padding: 12px;
+    background-color: var(--secondary-color); 
+    color: black;
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    display: flex;
+    align-items: center;;
+    z-index: 200;
+}
+
+.fab-label {
+    margin-left: 8px;
+    font-size: 14px;
+}
+
+.fab-button-extended:hover {
+    background-color: var(--color-hover); 
+}
+
+.fab-button-extended:active {
+    transform: scale(95%);
+}
+
+
+@media screen and (min-width: 768px) {
+.fab-button-extended {
+        bottom: auto;
+        top: 16px;
+        right: 16px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .fab-button-extended {
+        position: static;
+        display: inline-block;
+        margin-right: 16px;
+    }
+}

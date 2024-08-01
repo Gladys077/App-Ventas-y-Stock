@@ -1,6 +1,6 @@
  export class ModalDialogo {
 
-  constructor(iconSrc, message = 'Confirmar la acción',ConfirmCallback, padre='body') {
+  constructor(iconSrc, message = 'Confirmar la acción', ConfirmCallback, padre='body') {
     this._iconSrc = iconSrc;
     this._message = message;
     this._confirmCallback = ConfirmCallback;
@@ -13,7 +13,7 @@
   createModal() {
 
     this.agregarCss();
-    // Crear el modal solo si no existe
+    // Crear el modal sólo si no existe
     const modal = document.querySelector('.modalDialogo')
     if (modal==null || modal==NaN || modal=={}) {
       this._modalElement = document.createElement("div");
@@ -55,8 +55,10 @@
   }
 
   agregarCss(){
+    if (!document.querySelector('#modalDialogoStyles')) {
     const head = document.querySelector('head');
     const style = document.createElement('style');
+    style.id = 'modalDialogoStyles';
     style.innerText = `
       .modalDialogo {
       width: 100%;
@@ -66,7 +68,7 @@
       z-index: 5;
       margin: auto;
       overflow: auto;
-      background-color: rgba(0,0,0,0.4);
+      background-color: rgba(0,0,0,0.6);
   }
   .modal-content{
       width: 80%;
@@ -119,6 +121,8 @@
       border-radius: 28px;
       border: 1.5px solid #6810ad;
       text-align: center;
+      height: 48px;
+      font-weight: 500;
   }
   .btn-cancel{
       background-color: #dadada;
@@ -131,9 +135,8 @@
       `
     head.appendChild(style);
   }
-}
-
-
+ }
+ }
 // Instancias:
 // new ModalDialogo('../img/emojis/cerrarSesion.png', '¿Deseas cerrar sesión?', () => {
 //   alert('Cerrar sesión');

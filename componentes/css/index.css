@@ -5,11 +5,10 @@
 @import url(./cardBase.css);
 @import url(./cardNewProd.css);
 @import url(./fabButton.css);
-
-
-/* @import url(header.css);
-@import url(main.css); */
-
+@import url(./fabExtended.css);
+@import url(./loginYForms.css);
+@import url(./menu.css);
+@import url(./proveedor.css);
 
 :root{
     --color-primario: #6810ad;
@@ -23,6 +22,7 @@
     --color-sombra: rgba(0,0,0,0.25);
     --color-hover: #9747FF;
     --fondo-monto: #DEC9FA;
+    --background-menu: #dadada;
 }
 
 *{

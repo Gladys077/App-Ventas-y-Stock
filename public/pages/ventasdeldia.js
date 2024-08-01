@@ -5,9 +5,11 @@ import { TablaEncabezado, MostrarMontoTotal, TablaDetalles, Ventasdeldia, TablaF
  
 
 export class PlanillaVtasdelDia {
+export class PlanillaVtasdelDia {
     constructor(){
         this.createHeader();
         this.mainPedido=this.createMain();
+        this.createMostrarMonto();
         this.createMostrarMonto();
         this.createTablaEncabezado();
         this.createTablaDetalles();
@@ -18,6 +20,7 @@ export class PlanillaVtasdelDia {
     }
 
     createHeader=()=>{
+        this.header = new Header("Ventas del Día", iconoVolver, iconoMenu,null,function(){ navigateToMenu('stock'); });
         this.header = new Header("Ventas del Día", iconoVolver, iconoMenu,null,function(){ navigateToMenu('stock'); });
         document.body.appendChild(this.header.getElement());
         return
@@ -35,8 +38,15 @@ export class PlanillaVtasdelDia {
         mainPedido.appendChild(this.monto.getElement());
     }
 
+    createMostrarMonto= ()=>{
+        const mainPedido=document.querySelector("main");
+        this.monto = new MostrarMontoTotal();
+        mainPedido.appendChild(this.monto.getElement());
+    }
+
     createTablaEncabezado= ()=>{
         const mainPedido=document.querySelector("main");
+        this.encabezado = new TablaEncabezado("Producto", "Cant.")
         this.encabezado = new TablaEncabezado("Producto", "Cant.")
         mainPedido.appendChild(this.encabezado.getElement());
     }
@@ -48,6 +58,7 @@ export class PlanillaVtasdelDia {
     }
 
     createLineaArticulos= ()=>{}///Acá se debe conectar a la bd y hacer el foreach o map
+
 
 
     createTablaFooter= ()=>{
@@ -66,4 +77,5 @@ export class PlanillaVtasdelDia {
 
 }
 
+new PlanillaVtasdelDia();
 new PlanillaVtasdelDia();

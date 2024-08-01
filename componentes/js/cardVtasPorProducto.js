@@ -1,6 +1,7 @@
 import { Notification } from './notificacion.js';
 import { isValidDate, formatDateInput } from './utils.js';
 
+
 export class CardVtasPorProducto {
     constructor(title, textBtn, onClick, includeUnidadesVendidas = true, cuadroInferiorTitulo = "Unidades vendidas") {
         this._title = title;
@@ -39,9 +40,6 @@ export class CardVtasPorProducto {
     get isBuscarMode() {
         return this._isBuscarMode;
     }
-    // set isBuscarMode(value){
-    //     this._isBuscarMode = value;
-    // }
     get fechaDesde() {
         return this._fechaDesde;
     }
@@ -56,7 +54,6 @@ export class CardVtasPorProducto {
     }
 
     armarCardVtasPorProducto() {
-        this.cargarCss();
         this.element = document.createElement('div');
         this.element.className = 'card';
 
@@ -77,8 +74,7 @@ export class CardVtasPorProducto {
         verListado.href = "#";
         verListado.className = 'card-link';
         verListado.addEventListener('click', () => {
-            console.log('Mostrar listado');
-            //Aquí va el cód. que muestra la página con el listado
+            this.mostrarListadoPorFecha();
         });
 
         this.element.appendChild(titleElement);
@@ -109,7 +105,6 @@ export class CardVtasPorProducto {
     handleDateChange(e, label) {
         const value = e.target.value;
         if (value && !isValidDate(value)) {
-            // new Notification('../img/emojis/mueca.png', 'Fecha inválida. Use el formato DD/MM/AAAA', 'error');
             e.target.value = '';
             return;
         }
@@ -138,7 +133,6 @@ export class CardVtasPorProducto {
         this._onClick(); // Llamada al callback original
     }
 
-    // Añade listeners a los inputs
     addInputListeners() {
         const inputs = [
             this.desdeInput.querySelector('input'),
@@ -148,11 +142,10 @@ export class CardVtasPorProducto {
             input.addEventListener('input', () => this.handleInputChange());
         });
     }
-    // Para manejar cambios en los inputs
+
     handleInputChange(e, label) {
         const value = e.target.value;
         if (value && !isValidDate(value)) {
-            // new Notification('../img/emojis/mueca.png', 'Fecha inválida. Use el formato DD/MM/AAAA', 'error');
             e.target.value = '';
             return;
         }
@@ -174,7 +167,7 @@ export class CardVtasPorProducto {
 
             const boxCuadroInferior = document.createElement('span');
             boxCuadroInferior.className = 'boxCuadroInferior';
-            boxCuadroInferior.textContent = '100'; // Ejemplo de unidades vendidas
+            boxCuadroInferior.textContent = this.calcularUnidadesVendidas(); 
 
             cuadroInferior.appendChild(headerCuadroInferior);
             cuadroInferior.appendChild(boxCuadroInferior);
@@ -190,7 +183,6 @@ export class CardVtasPorProducto {
         }
     }
 
-    // Nuevo método para resetear al modo "Buscar"
     resetToBuscarMode() {
         this._isBuscarMode = true;
         this.button.textContent = 'Buscar';
@@ -203,39 +195,95 @@ export class CardVtasPorProducto {
         const inputs = this.element.querySelectorAll('input');
         inputs.forEach(input => input.value = '');
     }
+
     realizarBusqueda() {
-        // Aquí iría la lógica para buscar en la base de datos
-        console.log('Realizando búsqueda:');
-        console.log('Fecha desde:', this._fechaDesde);
-        console.log('Fecha hasta:', this._fechaHasta);
-        // Implementa la lógica de búsqueda según si hay una o dos fechas
-        if (this._fechaDesde && this._fechaHasta) {
-            console.log('Búsqueda por período');
-            // Lógica para buscar en un período
-        } else if (this._fechaDesde) {
-            console.log('Búsqueda para la fecha:', this._fechaDesde);
-            // Lógica para buscar en una fecha específica (desde)
-        } else if (this._fechaHasta) {
-            console.log('Búsqueda para la fecha:', this._fechaHasta);
-            // Lógica para buscar en una fecha específica (hasta)
+        const productos = JSON.parse(localStorage.getItem('productos')) || [];
+        let ventasFiltradas = [];
+    
+        productos.forEach(producto => {
+            if (producto.ventas) {
+                producto.ventas.forEach(venta => {
+                    const fechaVenta = new Date(venta.fecha);
+                    const fechaDesde = this._fechaDesde ? new Date(this._fechaDesde.split('/').reverse().join('-')) : null;
+                    const fechaHasta = this._fechaHasta ? new Date(this._fechaHasta.split('/').reverse().join('-')) : null;
+    
+                    if ((!fechaDesde || fechaVenta >= fechaDesde) && (!fechaHasta || fechaVenta <= fechaHasta)) {
+                        ventasFiltradas.push({
+                            producto: producto.nombre,
+                            fecha: venta.fecha,
+                            cantidad: venta.cantidad
+                        });
+                    }
+                });
+            }
+        });
+    
+        this.ventasFiltradas = ventasFiltradas; // Guardo las ventas filtradas para usarlas 
+        console.log('Ventas filtradas:', ventasFiltradas);
+    
+        this.calcularUnidadesVendidas();
+    }
+    
+
+    calcularUnidadesVendidas() {
+        if (!this.ventasFiltradas) return;
+    
+        let totalUnidadesVendidas = 0;
+    
+        this.ventasFiltradas.forEach(venta => {
+            totalUnidadesVendidas += venta.cantidad;
+        });
+    
+        console.log('Total de unidades vendidas:', totalUnidadesVendidas);
+    
+        // Actualizar el contenido del cuadro inferior
+        const boxCuadroInferior = this.element.querySelector('.boxCuadroInferior');
+        if (boxCuadroInferior) {
+            boxCuadroInferior.textContent = totalUnidadesVendidas;
         }
     }
-    cargarCss() {
-        const estilos = document.querySelector('.dia') ?? null;
-        if(estilos == null){
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = './css/cardBase.css';
-        document.head.appendChild(link);
-        }
+    
+
+    mostrarListadoPorFecha() {
+        console.log('Mostrar listado por fecha:');
+
+    // Limpiamos cualquier listado anterior
+    const listadoPrevio = this.element.querySelector('.listado-por-fecha');
+    if (listadoPrevio) {
+        listadoPrevio.remove();
     }
+
+    const resultados = this.resultadosBusqueda || [];
+    if (resultados.length === 0) {
+        console.log('No hay resultados para mostrar.');
+        return;
+    }
+        const listado = document.createElement('div');
+        listado.className = 'listado-por-fecha';
+        
+        resultados.forEach(resultado => {
+            const item = document.createElement('div');
+            item.className = 'listado-item';
+            item.textContent = `${resultado.fecha}: ${resultado.unidades} unidades`;
+            listado.appendChild(item);
+        });
+
+          // Inserta el listado antes del enlace "Listado por fecha"
+        this.element.insertBefore(listado, this.element.querySelector('.card-link'));
+    }
+
+    obtenerResultadosPorFecha() {
+        // Esta función debería devolver los resultados de ventas por fecha basándose en la búsqueda.
+        // Ejemplo de datos:
+        return [
+            { fecha: '01/01/2023', unidades: 10 },
+            { fecha: '02/01/2023', unidades: 15 },
+            { fecha: '03/01/2023', unidades: 20 }
+        ];
+    }
+
 
     getElement() {
         return this.element;
     }
-}
-
-function onClick() {
-    console.log('btn clickeado');
-    realizarBusqueda()
 }

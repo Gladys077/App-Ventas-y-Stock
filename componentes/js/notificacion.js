@@ -53,78 +53,78 @@ export class Notification {
   }
   
   agregarCss() {
-    if (document.querySelector('#notification-styles')) return;
+    if (!document.querySelector('#notificationStyles')) {
+      const head = document.querySelector('head');
+      const style = document.createElement('style');
+      style.id = 'notificationStyles';
+      style.innerText = `
+        .ad {
+          width: 100%;
+          position: fixed;
+          z-index: 10;
+          top: -500px;
+          left: 0;
+          display: flex;
+          justify-content: center;
+          pointer-events: none;
+          z-index: 9999;
+        }
+        
+      @keyframes slide-up {
+        to { top: 50%; left: 50%; 
+        transform: translate(-50%, -50%); 
+        }
+      }
 
-    const style = document.createElement('style');
-    style.id = 'notification-styles';
-    style.textContent = `
-      .ad {
-        width: 100%;
-        position: fixed;
-        z-index: 10;
-        top: -500px;
-        left: 0;
-        display: flex;
-        justify-content: center;
-        pointer-events: none;
-        z-index: 9999;
-      }
-      
-    @keyframes slide-up {
-      to { top: 50%; left: 50%; 
-      transform: translate(-50%, -50%); 
-      }
-    }
-
-      @keyframes slide-down {
-        to { top: -400px; }
-      }
-      .ad-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .ad-icon {
-        width: 72px;
-        height: 72px;
-        background-color: #fff;
-        border-radius: 50%;
-        box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
-        display: flex; 
-        justify-content: center; 
-        align-items: center; 
-        margin-bottom: -4px;
-        z-index: 11;
-      }
-      .ad-icon img {
-        height: 50px;
-      }
-      .ad-message {
-        min-width: 280px;
-        min-height: 48px;
-        border-radius: 4px;
-        font-family: Roboto, sans-serif;
-        font-size: 15px;
-        font-weight: 500;
-        padding: 10px 20px; 
-        text-align: center;
-        align-content: center;
-        letter-spacing: 0.3px;
-      }
-      .ad-success .ad-message {
-        background-color: ${this._colors.success.background};
-        border: 1px solid ${this._colors.success.border};
-      }
-      .ad-error .ad-message {
-        background-color: ${this._colors.error.background};
-        border: 1px solid ${this._colors.error.border};
-      }
-    `;
+        @keyframes slide-down {
+          to { top: -400px; }
+        }
+        .ad-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .ad-icon {
+          width: 72px;
+          height: 72px;
+          background-color: #fff;
+          border-radius: 50%;
+          box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+          display: flex; 
+          justify-content: center; 
+          align-items: center; 
+          margin-bottom: -4px;
+          z-index: 11;
+        }
+        .ad-icon img {
+          height: 50px;
+        }
+        .ad-message {
+          min-width: 280px;
+          min-height: 48px;
+          border-radius: 4px;
+          font-family: Roboto, sans-serif;
+          font-size: 15px;
+          font-weight: 500;
+          padding: 10px 20px; 
+          text-align: center;
+          align-content: center;
+          letter-spacing: 0.3px;
+        }
+        .ad-success .ad-message {
+          background-color: ${this._colors.success.background};
+          border: 1px solid ${this._colors.success.border};
+        }
+        .ad-error .ad-message {
+          background-color: ${this._colors.error.background};
+          border: 1px solid ${this._colors.error.border};
+        }
+      `;
 
     document.head.appendChild(style);
   }
 }
-
+}
 
 // Instancias 
 
@@ -152,5 +152,3 @@ export class Notification {
 // const agregasteNuevoPerfil = new Notification('../img/emojis/perfil.png', '¡Agregaste un nuevo perfil!', 'success');
 
 // const eliminado = new Notification('../img/emojis/like.png', '¡Listo, eliminado!', 'success');
-
-// const guardarCambios = new Notification('../img/emojis/ok.png', '¡Guardaste los cambios!', 'success') 
