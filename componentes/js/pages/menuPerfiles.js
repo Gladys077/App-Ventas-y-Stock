@@ -3,12 +3,12 @@ import { createMenuPrincipal } from "../utils.js";
 import { Footer } from "../footer.js";
 import { navigateToPage } from "../navigateToPage.js";
 
-export class MenuStockPage {
+export class MenuPerfiles {
     constructor() {
         this.createHeader();
         this.createMain();
         this.createFooter();
-        this.setActiveTab('Stock');
+        this.setActiveTab('Perfiles');
     }
 
     getElement() {
@@ -27,7 +27,7 @@ export class MenuStockPage {
         menu.className = 'menu';
 
         menu.appendChild(createMenuPrincipal());
-        menu.appendChild(createMenuStock());
+        menu.appendChild(createMenuPerfiles());
 
         main.appendChild(menu);
         document.body.appendChild(main);
@@ -67,23 +67,18 @@ export class MenuStockPage {
     }
 }
 
-export function createMenuStock() {
-    const menuStock = document.createElement('div');
-    menuStock.classList.add('botonera-container');
+export function createMenuPerfiles() {
+    const menuPerfiles = document.createElement('div');
+    menuPerfiles.classList.add('botonera-container', 'large');
 
     const buttonsData = [
-        { src: '../../../img/iconos/cargarStock.png', alt: '', text: 'Cargar Stock', page: 'CargaStock' },
-        { src: '../../../img/iconos/stock.png', alt: '', text: 'Ver Stock', page: 'VerStock' },
-        { src: '../../../img/iconos/editarProducto.png', alt: '', text: 'Editar Producto', page: 'EditarProducto' },
-        { src: '../../../img/iconos/agregarProducto.png', alt: '', text: 'Nuevo Producto', page: 'NuevoProducto' },
-        { src: '../../../img/iconos/proximoPedido.png', alt: '', text: 'Próximo Pedido', page: 'ProximoPedido' },
-        { src: '../../../img/iconos/eliminarProducto.png', alt: '', text: 'Eliminar Producto', page: 'EliminarProducto' },
-        { src: '../../../img/iconos/proveedores.png', alt: '', text: 'Proveedores', page: 'Proveedores' }
+        { src: '../../../img/iconos/perfil.png', alt: '', text: 'Agrega nuevo perfil', page: 'nuevoPerfil' },
+        { src: '../../../img/iconos/perfilListo.png', alt: '', text: 'Ver / editar perfil', page: 'editPerfil' }
     ];
 
     buttonsData.forEach(data => {
         const button = document.createElement('button');
-        button.classList.add('botonera');
+        button.classList.add('botonera', 'botonera-vertical');
 
         const img = document.createElement('img');
         img.src = data.src;
@@ -96,12 +91,12 @@ export function createMenuStock() {
         button.appendChild(h3);
         button.addEventListener('click', () => navigateToPage(data.page));
 
-        menuStock.appendChild(button);
+        menuPerfiles.appendChild(button);
     });
 
-    return menuStock;
+    return menuPerfiles;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new MenuStockPage();
+    new MenuPerfiles();
 });

@@ -56,7 +56,7 @@ export class VentasPorVendedorPage {
         console.log('Resultados: ', this.salesDate);
         if (this.salesDate == ''){
         new Notification('../img/emojis/pare.png', 'Sin ventas en esa fecha', 'success');
-    }
+        }
     }
 
 

@@ -5,7 +5,7 @@ import { Notification } from '../notificacion.js';
 
 export class SearchForToSell {
     constructor(useFullHeight = true) {
-            this.selectedProducts = [];
+            this.selectedProduct = [];
             this.useFullHeight = useFullHeight;
             this.createHeader();
             this.render();

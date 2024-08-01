@@ -47,6 +47,12 @@ export class RecoverPasswordPage {
         }
     }
 
+    // Método para validar email
+    isValidEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    }
+
     createMain() {
         const main = document.createElement('main');
 
@@ -71,11 +77,11 @@ export class RecoverPasswordPage {
         const button = document.createElement('button');
         button.innerHTML = 'Enviar';
         button.className = 'search-button';
-        button.addEventListener('click', (event) => {
+        button.addEventListener('click', async (event) => {
             event.preventDefault();
             const email = input.value;
-            if (email) {
-                sendPassword(email);
+            if (this.isValidEmail(email)) {
+                await this.sendPassword(email);
             } else {
                 new Notification('../../../img/emojis/ok.png', `Por favor, ingresa un email válido.`, 'error');
             }
@@ -91,4 +97,4 @@ export class RecoverPasswordPage {
     }
 }    
     
-new RecoverPasswordPage;
+new RecoverPasswordPage();

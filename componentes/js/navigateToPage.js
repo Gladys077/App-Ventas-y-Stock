@@ -70,13 +70,31 @@ export function navigateToPage(page) {
                 new module.VentasPorFechaPage();
             });
             break;
-        
 
         case 'MenuStock':
             import('../js/pages/menuStockPage.js').then(module => {
                 new module.MenuStockPage();
             });
             break;
+
+        case 'CargaStock':
+            import('./pages/cargaStockButtons.js').then(module => {
+                new module.CargaDeStock();
+            });
+            break;    
+            
+        case 'Stock':
+            import('../../views/pagesJS/stock.js').then(module => {
+                new module.PlanillaStock();
+            });
+            break;
+
+
+        case 'MenuPerfiles':
+            import('../js/pages/menuPerfiles.js').then(module => {
+                new module.MenuPerfiles();
+            });
+            break;    
 
         default:
             console.error('Página no encontrada:', page);

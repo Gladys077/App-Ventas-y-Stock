@@ -51,30 +51,7 @@ export class NewProductPage {
     }
 
     async guardarProducto(datosProducto) {
-        //----------------> Versión para guardar en la BBDD (ver con LIO):
-        // try {
-        //     const response = await fetch('http://localhost:5500/api/productos', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(datosProducto)
-        //     });
-    
-        //     if (response.ok) {
-        //         new Notification('../../../img/emojis/like.png', '¡Producto guardado exitosamente!', 'success');
-        //         return true;
-        //     } else {
-        //         new Notification('../../../img/emojis/pare.png', '¡Ups! Hubo un fallo. Por favor, intenta de nuevo.', 'error');
-        //         return false;
-        //     }
-        // } catch (error) {
-        //     new Notification('../../../img/emojis/pare.png', 'Error inesperado al guardar el producto', 'error');
-        //     return false;
-        // }
-
-
-        // ------> Versión LStorage
+        
         try {
             const productosGuardados = JSON.parse(localStorage.getItem('productos')) || [];
             
@@ -129,57 +106,7 @@ export class NewProductPage {
         console.log('Lista de Próximo Pedido generada:', listaProximoPedido);
     }
 
-    //-------> Versión usando BBDD
-    /*
-    async generarListaProximoPedido() {
-        try {
-            // Obtener todos los productos desde la base de datos
-            const response = await fetch('http://localhost:5500/api/productos');
-            
-            if (!response.ok) {
-                throw new Notification('../img/emojis/mueca.png', '¡Ups! Hubo un error al obtener los productos de la base de datos', 'error');
-            }
-
-            const productosGuardados = await response.json();
-            const listaProximoPedido = [];
-
-            // Generar la lista de "Próximo Pedido"
-            productosGuardados.forEach(producto => {
-                if (producto.stock < producto.stockMinimo) {
-                    const itemProxPedido = {
-                        nombre: producto.nombre,
-                        proveedores: producto.proveedor.map(prov => ({
-                            proveedor: prov.nombre,
-                            costo: prov.costo,
-                            cantidad: 0 // Iniciar con 0, luego se puede actualizar al momento de realizar el pedido
-                        }))
-                    };
-                    listaProximoPedido.push(itemProxPedido);
-                }
-            });
-
-            // Guardar la lista de "Próximo Pedido" en la base de datos
-            const saveResponse = await fetch('http://localhost:5500/api/proximoPedido', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(listaProximoPedido)
-            });
-
-            if (!saveResponse.ok) {
-                throw new Notification('../img/emojis/mueca.png', '¡Ups! Hubo un error al guardar la lista de Próximo Pedido en la base de datos', 'error');
-
-            }
-
-            console.log('Lista de Próximo Pedido generada y guardada en la BBDD:', listaProximoPedido);
-        } catch (error) {
-            console.error('Error al generar la lista de Próximo Pedido:', error);
-            new Notification('../../../img/emojis/pare.png', '¡Ups! Hubo un fallo al generar la lista de Próximo Pedido. Por favor, intenta de nuevo.', 'error');
-        }
-    }
-    */
-
+    
 }
 
 new NewProductPage();

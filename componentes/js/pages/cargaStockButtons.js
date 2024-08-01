@@ -3,7 +3,7 @@ import { createMenuPrincipal } from "../utils.js";
 import { Footer } from "../footer.js";
 import { navigateToPage } from "../navigateToPage.js";
 
-export class MenuStockPage {
+export class CargaDeStock {
     constructor() {
         this.createHeader();
         this.createMain();
@@ -27,7 +27,7 @@ export class MenuStockPage {
         menu.className = 'menu';
 
         menu.appendChild(createMenuPrincipal());
-        menu.appendChild(createMenuStock());
+        menu.appendChild(createMenuCargaDeStock());
 
         main.appendChild(menu);
         document.body.appendChild(main);
@@ -67,23 +67,18 @@ export class MenuStockPage {
     }
 }
 
-export function createMenuStock() {
+export function createMenuCargaDeStock() {
     const menuStock = document.createElement('div');
-    menuStock.classList.add('botonera-container');
+    menuStock.classList.add('botonera-container', 'large');
 
     const buttonsData = [
-        { src: '../../../img/iconos/cargarStock.png', alt: '', text: 'Cargar Stock', page: 'CargaStock' },
-        { src: '../../../img/iconos/stock.png', alt: '', text: 'Ver Stock', page: 'VerStock' },
-        { src: '../../../img/iconos/editarProducto.png', alt: '', text: 'Editar Producto', page: 'EditarProducto' },
-        { src: '../../../img/iconos/agregarProducto.png', alt: '', text: 'Nuevo Producto', page: 'NuevoProducto' },
-        { src: '../../../img/iconos/proximoPedido.png', alt: '', text: 'Próximo Pedido', page: 'ProximoPedido' },
-        { src: '../../../img/iconos/eliminarProducto.png', alt: '', text: 'Eliminar Producto', page: 'EliminarProducto' },
-        { src: '../../../img/iconos/proveedores.png', alt: '', text: 'Proveedores', page: 'Proveedores' }
+        { src: '../../../img/iconos/cargarStock.png', alt: '', text: 'Cargar de stock por producto', page: 'CargaXProducto' },
+        { src: '../../../img/iconos/stock.png', alt: '', text: 'Cargar de stock por remito', page: 'CargaXRemito' }
     ];
 
     buttonsData.forEach(data => {
         const button = document.createElement('button');
-        button.classList.add('botonera');
+        button.classList.add('botonera', 'botonera-vertical');
 
         const img = document.createElement('img');
         img.src = data.src;
