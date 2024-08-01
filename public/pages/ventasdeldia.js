@@ -4,7 +4,7 @@ import { TablaEncabezado, MostrarMontoTotal, TablaDetalles, Ventasdeldia, TablaF
 
  
 
-export class PlanillaVtasdelDia {
+
 export class PlanillaVtasdelDia {
     constructor(){
         this.createHeader();
@@ -20,7 +20,6 @@ export class PlanillaVtasdelDia {
     }
 
     createHeader=()=>{
-        this.header = new Header("Ventas del Día", iconoVolver, iconoMenu,null,function(){ navigateToMenu('stock'); });
         this.header = new Header("Ventas del Día", iconoVolver, iconoMenu,null,function(){ navigateToMenu('stock'); });
         document.body.appendChild(this.header.getElement());
         return
@@ -77,5 +76,4 @@ export class PlanillaVtasdelDia {
 
 }
 
-new PlanillaVtasdelDia();
 new PlanillaVtasdelDia();
