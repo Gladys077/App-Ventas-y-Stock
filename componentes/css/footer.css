@@ -1,0 +1,35 @@
+.footer-container {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 40px;
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: calc(100% - 32px);
+    max-width: 400px;
+    height: 60px;
+    box-sizing: border-box;
+}
+
+.logout-container {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 20px;
+}
+
+.logout-container img {
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+    filter: invert(36%) sepia(75%) saturate(6233%) hue-rotate(255deg)contrast(95%);
+}
+
+.logout-text {
+    color: var(--primary-color);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}

@@ -1,0 +1,93 @@
+/* page Login */
+.login {
+    width: calc(100vw - 32px);
+    max-width: 400px;
+    height: 100vh;
+    margin-top: 100px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.title-login { 
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 60px;
+
+}
+.forgot-password {
+    margin-top: 16px;
+    color: var(--primary-color);
+
+    &:hover{
+        font-weight: 700;
+    }
+    &:active {
+        transform: scale(90%);
+    }
+}
+
+/* page Recupera contraseña */
+.container-password {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    width: calc(100vw - 32px);
+    margin: 0 auto;
+    margin-top: 60px;
+}
+.candado-class {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 40px;
+}
+.txt-Recuperar {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 16px;
+}
+
+/* page cambio de contraseña */
+.subtitlePass {
+    width: 100vw;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+.button-change-passw {
+    width: 100%;
+    height: 48px;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 32px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
+
+}
+
+
+/* configuration  */
+#configList {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    width: calc(100vw - 32px);
+    margin: 0 auto;
+    margin-top: 40px;
+    font-weight: 400;
+}
+
+.list-item{
+    display: flex;
+    align-items: center;
+    line-height: 48px;
+}
+
+.img-config{
+    margin: 0px 8px 0 16px;
+}

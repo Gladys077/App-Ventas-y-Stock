@@ -1,0 +1,44 @@
+.button-container {
+    max-width: calc(100% - 0px);
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 4px;
+    gap: 4px;
+    margin-top: 20px;
+}
+
+.button-container button {
+    height: 48px;
+    flex: 1;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 50px;
+    max-width: calc(50% - 4px);
+}
+
+.button-container .cancelar {
+    background-color: var(--background-color);
+    border: 1px solid var(--primary-color);
+}
+
+.button-container .cancelar:hover {
+    background-color: var(--color-hover);
+    color: white;
+}
+.button-container .cancelar:active {
+    transform: scale(90%);
+}
+
+.button-container .guardar {
+    background-color: var(--primary-color);
+    color: white;
+}
+.button-container .guardar:hover {
+    background-color: var(--color-hover);
+}
+.button-container .guardar:active {
+    transform: scale(90%);
+}

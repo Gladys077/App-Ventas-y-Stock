@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Ventas y Stock - Pedido actual</title>
+    <link rel="stylesheet" href="../../public/css/index.css">
+</head>
+<body>
+    <header class="header">
+        <div>
+            <img src="../../img/iconos/volver.png" alt="< Volver" title="Volver">
+        </div>
+        <div>
+            <h2>Pedido Actual</h2>
+        </div>
+        <div>
+            <nav></nav>
+            <button class="nav-toggle" aria-label="Abrir Menú"><img src="../../img/iconos/menu.png" alt="Menú"></button>
+        </div>
+    </header>   
+    <main class="main">
+        
+        <section class="tabla_encabezados">
+            <h3 class="th">Cant.</h3>
+            <h3 class="th">Producto</h3>
+            <h3 class="th">Precio</h3>
+        </section>
+        <section class="tabla_detalles">
+            <div class="tabla_lineaArticulo">
+                <input class="cant" value="2"></input>
+                <div class="producto">Cuaderno Rivadavia T.dura 48h</div>
+                <div class="precio">1000</div>
+            </div>
+            <div class="tabla_lineaArticulo">
+                <input class="cant" value="10"></input>
+                <div class="producto">Cuaderno Rivadavia T.dura 24h</div>
+                <div class="precio">3000</div>
+            </div>
+        </section>
+        <section class="tabla_footer">
+            <h3 class="total">Total:</h3>
+            <h3 class="valorTotal">$4000,-</h3>
+        </section>
+
+        <button class="adicionarArticulo"><span>+</span></button>
+    
+    </main>     
+    <footer class="footer-container">
+        <section class="button-container">
+            <button class="cancelar"> <img src="../../img/iconos/trashViolet.PNG" alt="Tacho de Basura"><span>Eliminar</span></button>
+            <button class="guardar"><span>✔</span> <span>Cerrar Pedido</span></button>
+        </section>
+    </footer>
+</body>
+</html>
