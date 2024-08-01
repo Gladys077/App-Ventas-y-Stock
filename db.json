@@ -1,0 +1,100 @@
+{
+  "proveedores": [
+    {
+      "id": "1",
+      "nombre": "Fulanito S.A.",
+      "lista": [
+        {
+          "Cant": 4,
+          "Prod": "Carpeta con argollas",
+          "Costo": 1200
+        },
+        {
+          "Cant": 4,
+          "Prod": "Lapiz Negro HB - Faber Castle",
+          "Costo": 1000
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "nombre": "Menganito S.A.",
+      "lista": [
+        {
+          "Cant": 4,
+          "Prod": "Papel Afiche Amarillo",
+          "Costo": 220
+        },
+        {
+          "Cant": 4,
+          "Prod": "Papel Afiche Blanco",
+          "Costo": 220
+        },
+        {
+          "Cant": 4,
+          "Prod": "Papel Afiche Celeste",
+          "Costo": 220
+        },
+        {
+          "Cant": 4,
+          "Prod": "Papel Afiche Naranja",
+          "Costo": 220
+        },
+        {
+          "Cant": 4,
+          "Prod": "Papel Afiche Negro",
+          "Costo": 220
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "nombre": "Proveeduría S.A.",
+      "lista": [
+        {
+          "Cant": 4,
+          "Prod": "Papel Afiche Amarillo",
+          "Costo": 220
+        },
+        {
+          "Cant": 4,
+          "Prod": "Papel Afiche Blanco",
+          "Costo": 220
+        },
+        {
+          "Cant": 4,
+          "Prod": "Papel Afiche Celeste",
+          "Costo": 220
+        },
+        {
+          "Cant": 4,
+          "Prod": "Papel Afiche Naranja",
+          "Costo": 220
+        },
+        {
+          "Cant": 4,
+          "Prod": "Papel Afiche Negro",
+          "Costo": 220
+        }
+      ]
+    },
+    {
+      "id": "e9cf",
+      "nombre": "Tijerita S.A.",
+      "lista": [],
+      "vendedor": "Maira",
+      "cel": "12312435",
+      "email": "tijerita@gmail.com",
+      "notas": "pedidos todos los dias"
+    },
+    {
+      "id": "980c",
+      "nombre": "Pulgarcito",
+      "lista": [],
+      "vendedor": "Jorge",
+      "cel": "111 345435456",
+      "email": "pulgarcito@gmail.com",
+      "notas": "pedidos diarios"
+    }
+  ]
+}

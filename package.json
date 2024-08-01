@@ -2,8 +2,8 @@
   "name": "app-ventas-y-stock",
   "version": "1.0.0",
   "description": "Gestor de inventario y venta de productos",
-  "type": "module",
-  "main": "indexGLA.js",
+
+  "main": "index.js",
   "scripts": {
     "start": "node indexGLA.js",
     "dev": "node --watch indexGla.js",
@@ -12,12 +12,8 @@
   "author": "LuMa, Gladys, Lion",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
     "cors": "^2.8.5",
-    "express": "4.19.2"
-=======
     "express": "4.19.2",
     "jspdf": "^2.5.1"
->>>>>>> 2794df21634a3565847512308452025ea5ae3823
   }
 }

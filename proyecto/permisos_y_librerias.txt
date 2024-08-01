@@ -1,0 +1,34 @@
+--------------------------permisos:---------
+admin
+
+ventas:
+vender
+ movimientos del dia
+ventas por persona
+ventas por producto
+ventas por fecha
+
+stock:(cambiar el nombre por productos de la pestaña stock)
+cargar stock:{ carga por producto, cargar por remito}
+ver stock :{stock, bajo_stock, sin_moviientos}
+modificar producto
+nuevo producto
+ver próximo pedido
+eliminar producto
+
+perfiles:
+nuevo perfil
+editar perfil
+
+
+-------------------librerías:------------
+crear pdf
+conexión whatsApp
+conexión email
+
+----------modificar supplier:
+nombre_vendedor: varchar
+notas: text
+
+ver las paginas de los datos:
+https://www.figma.com/design/FdrW08BbNYJC1YH8usejwI/Ventas-y--Stock?node-id=0-1&t=Jt9XRB6IJ81N4tDY-0
