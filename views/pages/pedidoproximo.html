@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Ventas y Stock - Próximo Pedido</title>
+    <link rel="stylesheet" href="../../public/css/index.css">
+</head>
+<body>
+    <header class="header">
+        <div>
+            <img src="../../public/img/iconos/volver.png" alt="< Volver" title="Volver">
+        </div>
+        <div>
+            <h2>Próximo pedido</h2>
+        </div>
+        <div>
+            <nav></nav>
+            <button class="nav-toggle" aria-label="Abrir Menú"><img src="../../public/img/iconos/menu.png" alt="Menú"></button>
+        </div>
+    </header>   
+    <main class="main">
+        
+        <section class="tabla_encabezados">
+            <h3 class="th">CANT</h3>
+            <h3 class="th">PRODUCTO</h3>
+            <h3 class="th">COSTO</h3>
+            <div class="az-btn"><img src="../../public/img/iconos/AZprimario.png" title="Ordenar Alfabéticamente" alt="Ordenar alfabéticamente"></div>
+        </section>
+        
+        <section class="tabla_detalles">
+
+            <div class="tabla_lineaArticulo">
+                
+                <input class="cant" value="2"></input>
+                <div class="producto">Cuaderno Rivadavia T.dura 48h</div>
+                <div class="precio">1000</div>
+                                
+                <div class="cont-proveedores">
+                    <div class="proveedor">
+                        <img src="../../public/img/iconos/radioVacio.PNG" alt="vacío"><p>Proveedor A</p><span>1000</span>
+                    </div>
+                    <div class="proveedor">
+                        <img src="../../public/img/iconos/radioVacio.PNG" alt="vacío"><p>Proveedor B</p><span>1000</span>
+                    </div>
+                    <div class="proveedor">
+                        <img src="../../public/img/iconos/radioVacio.PNG" alt="vacío"><p>Proveedor C</p><span>1000</span>
+                    </div>
+                    
+                </div>
+
+                <div class="mostrar-mas"><img src="../../public/img/iconos/masgris.png" title="Mostrar lista de proveedores" alt="Ver Proveedores"></div>
+            </div>
+
+            <div class="tabla_lineaArticulo">
+                
+                    <input class="cant" value="10"></input>
+                    <div class="producto">Cuaderno Rivadavia T.dura 24h</div>
+                    <div class="precio">3000</div>
+                
+
+                <div class="mostrar-mas"><img src="../../public/img/iconos/masgris.png" title="Mostrar lista de proveedores" alt="Ver Proveedores"></div>
+            </div>
+
+            <div class="contenedor-btn-flotante agregarManualmente"><img src="../../public/img/iconos/agregaManualmente.png" alt="Agregar Manualmente" class=""><span>Agregar al pedido</span></div>
+
+        </section>
+        <section class="tabla_footer">
+            <h3 class="total">Total:</h3>
+            <h3 class="valorTotal">$4000,-</h3>
+        </section>
+
+    
+    </main>     
+    <footer class="footer-container">
+        <a href="#">Listado por proveedor</a>
+        <section class="button-container">
+            <button class="cancelar"> <img src="../../public/img/iconos/trashViolet.PNG" alt="Tacho de Basura"><span>Eliminar</span></button>
+            <button class="guardar"><img src="../../public/img/iconos/pedidowhite.png" alt="Confirmar Pedido"> <span>Finalizar</span></button>
+        </section>
+        
+    </footer>
+</body>
+</html>

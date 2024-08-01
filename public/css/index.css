@@ -1,0 +1,44 @@
+@import url(footer.css);
+@import url(header.css);
+@import url(main.css);
+@import url(ventas.css);
+@import url(movimientos.css);
+@import url(cardproveedor.css);
+@import url(datoremito.css);
+@import url(formularios.css);
+
+
+
+:root{
+    --color-primario: #6810ad;
+    --color-secundario: #caa5fb80;
+    --color-btn-flotante: #e6d3ff;
+    --color-fondo: #caa5fb;
+    --color-blanco: #ffffff; /*NUEVO*/
+    --color-border-articulo: #dadada; /*NUEVO*/
+    --color-verde: #31c140;
+    --color-verde-claro: #7BF087; /*NUEVO*/
+    --color-rojo: #C00D0D; /*NUEVO*/
+    --color-rojo-claro: #fa9f9f; /*NUEVO*/
+    --color-sombra: #00000040;
+    --color-header-tabla: #efefef;
+    --color-hover: #9747FF;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}    
+
+
+body{
+    background: linear-gradient(var(--color-fondo), var(--color-blanco));
+    width: 100vw;
+    height: 100vh;
+    font-family: Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+
+} 

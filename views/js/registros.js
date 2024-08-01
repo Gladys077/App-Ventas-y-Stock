@@ -106,6 +106,32 @@ export class MostrarVendedor{
     }    
 }/*fin class MostrarVendedor */
 
+export class MostrarRemito{
+    constructor(remito){
+        
+        this.element=this.agregarMostrarRemito();
+    }
+    agregarMostrarRemito = function (remito= "REMITO X")  {
+        const contenedor = document.createElement("section");
+            contenedor.className = "contenedor-datos-remito";
+            
+            const proveedor = document.createElement("p");
+                proveedor.textContent = "Proveedor_"+remito.proveedor;
+            const numero = document.createElement("p");
+                numero.textContent = "Remito N°: " + remito.numero;   
+            const fecha = document.createElement("p");
+                fecha.textContent ="Fecha: " +remito.fecha;     
+
+
+            contenedor.append(proveedor, numero, fecha);
+        return contenedor;    
+    }
+    getElement(){
+        return this.element
+    }    
+
+}/*fin class MostrarRemito. Se usa en la planilla stockCargaxRemito */
+
 export  class TablaEncabezado{
     constructor(col1, col2, col3){
         this.col1=col1;
@@ -364,8 +390,8 @@ export class Ventasporvendedor{
     return lineaArticulo;
 
     }
-    
+
     getElement(){
         return this.element
     }
-}/*fin class ventasporvendedor */
+}/*fin class ventasporvendedor Revisar*/
