@@ -6,10 +6,15 @@
 // app.use(cors());
 // app.use("/appvtasystock",  appRouters);
 
-const express = require('express');
-const path = require('path');
+import express from 'express';
+
+import path from'path';
+
+
 const app = express();
 const port = 3001;
+
+const __dirname = '';
 
 // Middleware para servir archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
@@ -22,3 +27,4 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Servidor escuchando en http://localhost:${port}`);
 });
+
