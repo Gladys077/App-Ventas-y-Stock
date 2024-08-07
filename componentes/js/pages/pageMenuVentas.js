@@ -5,6 +5,8 @@ import { navigateToPage } from "../navigateToPage.js";
 
 export class PageMenuVentas {
     constructor() {
+        document.body.innerHTML = ''; 
+
         this.createHeader();
         this.createMain();
         this.createFooter();
@@ -73,7 +75,7 @@ export function createMenuVentas() {
 
     const buttonsData = [
         { src: '../../../img/iconos/vender1.png', alt: '', text: 'Vender', page: 'BuscadorParaVender' },
-        { src: '../../../img/iconos/Movim-Dia.png', alt: '', text: 'Movimientos del día', page: 'Movimiento' },
+        { src: '../../../img/iconos/Movim-Dia.png', alt: '', text: 'Movimientos del día', page: 'Movimientos' },
         { src: '../../../img/iconos/ventasPorPersona.png', alt: '', text: 'Ventas por vendedor', page: 'VentasPorVendedor' },
         { src: '../../../img/iconos/vta-x-producto.png', alt: '', text: 'Ventas por producto', page: 'BuscadorVentasPorProducto' },
         { src: '../../../img/iconos/VtasPorFecha.png', alt: '', text: 'Ventas por fecha', page: 'VentasPorFecha' }

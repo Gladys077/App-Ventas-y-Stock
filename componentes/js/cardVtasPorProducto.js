@@ -246,7 +246,7 @@ export class CardVtasPorProducto {
 
     mostrarListadoPorFecha() {
         console.log('Mostrar listado por fecha:');
-
+        navigateToPage('ventasPorFecha');
     // Limpiamos cualquier listado anterior
     const listadoPrevio = this.element.querySelector('.listado-por-fecha');
     if (listadoPrevio) {
@@ -280,6 +280,7 @@ export class CardVtasPorProducto {
             { fecha: '02/01/2023', unidades: 15 },
             { fecha: '03/01/2023', unidades: 20 }
         ];
+        
     }
 
 

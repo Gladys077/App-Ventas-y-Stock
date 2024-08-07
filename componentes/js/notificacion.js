@@ -59,7 +59,7 @@ export class Notification {
       style.id = 'notificationStyles';
       style.innerText = `
         .ad {
-          width: 100%;
+          width: calc(100% - 32px);
           position: fixed;
           z-index: 10;
           top: -500px;
@@ -101,6 +101,7 @@ export class Notification {
         }
         .ad-message {
           min-width: 280px;
+          width: calc(100% - 32px);
           min-height: 48px;
           border-radius: 4px;
           font-family: Roboto, sans-serif;

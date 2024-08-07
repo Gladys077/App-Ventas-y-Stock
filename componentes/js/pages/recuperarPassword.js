@@ -3,11 +3,12 @@ import { navigateToPage } from '../navigateToPage.js';
 
 export class RecoverPasswordPage {
     constructor() {
-        if (!document.querySelector('.container-password')) {
+        document.body.innerHTML = ''; 
+
             this.createHeader();
             this.createMain();
         }
-    }
+    
 
     getElement() {
         return this.element;
@@ -20,25 +21,17 @@ export class RecoverPasswordPage {
         document.body.appendChild(this.header.getElement());
     }
 
-    // Simula llamada a la API para obtener usuarios
-    async fetchUsers() {
-        const response = await fetch('/api/users'); // <--Aquí la URL de la API
-        if (!response.ok) {
-            throw new Notification('../../../img/emojis/mueca.png', 'Hubo un error al obtener los usuarios', 'error');
-        }
-        return await response.json();
-    }
-
+    
     // Método para buscar el email y enviar la contraseña
     async sendPassword(email) {
         try {
-            const users = await fetchUsers();
+            const users = await this.fetchUsers();
             const user = users.find(user => user.email === email && user.active);
 
             if (user) {
                 // Lógica para el envío de correo
                 console.log(`Enviando la contraseña a ${email}: ${user.password}`);
-                new Notification('../../../img/emojis/ok.png', `La contraseña ha sido enviada a ${email}`, 'success')
+                new Notification('../../../img/emojis/ok.png', `La contraseña ha sido enviada a ${email}`, 'success');
             } else {
                 new Notification('../../../img/emojis/triste.png', 'No se encontró una cuenta con ese email.', 'error');
             }
@@ -80,10 +73,12 @@ export class RecoverPasswordPage {
         button.addEventListener('click', async (event) => {
             event.preventDefault();
             const email = input.value;
-            if (this.isValidEmail(email)) {
-                await this.sendPassword(email);
+            if (email.trim() === '') {
+                new Notification('../../../img/emojis/pare.png', 'Debes ingresar tu email.', 'error');
+            } else if (!this.isValidEmail(email)) {
+                new Notification('../../../img/emojis/señalar.png', 'Por favor, ingresa un email válido.', 'error');
             } else {
-                new Notification('../../../img/emojis/ok.png', `Por favor, ingresa un email válido.`, 'error');
+                await this.sendPassword(email);
             }
         });
 
@@ -96,5 +91,5 @@ export class RecoverPasswordPage {
         document.body.appendChild(main);
     }
 }    
-    
+
 new RecoverPasswordPage();

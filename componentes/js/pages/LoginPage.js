@@ -2,7 +2,6 @@ import { Notification } from "../notificacion.js";
 import { navigateToPage } from '../navigateToPage.js';
 
 export function createLoginPage() {
-    console.log('Creando página de Login');
 
     document.body.innerHTML = '';
 

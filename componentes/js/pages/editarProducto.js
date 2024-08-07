@@ -6,6 +6,8 @@ import { Producto } from '../producto.js';
 
 export class EditProductPage {
     constructor(productId) {
+        document.body.innerHTML = ''; 
+
         this.productId = productId;
         this.createHeader();
         this.createMain();

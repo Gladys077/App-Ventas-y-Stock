@@ -3,17 +3,18 @@ import { navigateToPage } from '../navigateToPage.js';
 
 export class ConfigurationPage {
     constructor() {
-        if(!document.querySelector('.list-item')){
+        document.body.innerHTML = ''; 
+
         this.createHeader();
         this.createMain();
-    }}
+    }
 
     getElement() {
         return this.element;
     }
 
     createHeader() {
-        this.header = new Header('Configuración', iconoVolver, null, ()=> navigateToPage('menuVentas'));
+        this.header = new Header('Configuración', iconoVolver, null, ()=> navigateToPage('MenuVentas'));
         document.body.appendChild(this.header.getElement());
     }
 
@@ -26,9 +27,9 @@ export class ConfigurationPage {
         main.appendChild(configList); 
 
         const items = [
-            { icon: '../../../img/iconos/candado.png', text: 'Cambio de contraseña' },
-            { icon: '../../../img/iconos/tutorial.png', text: 'Tutorial' },
-            { icon: '../../../img/iconos/tema.png', text: 'Modo claro-oscuro' }
+            { icon: '../../../img/iconos/candado.png', text: 'Cambio de contraseña', page: 'cambioDePassword' },
+            { icon: '../../../img/iconos/tutorial.png', text: 'Tutorial', page: 'tutorial' },
+            { icon: '../../../img/iconos/tema.png', text: 'Modo claro-oscuro', action: this.toggleTheme.bind(this) }
         ];
     
         items.forEach(item => {  
@@ -50,7 +51,20 @@ export class ConfigurationPage {
             listItem.appendChild(text);
             configList.appendChild(listItem);
             main.appendChild(configList);
+            
+            if (item.page) {
+                listItem.addEventListener('click', () => {
+                    navigateToPage(item.page);
+                });
+            } else if (item.action) {
+                listItem.addEventListener('click', item.action);
+            }
         });
-}    }
-    
-new ConfigurationPage;
+    } 
+
+    toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+    }
+}
+
+new ConfigurationPage();

@@ -3,10 +3,13 @@ import { CardVtasPorProducto } from '../cardVtasPorProducto.js';
 import { Footer } from '../footer.js';
 import { FabButton } from '../utils.js';
 import { iconoDescargar } from '../iconosSVG.js';
+import { navigateToPage } from '../navigateToPage.js';
 import { Notification } from '../notificacion.js';
 
 export class VentasPorFechaPage {
     constructor() {
+        document.body.innerHTML = ''; 
+
         this.ventasPorFecha = null;
         this.createHeader();
         this.createMain();
@@ -18,7 +21,7 @@ export class VentasPorFechaPage {
     }
 
     createMain() {
-        const selectedProductName = 'Nombre_del_producto'; // Aquí debo obtener el nombre del producto seleccionado
+        const selectedProductName = 'Nombre_del_producto'; 
         this.ventasPorFecha = new CardVtasPorProducto('', 'Buscar', () => this.onClick, true, 'Importe facturado');
         document.body.appendChild(this.ventasPorFecha.armarCardVtasPorProducto());
     }

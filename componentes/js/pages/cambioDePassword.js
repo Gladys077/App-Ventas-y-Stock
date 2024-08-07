@@ -1,7 +1,10 @@
 import { Header, iconoVolver } from '../header.js';
+import { navigateToPage } from '../navigateToPage.js';
 
 export class ChangePassword {
     constructor() {
+        document.body.innerHTML = ''; 
+
         this.createHeader();
         this.createMain();
     }
@@ -11,7 +14,7 @@ export class ChangePassword {
     }
 
     createHeader() {
-        this.header = new Header('Cambio de contraseña', iconoVolver);
+        this.header = new Header('Cambio de contraseña', iconoVolver, null, ()=>navigateToPage('MenuVentas'));
         document.body.appendChild(this.header.getElement());
     }
 

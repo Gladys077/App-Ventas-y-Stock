@@ -5,6 +5,8 @@ import { navigateToPage } from "../navigateToPage.js";
 
 export class MenuPerfiles {
     constructor() {
+        document.body.innerHTML = ''; 
+
         this.createHeader();
         this.createMain();
         this.createFooter();

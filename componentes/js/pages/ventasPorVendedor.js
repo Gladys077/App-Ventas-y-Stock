@@ -10,7 +10,8 @@ import { navigateToPage } from '../navigateToPage.js';
 
 export class VentasPorVendedorPage {
     constructor() {
-        if (!document.querySelector('.card')){
+        document.body.innerHTML = ''; 
+
         this.createHeader();
         this.createMain();
         this.createFooter();
@@ -22,7 +23,7 @@ export class VentasPorVendedorPage {
         
         //para probar función de descarga:
         this.salesData = [];
-    }}
+    }
 
     createHeader() {
         this.header = new Header('Ventas por vendedor', iconoVolver, null, function() { navigateToPage('MenuVentas')});

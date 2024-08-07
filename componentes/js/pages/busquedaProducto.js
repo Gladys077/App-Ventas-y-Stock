@@ -9,17 +9,17 @@ import { Producto } from '../producto.js';
 
 export class ProductSearchPage {
     constructor() {
-        if (!document.querySelector('.search-results')) {
+        document.body.innerHTML = ''; 
         this.selectedProducts = [];
         this.createHeader();
         this.createMain();
         this.createFooter();
-        }
+        
     }
 
-    getElement() {
-        return this.element;
-    }
+    // getElement() {
+    //     return this.element;
+    // }
 
     createHeader() {
         this.header = new Header('Vender', iconoVolver, null, function() { navigateToPage('MenuVentas')});
@@ -44,9 +44,9 @@ export class ProductSearchPage {
         this.footer = new Footer();
         document.body.appendChild(this.footer.getElement());
 
-        // Fab extended (ver pedido)
+        // Fab extended (ver venta actual)
         const iconSVG = iconoVerPedido; 
-        const extendedFabButton = new ExtendedFabButton(iconSVG, 'Ver Pedido', () => navigateToPage('PedidoActual'));
+        const extendedFabButton = new ExtendedFabButton(iconSVG, 'Ver venta actual', () => navigateToPage('ventaActual'));
     
         const footerElement = document.querySelector('footer');
         footerElement.appendChild(extendedFabButton.getElement());
@@ -63,36 +63,19 @@ export class ProductSearchPage {
         new ModalInput(`Cantidad:`,
             (cantidad) => {    
                 const selectedProduct = {
+                    id: producto.id,
                     nombre: producto.nombre,
                     precio: producto.precioVenta,
                     cantidad: parseInt(cantidad, 10)
                 };
-                // Añadir la venta con fecha y cantidad
-                const currentDate = new Date().toISOString(); // Fecha en formato ISO
-                const venta = {
-                    fecha: currentDate,
-                    cantidad: parseInt(cantidad, 10)
-                };
-                if (!producto.ventas) {
-                    producto.ventas = [];
-                }
-                producto.ventas.push(venta);
+                
 
-                // Guardando el producto actualizado en el almacenamiento local
-                const productos = JSON.parse(localStorage.getItem('productos')) || [];
-                const productoIndex = productos.findIndex(p => p.id === producto.id);
-
-                if (productoIndex > -1) {
-                    const productoActualizado = Producto.fromJSON(productos[productoIndex]);
-                    productoActualizado.stock -= parseInt(cantidad, 10); // Actualiza el stock
-                    productos[productoIndex] = productoActualizado.toJSON(); // Convierto de nuevo a JSON
-                }
-
-                localStorage.setItem('productos', JSON.stringify(productos));
-
+                // Guardar el producto seleccionado en la lista de ventas actuales
                 this.selectedProducts.push(selectedProduct);
                 localStorage.setItem('selectedProducts', JSON.stringify(this.selectedProducts));
-            },'1');
+
+                new Notification('../img/emojis/ok.png', 'Producto añadido al carrito', 'success');
+            }, '1');
     }
 
     updateProductList(searchWord) {
@@ -111,3 +94,33 @@ export class ProductSearchPage {
 document.addEventListener('DOMContentLoaded', () => {
     new ProductSearchPage();
 });
+
+
+
+/* Esta parte la dejo para agregar a la pág. Venta actual porque actualizará el stock
+// Añadir la venta con fecha y cantidad
+const currentDate = new Date().toISOString(); // Fecha en formato ISO
+const venta = {
+    fecha: currentDate,
+    cantidad: parseInt(cantidad, 10)
+};
+if (!producto.ventas) {
+    producto.ventas = [];
+}
+producto.ventas.push(venta);
+
+// Guardando el producto actualizado en el almacenamiento local
+const productos = JSON.parse(localStorage.getItem('productos')) || [];
+const productoIndex = productos.findIndex(p => p.id === producto.id);
+
+if (productoIndex > -1) {
+    // Actualizar stock y guardar producto
+    productos[productoIndex] = { ...productos[productoIndex], ventas: producto.ventas, stock: productos[productoIndex].stock - venta.cantidad };
+} else {
+    producto.stock -= venta.cantidad; // Disminuir stock
+    productos.push(producto);
+}
+
+localStorage.setItem('productos', JSON.stringify(productos));
+
+*/

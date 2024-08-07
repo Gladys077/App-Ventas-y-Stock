@@ -1,4 +1,4 @@
-export default class Footer {
+export class Footer {
     constructor() {
         this.element = this.createFooter();
     }

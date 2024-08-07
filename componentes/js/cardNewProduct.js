@@ -95,15 +95,12 @@ export class CardNewProduct {
         select.addEventListener('change', (e)=> {
             this._producto.proveedor = e.target.value;
 
-            // select.querySelectorAll('option').forEach(option => {
-            //     option.classList.remove('selected-option');
-            // });
             const selectedOption = select.options[select.selectedIndex];
             selectedOption.classList.add('selected-option');
 
             // Redirige a otra página si el proveedor es "Nuevo proveedor"
             if (selectedOption.textContent === 'Nuevo proveedor') {
-                window.location.href = '/ruta-a-la-pagina-de-nuevo-proveedor';
+                window.location.href = '../../views/pages/nuevoproveedor.js';
             }
         });
 
@@ -118,7 +115,7 @@ export class CardNewProduct {
         const costoGroup = this.createInputGroup('costo', 'Costo');
         const porcentajeGroup = this.createInputGroup('porcentaje', '%');
 
-        // Calcular el precio de venta
+        // Calcula el precio de venta
         const costoInput = costoGroup.querySelector('input');
         const porcentajeInput = porcentajeGroup.querySelector('input');
 
@@ -184,7 +181,7 @@ export class CardNewProduct {
     }
 
     mostrarPrecioVenta() {
-        const precioVenta = this._producto.calcularPrecioVenta();
+        const precioVenta = this._producto.costo * (1 + this._producto.porcentaje / 100);
         this.precioVentaDisplay.textContent = `$${precioVenta.toFixed(2)}`;
     }
 
@@ -203,7 +200,7 @@ export class CardNewProduct {
         input.placeholder = 'Cantidad';
 
         input.addEventListener('input', (e) => {
-            this._producto.stockMinimo = parseInt(e.target.value, 10) || 0; //CHAT¿para qué es el 10?
+            this._producto.stockMinimo = parseInt(e.target.value, 10) || 0; //10 es la base decimal para la función parseInt
         });
 
         stockCheck.appendChild(input);
@@ -219,16 +216,6 @@ export class CardNewProduct {
         return btnsContainer.getButtonContainer();
     }
 
-    // cargarCss() {
-    //     const nuevo_producto_form = document.querySelector('.nuevo-producto-form') ?? null;
-    //     if(nuevo_producto_form == null){
-    //         const link = document.createElement('link');
-    //         link.rel = 'stylesheet';
-    //         link.href = './css/cardNewProd.css';
-    //         document.head.appendChild(link);
-    //     }
-    // }
-
     resetForm() {
         document.querySelector('.productInput').value = '';
         document.querySelector('.proveedorSelect').selectedIndex = 0;
@@ -236,7 +223,7 @@ export class CardNewProduct {
         document.getElementById('porcentaje').value = '';
         this.precioVentaDisplay.textContent = '$ 0';
         document.querySelector('.stock-check input').value = '';
-        this._producto = new Producto('', '', 0, 0, 0); // Resetea el producto CHAT¿para qué resetearía el producto?
+        this._producto = new Producto('', '', 0, 0, 0); // Debería resetear el producto? 
 
     }
 
@@ -248,7 +235,7 @@ export class CardNewProduct {
         producto.costo <= 0 ||
         producto.porcentaje < 0) {
             
-            new Notification('../../img/emojis/pare.png', '¡Espera! Falta completar datos.', 'error');
+            new Notification('../../img/emojis/pare.png', '¡Espera! Te falta completar algún dato.', 'error');
             return false;
         }
     

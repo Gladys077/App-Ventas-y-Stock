@@ -5,14 +5,10 @@ import { Notification } from '../notificacion.js';
 
 export class SearchForToSell {
     constructor(useFullHeight = true) {
+            document.body.innerHTML = ''; 
+
             this.selectedProduct = [];
             this.useFullHeight = useFullHeight;
-            this.createHeader();
-            this.render();
-        }
-    
-        render() {
-            document.body.innerHTML = ''; // Limpio el contenido existente
             this.createHeader();
             this.createMain();
         }

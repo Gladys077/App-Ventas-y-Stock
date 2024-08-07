@@ -2,11 +2,11 @@
 export class Proveedor {
     constructor(id, empresaProveedora, nombreVendedor, telefonoCelular, email, notas) {
         this._id = id;
-        this._empresaProveedora = empresaProveedora;
-        this._nombreVendedor = nombreVendedor;
-        this._telefonoCelular = telefonoCelular;
-        this._email = email;
-        this._notas = notas;
+        this.empresaProveedora = empresaProveedora;
+        this.nombreVendedor = nombreVendedor;
+        this.telefonoCelular = telefonoCelular;
+        this.email = email;
+        this.notas = notas;
     }
 
     get id() { 
@@ -17,6 +17,9 @@ export class Proveedor {
         return this._empresaProveedora; 
     }
     set empresaProveedora(value) { 
+        if (!value || typeof value !== 'string') {
+            throw new Notification('../../img/emojis/pare.png', 'El campo no puede quedar vacío', 'error');
+        }
         this._empresaProveedora = value; 
     }
 
@@ -24,6 +27,9 @@ export class Proveedor {
         return this._nombreVendedor; 
     }
     set nombreVendedor(value) { 
+        if (!value || typeof value !== 'string') {
+            throw new Notification('../../img/emojis/pare.png', 'El campo no puede quedar vacío', 'error');
+        }
         this._nombreVendedor = value; 
     }
 
@@ -31,6 +37,10 @@ export class Proveedor {
         return this._telefonoCelular; 
     }
     set telefonoCelular(value) { 
+        const telefonoRegex = /^\d{10,}$/; //para que tenga 10 o más dígitos
+        if (!telefonoRegex.test(value)) {
+            throw new Notification('../../img/emojis/pare.png', 'Te faltan dígitos', 'error');
+        }
         this._telefonoCelular = value; 
     }
 
@@ -38,6 +48,10 @@ export class Proveedor {
         return this._email; 
     }
     set email(value) { 
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value)) {
+            throw new Notification('../../img/emojis/pare.png', 'El mail no es válido', 'error');
+        }
         this._email = value; 
     }
 
@@ -47,142 +61,28 @@ export class Proveedor {
     set notas(value) { 
         this._notas = value; 
     }
-}
 
-let proveedores = [];
-let nextId = 1;
-
-export function crearFormularioProveedor() {
-    const main = document.querySelector('main');
-    main.innerHTML = '';
-
-    const container = document.createElement('div');
-    container.className = 'container-form-proveedor';
-
-    const h1 = document.createElement('h1');
-    h1.textContent = 'Nuevo proveedor';
-    container.appendChild(h1);
-
-    const form = document.createElement('form');
-    form.className = 'form-proveedor';
-    form.id = 'proveedorForm';
-
-    const campos = [
-        { id: 'empresaProveedora', placeholder: 'Empresa Proveedora', type: 'text' },
-        { id: 'nombreVendedor', placeholder: 'Nombre del Vendedor/a', type: 'text' },
-        { id: 'telefonoCelular', placeholder: 'Teléfono / Celular', type: 'tel' },
-        { id: 'email', placeholder: 'Email', type: 'email' },
-    ];
-
-    campos.forEach(campo => {
-        const input = document.createElement('input');
-        input.className = 'input-proveedor';
-        input.id = campo.id;
-        input.placeholder = campo.placeholder;
-        input.type = campo.type;
-        input.required = true;
-        form.appendChild(input);
-    });
-
-    const notas = document.createElement('textarea');
-    notas.className = 'notas-proveedor';
-    notas.id = 'notas';
-    notas.placeholder = 'Notas';
-    form.appendChild(notas);
-
-    const buttonGroup = document.createElement('div');
-    buttonGroup.className = 'button-group-proveedor';
-
-    const cancelarBtn = document.createElement('button');
-    cancelarBtn.id = 'cancelar';
-    cancelarBtn.textContent = 'Cancelar';
-    cancelarBtn.type = 'button';
-
-    const guardarBtn = document.createElement('button');
-    guardarBtn.id = 'guardar';
-    guardarBtn.textContent = 'Guardar';
-    guardarBtn.type = 'submit';
-
-    buttonGroup.appendChild(cancelarBtn);
-    buttonGroup.appendChild(guardarBtn);
-    form.appendChild(buttonGroup);
-
-    container.appendChild(form);
-    main.appendChild(container);
-
-    form.addEventListener('submit', handleSubmit);
-    cancelarBtn.addEventListener('click', handleCancel);
-}
-
-export function handleSubmit(e) {
-    e.preventDefault();
-
-    const empresaProveedora = document.getElementById('empresaProveedora').value;
-    const nombreVendedor = document.getElementById('nombreVendedor').value;
-    const telefonoCelular = document.getElementById('telefonoCelular').value;
-    const email = document.getElementById('email').value;
-    const notas = document.getElementById('notas').value;
-
-    //La propiedad dataset permite acceder a los atributos data-* de un elemento HTML
-    const proveedorId = e.target.dataset.editingId ? parseInt(e.target.dataset.editingId) : nextId++;
-
-    const proveedor = new Proveedor(proveedorId, empresaProveedora, nombreVendedor, telefonoCelular, email, notas);
-
-    const index = proveedores.findIndex(p => p.id === proveedorId);
-    if (index !== -1) {
-        proveedores[index] = proveedor;
-        console.log('Proveedor actualizado:', proveedor);
-    } else {
-        proveedores.push(proveedor);
-        console.log('Nuevo proveedor agregado:', proveedor);
+    // Convierto el objeto a JSON para almacenamiento
+    toJSON() {
+        return {
+            id: this._id,
+            empresaProveedora: this._empresaProveedora,
+            nombreVendedor: this._nombreVendedor,
+            telefonoCelular: this._telefonoCelular,
+            email: this._email,
+            notas: this._notas
+        };
     }
 
-    e.target.reset();
-    delete e.target.dataset.editingId;
-
-    mostrarProveedores();
-}
-
-export function handleCancel() {
-    console.log('Operación cancelada');
-    document.getElementById('proveedorForm').reset();
-    delete document.getElementById('proveedorForm').dataset.editingId;
-}
-
-export function editarProveedor(id) {
-    const proveedor = proveedores.find(p => p.id === id);
-    if (proveedor) {
-        if (!document.getElementById('proveedorForm')) {
-            crearFormularioProveedor();
-        }
-
-        document.getElementById('empresaProveedora').value = proveedor.empresaProveedora;
-        document.getElementById('nombreVendedor').value = proveedor.nombreVendedor;
-        document.getElementById('telefonoCelular').value = proveedor.telefonoCelular;
-        document.getElementById('email').value = proveedor.email;
-        document.getElementById('notas').value = proveedor.notas;
-
-        document.getElementById('proveedorForm').dataset.editingId = proveedor.id;
+    // Método para crear una instancia de Proveedor desde un objeto JSON
+    static fromJSON(json) {
+        return new Proveedor(
+            json.id,
+            json.empresaProveedora,
+            json.nombreVendedor,
+            json.telefonoCelular,
+            json.email,
+            json.notas
+        );
     }
-}
-
-export function mostrarProveedores() {
-    console.log('Lista de proveedores:', proveedores);
-    const main = document.querySelector('main');
-    const listaContainer = document.createElement('div');
-    listaContainer.innerHTML = '<h2>Lista de Proveedores</h2>';
-
-    const lista = document.createElement('ul');
-    proveedores.forEach(proveedor => {
-        const item = document.createElement('li');
-        item.textContent = `${proveedor.empresaProveedora} - ${proveedor.nombreVendedor}`;
-        const editarBtn = document.createElement('button');
-        editarBtn.textContent = 'Editar';
-        editarBtn.onclick = () => editarProveedor(proveedor.id);
-        item.appendChild(editarBtn);
-        lista.appendChild(item);
-    });
-
-    listaContainer.appendChild(lista);
-    main.appendChild(listaContainer);
 }

@@ -11,54 +11,54 @@ export class Producto {
         this._ventas = ventas;
     }
 
-    get nombre(){
+    get nombre() {
         return this._nombre;
     }
-    set nombre(value){
+    set nombre(value) {
         this._nombre = value;
     }
 
-    get codigoBarras(){
+    get codigoBarras() {
         return this._codigoBarras;
     }
-    set codigoBarras(value){
+    set codigoBarras(value) {
         this._codigoBarras = value;
     }
 
-    get descripcion(){
+    get descripcion() {
         return this._descripcion;
     }
-    set descripcion(value){
+    set descripcion(value) {
         this._descripcion = value;
     }
 
-    get precioVenta(){
+    get precioVenta() {
         return this._precioVenta;
     }
-    set precioVenta(value){
-        if (value < 0) throw new Notification('../../../img/emojis/pare.png', 'El precio de venta no puede ser negativo.', 'error');
+    set precioVenta(value) {
+        if (value < 0) throw new Notification('../../img/emojis/pare.png', 'El precio de venta no puede ser negativo.', 'error');
         this._precioVenta = value;
     }
 
-    get stockMinimo(){
+    get stockMinimo() {
         return this._stockMinimo;
     }
-    set stockMinimo(value){
-        if (value < 0) throw new Notification('../../../img/emojis/pare.png', 'El stock mínimo no puede ser negativo.', 'error');
+    set stockMinimo(value) {
+        if (value < 0) throw new Notification('../../img/emojis/asombro.png', 'El stock mínimo no puede ser negativo.', 'error');
         this._stockMinimo = value;
     }
 
-    get stock(){
+    get stock() {
         return this._stock;
     }
-    set stock(value){
+    set stock(value) {
         this._stock = value;
     }
 
-    get activo(){
+    get activo() {
         return this._activo;
     }
-    set activo(value){
+    set activo(value) {
         this._activo = value;
     }
 
@@ -67,6 +67,11 @@ export class Producto {
     }
     set ventas(value) {
         this._ventas = value;
+    }
+
+    agregarVenta(cantidad, fecha) {
+        this._ventas.push({ cantidad, fecha });
+        this._stock -= cantidad;
     }
 
     // Convierto el objeto a JSON para almacenamiento
@@ -99,5 +104,3 @@ export class Producto {
         );
     }
 }
-
-
