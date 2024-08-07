@@ -56,8 +56,8 @@ export function navigateToPage(page) {
             break;
 
         case 'BuscadorVentasPorProducto':
-            import('../js/pages/SearchForToSell.js').then(module => {
-                new module.SearchForToSell();
+            import('./pages/ventasPorProductoBuscador.js').then(module => {
+                new module.VentasPorProductoBuscador();
             })
         case 'VentasPorProducto':
             import('./pages/ventasPorProducto.js').then(module => {

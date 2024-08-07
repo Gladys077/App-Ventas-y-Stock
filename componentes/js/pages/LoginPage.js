@@ -40,7 +40,11 @@ export function createLoginPage() {
         const passwordValue = passwordInput.value.trim();
 
         // Valido si el usuario está en el array userNameList
-        if (!userNameList.includes(userNameValue)) {
+        if (userNameValue === '') {
+            new Notification('../../../img/emojis/pensando.png', '¿Olvidaste completar algún dato?', 'error');
+            return;
+        }
+        else if (!userNameList.includes(userNameValue)) {
             new Notification('../../img/emojis/pare.png', 'No tienes acceso. Contacta al dueño para ser agregado como nuevo vendedor.', 'error');
             return;
         }
@@ -58,9 +62,6 @@ export function createLoginPage() {
     forgotPassword.innerHTML = 'Olvidé mi contraseña';
     forgotPassword.className = 'forgot-password';
     forgotPassword.addEventListener('click', ()=>  navigateToPage('RecoverPassword'));
-
-    
-    
 
     loginContainer.appendChild(titulo);
     loginContainer.appendChild(userName);

@@ -3,7 +3,7 @@ import { createSearchContainer, RadioProductList } from '../utils.js';
 import { navigateToPage } from '../navigateToPage.js';
 import { Notification } from '../notificacion.js';
 
-export class SearchForToSell {
+export class VentasPorProductoBuscador {
     constructor(useFullHeight = true) {
             document.body.innerHTML = ''; 
 
@@ -62,5 +62,5 @@ export class SearchForToSell {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new SearchForToSell(true);
+    new VentasPorProductoBuscador(true);
 });
