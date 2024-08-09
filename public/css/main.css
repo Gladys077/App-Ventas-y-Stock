@@ -154,6 +154,8 @@ main{
                     height: 39px;
                     border: 0;
                     text-align: end;
+                    padding-right: 4px;
+                    border: 1px solid var(--color-border-articulo);
             
                 }
                 .cont-proveedores{
@@ -170,7 +172,7 @@ main{
                     font-size: 13px;
                     font-weight: 400;
                     line-height: 13px;
-                    .proveedor{
+                    .proveedor_opcion{
                         width: 100%;
                         display:flex;
                         flex-direction: row;
@@ -178,18 +180,29 @@ main{
                         justify-content: center;
                         gap: 20px;
                         padding-bottom: 20px;
-                        img{
+                        input{
+                            appearance: none;
+                            border-radius: 50%;
                             width: 16px;
                             height: 16px;
+                            border: 2px solid var(--color-hover);
+                            transition: 0.2s all linear;
+                            &:checked{
+                                background-color: var(--color-primario);
+                                
+                            }
                         }
 
 
                     }
                     
+                }/*fin cont-provedores. se usa en pedido proximo*/
+                
+                ._oculto{
+                    display: none;
                 }
-        
 
-            .mostrar-mas{
+            .mostrar-mas, .mostrar-menos{
                 position: absolute;
                 left: 50%;
                 width: 24px;
@@ -255,7 +268,7 @@ main{
 
     .adicionarArticulo{
         background: var(--color-verde);
-    }/*fin adicionarArticulo. Se usa en pedidoactual*/
+    }/*fin adicionarArticulo. Se usa en ventaactual*/
 
     .agregarManualmente{
         background-color: var(--color-verde-claro);

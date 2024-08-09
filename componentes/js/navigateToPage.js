@@ -64,13 +64,22 @@ export function navigateToPage(page) {
                 new module.VentasPorProductoPage();
             });
             break;
-
+        case 'ListadoPorFecha': //Lu
+            import('../../public/pages/ventasporfecha.js').then(module => {
+               new module.PlanillaVtasxFecha();
+            });
+            break;
             
         case 'VentasPorFecha':
             import('../js/pages/ventasPorFechaPage.js').then(module => {
                 new module.VentasPorFechaPage();
             });
             break;
+
+
+
+
+
 
         case 'MenuStock':
             import('./pages/menuDeStok.js').then(module => {
@@ -95,6 +104,15 @@ export function navigateToPage(page) {
                 new module.NewProductPage();
             });
             break;
+
+        case 'EditarProducto':
+            import('./pages/editarProducto.js').then(module => {
+                new module.EditProductPage();
+            });
+            break;
+
+        
+
 
         case 'MenuPerfiles':
             import('../js/pages/menuPerfiles.js').then(module => {

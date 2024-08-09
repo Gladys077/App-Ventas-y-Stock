@@ -1,12 +1,10 @@
-import { Header, iconoAjustes, iconoVolver } from "../header.js";
-import { createMenuPrincipal } from "../utils.js";
-import { Footer } from "../footer.js";
-import { navigateToPage } from "../navigateToPage.js";
+import { Header, iconoAjustes, iconoVolver } from "../js/header.js";
+import { createMenuPrincipal } from "../js/utils.js";
+import { Footer } from "../js/footer.js";
+import { navigateToPage } from "../js/routers/navigateToPage.js";
 
 export class MenuStockPage {
     constructor() {
-        document.body.innerHTML = ''; 
-
         this.createHeader();
         this.createMain();
         this.createFooter();
@@ -29,7 +27,7 @@ export class MenuStockPage {
         menu.className = 'menu';
 
         menu.appendChild(createMenuPrincipal());
-        menu.appendChild(createMenuStock());
+        menu.appendChild(createMenuVentas());
 
         main.appendChild(menu);
         document.body.appendChild(main);
@@ -52,10 +50,9 @@ export class MenuStockPage {
         logoutText.className = 'logout-text';
         logoutContainer.appendChild(logoutText);
 
-        // footerElement.appendChild(logoutContainer);
-        document.body.appendChild(footerElement);
-        document.body.appendChild(logoutContainer);
+        footerElement.appendChild(logoutContainer);
 
+        document.body.appendChild(footerElement);
     }
 
     setActiveTab(tabName) {
@@ -70,12 +67,12 @@ export class MenuStockPage {
     }
 }
 
-export function createMenuStock() {
-    const menuStock = document.createElement('div');
-    menuStock.classList.add('botonera-container');
+export function createMenuVentas() {
+    const menuVentas = document.createElement('div');
+    menuVentas.classList.add('botonera-container');
 
     const buttonsData = [
-        { src: '../../../img/iconos/cargarStock.png', alt: '', text: 'Cargar Stock', page: 'CargaStock' },
+        { src: '../../../img/iconos/cargarStock.png', alt: '', text: 'Cargar Stock', page: 'CargarStock' },
         { src: '../../../img/iconos/stock.png', alt: '', text: 'Ver Stock', page: 'VerStock' },
         { src: '../../../img/iconos/editarProducto.png', alt: '', text: 'Editar Producto', page: 'EditarProducto' },
         { src: '../../../img/iconos/agregarProducto.png', alt: '', text: 'Nuevo Producto', page: 'NuevoProducto' },
@@ -99,12 +96,12 @@ export function createMenuStock() {
         button.appendChild(h3);
         button.addEventListener('click', () => navigateToPage(data.page));
 
-        menuStock.appendChild(button);
+        menuVentas.appendChild(button);
     });
 
-    return menuStock;
+    return menuVentas;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new MenuStockPage();
+    new PageMenuVentas();
 });

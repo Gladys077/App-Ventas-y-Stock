@@ -36,8 +36,26 @@ async function nuevoproveedor(nombre, lista=[], vendedor, cel, email,notas){
 }
 
 
+async function listaarticulos(){
+    try {
+        const conexion = await fetch("http://localhost:3000/productos",{
+            method:"GET",
+            headers:{
+                "Content-type":"application/json",
+            }
+        })
+
+        const respuesta = await conexion.json();
+        return respuesta;
+        
+    } catch (error) {
+        console.error(error)
+        
+    }
+}
+
 
 
 export const conexionAPI={
-    listaproveedores, nuevoproveedor
+    listaproveedores, nuevoproveedor, listaarticulos
 }

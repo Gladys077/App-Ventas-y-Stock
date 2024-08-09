@@ -1,5 +1,6 @@
 import { isValidDate, formatDateInput } from './utils.js';
 import { Notification } from './notificacion.js';
+import { navigateToPage } from './navigateToPage.js';
 
 export class CardVtasPorVendedor {
   
@@ -100,7 +101,7 @@ export class CardVtasPorVendedor {
       verListado.className = 'card-link';
       verListado.href = "#";
       verListado.addEventListener('click', () => {
-          navigateToPage('');
+          navigateToPage('VentasPorVendedorListado');
       });
       
       // Añade todos los elementos al contenedor principal de la card

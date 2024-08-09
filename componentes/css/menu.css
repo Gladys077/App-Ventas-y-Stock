@@ -136,3 +136,22 @@ footer button {
     font-size: 16px; 
     cursor: pointer;
 }
+
+.logout-container {
+    border: none;
+    background-color: transparent; 
+
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 20px; 
+}
+
+.logout-container img {
+    width: 24px;
+    height: 24px;
+}
+
+.logout-text {
+    font-size: 16px;
+}

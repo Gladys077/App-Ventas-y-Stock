@@ -3,12 +3,14 @@ import { isValidDate, formatDateInput } from './utils.js';
 
 
 export class CardVtasPorProducto {
-    constructor(title, textBtn, onClick, includeUnidadesVendidas = true, cuadroInferiorTitulo = "Unidades vendidas") {
+    constructor(title, textBtn, onClick, includeUnidadesVendidas = true, cuadroInferiorTitulo = "Unidades vendidas", linkText = "Listado por fecha", linkHref = "#") {
         this._title = title;
         this._textBtn = textBtn;
         this._onClick = onClick;
         this._includeUnidadesVendidas = includeUnidadesVendidas;
         this._cuadroInferiorTitulo = cuadroInferiorTitulo;
+        this._linkText = linkText;
+        this._linkHref = linkHref;
         this._isBuscarMode = true; // Para rastrear el modo del botón
         this._fechaDesde = null;
         this._fechaHasta = null;
@@ -52,6 +54,19 @@ export class CardVtasPorProducto {
     set fechaHasta(value) {
         this._fechaHasta = value;
     }
+    get linkText() {
+        return this._linkText;
+    }
+    set linkText(value) {
+        this._linkText = value;
+    }
+    get linkHref() {
+        return this._linkHref;
+    }
+    set linkHref(value) {
+        this._linkHref = value;
+    }
+
 
     armarCardVtasPorProducto() {
         this.element = document.createElement('div');
@@ -70,10 +85,11 @@ export class CardVtasPorProducto {
         this.button.addEventListener('click', () => this.handleClick());
 
         const verListado = document.createElement('a');
-        verListado.textContent = "Listado por fecha";
-        verListado.href = "#";
+        verListado.textContent = this._linkText;
+        verListado.href = this._linkHref;
         verListado.className = 'card-link';
-        verListado.addEventListener('click', () => {
+        verListado.addEventListener('click', (e) => {
+            e.preventDefault(); // Previene la navegación por defecto
             this.mostrarListadoPorFecha();
         });
 
@@ -236,7 +252,7 @@ export class CardVtasPorProducto {
     
         console.log('Total de unidades vendidas:', totalUnidadesVendidas);
     
-        // Actualizar el contenido del cuadro inferior
+        // Actualizo el contenido del cuadro inferior
         const boxCuadroInferior = this.element.querySelector('.boxCuadroInferior');
         if (boxCuadroInferior) {
             boxCuadroInferior.textContent = totalUnidadesVendidas;
@@ -247,7 +263,7 @@ export class CardVtasPorProducto {
     mostrarListadoPorFecha() {
         console.log('Mostrar listado por fecha:');
         navigateToPage('ventasPorFecha');
-    // Limpiamos cualquier listado anterior
+    // Limpio cualquier listado anterior
     const listadoPrevio = this.element.querySelector('.listado-por-fecha');
     if (listadoPrevio) {
         listadoPrevio.remove();

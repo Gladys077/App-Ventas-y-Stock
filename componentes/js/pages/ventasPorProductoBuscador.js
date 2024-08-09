@@ -18,7 +18,7 @@ export class VentasPorProductoBuscador {
     }
 
     createHeader() {
-        this.header = new Header('Ventas por Producto', iconoVolver, null, ()=> { navigateToPage('MenuVentas')});
+        this.header = new Header('Ventas por Producto', iconoVolver, null, ()=> { navigateToPage('MenuVentas')}, ()=> { navigateToPage('')});
         document.body.appendChild(this.header.getElement());
     }
 

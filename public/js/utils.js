@@ -1,4 +1,4 @@
-import { navigateToPage } from "./navigateToPage.js";
+import { navigateToPage } from "./routers/navigateToPage.js";
 import { Notification } from "./notificacion.js";
 
 // ---------- Valida fecha ---------- 
@@ -104,6 +104,7 @@ export class ExtendedFabButton {
     }
     
 }
+
 
 // ------------- Búsqueda de productos (pageProductSearch.js) -----------------
 export function createSearchContainer(onProductClick, ProductListClass = ProductList) {
@@ -223,7 +224,9 @@ export class ProductList {
     }
 }
 
-//--------------Lista de productos con radio ------------
+
+
+//--------------nueva Lista de productos con radio ------------
 export class RadioProductList {
     constructor(searchWord, onProductClick) {
         this.searchWord = searchWord;
@@ -292,6 +295,7 @@ export class RadioProductList {
     }
 }
 
+
 // -------------- Menú principal --------(ventas, stock, perfiles)
 export function createMenuPrincipal() {
     const menuPrincipal = document.createElement('div');
@@ -330,6 +334,16 @@ export function handleMenuClick(button, page) {
 
 
 
+export function visibilidadOpciones(){
+    const cont_proveedores=document.querySelector(".cont-proveedores");
+    const btnmostrar = document.querySelector(".mostrar-mas");
+    const btnocultar = document.querySelector(".mostrar-menos")
+
+    cont_proveedores.classList.toggle("_oculto");
+    btnmostrar.classList.toggle("_oculto");
+    btnocultar.classList.toggle("_oculto");
+
+}
 
 
 
