@@ -4,7 +4,7 @@ method: GET
 
 1-vista recuperar contraseña: campos opcionales email o phone, o user_name. y verifica si la entidad existe y envia el email con la contraseña.
 
-2-consultar botón ver pedido.--no tengo idea
+2-consultar botón ver pedido.--es para ver el pedido en proceso
 
 
 4- verificar ventas por vendedor que devuelve un list<sale> y hay que agregar un botón extra para que realice un filtro para que mapee las ventas por producto, agregar vista de ventas por vendedor cundo la api retorne el List<sale> sin filtrar por producto.  ---- pendiente
@@ -20,3 +20,7 @@ business_name, business_code, logo
 8-crear la vista de la tabla business
 
 9- la fecha de la venta tiene que tener año/mes/dia/hora/minutos
+
+10_ crear tabla pedidos[id, estado{Enum(inicial, finalizado)} ] 
+
+11_  productos_pedidos:[ producots_id, pedidos_id, quantity ]
