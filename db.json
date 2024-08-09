@@ -95,6 +95,55 @@
       "cel": "111 345435456",
       "email": "pulgarcito@gmail.com",
       "notas": "pedidos diarios"
+    },
+    {
+      "id": "4c58",
+      "nombre": "Que te regalo",
+      "lista": [],
+      "vendedor": "Anita",
+      "cel": "2345675040",
+      "email": "regalos@gmail.com",
+      "notas": "solo a la mañana"
+    }
+  ],
+  "productos": [
+    {
+      "id":"1c23",
+      "nombre":"Cuaderno Rivadavia T.dura 24h",
+      "proveedores":[
+        {"nombre":"Fulanito S.A",
+          "precio":1000
+        },
+        {"nombre":"Menganito S.A",
+          "precio":1000
+        },
+        {"nombre":"Proveeduria S.A",
+          "precio":1000
+        }
+      ]
+      
+    },
+    {
+      "id":"1c63",
+      "nombre":"Cuaderno Rivadavia T.dura 48h",
+      "proveedores":[
+        {
+          "id":"fulanito",
+          "nombre":"Fulanito S.A",
+          "precio":1000
+        },
+        {
+          "id":"menganito",
+          "nombre":"Menganito S.A",
+          "precio":1000
+        },
+        {
+          "id":"proveeduria",
+          "nombre":"Proveeduria S.A",
+          "precio":1000
+        }
+      ]
+      
     }
   ]
 }

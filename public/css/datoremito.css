@@ -49,6 +49,7 @@ main{
             text-align: center;
             padding-top: 4px;
         }/*fin seleccionar-proveedor*/
+        
         .nombre-proveedor{
             display:flex;
             justify-content: space-around;

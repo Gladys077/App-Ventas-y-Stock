@@ -1,20 +1,9 @@
-// import { PlanillaPedido } from "./pages/pedidoactual";
-// import { PlanillaMovimiento } from "./pages/movimiento";
-// import { PlanillaVtasdelDia } from "./pages/ventasdeldia";
-// import { PlanillaVtasxVendedor } from "./pages/ventasporvendedor";
-// import { PlanillaVtasxFecha } from "./pages/ventasporfecha";
-// import { PlanillaStock } from "./pages/stock";
-// import { PlanillaStockBajo } from "./pages/stockbajo";
-// import { PlanillaStockSinMvto } from "./pages/stocksinmvto";
-// import { PlanillaStockCargaxRemito } from "./pages/stockcargaxremito";
-// import { PlanillaProximoPedido } from "./pages/pedidoproximo";
-// import { route } from "./js/routers/loadView.js";
-
 function loadView(view) {
 
     try {
             console.log(`cargando vista para depuración: ${view}`);
-            document.body.innerHTML =""; // para limpiar contenido existente
+            const body=document.body;
+            body.innerHTML =""; // para limpiar contenido existente
             console.log("Contenido limpio");
 
 
@@ -39,9 +28,6 @@ function loadView(view) {
                 // Crear la instancia de la vista correspondiente
                 switch(view) {
                     case 'stock':
-                        import('./pages/stock.js').then(module => {
-                            module.PlanillaStock();
-                        });
                         new PlanillaStock();
                         break;
                     case 'stockbajo':
@@ -71,7 +57,8 @@ function loadView(view) {
 }
 
 // Cargar la vista por defecto
+// loadView('pedidoactual');
 
-loadView("pedidoactual")
-
-
+export const route = {
+    loadView
+}
