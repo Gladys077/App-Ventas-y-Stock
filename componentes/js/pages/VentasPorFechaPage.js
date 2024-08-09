@@ -1,4 +1,4 @@
-import { Header, iconoVolver, iconoMenu, navigateToMenu } from '../header.js';
+import { Header, iconoVolver, iconoMenu } from '../header.js';
 import { CardVtasPorProducto } from '../cardVtasPorProducto.js';
 import { Footer } from '../footer.js';
 import { FabButton } from '../utils.js';
@@ -16,12 +16,12 @@ export class VentasPorFechaPage {
         this.createFooter();
     }
     createHeader() {
-        this.header = new Header('Ventas por fecha', iconoVolver, iconoMenu, null, function(){ navigateToMenu('ventas');});
+        this.header = new Header('Ventas por fecha', iconoVolver, null, ()=>{ navigateToMenu('MenuVentas');});
         document.body.appendChild(this.header.getElement());
     }
 
     createMain() {
-        const selectedProductName = 'Nombre_del_producto'; 
+        // const selectedProductName = 'Nombre_del_producto'; 
         this.ventasPorFecha = new CardVtasPorProducto('', 'Buscar', () => this.onClick, true, 'Importe facturado');
         document.body.appendChild(this.ventasPorFecha.armarCardVtasPorProducto());
     }

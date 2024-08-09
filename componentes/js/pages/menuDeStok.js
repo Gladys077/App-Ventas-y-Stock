@@ -52,9 +52,10 @@ export class MenuStockPage {
         logoutText.className = 'logout-text';
         logoutContainer.appendChild(logoutText);
 
-        footerElement.appendChild(logoutContainer);
-
+        // footerElement.appendChild(logoutContainer);
         document.body.appendChild(footerElement);
+        document.body.appendChild(logoutContainer);
+
     }
 
     setActiveTab(tabName) {

@@ -64,6 +64,7 @@ export class ChangePassword {
         button.addEventListener('click', (event) => {
             event.preventDefault();
             //Lógica para guardar info en BBDD
+            navigateToPage('MenuVentas');
         });
 
         container.appendChild(subtitle1);

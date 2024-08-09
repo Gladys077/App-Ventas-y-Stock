@@ -105,7 +105,6 @@ export class ExtendedFabButton {
     
 }
 
-
 // ------------- Búsqueda de productos (pageProductSearch.js) -----------------
 export function createSearchContainer(onProductClick, ProductListClass = ProductList) {
     const container = document.createElement('div');
@@ -224,9 +223,7 @@ export class ProductList {
     }
 }
 
-
-
-//--------------nueva Lista de productos con radio ------------
+//--------------Lista de productos con radio ------------
 export class RadioProductList {
     constructor(searchWord, onProductClick) {
         this.searchWord = searchWord;
@@ -294,7 +291,6 @@ export class RadioProductList {
         return productList;
     }
 }
-
 
 // -------------- Menú principal --------(ventas, stock, perfiles)
 export function createMenuPrincipal() {
