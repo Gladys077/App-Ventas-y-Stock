@@ -269,23 +269,25 @@ export class CardVtasPorProducto {
         listadoPrevio.remove();
     }
 
-    const resultados = this.resultadosBusqueda || [];
-    if (resultados.length === 0) {
-        console.log('No hay resultados para mostrar.');
-        return;
-    }
-        const listado = document.createElement('div');
-        listado.className = 'listado-por-fecha';
+    // const resultados = this.resultadosBusqueda || [];
+    // if (resultados.length === 0) {
+    //     console.log('No hay resultados para mostrar.');
+    //     return;
+    // }
+        const listadoContainer = document.createElement('div');
+        listadoContainer.className = 'listado-por-fecha';
         
         resultados.forEach(resultado => {
             const item = document.createElement('div');
             item.className = 'listado-item';
-            item.textContent = `${resultado.fecha}: ${resultado.unidades} unidades`;
-            listado.appendChild(item);
+            itemVenta.textContent = `Producto: ${venta.producto}, Fecha: ${venta.fecha}, Cantidad: ${venta.cantidad}`;
+            listadoContainer.appendChild(item);
         });
 
+        this.element.appendChild(listadoContainer);
+
           // Inserta el listado antes del enlace "Listado por fecha"
-        this.element.insertBefore(listado, this.element.querySelector('.card-link'));
+        // this.element.insertBefore(listado, this.element.querySelector('.card-link'));
     }
 
     obtenerResultadosPorFecha() {
@@ -304,3 +306,7 @@ export class CardVtasPorProducto {
         return this.element;
     }
 }
+
+//  Ejemplos de instancias:
+// const card1 = new CardVtasPorProducto('Ventas Producto A', 'Buscar', () => { /* callback */ }, true, 'Unidades vendidas', 'Listado por fecha', 'ventasPorFecha.html');
+// const card2 = new CardVtasPorProducto('Ventas Producto B', 'Buscar', () => { /* callback */ }, true, 'Unidades vendidas', 'Otra vista', 'otraVista.html');

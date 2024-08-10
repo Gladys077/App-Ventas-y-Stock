@@ -49,8 +49,9 @@ export class RecoverPasswordPage {
     createMain() {
         const main = document.createElement('main');
 
-        const container = document.createElement('div');
+        const container = document.createElement('form');
         container.classList.add('container-password');
+        container.method = 'POST';
 
         const image = document.createElement('img');
         image.src = '../../../img/iconos/candado.png';
