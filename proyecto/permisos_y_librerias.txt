@@ -9,12 +9,13 @@ ventas por producto
 ventas por fecha
 
 stock:
-cargar stock:{ carga por producto, cargar por remito}
-ver stock :{stock, bajo_stock, sin_movimientos}
-modificar producto
+ver stock, bajo stock, son movimiento
 nuevo producto
-ver próximo pedido
 eliminar producto
+proveedores 
+cargar stock
+modificar producto
+próximo pedido
 
 perfiles:
 nuevo perfil
