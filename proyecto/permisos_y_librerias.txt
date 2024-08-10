@@ -16,6 +16,9 @@ proveedores
 cargar stock
 modificar producto
 próximo pedido
+carga por remito
+carga por producto
+
 
 perfiles:
 nuevo perfil

@@ -30,3 +30,7 @@ business_name, business_code, logo
 13_ tabla bill[id, number_bill, date, supplier_id, total]
 
 14_ tabla prduct_bill [product_id, bill_id, quantity]
+
+15_gladys: nuevas vistas y funcionalidades de la vista historial de facturas(Bill), relojito button, listar por proveedor button.
+
+
