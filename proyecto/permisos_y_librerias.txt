@@ -8,13 +8,17 @@ ventas por persona
 ventas por producto
 ventas por fecha
 
-stock:(cambiar el nombre por productos de la pestaña stock)
-cargar stock:{ carga por producto, cargar por remito}
-ver stock :{stock, bajo_stock, sin_moviientos}
-modificar producto
+stock:
+ver stock, bajo stock, son movimiento
 nuevo producto
-ver próximo pedido
 eliminar producto
+proveedores 
+cargar stock
+modificar producto
+próximo pedido
+carga por remito
+carga por producto
+
 
 perfiles:
 nuevo perfil

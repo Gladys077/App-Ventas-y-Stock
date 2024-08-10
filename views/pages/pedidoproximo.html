@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App Ventas y Stock - Próximo Pedido</title>
     <link rel="stylesheet" href="../../public/css/index.css">
+    <script>
+        function visibilidadOpciones(event){
+            const lineaArticulo=event.target.closest(".tabla_lineaArticulo")
+            const cont_proveedores=lineaArticulo.querySelector(".cont-proveedores");
+            const btnmostrar = lineaArticulo.querySelector(".mostrar-mas");
+            const btnocultar = lineaArticulo.querySelector(".mostrar-menos")
+
+            cont_proveedores.classList.toggle("_oculto");
+            btnmostrar.classList.toggle("_oculto");
+            btnocultar.classList.toggle("_oculto");
+
+        }
+    </script>
 </head>
 <body>
     <header class="header">
@@ -37,29 +50,41 @@
                 <div class="precio">1000</div>
                                 
                 <div class="cont-proveedores">
-                    <div class="proveedor">
-                        <img src="../../public/img/iconos/radioVacio.PNG" alt="vacío"><p>Proveedor A</p><span>1000</span>
+                    <div class="proveedor_opcion">
+                        <input type="radio" name="proveedor" value="Proveedor A"  id="proveedoropcion1"><label for="proveedoropcion1">Proveedor A</label><span>1000</span>
                     </div>
-                    <div class="proveedor">
-                        <img src="../../public/img/iconos/radioVacio.PNG" alt="vacío"><p>Proveedor B</p><span>1000</span>
+                    <div class="proveedor_opcion">
+                        <input type="radio" name="proveedor" value="Proveedor B" id="proveedoropcion2"><label for="proveedoropcion2">Proveedor B</label><span>1000</span>
                     </div>
-                    <div class="proveedor">
-                        <img src="../../public/img/iconos/radioVacio.PNG" alt="vacío"><p>Proveedor C</p><span>1000</span>
+                    <div class="proveedor_opcion">
+                        <input type="radio" name="proveedor" value="Proveedor C" id="proveedoropci0n3"><label for="proveedoropcion3">Proveedor C</label><span>1000</span>
                     </div>
-                    
                 </div>
 
-                <div class="mostrar-mas"><img src="../../public/img/iconos/masgris.png" title="Mostrar lista de proveedores" alt="Ver Proveedores"></div>
+                <button class="mostrar-mas _oculto"  onclick="visibilidadOpciones(event)"><img src="../../public/img/iconos/masgris.png" title="Mostrar lista de proveedores" alt="Ver Proveedores"></button>
+                <button class="mostrar-menos " onclick="visibilidadOpciones(event)"><img src="../../public/img/iconos/menosgris.png" title="Ocultar lista de proveedores" alt="Ocultar Proveedores"></button>
             </div>
-
+ 
             <div class="tabla_lineaArticulo">
                 
                     <input class="cant" value="10"></input>
                     <div class="producto">Cuaderno Rivadavia T.dura 24h</div>
                     <div class="precio">3000</div>
-                
 
-                <div class="mostrar-mas"><img src="../../public/img/iconos/masgris.png" title="Mostrar lista de proveedores" alt="Ver Proveedores"></div>
+                    <div class="cont-proveedores _oculto">
+                        <div class="proveedor_opcion">
+                            <input type="radio" name="proveedor" value="Proveedor A"  id="proveedoropcion1"><label for="proveedoropcion1">Proveedor A</label><span>1000</span>
+                        </div>
+                        <div class="proveedor_opcion">
+                            <input type="radio" name="proveedor" value="Proveedor B" id="proveedoropcion2"><label for="proveedoropcion2">Proveedor B</label><span>1000</span>
+                        </div>
+                        <div class="proveedor_opcion">
+                            <input type="radio" name="proveedor" value="Proveedor C" id="proveedoropci0n3"><label for="proveedoropcion3">Proveedor C</label><span>1000</span>
+                        </div>
+                    </div>
+
+                <div class="mostrar-mas" onclick="visibilidadOpciones(event)"><img src="../../public/img/iconos/masgris.png" title="Mostrar lista de proveedores" alt="Ver Proveedores"></div>
+                <button class="mostrar-menos _oculto" onclick="visibilidadOpciones(event)"><img src="../../public/img/iconos/menosgris.png" title="Ocultar lista de proveedores" alt="Ocultar Proveedores"></button>
             </div>
 
             <div class="contenedor-btn-flotante agregarManualmente"><img src="../../public/img/iconos/agregaManualmente.png" alt="Agregar Manualmente" class=""><span>Agregar al pedido</span></div>
