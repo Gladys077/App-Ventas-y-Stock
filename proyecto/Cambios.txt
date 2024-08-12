@@ -4,14 +4,14 @@ method: GET
 
 1-vista recuperar contraseña: campos opcionales email o phone, o user_name. y verifica si la entidad existe y envia el email con la contraseña.
 
-
+2_ agregar en la tabla product_sales el precio de venta del producto
 
 4- verificar ventas por vendedor que devuelve un list<sale> y hay que agregar un botón extra para que realice un filtro para que mapee las ventas por producto, agregar vista de ventas por vendedor cundo la api retorne el List<sale> sin filtrar por producto.  ---- pendiente
 
 5-agregar tabla supplier_product
 
 
-
+6_ cear tabal supplier_product: [supplier_id, product_id, price]
 
 7-crear tabla business:
 business_name, business_code, logo
@@ -20,9 +20,9 @@ business_name, business_code, logo
 
 9- la fecha de la venta tiene que tener año/mes/dia/hora/minutos
 
-10_ crear tabla order[id,date, state{Enum(active, Finished)} ] 
+10_ pedidos: crear tabla  order[id,nombre, date, state{Enum(active, Finished)} ] 
 
-11_  product_orders:[ product_id, orderss_id, quantity ]
+11_  product_orders:[ product_id, orderss_id, quantity, supplier_id, cost_price ]
 
 12_ Gladys: armar vista para recuperar pedidos finalizados y que pueda ver los proveedores de cada producto. Agregar un botón para que clone la lista seleccionada y la pueda editar nuevamente como una nueva lista
 
@@ -33,4 +33,9 @@ business_name, business_code, logo
 
 15_gladys: nuevas vistas y funcionalidades de la vista historial de facturas(Bill), relojito button, listar por proveedor button.
 
+16_ agregar en las ventas los datos de tu negocio en la tabla business para armar la factura
+
+17_ cuando se carga el stock de un producto tiene que tener un default la bbdd como sindatos.
+
+18_ Gladys: agregar el botón de nuevo proveedor en la vista modificar producto.
 
