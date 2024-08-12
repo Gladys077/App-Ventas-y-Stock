@@ -21,8 +21,9 @@ export class ChangePassword {
     createMain() {
         const main = document.createElement('main');
 
-        const container = document.createElement('div');
+        const container = document.createElement('form');
         container.classList.add('container-password');
+        container.method = 'POST';
 
 
         const subtitle1 = document.createElement('h4');
