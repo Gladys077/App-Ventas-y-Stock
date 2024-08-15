@@ -143,21 +143,55 @@ main{
             flex-direction: row;
             align-items: center;
             justify-content:space-between;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             border-bottom: 1px solid var(--color-border-articulo);
             font-size: 14px;
             font-style: normal;
-            text-align: end;
+            /* text-align: end; */
 
                 .cant{
-                    width: 39px;
-                    height: 39px;
+                    width: 35px;
+                    height: 35px;
                     border: 0;
                     text-align: end;
                     padding-right: 4px;
                     border: 1px solid var(--color-border-articulo);
-            
+                }/*fin cant*/
+
+                .producto{
+                    height: auto;
+                    word-wrap: break-word;
+                    hyphens: auto; /*para evitar desbordamiento de texto en las notas*/
+                    width: 60%;
+                    text-align: center;
                 }
+                
+                .precio{
+                    display: flex;
+                    flex-direction: row;
+                    gap: 2px;
+                    align-items: center;
+                    justify-content: end;
+                    button{
+                        width: 16px;
+                        height: 16px;
+                        border: none;
+                        border-radius: 50px;
+                        background-color: transparent;
+                        transition: all ease-in-out 10ms transform ;
+                        img{
+                            width: 16px;
+                            height: 16px;
+                        }
+                        &:active{
+                            transform: scale(0.9);
+                        }
+                        &:hover{
+                            background-color: var(--color-fondo);
+                        }
+                    }/*fin button*/
+                }/*fin precio*/
+                
                 .cont-proveedores{
                     width: 100%;
                     height: 120px;
@@ -192,9 +226,7 @@ main{
                                 
                             }
                         }
-
-
-                    }
+                    }/*fin proveedor_opcion*/
                     
                 }/*fin cont-provedores. se usa en pedido proximo*/
                 

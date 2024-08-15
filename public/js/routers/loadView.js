@@ -1,3 +1,6 @@
+//no se está utilizando
+
+
 function loadView(view) {
 
     try {

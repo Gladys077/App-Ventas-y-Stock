@@ -57,7 +57,7 @@ export class PlanillaStockSinMvto {
 
     createBtnFlotante= ()=>{
         const mainPedido=document.querySelector("main");
-        this.btn = new BtnFlotante("descargar");
+        this.btn = new BtnFlotante("descargar","contenedor-btn-flotante",()=>{alert("descarga exitosa")});
         mainPedido.appendChild(this.btn.getElement());
 
     }

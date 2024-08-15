@@ -20,6 +20,7 @@ export class PlanillaPedidoProximo {
         this.createTablaFooter();
 
         this.createFooter();
+        this.createEnlace();
         this.createButtonsFooter();
         this.createAzBtn();
 
@@ -172,14 +173,23 @@ export class PlanillaPedidoProximo {
         return
     }
 
+    createEnlace=()=>{
+        const footer =document.querySelector("footer");
+        const enlace = document.createElement("a");
+        enlace.href="#";//hay que agregar el enlace a pedidolistaxproveedor.js
+        enlace.textContent="Listado por proveedor";
+        enlace.addEventListener("click", ()=>{
+            loadView("pedidolistaxproveedor")
+        })
+        footer.appendChild(enlace);
+        return
+    }
+
     createButtonsFooter=()=>{
         const footerRegistro= document.querySelector("footer");
         this.botones= new ButtonContainer("Guardar", "Eliminar", ()=>{console.log("se guardó pedido");},()=>{console.log("se eliminó pedido");},"save2","trashViolet" )
         footerRegistro.appendChild(this.botones.getButtonContainer());
     }
-
-
-
 
 }
 

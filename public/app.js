@@ -1,14 +1,3 @@
-// import { PlanillaPedido } from "./pages/pedidoactual";
-// import { PlanillaMovimiento } from "./pages/movimiento";
-// import { PlanillaVtasdelDia } from "./pages/ventasdeldia";
-// import { PlanillaVtasxVendedor } from "./pages/ventasporvendedor";
-// import { PlanillaVtasxFecha } from "./pages/ventasporfecha";
-// import { PlanillaStock } from "./pages/stock";
-// import { PlanillaStockBajo } from "./pages/stockbajo";
-// import { PlanillaStockSinMvto } from "./pages/stocksinmvto";
-// import { PlanillaStockCargaxRemito } from "./pages/stockcargaxremito";
-// import { PlanillaProximoPedido } from "./pages/pedidoproximo";
-// import { route } from "./js/routers/loadView.js";
 
 function loadView(view) {
 
@@ -38,23 +27,32 @@ function loadView(view) {
         
                 // Crear la instancia de la vista correspondiente
                 switch(view) {
+                    case 'ventaactual':
+                        import('./pages/ventaactual.js');
+                        break;
+                    case 'ventasdeldia':
+                        import('./pages/ventasdeldia.js')
+                        break;    
+                    case 'ventasporvendedor':
+                        import('./pages/ventasporvendedor.js')
+                        break;
+                    case 'ventasporfecha':
+                        import('./pages/ventasporfecha.js')                       
+                        break;            
                     case 'stock':
-                        import('./pages/stock.js').then(module => {
-                            module.PlanillaStock();
-                        });
-                        new PlanillaStock();
+                        import('./pages/stock.js')
                         break;
                     case 'stockbajo':
-                        new PlanillaStockBajo();
+                        import('./pages/stockbajo.js') //.then((module)=>{module.PlanillaStockBajo();})
                         break;
                     case 'stocksinmvto':
-                        new PlanillaStockSinMvto();
+                        import('./pages/stocksinmvto.js') //.then((module)=>{module.PlanillaStockSinMvto();})
                         break;
                     default:
                         console.error('Vista no encontrada');
                 }
             };
-
+    
             script.onerror = () => {
                 console.error(`Error al cargar el script ${view}.js`);
             }
@@ -72,6 +70,6 @@ function loadView(view) {
 
 // Cargar la vista por defecto
 
-loadView("pedidoactual")
+loadView("ventaactual")
 
 

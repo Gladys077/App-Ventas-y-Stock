@@ -1,18 +1,20 @@
-// import express from "express";
-// import cors from "cors";
-// import appRouters from "./backend/routers/appRouters.js";
 
-// const app = express();
-// app.use(cors());
-// app.use("/appvtasystock",  appRouters);
+// import cors from "cors";
+// import appRoutes from "./js/routers/appRoutes.js";
+
+// import path from 'path';
+
+
 
 import express from 'express';
 
-//import path from'path';
+
 
 
 const app = express();
 const port = 3001;
+
+
 
 //const __dirname = '';
 
@@ -21,6 +23,7 @@ const port = 3001;
 app.use('/home',express.static('componentes'));
 app.use(express.static('public'));
 
+// app.use("/", appRoutes)
 
 /* Ruta para el index
 app.get('/', (req, res) => {

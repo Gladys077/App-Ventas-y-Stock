@@ -2,6 +2,28 @@ export function navigateToPage(page) {
     document.body.innerHTML = '';
 
     switch(page) {
+        case 'ventaactual':
+            import('./pages/ventaactual.js');
+            break;
+        case 'ventasdeldia':
+            import('./pages/ventasdeldia.js')
+            break;    
+        case 'ventasporvendedor':
+            import('./pages/ventasporvendedor.js')
+            break;
+        case 'ventasporfecha':
+            import('./pages/ventasporfecha.js')                       
+            break;            
+        case 'stock':
+            import('./pages/stock.js')
+            break;
+        case 'stockbajo':
+            import('./pages/stockbajo.js') //.then((module)=>{module.PlanillaStockBajo();})
+            break;
+        case 'stocksinmvto':
+            import('./pages/stocksinmvto.js') //.then((module)=>{module.PlanillaStockSinMvto();})
+            break;
+            
         case 'Login':
             import('../js/pages/LoginPage.js').then(module => {
                 module.createLoginPage();
