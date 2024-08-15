@@ -124,3 +124,4 @@ export function navigateToPage(page) {
             console.error('Página no encontrada:', page);
     }
 }
+

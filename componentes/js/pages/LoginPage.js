@@ -5,8 +5,9 @@ export function createLoginPage() {
 
     document.body.innerHTML = '';
 
-    const loginContainer = document.createElement('div');
+    const loginContainer = document.createElement('form');
     loginContainer.className = 'login';
+    loginContainer.method = 'POST';
 
     const titulo = document.createElement('h1');
     titulo.innerHTML = 'Bienvenido <br> a la Tienda';
@@ -24,6 +25,7 @@ export function createLoginPage() {
     passwordInput.placeholder = 'Contraseña';
     passwordInput.className = 'search-input';
     passwordInput.required = true;
+    passwordInput.autocomplete = 'off';
 
     const loginButton = document.createElement('button');
     loginButton.innerHTML = 'Ingresar';

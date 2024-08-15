@@ -1,19 +1,34 @@
 Cambios:
-http://localhost:3001/user
+http://localhost:8080/user
 method: GET
 
-1-vista recuperar contraseña: campos opcionales email o phone, o user_name.
-
-2-consultar botón ver pedido.
-
-3-esta rara la verificación de recuperar la contraseña, habrá que colocar el nombre del usuario o verificar el email, o verificar el numero, solucionarlo.
-
-4- verificar ventas por vendedor que devuelve un list<sale> y hay que agregar un botón extra para que realice un filtro para que mapee las ventas por producto, agregar vista de ventas por vendedor cundo la api retorne el List<sale> sin filtrar por producto.
-
-5-agregar tabla supplier_product
-
-6-ver la vista de proveedor para saber como funciona cuando se actualizan los datos
+1-vista recuperar contraseña: campos opcionales email o phone, o user_name. y verifica si la entidad existe y envia el email con la contraseña.
 
 
 
+4- verificar ventas por vendedor que devuelve un list<sale> y hay que agregar un botón extra para que realice un filtro para que mapee las ventas por producto, agregar vista de ventas por vendedor cundo la api retorne el List<sale> sin filtrar por producto.  ---- pendiente
+
+
+
+
+8-gladys: crear la vista de la tabla business
+
+
+
+10_ pedidos: La fecha del pedido solo se pone cuando pasa a estado finished ósea cuando se cierra el pedido.
+
+
+12_ Gladys: armar vista para recuperar pedidos finalizados y que pueda ver los proveedores de cada producto. Agregar un botón para que clone la lista seleccionada y la pueda editar nuevamente como una nueva lista
+    12b.: agregar BTN "Historial de pedidos" en el menú STOCK
+    12c.: en Próximo Pedido, dentro de la info del artículo  agregar opción de eliminar 
+
+
+
+15_gladys: nuevas vistas y funcionalidades de la vista historial de facturas(Bill), relojito button, listar por proveedor button.
+
+16_ agregar en las ventas los datos de tu negocio en la tabla business para armar la factura
+
+17_ cuando se carga el stock de un producto tiene que tener un default la bbdd como sindatos como un  supplier.
+
+18_ Gladys: agregar el botón de nuevo proveedor en la vista modificar producto.
 
