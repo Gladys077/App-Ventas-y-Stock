@@ -1,10 +1,10 @@
-// import express from "express";
-// import cors from "cors";
-// import appRouters from "./backend/routers/appRouters.js";
 
-// const app = express();
-// app.use(cors());
-// app.use("/appvtasystock",  appRouters);
+// import cors from "cors";
+// import appRoutes from "./js/routers/appRoutes.js";
+
+// import path from 'path';
+
+
 
 import express from 'express';
 //import path from'path';
@@ -13,6 +13,8 @@ import express from 'express';
 const app = express();
 app.disable('x-powered-by')
 const port = 3001;
+
+
 
 //const __dirname = '';
 
