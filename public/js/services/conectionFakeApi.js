@@ -82,7 +82,7 @@
                 body:JSON.stringify({
                     cant: cant,
                     producto:producto,
-                    precio:precio
+                    precioUnitario:precio
                     
                 })
             })
@@ -100,11 +100,12 @@
         }
 
         async function actualizarCant(id){
+            
             const conexion = await fetch(`http://localhost:3000/venta/${id}`,{
                 method:"PATCH" ,
                 headers:{"Content-type":"application/json"},
                 body:JSON.stringify({
-                    cant: cant                    
+                    cant: cant                
                 })
 
             })

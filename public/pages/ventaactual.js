@@ -55,7 +55,8 @@ export class PlanillaVentaActual {
             const input = document.createElement("input");
             input.className = "cant";
             input.value=`${cant}`;
-            input.addEventListener("change", (event)=>actualizarPrecio(event))
+            input.setAttribute("data-price",`${precioUnitario}`)
+            input.addEventListener("input", (event)=>actualizarPrecio(event))
 
             const prod = document.createElement("div");
             prod.className="producto";
@@ -92,18 +93,18 @@ export class PlanillaVentaActual {
     mostrarArticulos = async ()=>{
         const tablaDetalles = document.querySelector(".tabla_detalles");
         const articulos = await conexionAPI.articulospedidos();
-        console.log(articulos);
+        // console.log(articulos);
 
         if(articulos.length===0){
             const mensaje = document.createElement("span");
             mensaje.classList="no_hay_productos";
-            mensaje.innerText="no existen articulos en el pedio";
+            mensaje.innerText="no existen articulos en el pedido";
             main.appendChild(mensaje);
         }
 
         articulos.forEach(articulo=>{
-            tablaDetalles.append(this.createLineaArticulo(articulo.id, articulo.cant, articulo.producto, articulo.precio))
-            console.log("Cant " + articulo.cant,  "producto " +articulo.producto, "precio " + articulo.precio);
+            tablaDetalles.append(this.createLineaArticulo(articulo.id, articulo.cant, articulo.producto, articulo.precioUnitario))
+            // console.log("Cant " + articulo.cant,  "producto " +articulo.producto, "precio " + articulo.precioUnitario);
         })
 
     }
@@ -144,15 +145,36 @@ function eliminarAppendChild(event){
     lineaArticulo.removeChild(input, prod, precio);
 }
 
-function actualizarPrecio(event){
-    const input=event.target.closest("cant")
-    const precio=event.target.closest("precio")
-    const cantArt = parseInt(input.value);
-    const precioUnitario = parseFloat(precio.value);
-    
-    let costo = cantArt * precioUnitario;
-    spanprecio.textContent = $`${costo}`;
+async function actualizarPrecio(event){
+    const linea=event.target.closest(".tabla_lineaArticulo")
+    const cantArt = parseInt(linea.querySelector(".cant").value)
+    const precio= parseFloat(event.target.getAttribute("data-price"))
+    const idArt = linea.getAttribute("id")
+    console.log(idArt);
+    // console.log(typeof(cantArt));console.log(cantArt);console.log(typeof(precio));
+    let costo = cantArt * precio
+    // console.log(costo);
+    const precioxNuevaCant = linea.querySelector("span");
+    precioxNuevaCant.innerText = costo;
+
+    try{
             
-                    
+        const response = await fetch(`http://localhost:3000/venta/${idArt}`,{
+            method:"PATCH" ,
+            headers:{"Content-type":"application/json"},
+            body:JSON.stringify({
+                cant: cantArt                
+            })
+
+        })
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} ${response.statusText}`);
+        } else {
+            console.log('Actualización exitosa en db.json');
+        }
+    } catch (error) {
+        console.error('Hubo un problema al actualizar la venta:', error);
+    }
 
 }
+

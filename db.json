@@ -150,88 +150,81 @@
   "venta": [
     {
       "id": "123",
-      "cant": 2,
+      "cant": 4,
       "producto": "Cuaderno Rivadavia T.dura 24h",
-      "precio": 2000
+      "precioUnitario": 2000
     },
     {
       "id": "124",
       "cant": 2,
       "producto": "Lapicera Vic azul",
-      "precio": 1000
+      "precioUnitario": 1000
     },
     {
       "id": "125",
       "cant": 2,
       "producto": "Goma tinta-lápiz",
-      "precio": 500
+      "precioUnitario": 500
     },
     {
       "id": "126",
       "cant": 2,
       "producto": "Cuaderno Rivadavia Tapa dura 48h a cuadros, varias secciones",
-      "precio": 3500
+      "precioUnitario": 3500
     },
     {
       "id": "127",
       "cant": 1,
       "producto": "Lápiz artístico",
-      "precio": 1000
+      "precioUnitario": 1000
     },
     {
       "id": "128",
       "cant": 1,
       "producto": "Resaltador amarillo fluor",
-      "precio": 1500
+      "precioUnitario": 1500
     },
     {
       "id": "129",
       "cant": 1,
       "producto": "Resaltador verde fluor",
-      "precio": 1500
+      "precioUnitario": 1500
     },
     {
       "id": "130",
       "cant": 2,
       "producto": "Cuaderno Rivadavia T.dura 24h",
-      "precio": 2000
+      "precioUnitario": 2000
     },
     {
       "id": "131",
       "cant": 2,
       "producto": "Lapicera Vic azul",
-      "precio": 1000
+      "precioUnitario": 1000
     },
     {
       "id": "132",
       "cant": 2,
       "producto": "Goma tinta-lápiz",
-      "precio": 500
+      "precioUnitario": 500
     },
     {
       "id": "133",
       "cant": 2,
       "producto": "Cuaderno Rivadavia Tapa dura 48h a cuadros, varias secciones",
-      "precio": 3500
-    },
-    {
-      "id": "134",
-      "cant": 1,
-      "producto": "Lápiz artístico",
-      "precio": 1000
+      "precioUnitario": 3500
     },
     {
       "id": "135",
       "cant": 1,
       "producto": "Resaltador amarillo fluor",
-      "precio": 1500
+      "precioUnitario": 1500
     },
     {
       "id": "136",
       "cant": 1,
       "producto": "Resaltador verde fluor",
-      "precio": 1500
+      "precioUnitario": 1500
     }
-
   ]
 }
