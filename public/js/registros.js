@@ -221,191 +221,191 @@ export class TablaFooter{
     }
 }/*fin TablaFooter. Se utiliza en todas las planillas*/
 
-export class Pedidoactual {
-    constructor(item) {
-        this.element=this.agregarItem(item)
-    }
+// export class Pedidoactual {
+//     constructor(item) {
+//         this.element=this.agregarItem(item)
+//     }
 
-    agregarItem = (item) =>{
+//     agregarItem = (item) =>{
         
         
-    // creando elementos y asignando clases    
-        const lineaArticulo = document.createElement("div");
-            lineaArticulo.className="tabla_lineaArticulo";
-        const cant = document.createElement("input");
-            cant.className("cant");
-        const producto = document.createElement("div");
-            producto.className="producto";
-        const precio = document.createElement("div");
-            precio.className="precio";
+//     // creando elementos y asignando clases    
+//         const lineaArticulo = document.createElement("div");
+//             lineaArticulo.className="tabla_lineaArticulo";
+//         const cant = document.createElement("input");
+//             cant.className("cant");
+//         const producto = document.createElement("div");
+//             producto.className="producto";
+//         const precio = document.createElement("div");
+//             precio.className="precio";
 
-    //asignar valor a celdas
-        cant.value = item.cant;
-        producto.textContent = item.producto;
-        precio.textContent = item.precio;
+//     //asignar valor a celdas
+//         cant.value = item.cant;
+//         producto.textContent = item.producto;
+//         precio.textContent = item.precio;
     
-    //agregar item a lineaArtículo    
-        lineaArticulo.append(cant, producto, precio);
+//     //agregar item a lineaArtículo    
+//         lineaArticulo.append(cant, producto, precio);
 
-        return lineaArticulo
+//         return lineaArticulo
 
-    }
-    getElement(){
-        return this.element
-    }
-}/*fin  class Pedidoactual*/ 
+//     }
+//     getElement(){
+//         return this.element
+//     }
+// }/*fin  class Pedidoactual*/ 
 
-export class Ventasdeldia{
-    constructor(){
-        this.element=this.agregarItem();
-    }
-    agregarItem =(item) =>{
+// export class Ventasdeldia{
+//     constructor(){
+//         this.element=this.agregarItem();
+//     }
+//     agregarItem =(item) =>{
             
-    // creando elementos y asignando clases    
-        const lineaArticulo = document.createElement("div");
-            lineaArticulo.className="tabla_lineaArticulo";
+//     // creando elementos y asignando clases    
+//         const lineaArticulo = document.createElement("div");
+//             lineaArticulo.className="tabla_lineaArticulo";
 
-        const producto = document.createElement("div");
-            producto.className="producto";
-        const cantidad = document.createElement("div");
-            cantidad.className="cantidad";
+//         const producto = document.createElement("div");
+//             producto.className="producto";
+//         const cantidad = document.createElement("div");
+//             cantidad.className="cantidad";
 
-    //asignar valor a celdas
-        producto.textContent = item.producto;
-        cantidad.textContent = item.cantidad;
+//     //asignar valor a celdas
+//         producto.textContent = item.producto;
+//         cantidad.textContent = item.cantidad;
     
-    //agregar item a lineaArtículo    
-        lineaArticulo.append(producto, cantidad);
+//     //agregar item a lineaArtículo    
+//         lineaArticulo.append(producto, cantidad);
 
-        return lineaArticulo;
+//         return lineaArticulo;
 
-    }
-    getElement(){
-        return this.element
-    }
+//     }
+//     getElement(){
+//         return this.element
+//     }
     
-}/*fin class Ventasdeldia*/
+// }/*fin class Ventasdeldia*/
 
-export class Movimientosproducto{
-    constructor(item){
-        this.llamandoProducto(item);
-        this.element=this.agregarItem(item);
-    }
+// export class Movimientosproducto{
+//     constructor(item){
+//         this.llamandoProducto(item);
+//         this.element=this.agregarItem(item);
+//     }
 
-    llamandoProducto = (item)=>{
-        const producto = document.querySelector(".nombreProducto")
-        //Asignando valor a producto
-        producto.textContent=item.producto;
-    }
-    agregarItem =(item) =>{
+//     llamandoProducto = (item)=>{
+//         const producto = document.querySelector(".nombreProducto")
+//         //Asignando valor a producto
+//         producto.textContent=item.producto;
+//     }
+//     agregarItem =(item) =>{
             
-    // creando elementos y asignando clases    
-        const lineaArticulo = document.createElement("div");
-            lineaArticulo.className="tabla_lineaArticulo";
+//     // creando elementos y asignando clases    
+//         const lineaArticulo = document.createElement("div");
+//             lineaArticulo.className="tabla_lineaArticulo";
 
-        const fecha = document.createElement("div");
-            fecha.className="fecha";
-        const cantidad = document.createElement("div");
-            cantidad.className="cantidad";
+//         const fecha = document.createElement("div");
+//             fecha.className="fecha";
+//         const cantidad = document.createElement("div");
+//             cantidad.className="cantidad";
 
-    //asignar valor a celdas
-        fecha.textContent = item.fecha;
-        cantidad.textContent = item.cantidad;
+//     //asignar valor a celdas
+//         fecha.textContent = item.fecha;
+//         cantidad.textContent = item.cantidad;
     
-    //agregar item a lineaArtículo    
-        lineaArticulo.append(fecha,cantidad);
+//     //agregar item a lineaArtículo    
+//         lineaArticulo.append(fecha,cantidad);
         
-    return lineaArticulo;
+//     return lineaArticulo;
 
-    }
-    getElement(){
-        return this.element
-    }
-}/*fin class Movimientosproducto. Revisar como se llama el producto*/
+//     }
+//     getElement(){
+//         return this.element
+//     }
+// }/*fin class Movimientosproducto. Revisar como se llama el producto*/
 
-export class Ventastotales{/*Falta desarrollar */
-    constructor(){
-        this.element=this.agregarItem(item);
-    }
-    llamandofecha=(item)=>{
-        const contenedorFecha =document.querySelector(".contenedor-fecha-venta");
-        const fecha = document.createElement("span");
-        fecha.textContent= item.fecha;
-        contenedorFecha.appendChild(fecha);
-    }
-    agregarItem =(item) =>{
+// export class Ventastotales{/*Falta desarrollar */
+//     constructor(){
+//         this.element=this.agregarItem(item);
+//     }
+//     llamandofecha=(item)=>{
+//         const contenedorFecha =document.querySelector(".contenedor-fecha-venta");
+//         const fecha = document.createElement("span");
+//         fecha.textContent= item.fecha;
+//         contenedorFecha.appendChild(fecha);
+//     }
+//     agregarItem =(item) =>{
             
-    // creando elementos y asignando clases    
-        const lineaArticulo = document.createElement("div");
-            lineaArticulo.className="tabla_lineaArticulo";
+//     // creando elementos y asignando clases    
+//         const lineaArticulo = document.createElement("div");
+//             lineaArticulo.className="tabla_lineaArticulo";
 
-        const producto = document.createElement("div");
-            producto.className="producto";
-        const cantidad = document.createElement("div");
-            cantidad.className="cantidad";
+//         const producto = document.createElement("div");
+//             producto.className="producto";
+//         const cantidad = document.createElement("div");
+//             cantidad.className="cantidad";
 
-    //asignar valor a celdas
-        producto.textContent = item.producto;
-        cantidad.textContent = item.cantidad;
+//     //asignar valor a celdas
+//         producto.textContent = item.producto;
+//         cantidad.textContent = item.cantidad;
     
-    //agregar item a lineaArtículo    
-        lineaArticulo.append(producto, cantidad);
+//     //agregar item a lineaArtículo    
+//         lineaArticulo.append(producto, cantidad);
 
-    return lineaArticulo;
+//     return lineaArticulo;
 
-    }
+//     }
 
-    getElement(){
-        return this.element
-    }
+//     getElement(){
+//         return this.element
+//     }
     
-}/*fin class Ventastotales. Revisar llamado de fechas*/
+// }/*fin class Ventastotales. Revisar llamado de fechas*/
 
-export class Ventasporvendedor{
-    constructor(item, fecha){
-        this.fecha=fecha
+// export class Ventasporvendedor{
+//     constructor(item, fecha){
+//         this.fecha=fecha
 
-        this.llamandoVendedor(item);
-        this.element=this.agregarItem(item);
-    }
+//         this.llamandoVendedor(item);
+//         this.element=this.agregarItem(item);
+//     }
 
-    llamandoVendedor = (item)=>{
-        const contenedorVendedor = document.querySelector(".contenedor-vendedor")
-        const vendedor = document.createElement("span");
-        vendedor.textContent= item.vendedor;//colocar nombre celda como figura en tabla de bd
-        contenedorVendedor.appendChild(vendedor)
-    }
+//     llamandoVendedor = (item)=>{
+//         const contenedorVendedor = document.querySelector(".contenedor-vendedor")
+//         const vendedor = document.createElement("span");
+//         vendedor.textContent= item.vendedor;//colocar nombre celda como figura en tabla de bd
+//         contenedorVendedor.appendChild(vendedor)
+//     }
     
-    agregarItem =(item) =>{
+//     agregarItem =(item) =>{
         
-    // creando elementos y asignando clases    
-        const lineaArticulo = document.createElement("div");
-            lineaArticulo.className="tabla_lineaArticulo";
+//     // creando elementos y asignando clases    
+//         const lineaArticulo = document.createElement("div");
+//             lineaArticulo.className="tabla_lineaArticulo";
         
-        const cantidad = document.createElement("div");
-            cantidad.className="cantidad";
-        const producto = document.createElement("div");
-            producto.className="producto";
-        const total = document.createElement("div");
-            total.className="total"; 
+//         const cantidad = document.createElement("div");
+//             cantidad.className="cantidad";
+//         const producto = document.createElement("div");
+//             producto.className="producto";
+//         const total = document.createElement("div");
+//             total.className="total"; 
         
 
-    //asignar valor a celdas
-        producto.textContent = item.producto;
-        cantidad.textContent = item.cantidad;
-        total.textContent = item.total;
+//     //asignar valor a celdas
+//         producto.textContent = item.producto;
+//         cantidad.textContent = item.cantidad;
+//         total.textContent = item.total;
     
-    //agregar item a lineaArtículo    
-        lineaArticulo.append(cantidad,producto, total);
+//     //agregar item a lineaArtículo    
+//         lineaArticulo.append(cantidad,producto, total);
 
-    return lineaArticulo;
+//     return lineaArticulo;
 
-    }
+//     }
 
-    getElement(){
-        return this.element
-    }
-}/*fin class ventasporvendedor Revisar*/
+//     getElement(){
+//         return this.element
+//     }
+// }/*fin class ventasporvendedor Revisar*/
 
 export class BtnFlotante{
 

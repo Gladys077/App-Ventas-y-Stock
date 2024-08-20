@@ -132,6 +132,7 @@ main{
         height: 1000px;
         overflow-y: scroll;
         scrollbar-width: none;
+        padding-bottom: 75px;
         
         .tabla_lineaArticulo{
             position: relative;

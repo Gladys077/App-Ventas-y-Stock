@@ -6,6 +6,8 @@ import { ButtonContainer } from "../../js/btnsContainer.js";
 import { conexionAPI } from "../js/services/conectionFakeApi.js"
  
 
+
+
 export class PlanillaVentaActual {
     constructor(){
         this.createHeader();
@@ -61,8 +63,7 @@ export class PlanillaVentaActual {
             const prod = document.createElement("div");
             prod.className="producto";
             prod.textContent= `${producto}`;
-            console.log(producto);
-            
+                        
 
             const precio = document.createElement("div");
             precio.className = "precio";
@@ -79,9 +80,11 @@ export class PlanillaVentaActual {
                             const art = document.getElementById(`${id}`)
                             conexionAPI.borrararticulo(`${id}`);
                             detalle.removeChild(art);
+                            calcularTotal();
                             
                         }) //verificar como pasar el id, corregir y agregar button
                     buttonEliminar.appendChild(iconEliminar);    
+
             precio.append(spanprecio, buttonEliminar)        
                     
             lineaArt.append(input, prod, precio)
@@ -107,14 +110,19 @@ export class PlanillaVentaActual {
             // console.log("Cant " + articulo.cant,  "producto " +articulo.producto, "precio " + articulo.precioUnitario);
         })
 
-    }
+        calcularTotal();
+
+    }//se muestran todas las líneas de artículos
 
     createTablaFooter= ()=>{
         const mainPedido=document.querySelector("main");
         this.footer = new TablaFooter()
         mainPedido.appendChild(this.footer.getElement());
+        
+        // calcularTotal();
     }
 
+    
     createBtnFlotante= ()=>{
         const mainPedido=document.querySelector("main");
         this.btn = new BtnFlotante("masblanco","contenedor-btn-flotante adicionarArticulo", ()=>{alert("agregando nuevo item")});
@@ -140,9 +148,24 @@ export class PlanillaVentaActual {
 
 new PlanillaVentaActual();
 
-function eliminarAppendChild(event){
-    const lineaArticulo=event.target.closest(".tabla_lineaArticulo")
-    lineaArticulo.removeChild(input, prod, precio);
+
+
+function calcularTotal(){
+    
+    const precios =document.querySelectorAll(".precio");
+    console.log(typeof(precios));
+    console.log("todos los precio", precios);
+        let totalVenta = 0;
+        precios.forEach(precio =>{
+            const span = precio.querySelector("span");
+            totalVenta += parseFloat(span.textContent);
+            // if(span&&span.textContent){
+            //     totalVenta += parseFloat(span.textContent);
+            // }
+            
+        });
+        document.querySelector(".valorTotal").textContent = `$${totalVenta}`;
+
 }
 
 async function actualizarPrecio(event){
@@ -156,6 +179,7 @@ async function actualizarPrecio(event){
     // console.log(costo);
     const precioxNuevaCant = linea.querySelector("span");
     precioxNuevaCant.innerText = costo;
+    calcularTotal();
 
     try{
             
@@ -177,4 +201,5 @@ async function actualizarPrecio(event){
     }
 
 }
+
 
