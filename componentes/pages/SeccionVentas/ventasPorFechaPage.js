@@ -1,10 +1,10 @@
-import { Header, iconoVolver, iconoMenu } from '../header.js';
-import { CardVtasPorProducto } from '../cardVtasPorProducto.js';
-import { Footer } from '../footer.js';
-import { FabButton } from '../utils.js';
-import { iconoDescargar } from '../iconosSVG.js';
-import { navigateToPage } from '../navigateToPage.js';
-import { Notification } from '../notificacion.js';
+import { Header } from '../../js/header.js';
+import { CardVtasPorProducto } from '../../js/cardVtasPorProducto.js';
+import { Footer } from '../../js/footer.js';
+import { FabButton} from '../../js/utils.js';
+import { iconoVolver, iconoDescargar } from '../../js/iconosSVG.js';
+import { navigateToPage } from '../../js/navigateToPage.js';
+import { Notification } from '../../js/notificacion.js';
 
 export class VentasPorFechaPage {
     constructor() {
@@ -16,7 +16,7 @@ export class VentasPorFechaPage {
         this.createFooter();
     }
     createHeader() {
-        this.header = new Header('Ventas por fecha', iconoVolver, null, ()=>{ navigateToMenu('MenuVentas');});
+        this.header = new Header('Ventas por fecha', iconoVolver, null, ()=>navigateToPage('MenuVentas'));
         document.body.appendChild(this.header.getElement());
     }
 

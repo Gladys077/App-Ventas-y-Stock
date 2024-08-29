@@ -1,21 +1,21 @@
-import { Header, iconoVolver, iconoMenu, navigateToMenu } from '../header.js';
-import { CardNewProduct } from '../cardNewProduct.js';
-import { Notification } from '../notificacion.js';
-import { Producto } from '../producto.js';
+import { Header } from '../../js/header.js';
+import { iconoMenu, iconoVolver } from "../../js/iconosSVG.js";
+import { CardNewProduct } from '../../js/cardNewProduct.js';
+import { Notification } from '../../js/notificacion.js';
+import { Producto } from '../../js/producto.js';
+import { navigateToPage } from '../../js/navigateToPage.js';
 
 
 export class EditProductPage {
     constructor(productId) {
         document.body.innerHTML = ''; 
-
         this.productId = productId;
         this.createHeader();
         this.createMain();
-        this.createPage();
     }
 
     createHeader() {
-        const header = new Header('Editar Producto', iconoVolver, iconoMenu, null, function(){ navigateToMenu('stock'); });
+        const header = new Header('Editar Producto', iconoVolver, null, ()=>navigateToPage('MenuStock'));
         document.body.appendChild(header.getElement());
     }
 
@@ -31,20 +31,7 @@ export class EditProductPage {
     }
     
     async loadProductData() {
-        //para usar con la bbdd de LIO:
-        /*
-        try {
-            const response = await fetch(`http://localhost:3000/api/productos/${this.productId}`);
-            if (response.ok) {
-                const productData = await response.json();
-                this.fillProductData(productData);
-            } else {
-                new Notification('../../../img/emojis/pare.png', 'No se pudo cargar el producto.', 'error');
-            }
-        } catch (error) {
-            new Notification('../../../img/emojis/pare.png', 'Error al cargar el producto.', 'error');
-        }
-            */
+        
 
         // Versión con LStorage
         const productosGuardados = JSON.parse(localStorage.getItem('productos')) || [];
@@ -94,28 +81,6 @@ export class EditProductPage {
 
 
     async guardarCambiosProducto(datosProducto) {
-        //----------------> Versión para guardar en la BBDD (ver con LIO):
-        /*
-        try {
-            const response = await fetch(`http://localhost:5500/api/productos/${this.productId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(datosProducto)
-            });
-
-            if (response.ok) {
-                return true;
-            } else {
-                new Notification('../../../img/emojis/pare.png', '¡Ups! Hubo un fallo. Por favor, intenta de nuevo.', 'error');
-                return false;
-            }
-        } catch (error) {
-            new Notification('../../../img/emojis/pare.png', 'Error inesperado al actualizar el producto', 'error');
-            return false;
-        }
-*/
 
         try {
             const productosGuardados = JSON.parse(localStorage.getItem('productos')) || [];
@@ -141,10 +106,6 @@ export class EditProductPage {
         window.location.href = '/ruta-a-la-pagina-anterior(buscador-de-productos-a-editar)';
     }
 
-    createPage() {
-        const headerElement = document.querySelector('header');
-        const mainElement = document.querySelector('main');
-    }
 }
 
 const urlParams = new URLSearchParams(window.location.search);

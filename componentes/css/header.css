@@ -8,36 +8,36 @@
     box-sizing: border-box;
     width: 100%;
     max-width: 400px;
-}
 
-.icon-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-}
+    .icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+    }
 
-.title-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    .title-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-.headerTitle {
-    margin: 0;
-    font-size: 16px;
-    text-align: center;
-}
+    .headerTitle {
+        margin: 0;
+        font-size: 16px;
+        text-align: center;
+    }
 
-.icon {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 12px;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    .icon {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 12px;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

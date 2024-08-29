@@ -1,8 +1,11 @@
-import { Header, iconoVolver, iconoMenu} from '../header.js';
-import { CardNewProduct } from '../cardNewProduct.js';
-import { Notification } from '../notificacion.js';
-import { Producto } from '../producto.js';
-import { ModalInput } from '../modalInput.js'; 
+import { Header } from '../../js/header.js';
+import { iconoVolver, iconoMenu } from '../../js/iconosSVG.js';
+import { CardNewProduct } from '../../js/cardNewProduct.js';
+import { Notification } from '../../js/notificacion.js';
+import { Producto } from '../../js/producto.js';
+import { ModalInput } from '../../js/modalInput.js'; 
+import { navigateToPage } from "../../js/navigateToPage.js";
+
 
 export class NewProductPage {
     constructor() {
@@ -12,7 +15,7 @@ export class NewProductPage {
     }
 
     createHeader() {
-        const header = new Header('Nuevo producto', iconoVolver, iconoMenu, null, function(){ navigateToMenu('stock'); });
+        const header = new Header('Nuevo producto', iconoVolver, iconoMenu, null, function(){ navigateToPage('MenuStock'); });
         document.body.appendChild(header.getElement());
     }
 
@@ -51,6 +54,17 @@ export class NewProductPage {
 
     async guardarProducto(datosProducto) {
         try {
+            //-------> Guardar en LocalStorage
+            const productosGuardados = JSON.parse(localStorage.getItem('productos')) || [];
+            productosGuardados.push(datosProducto);
+            localStorage.setItem('productos', JSON.stringify(productosGuardados));
+
+            return true;
+
+
+
+            //-------> Guardar en la base de datos (comentar esto por ahora)
+            /*
             const response = await fetch('/ruta-a-la-api-para-guardar-producto', {
                 method: 'POST',
                 headers: {
@@ -65,6 +79,7 @@ export class NewProductPage {
     
             const data = await response.json();
             return data.success; // Ver con LIO
+            */
         } catch (error) {
             console.error('Error al guardar el producto', error);
 

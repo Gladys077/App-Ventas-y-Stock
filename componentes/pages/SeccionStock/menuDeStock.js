@@ -1,12 +1,12 @@
-import { Header, iconoAjustes, iconoVolver } from "../header.js";
-import { createMenuPrincipal } from "../utils.js";
-import { Footer } from "../footer.js";
-import { navigateToPage } from "../navigateToPage.js";
+import { Header } from "../../js/header.js";
+import { iconoAjustes, iconoVolver } from "../../js/iconosSVG.js";
+import { createMenuPrincipal } from "../../js/utils.js";
+import { Footer } from "../../js/footer.js";
+import { navigateToPage } from "../../js/navigateToPage.js";
 
-export class CargaDeStock {
+export class MenuStockPage {
     constructor() {
         document.body.innerHTML = ''; 
-
         this.createHeader();
         this.createMain();
         this.createFooter();
@@ -16,7 +16,7 @@ export class CargaDeStock {
     getElement() {
         return this.element;
     }
-
+   
     createHeader() {
         this.header = new Header('Administrador', iconoVolver, iconoAjustes, ()=> { navigateToPage('Login') }, ()=> { navigateToPage('Config') });
         
@@ -29,7 +29,7 @@ export class CargaDeStock {
         menu.className = 'menu';
 
         menu.appendChild(createMenuPrincipal());
-        menu.appendChild(createMenuCargaDeStock());
+        menu.appendChild(createMenuStock());
 
         main.appendChild(menu);
         document.body.appendChild(main);
@@ -42,6 +42,8 @@ export class CargaDeStock {
         const logoutContainer = document.createElement('button');
         logoutContainer.className = 'logout-container';
 
+        logoutContainer.addEventListener('click', ()=> {navigateToPage('Login')});
+
         const icon = document.createElement('img');
         icon.src = '../../../img/iconos/CerrarSesion.png';
         icon.alt = 'Icono Salida';
@@ -52,9 +54,11 @@ export class CargaDeStock {
         logoutText.className = 'logout-text';
         logoutContainer.appendChild(logoutText);
 
+        // footerElement.appendChild(logoutContainer);
+     
         footerElement.appendChild(logoutContainer);
-
         document.body.appendChild(footerElement);
+
     }
 
     setActiveTab(tabName) {
@@ -69,18 +73,25 @@ export class CargaDeStock {
     }
 }
 
-export function createMenuCargaDeStock() {
+export function createMenuStock() {
     const menuStock = document.createElement('div');
-    menuStock.classList.add('botonera-container', 'large');
+    menuStock.classList.add('botonera-container');
 
     const buttonsData = [
-        { src: '../../../img/iconos/cargarStock.png', alt: '', text: 'Cargar de stock por producto', page: 'CargaXProducto' },
-        { src: '../../../img/iconos/stock.png', alt: '', text: 'Cargar de stock por remito', page: 'CargaXRemito' }
+        { src: '../../../img/iconos/cargarStock.png', alt: '', text: 'Cargar Stock', page: 'CargaDeStock' },
+        { src: '../../../img/iconos/stock.png', alt: '', text: 'Ver Stock', page: 'VerStock' },
+        { src: '../../../img/iconos/editarProducto.png', alt: '', text: 'Editar Producto', page: 'EditarProducto' },
+        { src: '../../../img/iconos/agregarProducto.png', alt: '', text: 'Nuevo Producto', page: 'NuevoProducto' },
+        { src: '../../../img/iconos/eliminarProducto.png', alt: '', text: 'Eliminar Producto', page: 'EliminarProducto' },
+        { src: '../../../img/iconos/proveedores.png', alt: '', text: 'Proveedores', page: 'Proveedores' },
+        { src: '../../../img/iconos/proximoPedido.png', alt: '', text: 'Próximo Pedido', page: 'ProximoPedido' },
+        { src: '../../../img/iconos/historialPedidos.png', alt: '', text: 'Historial de Pedidos', page: 'HistorialPedidos' }
+
     ];
 
     buttonsData.forEach(data => {
         const button = document.createElement('button');
-        button.classList.add('botonera', 'botonera-vertical');
+        button.classList.add('botonera');
 
         const img = document.createElement('img');
         img.src = data.src;

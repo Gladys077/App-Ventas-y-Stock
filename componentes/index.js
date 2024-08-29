@@ -5,7 +5,7 @@
 // import { ButtonContainer } from './btnsContainer.js';
 
 //-------------Primeras Screens------------
-import { createLoginPage } from "./pages/LoginPage.js";
+import { createLoginPage } from "./pages/PrimerasPaginas/LoginPage.js";
 // import { RecoverPasswordPage } from './pages/pageRecoverPassword.js';
 // import { ChangePassword } from './pages/pageChangePassword.js';
 // import { ConfigurationPage } from './pages/pageConfig.js';

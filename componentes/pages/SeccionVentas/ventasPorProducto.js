@@ -1,9 +1,9 @@
-import { Header, iconoVolver, iconoMenu} from '../header.js';
-import { CardVtasPorProducto } from '../cardVtasPorProducto.js';
-import { Footer } from '../footer.js';
-import { FabButton } from '../utils.js';
-import { iconoDescargar } from '../iconosSVG.js';
-import { navigateToPage } from '../navigateToPage.js';
+import { Header } from '../../js/header.js';
+import { CardVtasPorProducto } from '../../js/cardVtasPorProducto.js';
+import { Footer } from '../../js/footer.js';
+import { FabButton } from '../../js/utils.js';
+import { iconoDescargar, iconoVolver, iconoMenu } from '../../js/iconosSVG.js';
+import { navigateToPage } from '../../js/navigateToPage.js';
 
 export class VentasPorProductoPage {
     constructor() {
@@ -19,14 +19,14 @@ export class VentasPorProductoPage {
     }
 
     createHeader() {
-        this.header = new Header('Unidades vendidas', iconoVolver, iconoMenu, ()=>{ navigateToPage('BuscadorVentasPorProducto')}, ()=>{ navigateToPage('menuVentas')});
+        this.header = new Header('Unidades vendidas', iconoVolver, iconoMenu, ()=>{ navigateToPage('BuscadorVentasPorProducto')}, ()=>{ navigateToPage('MenuVentas')});
         document.body.appendChild(this.header.getElement());
     }
 
     createMain() {
         const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
         const selectedProductName = selectedProduct ? selectedProduct.nombre : 'Nombre_del_producto';
-        this.ventasPorProducto = new CardVtasPorProducto(selectedProductName, 'Buscar', () => this.onClick(), 'Unidades Vendidas');
+        this.ventasPorProducto = new CardVtasPorProducto(selectedProductName, 'Buscar', true, () => this.onClick(), 'Unidades Vendidas', 'Ver la lista por fecha', 'Config');
         document.body.appendChild(this.ventasPorProducto.getElement());
     }
 

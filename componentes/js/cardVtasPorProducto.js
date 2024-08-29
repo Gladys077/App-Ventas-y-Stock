@@ -1,21 +1,23 @@
-import { Notification } from './notificacion.js';
-import { isValidDate, formatDateInput } from './utils.js';
-
+import { Notification } from '../js/notificacion.js';
+import { isValidDate, formatDateInput, verificarCss } from '../js/utils.js';
+import { navigateToPage } from '../js/navigateToPage.js';
 
 export class CardVtasPorProducto {
-    constructor(title, textBtn, onClick, includeUnidadesVendidas = true, cuadroInferiorTitulo = "Unidades vendidas", linkText = "Listado por fecha", linkHref = "#") {
+    constructor(title, textBtn, onClick, includeUnidadesVendidas = true, cuadroInferiorTitulo = "Unidades vendidas", linkText = "Listado por fecha", page = 'MenuVentas') {
         this._title = title;
         this._textBtn = textBtn;
         this._onClick = onClick;
         this._includeUnidadesVendidas = includeUnidadesVendidas;
         this._cuadroInferiorTitulo = cuadroInferiorTitulo;
         this._linkText = linkText;
-        this._linkHref = linkHref;
+        this._page = page;
         this._isBuscarMode = true; // Para rastrear el modo del botón
         this._fechaDesde = null;
         this._fechaHasta = null;
         this.element = this.armarCardVtasPorProducto();
         this.addInputListeners(); // Para añadir listeners a los inputs
+        if (!verificarCss('cuadroInferior')) this.agregarCss();
+
     }
 
     get title() { 
@@ -60,14 +62,133 @@ export class CardVtasPorProducto {
     set linkText(value) {
         this._linkText = value;
     }
-    get linkHref() {
+    get page() {
         return this._linkHref;
     }
-    set linkHref(value) {
-        this._linkHref = value;
+    set page(value) {
+        this._page = value;
     }
 
+    agregarCss(){
+        const style = document.createElement('style');
+        style.textContent = `
+        .card {
+            background-color: var(--background-color);
+            border-radius: 12px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            margin: 24px auto;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            padding-bottom: 24px;
 
+            .card-title {
+                background-color: var(--primary-color);
+                min-height: 48px;
+                height: auto;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                font-size: 16px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                line-height: 1.4;
+                padding: 4px;
+                border-top-left-radius: 4px;
+                border-top-right-radius: 4px;
+                margin-bottom: 16px;
+                color: var(--text-claro);
+            }
+
+            .card-input {
+                border: 1px solid var(--secondary-color);
+                border-radius: 50px;
+                font-size: 18px;
+                margin-bottom: 24px;
+                padding: 8px;
+                height: 48px;
+                width: 80%;
+                max-width: 250px;
+                text-align: center;
+            }
+
+            .card-button {
+                height: 48px;
+                width: 80%;
+                max-width: 250px;
+                background-color: var(--primary-color);
+                border: none;
+                border-radius: 50px;
+                color: var(--text-claro);
+                cursor: pointer;
+                font-size: 18px;
+                font-weight: bold;
+                padding: 8px 16px;
+
+                &:hover {
+                    background-color: var(--color-hover);
+                }
+
+                &:active {
+                    transform: scale(90%);
+                }
+            }
+
+            .card-link {
+                color: var(--primary-color);
+                font-size: 16px;
+                font-weight: 500;
+                text-align: center;
+                display: block;
+                margin-top: 24px;
+                margin-bottom: 8px;
+
+                &:hover {
+                    color: var(--color-hover);
+                }
+
+                &:active {
+                    transform: scale(90%);
+                }
+            }
+
+            .cuadroInferior {
+                width: 200px;
+                padding: 8px;
+                border-radius: 4px;
+                margin: auto;
+
+                .headerCuadroInferior {
+                    background-color: var(--color-hover);
+                    color: #fff;
+                    padding: 4px;
+                    border-radius: 4px 4px 0 0;
+                    margin-top: 16px;
+                    font-size: 14px;
+                }
+
+                .boxCuadroInferior {
+                    display: block;
+                    border-radius: 0 0 4px 4px;
+                    font-size: 16px;
+                    font-weight: 500;
+                    color: var(--primary-color);
+                    margin: auto;
+                    border: 1px solid var(--color-hover);
+                    height: 48px;
+                    background-color: white;
+                    line-height: 48px;
+                }
+            }
+        }
+
+        `
+        document.head.appendChild(style);
+    }
     armarCardVtasPorProducto() {
         this.element = document.createElement('div');
         this.element.className = 'card';
@@ -86,11 +207,10 @@ export class CardVtasPorProducto {
 
         const verListado = document.createElement('a');
         verListado.textContent = this._linkText;
-        verListado.href = this._linkHref;
         verListado.className = 'card-link';
         verListado.addEventListener('click', (e) => {
             e.preventDefault(); // Previene la navegación por defecto
-            this.mostrarListadoPorFecha();
+            navigateToPage(this._page);
         });
 
         this.element.appendChild(titleElement);
@@ -261,7 +381,6 @@ export class CardVtasPorProducto {
     
 
     mostrarListadoPorFecha() {
-        console.log('Mostrar listado por fecha:');
         navigateToPage('ventasPorFecha');
     // Limpio cualquier listado anterior
     const listadoPrevio = this.element.querySelector('.listado-por-fecha');

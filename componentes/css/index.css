@@ -1,12 +1,19 @@
+/* 
+@import url(./cardproveedor.css);
+@import url(./datoremito.css);
+@import url(./formularios.css);
+@import url(./movimientos.css);
+@import url(./ventas.css);
+@import url(./main.css); */
 @import url(./header.css);
 @import url(./footer.css);
-@import url(./searchContainer.css);
+/* @import url(./searchContainer.css); */
 @import url(./btnsContainer.css);
-@import url(./cardBase.css);
-@import url(./cardNewProd.css);
+/* @import url(./cardBase.css); */
+/* @import url(./cardNewProd.css); */
 @import url(./fabButton.css);
 @import url(./fabExtended.css);
-@import url(./loginYForms.css);
+/* @import url(./loginYForms.css); */
 @import url(./menu.css);
 @import url(./proveedor.css);
 
@@ -23,6 +30,18 @@
     --color-hover: #9747FF;
     --fondo-monto: #DEC9FA;
     --background-menu: #dadada;
+    --background-fondo: #efefef;
+    
+    --primary-color: #6810AD;
+    --secondary-color: #CAA5FB;
+    --text-color: #333333;
+    --background-color: #efefef;
+    --on-primary-color: #ffffff;
+    --color-hover: #9747FF;
+    --fondo-monto: #DEC9FA;
+    --input-border-color: #9747FF;
+    --input-focus-color: #1A73E8;
+    --text-claro: white;
 }
 
 *{

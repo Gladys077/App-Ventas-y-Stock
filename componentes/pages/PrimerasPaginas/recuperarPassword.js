@@ -1,23 +1,89 @@
-import { Header, iconoVolver } from '../header.js';
-import { navigateToPage } from '../navigateToPage.js';
+import { Header } from '../../js/header.js';
+import { navigateToPage } from '../../js/navigateToPage.js';
+import { iconoVolver } from '../../js/iconosSVG.js';
+import { verificarCss } from '../../js/utils.js';
 
 export class RecoverPasswordPage {
     constructor() {
         document.body.innerHTML = ''; 
-
-            this.createHeader();
-            this.createMain();
-        }
+        if (!verificarCss('candado-class')) this.agregarCss();
+        this.createHeader();
+        this.createMain();
+    }
     
-
     getElement() {
         return this.element;
     }
 
+    agregarCss(){
+        const style = document.createElement('style');
+        style.textContent = `
+            .container-password {
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                max-width: 400px;
+                width: calc(100vw - 32px);
+                margin: 0 auto;
+                margin-top: 60px;
+
+            .candado-class {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 40px;
+            }
+
+            .txt-Recuperar {
+                font-size: 16px;
+                font-weight: 400;
+                margin-bottom: 16px;
+                width: 75%;
+            }
+
+            .search-input {
+                width: 100%;
+                height: 48px;
+                padding: 16px;
+                margin-bottom: 16px;
+                border: 1px solid #ccc;
+                border-radius: 50px;
+                font-size: 16px;
+
+                &::placeholder {
+                    text-align: center;
+                }
+            }
+
+            .search-button {
+                width: 100%;
+                height: 48px;
+                padding: 12px;
+                background-color: var(--primary-color);
+                color: white;
+                border: none;
+                border-radius: 50px;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: 500;
+                box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
+
+                &:hover {
+                    background-color: var(--color-hover);
+                }
+
+                &:active {
+                    transform: scale(95%);
+                }
+            }
+        }
+
+	    `
+            document.head.appendChild(style);
+    }
+
     createHeader() {
-        this.header = new Header('Recupera tu contraseña', iconoVolver, null, function() {
-            navigateToPage('Login');
-        }, null);
+        this.header = new Header('Recupera tu contraseña', iconoVolver, null, ()=>navigateToPage('Login'));
         document.body.appendChild(this.header.getElement());
     }
 

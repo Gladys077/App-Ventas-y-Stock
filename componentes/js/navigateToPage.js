@@ -1,78 +1,94 @@
 export function navigateToPage(page) {
     document.body.innerHTML = '';
 
+    // window.history.pushState(null, '', `/${page}`); // Esto muestra la página en el navegador
+//     loadPage(page);  //Carga el contenido de la página
+
+// }
+// function loadPage(page){
+//     document.body.innerHTML = '';
+
     switch(page) {
+        //Primeras Páginas
         case 'Login':
-            import('./pages/LoginPage.js').then(module => {
-                module.createLoginPage();
+            import('../pages/PrimerasPaginas/LoginPage.js').then(module => {
+                new module.createLoginPage();
             });
             break;
         case 'RecoverPassword':
-            import('./pages/recuperarPassword.js').then(module => {
+            import('../pages/PrimerasPaginas/recuperarPassword.js').then(module => {
                 new module.RecoverPasswordPage();
             });
             break;
         case 'cambioDePassword':
-            import('./pages/cambioDePassword.js').then(module => {
+            import('../pages/PrimerasPaginas/cambioDePassword.js').then(module => {
                 new module.ChangePassword();
             });
             break;
         case 'Config':
-            import('./pages/configuracion.js').then(module => {
+            import('../pages/PrimerasPaginas/configuracion.js').then(module => {
                 new module.ConfigurationPage();
             });
-            break;
+
+        //Sección Ventas
         case 'MenuVentas':
-            import('../js/pages/pageMenuVentas.js').then(module => {
+            import('../pages/SeccionVentas/pageMenuVentas.js').then(module => {
                 new module.PageMenuVentas();
             });
             break;
         case 'BuscadorParaVender':
-            import('./pages/busquedaProducto.js').then(module => {
+            import('../pages/SeccionVentas/venderBuscador.js').then(module => {
                 new module.ProductSearchPage();
             });
             break;
-        case 'ventaActual':
-            import('../../public/pages/ventaActual.js').then(module => {
+        case 'ventaActual': //LU
+            import('../pages/SeccionVentas/ventaactual.js').then(module => {
                 new module.PlanillaPedido();
             });
             break;
 
-        case 'Movimientos':
-            import('../../public/pages/movimiento.js').then(module => {
+        case 'Movimientos': //LU
+            import('../pages/SeccionVentas/movimiento.js').then(module => {
                 new module.PlanillaMovimiento();
             });
             break;
 
         case 'VentasPorVendedor':
-            import('./pages/ventasPorVendedor.js').then(module => {
+            import('../pages/SeccionVentas/ventasPorVendedor.js').then(module => {
                 new module.VentasPorVendedorPage();
             });
             break;
-        case 'VentasPorVendedorListado':
-            import('../../public/pages/ventasporvendedor.js').then(module => {
+        case 'VentasPorVendedorListado': //LU
+            import('../pages/SeccionVentas/ventasPorVendedorListado.js').then(module => {
                 new module.PlanillaVtasxVendedor();
             });
             break;
 
-        case 'BuscadorVentasPorProducto':
-            import('./pages/ventasPorProductoBuscador.js').then(module => {
+        case 'BuscadorVentasPorProducto': 
+            import('../pages/SeccionVentas/ventasPorProductoBuscador.js').then(module => {
                 new module.VentasPorProductoBuscador();
-            })
-        case 'VentasPorProducto':
-            import('./pages/ventasPorProducto.js').then(module => {
+            });
+            break;
+        case 'VentasPorProducto': 
+            import('../pages/SeccionVentas/ventasPorProducto.js').then(module => {
                 new module.VentasPorProductoPage();
             });
             break;
-        case 'ListadoPorFecha': //Lu
-            import('../../public/pages/ventasporfecha.js').then(module => {
-               new module.PlanillaVtasxFecha();
+        case 'ListaXFecha_vtaProd': 
+            import('../pages/SeccionVentas/listaXFecha_vtaProd.js').then(module => {
+                new module.PlanillaVtasxFecha();
             });
             break;
+        
             
         case 'VentasPorFecha':
-            import('../js/pages/ventasPorFechaPage.js').then(module => {
+            import('../pages/SeccionVentas/ventasPorFechaPage.js').then(module => {
                 new module.VentasPorFechaPage();
+            });
+            break;
+            case 'ListadoPorFecha': //Lu
+            import('../pages/SeccionVentas/listaXFecha_vtaProd.js').then(module => {
+               new module.PlanillaVtasxFecha();
             });
             break;
 
@@ -82,46 +98,81 @@ export function navigateToPage(page) {
 
 
         case 'MenuStock':
-            import('./pages/menuDeStok.js').then(module => {
+            import('../pages/SeccionStock/menuDeStock.js').then(module => {
                 new module.MenuStockPage();
             });
             break;
 
         case 'CargaDeStock':
-            import('./pages/cargaDeStock.js').then(module => {
+            import('../pages/SeccionStock/menuCargaDeStock.js').then(module => {
                 new module.CargaDeStock();
             });
             break;    
             
-        case 'Stock':
-            import('../../public/pages/stock.js').then(module => {
+        case 'CargarStockSearchPage':
+            import('../pages/SeccionStock/cargaStockBuscador.js').then(module => {
+                new module.CargarStockSearchPage();
+            });
+            break;
+
+        case 'CargaStockXRemitoPage':
+            import('../pages/SeccionStock/stockcargaxremito.js').then(module => {
+                new module.PlanillaStockCargaxRemito();
+            });
+            break;
+
+        case 'VerStock':
+            import('../pages/SeccionStock/stock.js').then(module => {
                 new module.PlanillaStock();
             });
             break;
 
         case 'NuevoProducto':
-            import('./pages/nuevoProducto.js').then(module => {
+            import('../pages/SeccionStock/nuevoProducto.js').then(module => {
                 new module.NewProductPage();
             });
             break;
 
         case 'EditarProducto':
-            import('./pages/editarProducto.js').then(module => {
+            import('../pages/SeccionStock/editarProducto.js').then(module => {
                 new module.EditProductPage();
             });
             break;
 
-        
+        case 'EliminarProducto':
+            import('../pages/SeccionStock/eliminarProductoDelStock.js').then(module => {
+                new module.EliminarProductosPage();
+            });
+            break;
 
+        case 'ProximoPedido':
+            import('../pages/SeccionStock/pedidoproximo.js').then(module => {
+                new module.PlanillaPedidoProximo();
+            });
+            break;
 
         case 'MenuPerfiles':
-            import('../js/pages/menuPerfiles.js').then(module => {
+            import('../pages/SeccionPerfiles/menuPerfiles.js').then(module => {
                 new module.MenuPerfiles();
             });
             break;    
 
+
+
         default:
-            console.error('Página no encontrada:', page);
+            import('../pages/PrimerasPaginas/LoginPage.js').then(module =>{
+                new module.createLoginPage();
+            })
     }
 }
 
+
+// Manejar la navegación del navegador (botones atrás/adelante)
+// window.addEventListener('popstate', () => {
+//     loadPage(window.location.pathname.slice(1) || 'Login');
+// });
+
+// // Manejar la carga inicial de la página
+// window.addEventListener('load', () => {
+//     loadPage(window.location.pathname.slice(1) || 'Login');
+// });

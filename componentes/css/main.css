@@ -1,0 +1,330 @@
+main{
+    width: calc(100% - 32px);
+    max-width: 500px;
+    height: calc(100vh - 60px);
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    margin: 0px auto;
+    position: relative;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    
+
+    .main-nav{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0;
+        width: calc(100% - 32px);
+        top: 100px;
+        margin-bottom: 24px;
+
+        button{
+            border: none;
+            width: 33%;
+            height: 40px;
+            color: var(--color-primario);
+            border: 1px solid var(--color-fondo);   
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 24px;
+            text-align: center;
+            animation: 1s ease-in-out;
+            
+            &:hover{
+                color: var(--color-blanco);
+                background-color: var(--color-secundario);
+            }    
+
+        }
+        .btn-left{
+            border-top-left-radius: 100px;
+            border-bottom-left-radius: 100px;
+            box-shadow: 0px 4px 4px 0px var(--color-sombra);
+
+        }
+        .btn-center{
+            box-shadow: 0px 4px 4px 0px var(--color-sombra);
+        }
+
+        .btn-right{
+            border-top-right-radius: 100px;
+            border-bottom-right-radius: 100px;
+            box-shadow: 0px 4px 4px 0px var(--color-sombra);
+       
+        }
+        
+        ._active{
+            color: var(--color-blanco);
+            background-color: var(--color-primario);                
+        }
+
+
+    }/*fin main-nav. Se usa en las planillas de stocks*/
+
+    .contenedor-datos-remito{
+        width: calc(100% - 32px);
+        top: 100px;
+        margin-bottom: 4px;
+        height: 68px;
+        padding:8px 20px 8px 20px;
+        color: var(--color-blanco);
+        background-color: var(--color-primario);
+        p{
+            font-size: 14px;
+            line-height: 14px;
+            font-weight: 500;
+        }
+    }/*fin contenedor-datos-remito. Se usa en remitos para mostras datos del proveedor*/
+
+    .tabla_encabezados{
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: calc(100% - 32px);
+            height: 40px;
+            padding: 16px;
+            background: var(--color-header-tabla);
+            /* border-bottom: 1px solid var(--color-border-articulo); */
+            font-size: 14px;
+            font-weight: 400;
+            .th{
+                color: var(--color-primario);
+                text-align: center;
+            }
+
+            .az-btn{
+                position: absolute;
+                width: 30.86px;
+                height: 24px;
+                border: 1px solid var(--color-secundario);
+                box-shadow: 0px 4px 4px 0px var(--color-sombra);
+                background-color: var(--color-btn-flotante);
+                display: flex;
+                justify-content: center;
+                left: 65%;
+                transition:all ease-in-out 10ms transform ;
+                img{
+                    height: 24px;
+                }
+                &:hover{
+                    background-color: var(--color-fondo);
+                }
+                &:active{
+                    transform: scale(0.9);
+                }
+            }/*fin az-btn se usa en la planilla pedidoproximo*/
+
+    }/*fin tabla_encabezados. Se usa en todas las planillas*/
+
+    .tabla_detalles{
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: calc(100% - 32px);
+        height: 1000px;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        padding-bottom: 75px;
+        
+        .tabla_lineaArticulo{
+            position: relative;
+            width: 100%;
+            height: auto;
+            min-height: 45px;
+            padding: 16px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content:space-between;
+            flex-wrap: nowrap;
+            border-bottom: 1px solid var(--color-border-articulo);
+            font-size: 14px;
+            font-style: normal;
+            /* text-align: end; */
+
+                .cant{
+                    width: 35px;
+                    height: 35px;
+                    border: 0;
+                    text-align: end;
+                    padding-right: 4px;
+                    border: 1px solid var(--color-border-articulo);
+                }/*fin cant*/
+
+                .producto{
+                    height: auto;
+                    word-wrap: break-word;
+                    hyphens: auto; /*para evitar desbordamiento de texto en las notas*/
+                    width: 60%;
+                    text-align: center;
+                }
+                
+                .precio{
+                    display: flex;
+                    flex-direction: row;
+                    gap: 2px;
+                    align-items: center;
+                    justify-content: end;
+                    button{
+                        width: 16px;
+                        height: 16px;
+                        border: none;
+                        border-radius: 50px;
+                        background-color: transparent;
+                        transition: all ease-in-out 10ms transform ;
+                        img{
+                            width: 16px;
+                            height: 16px;
+                        }
+                        &:active{
+                            transform: scale(0.9);
+                        }
+                        &:hover{
+                            background-color: var(--color-fondo);
+                        }
+                    }/*fin button*/
+                }/*fin precio*/
+                
+                .cont-proveedores{
+                    width: 100%;
+                    height: 120px;
+                    display: flex;
+                    flex-direction: column;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    justify-content: center;
+                    overflow-y: scroll;
+                    scrollbar-width: none;
+                    color: var(--color-hover);
+                    font-size: 13px;
+                    font-weight: 400;
+                    line-height: 13px;
+                    .proveedor_opcion{
+                        width: 100%;
+                        display:flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 20px;
+                        padding-bottom: 20px;
+                        input{
+                            appearance: none;
+                            border-radius: 50%;
+                            width: 16px;
+                            height: 16px;
+                            border: 2px solid var(--color-hover);
+                            transition: 0.2s all linear;
+                            &:checked{
+                                background-color: var(--color-primario);
+                                
+                            }
+                        }
+                    }/*fin proveedor_opcion*/
+                    
+                }/*fin cont-provedores. se usa en pedido proximo*/
+                
+                ._oculto{
+                    display: none;
+                }
+
+            .mostrar-mas, .mostrar-menos{
+                position: absolute;
+                left: 50%;
+                width: 24px;
+                height: 24px;
+                bottom: -12px;
+                border: none;
+                background: transparent;
+                img{
+                    width: 24px;
+                    height: 24px;
+                }
+
+            }
+
+        }/*tabla_lineaArticulo*/
+
+    }/*fin tabla_detalles. Se usa en todas las planillas*/
+
+    .tabla_footer{
+        font-size: 14px;
+        font-weight: 400;
+        width: calc(100% - 32px);
+        height: 40px;
+        padding: 16px;
+        margin: 0px 16px 0px 16px;
+        background-color: var(--color-secundario);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: right;
+        gap: 16px;
+    }/*fin tabla_footer. Se usa en algunas planillas donde se muestra el total del monto*/
+    
+    .contenedor-btn-flotante{
+        position: absolute;
+        background-color: var(--color-btn-flotante);
+        width: 56px;
+        height: 56px;
+        line-height: 56px;
+        bottom: 50px;
+        right: 30px;
+        border-radius: 12px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 0px 6px 10px var(--color-sombra);
+        z-index:100;
+        transition:all ease-in-out 10ms transform ;
+        img{
+            width:24px;
+            height: 24px;
+        }
+        &:hover{
+            background-color: var(--color-fondo);
+        }
+        &:active{
+            transform: scale(0.9);
+        }
+    }/*fin contenedor-btn-flotante. Se utiliza en las planillas de pedidos en sus distintas versiones*/
+
+    ._listaxproveedor{
+        position: fixed;
+    }/*fin listaxproveedor. Se usa como estilo adicional al contenedor-btn-flotante en la planilla pedidolistaxproveedor*/
+
+    .adicionarArticulo{
+        background: var(--color-verde);
+    }/*fin adicionarArticulo. Se usa en ventaactual*/
+
+    .agregarManualmente{
+        background-color: var(--color-verde-claro);
+        width:121px;
+        height: 56px;
+        border-radius: 16px;
+        padding: 10px, 16px, 10px, 16px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+
+        span{
+            width: 59px ;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 14px;
+
+        }
+
+
+
+    }/*fin agregarAlPedido. Se usa en pedidoproximo*/
+
+}/*Fin main*/

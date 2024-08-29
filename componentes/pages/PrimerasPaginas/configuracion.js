@@ -1,16 +1,49 @@
-import { Header, iconoVolver } from '../header.js';
-import { navigateToPage } from '../navigateToPage.js';
+import { Header } from '../../js/header.js';
+import { iconoVolver } from '../../js/iconosSVG.js'
+import { navigateToPage } from '../../js/navigateToPage.js';
+import { verificarCss } from '../../js/utils.js';
 
 export class ConfigurationPage {
     constructor() {
         document.body.innerHTML = ''; 
-
+        if (!verificarCss('button-change-passw')) this.agregarCss();
         this.createHeader();
         this.createMain();
     }
 
     getElement() {
         return this.element;
+    }
+
+    agregarCss(){
+        const style = document.createElement('style');
+        style.textContent = `
+        #configList {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            width: calc(100vw - 32px);
+            margin: 0 auto;
+            margin-top: 40px;
+            font-weight: 400;
+
+            .list-item {
+                display: flex;
+                align-items: center;
+                line-height: 48px;
+                cursor: pointer;
+
+                .img-config {
+                    margin: 0px 8px 0 16px;
+                }
+
+                .txt-config {
+                    flex-grow: 1;
+                }
+            }
+        }
+    	`
+        document.head.appendChild(style);
     }
 
     createHeader() {

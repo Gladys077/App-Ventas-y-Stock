@@ -1,16 +1,71 @@
-import { Header, iconoVolver } from '../header.js';
-import { navigateToPage } from '../navigateToPage.js';
+import { Header } from '../../js/header.js';
+import { iconoVolver } from '../../js/iconosSVG.js';
+import { navigateToPage } from '../../js/navigateToPage.js';
+import { verificarCss } from '../../js/utils.js';
 
 export class ChangePassword {
     constructor() {
         document.body.innerHTML = ''; 
-
+        if (!verificarCss('button-change-passw')) this.agregarCss();
         this.createHeader();
         this.createMain();
     }
 
     getElement() {
         return this.element;
+    }
+
+    agregarCss(){
+        const style = document.createElement('style');
+        style.textContent =
+            `
+        .container-password {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 400px;
+            width: calc(100vw - 32px);
+            margin: 0 auto;
+            margin-top: 60px;
+        
+            .subtitlePass {
+                width: 100vw;
+                margin-top: 16px;
+                margin-bottom: 8px;
+            }
+        
+            .search-input {
+                width: 100%;
+                height: 48px;
+                padding: 16px;
+                margin-bottom: 16px;
+                border: 1px solid #ccc;
+                border-radius: 50px;
+                font-size: 16px;
+        
+                &::placeholder {
+                    text-align: center;
+                }
+            }
+        
+            .button-change-passw {
+                width: 100%;
+                height: 48px;
+                padding: 12px;
+                background-color: var(--primary-color);
+                color: white;
+                border: none;
+                border-radius: 50px;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: 500;
+                margin-top: 32px;
+                box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
+            }
+        }
+    `        
+    document.head.appendChild(style);
     }
 
     createHeader() {
@@ -43,7 +98,7 @@ export class ChangePassword {
 
         const input2 = document.createElement('input');
         input2.type = 'password';
-        input2.placeholder = 'Escribe tu <b>nueva<b>contraseña';
+        input2.placeholder = `Escribe tu nueva contraseña`;
         input2.className = 'search-input';
         input2.required = true;
 
@@ -54,7 +109,7 @@ export class ChangePassword {
 
         const input3 = document.createElement('input');
         input3.type = 'password';
-        input3.placeholder = 'Escribe tu <b>nueva<b>contraseña';
+        input3.placeholder = 'Escribe tu nueva contraseña';
         input3.className = 'search-input';
         input3.required = true;
 

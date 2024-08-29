@@ -1,12 +1,12 @@
-import { Header, iconoAjustes, iconoVolver } from "../header.js";
-import { createMenuPrincipal } from "../utils.js";
-import { Footer } from "../footer.js";
-import { navigateToPage } from "../navigateToPage.js";
+import { Header } from "../../js/header.js";
+import { iconoVolver, iconoAjustes } from '../../js/iconosSVG.js'
+import { createMenuPrincipal } from "../../js/utils.js";
+import { Footer } from "../../js/footer.js";
+import { navigateToPage } from "../../js/navigateToPage.js";
 
 export class PageMenuVentas {
     constructor() {
         document.body.innerHTML = ''; 
-
         this.createHeader();
         this.createMain();
         this.createFooter();
@@ -16,7 +16,7 @@ export class PageMenuVentas {
     getElement() {
         return this.element;
     }
-
+    
     createHeader() {
         this.header = new Header('Administrador', iconoVolver, iconoAjustes, ()=> { navigateToPage('Login') }, ()=> { navigateToPage('Config') });
         
@@ -42,6 +42,8 @@ export class PageMenuVentas {
         const logoutContainer = document.createElement('button');
         logoutContainer.className = 'logout-container';
 
+        logoutContainer.addEventListener('click', ()=> {navigateToPage('Login')});
+
         const icon = document.createElement('img');
         icon.src = '../../../img/iconos/CerrarSesion.png';
         icon.alt = 'Icono Salida';
@@ -53,8 +55,8 @@ export class PageMenuVentas {
         logoutContainer.appendChild(logoutText);
 
         footerElement.appendChild(logoutContainer);
-
         document.body.appendChild(footerElement);
+
     }
 
     setActiveTab(tabName) {
@@ -76,7 +78,7 @@ export function createMenuVentas() {
     const buttonsData = [
         { src: '../../../img/iconos/vender1.png', alt: '', text: 'Vender', page: 'BuscadorParaVender' },
         { src: '../../../img/iconos/Movim-Dia.png', alt: '', text: 'Movimientos del día', page: 'Movimientos' },
-        { src: '../../../img/iconos/ventasPorPersona.png', alt: '', text: 'Ventas por vendedor', page: 'VentasPorVendedor' },
+        { src: '../../../img/iconos/ventasPorPersona.png', alt: '', text: 'Ventas de cada vendedor', page: 'VentasPorVendedor' },
         { src: '../../../img/iconos/vta-x-producto.png', alt: '', text: 'Ventas por producto', page: 'BuscadorVentasPorProducto' },
         { src: '../../../img/iconos/VtasPorFecha.png', alt: '', text: 'Ventas por fecha', page: 'VentasPorFecha' }
     ];
