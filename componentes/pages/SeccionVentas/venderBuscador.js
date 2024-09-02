@@ -10,81 +10,33 @@ import { Producto } from '../../js/producto.js';
 export class VenderProductSearchPage {
     constructor() {
         document.body.innerHTML = ''; 
+        if (!verificarCss("ul-product-list")) this.agregarCss();
+
         this.selectedProducts = [];
         this.createHeader();
         this.createMain();
         this.createFooter();
-        if(!verificarCss('search-container')) this.agregarCss();
     }
 
     getElement() {
         return this.element;
     }
 
-    agregarCss(){
-        const style = document.createElement('style');
-        style.textContent = `
-        .search-container {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 400px;
-            width: calc(100vw - 32px);
-            margin: 0 auto;
-            margin-top: 40px;
-            position: sticky; 
-            top: 0; 
-            padding: 10px; 
-
-            .search-input {
-                width: 100%;
-                height: 48px;
-                padding: 16px;
-                margin-bottom: 16px;
-                border: 1px solid #ccc;
-                border-radius: 50px;
-                font-size: 16px;
-
-                &::placeholder {
-                    text-align: center;
+    agregarCss() {
+        const style = document.createElement("style");
+        style.textContent = ` 
+            .search-results {
+                max-width: 400px;
                 }
+
+            .ul-product-list {
+                margin-top: 16px;
+                list-style-type: none;
+                text-align: left;
+                overflow-y: auto; 
+                overflow-x: hidden;
+                background-color: #fff;
             }
-
-            .search-button {
-                width: 100%;
-                height: 48px;
-                padding: 12px;
-                background-color: var(--primary-color);
-                color: white;
-                border: none;
-                border-radius: 50px;
-                cursor: pointer;
-                font-size: 16px;
-                font-weight: 500;
-                box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
-
-                &:hover {
-                    background-color: var(--color-hover);
-                }
-
-                &:active {
-                    transform: scale(95%);
-                }
-            }
-        }
-
-        .ul-product-list {
-            width: calc(100vw - 32px);
-            max-width: 400px;
-            padding: 0 ;
-            margin-top: 16px;
-            list-style-type: none;
-            text-align: left;
-            /* max-height: calc(100vh - 350px);  */
-            max-height: var(--product-list-max-height, calc(100vh - 350px)); 
-            overflow-y: auto; 
-            background-color: #fff;
 
             .li-product-list {
                 border-bottom: 1px solid var(--secondary-color);
@@ -92,16 +44,16 @@ export class VenderProductSearchPage {
                 padding-left: 16px;
                 word-wrap: break-word;
                 overflow-wrap: break-word;
+            }
 
-                &:first-child {
-                    border-top: 1px solid var(--secondary-color);
-                }
+            .li-product-list:first-child{
+                border-top: 1px solid var(--secondary-color);
             }
         }
 
-	    `
+	    `;
         document.head.appendChild(style);
-    }
+  }
 
     createHeader() {
         const header = new Header('Vender', iconoVolver, null, function() { navigateToPage('MenuVentas')});
@@ -111,7 +63,7 @@ export class VenderProductSearchPage {
     createMain(){
         const main = document.createElement('main');
         
-        const productSearch = createSearchContainer(this.onProductClick.bind(this), ProductList);
+        const productSearch = createSearchContainer(this.onProductClick.bind(this), ProductList, 'calc(100vh - 300px)');
         main.appendChild(productSearch);
 
         // Container para la lista de productos
@@ -156,7 +108,7 @@ export class VenderProductSearchPage {
                 this.selectedProducts.push(selectedProduct);
                 localStorage.setItem('selectedProducts', JSON.stringify(this.selectedProducts));
 
-                new Notification('../../img/emojis/like.png', 'Producto añadido al carrito', 'success');
+                new Notification('../../../img/emojis/like.png', 'Producto añadido al carrito', 'success');
             }, '1');
     }
 
@@ -166,7 +118,7 @@ export class VenderProductSearchPage {
         const productListElement = productList.render();
 
         if (productListElement.children.length === 0) {
-            new Notification('../../img/emojis/asombro.png', '¡No hay producto en stock!', 'error');
+            new Notification('../../../img/emojis/asombro.png', '¡No hay producto en stock!', 'error');
         }
 
         this.resultContainer.appendChild(productListElement);

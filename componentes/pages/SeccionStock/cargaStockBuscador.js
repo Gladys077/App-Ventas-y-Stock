@@ -13,77 +13,28 @@ export class CargarStockSearchPage {
         this.createHeader();
         this.createMain();
         this.createFooter();
-        if(!verificarCss('search-container')) this.agregarCss();
+        if (!verificarCss("ul-product-list"))  this.agregarCss();
     }
 
     getElement() {
         return this.element;
     }
 
-    agregarCss(){
-        const style = document.createElement('style');
-        style.textContent = `
-        .search-container {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 400px;
-            width: calc(100vw - 32px);
-            margin: 0 auto;
-            margin-top: 40px;
-            position: sticky; 
-            top: 0; 
-            padding: 10px; 
-
-            .search-input {
-                width: 100%;
-                height: 48px;
-                padding: 16px;
-                margin-bottom: 16px;
-                border: 1px solid #ccc;
-                border-radius: 50px;
-                font-size: 16px;
-
-                &::placeholder {
-                    text-align: center;
+     agregarCss() {
+        const style = document.createElement("style");
+        style.textContent = ` 
+            .search-results {
+                max-width: 400px;
                 }
+
+            .ul-product-list {
+                margin-top: 16px;
+                list-style-type: none;
+                text-align: left;
+                overflow-y: auto; 
+                overflow-x: hidden;
+                background-color: #fff;
             }
-
-            .search-button {
-                width: 100%;
-                height: 48px;
-                padding: 12px;
-                background-color: var(--primary-color);
-                color: white;
-                border: none;
-                border-radius: 50px;
-                cursor: pointer;
-                font-size: 16px;
-                font-weight: 500;
-                box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
-
-                &:hover {
-                    background-color: var(--color-hover);
-                }
-
-                &:active {
-                    transform: scale(95%);
-                }
-            }
-        }
-
-        .ul-product-list {
-            width: calc(100vw - 32px);
-            max-width: 400px;
-            padding: 0 ;
-            margin-top: 16px;
-            list-style-type: none;
-            text-align: left;
-            /* max-height: calc(100vh - 350px);  */
-            max-height: var(--product-list-max-height, calc(100vh - 350px)); 
-            overflow-y: auto; 
-            background-color: #fff;
 
             .li-product-list {
                 border-bottom: 1px solid var(--secondary-color);
@@ -91,16 +42,16 @@ export class CargarStockSearchPage {
                 padding-left: 16px;
                 word-wrap: break-word;
                 overflow-wrap: break-word;
+            }
 
-                &:first-child {
-                    border-top: 1px solid var(--secondary-color);
-                }
+            .li-product-list:first-child{
+                border-top: 1px solid var(--secondary-color);
             }
         }
 
-	    `
+	    `;
         document.head.appendChild(style);
-    }
+  }
 
     createHeader() {
         const header = new Header('Cargar stock por producto', iconoVolver, null, function() { navigateToPage('MenuStock')});
@@ -161,7 +112,7 @@ export class CargarStockSearchPage {
 
     updateProductList(searchWord) {
         this.resultContainer.innerHTML = ''; 
-        const productList = new RadioProductList(searchWord, this.onProductClick.bind(this));
+        const productList = new RadioProductList(searchWord, this.onProductClick.bind(this), 'calc(100vh - 60px)');
         const productListElement = productList.render();
 
         if (productListElement.children.length === 0) {

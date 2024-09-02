@@ -16,6 +16,13 @@
 /* @import url(./loginYForms.css); */
 @import url(./menu.css);
 @import url(./proveedor.css);
+/* estilos de LU */
+
+/* @import url(./ventas.css);
+@import url(./movimientos.css);
+@import url(./cardproveedor.css);
+@import url(./datoremito.css);
+@import url(./formularios.css); */
 
 :root{
     --color-primario: #6810ad;
@@ -42,6 +49,8 @@
     --input-border-color: #9747FF;
     --input-focus-color: #1A73E8;
     --text-claro: white;
+
+    --product-list-max-height: calc(100vh - 50px);
 }
 
 *{
@@ -51,7 +60,7 @@
 }    
 
 body{
-    background: linear-gradient(var(--color-fondo), var(--color-blanco));
+    background: linear-gradient(var(--color-fondo), var(--color-blanco), var(--color-blanco));
     width: 100vw;
     height: 100vh;
     font-family: Roboto, sans-serif;

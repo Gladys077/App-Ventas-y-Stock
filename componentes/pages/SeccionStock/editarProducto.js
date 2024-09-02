@@ -1,10 +1,9 @@
 import { Header } from '../../js/header.js';
-import { iconoMenu, iconoVolver } from "../../js/iconosSVG.js";
-import { CardNewProduct } from '../../js/cardNewProduct.js';
+import { iconoVolver } from "../../js/iconosSVG.js";
+import { CardEditProduct } from '../../js/cardEditProduct.js';
 import { Notification } from '../../js/notificacion.js';
 import { Producto } from '../../js/producto.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
-
 
 export class EditProductPage {
     constructor(productId) {
@@ -15,25 +14,22 @@ export class EditProductPage {
     }
 
     createHeader() {
-        const header = new Header('Editar Producto', iconoVolver, null, ()=>navigateToPage('MenuStock'));
+        const header = new Header('Editar Producto', iconoVolver, null, () => navigateToPage('MenuStock'));
         document.body.appendChild(header.getElement());
     }
 
     createMain() {
-        this.cardNewProduct = new CardNewProduct(
+        this.cardEditProduct = new CardEditProduct(
             'Guardar', 
             'Cancelar', 
             this.btnPrimaryCallback.bind(this), 
             this.btnSecondaryCallback.bind(this)
         );
-        document.body.appendChild(this.cardNewProduct.getElement());
+        document.body.appendChild(this.cardEditProduct.getElement());
         this.loadProductData();
     }
     
     async loadProductData() {
-        
-
-        // Versión con LStorage
         const productosGuardados = JSON.parse(localStorage.getItem('productos')) || [];
         const productData = productosGuardados.find(product => product.id == this.productId);
         if (productData) {
@@ -43,45 +39,31 @@ export class EditProductPage {
         }
     }
 
-
-    // Cargo los datos del prod.
     fillProductData(productData) {
         const producto = Producto.fromJSON(productData);
-    
-        document.querySelector('.productInput').value = producto.nombre;
-        document.querySelector('.proveedorSelect').value = producto.proveedor;
-        document.getElementById('costo').value = producto.costo;
-        document.getElementById('porcentaje').value = producto.porcentaje;
-        document.querySelector('.stock-check input').value = producto.stockMinimo;
-        document.getElementById('stock').value = producto.stock;
-        document.getElementById('active').checked = producto.activo;
-        this.cardNewProduct.calculaPrecioVenta(); 
+        this.cardEditProduct.onProductClick(producto);
     }
-
 
     async btnPrimaryCallback(event) {
         if (event) event.preventDefault();
         
-        if (this.cardNewProduct.validarCampos()) {
+        if (this.cardEditProduct.validarCampos()) {
             try {
-                const datosProducto = this.cardNewProduct.obtenerDatosProducto();
-                const guardadoExitoso = await this.guardarProducto(datosProducto);
+                const datosProducto = this.cardEditProduct.obtenerDatosProducto();
+                const guardadoExitoso = await this.guardarCambiosProducto(datosProducto);
                 if (guardadoExitoso) {
-                    new Notification('../../../img/emojis/like.png', '¡Producto guardado exitosamente!', 'success');
-                    this.cardNewProduct.resetForm();
+                    new Notification('../../../img/emojis/like.png', '¡Producto actualizado exitosamente!', 'success');
+                    navigateToPage('MenuStock');
                 } else {
-                    new Notification('../../../img/emojis/pare.png', '¡Ups! Hubo un fallo. Por favor, intenta de nuevo.', 'error');
+                    new Notification('../../../img/emojis/pare.png', '¡Ups! Hubo un fallo al guardar los cambios. Por favor, intenta de nuevo.', 'error');
                 }
             } catch (error) {
-                new Notification('../../../img/emojis/pare.png', 'Error inesperado al guardar el producto', 'error');
+                new Notification('../../../img/emojis/pare.png', 'Error inesperado al actualizar el producto', 'error');
             }
         }
     }
 
-
-
     async guardarCambiosProducto(datosProducto) {
-
         try {
             const productosGuardados = JSON.parse(localStorage.getItem('productos')) || [];
             const index = productosGuardados.findIndex(product => product.id == this.productId);
@@ -97,24 +79,20 @@ export class EditProductPage {
             new Notification('../../../img/emojis/triste.png', '¡Ups! Hubo un fallo. Por favor, intenta de nuevo.', 'error');
             return false;
         }
-
-
     }
 
     btnSecondaryCallback(event) {
         console.log('Click en btn cancelar');
-        window.location.href = '/ruta-a-la-pagina-anterior(buscador-de-productos-a-editar)';
+        navigateToPage('MenuStock');
     }
-
 }
 
+// Inicialización de la página
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get('id');
 if (productId) {
     new EditProductPage(productId);
 } else {
     new Notification('../../../img/emojis/asombro.png', 'ID de producto no encontrado.', 'error');
-    // window.location.href = '/ruta-a-la-pagina-de-productos';
+    navigateToPage('MenuStock');
 }
-
-new EditProductPage();

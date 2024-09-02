@@ -1,7 +1,8 @@
-import { Header, iconoVolver, iconoMenu } from "../..//js/header.js";
+import { Header } from "../..//js/header.js";
+import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js"
 import Main from "../../js/main.js";
 import { BtnFlotante } from "../../js/registros.js"
-import { conexionAPI } from "../js/services/conectionFakeApi.js"
+import { conexionAPI } from "../../../public/js/services/conectionFakeApi.js"
 
 
 

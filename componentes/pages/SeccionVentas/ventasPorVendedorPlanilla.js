@@ -1,14 +1,15 @@
-import { Header, iconoVolver, iconoMenu, navigateToMenu } from "../../js/header.js";
+import { Header } from "../../js/header.js";
+import { iconoVolver, iconoMenu, iconoDescargar } from '../../js/iconosSVG.js';
 import Main from "../../js/main.js";
-import { TablaEncabezado, MostrarMainNav,TablaDetalles, TablaFooter,BtnFlotante } from "../../js/registros.js"
-
+import { TablaEncabezado, MostrarVendedor, FiltroFecha, TablaDetalles,TablaFooter, BtnFlotante } from "../../js/registros.js"
  
 
-export class PlanillaStock {
+export class PlanillaVtasxVendedor {
     constructor(){
         this.createHeader();
         this.mainPedido=this.createMain();
-        this.createMostrarMainNav();
+        this.createMostrarVendedor();
+        this.createFiltroFecha();
         this.createTablaEncabezado();
         this.createTablaDetalles();
         this.createTablaFooter();
@@ -18,7 +19,7 @@ export class PlanillaStock {
     }
 
     createHeader=()=>{
-        this.header = new Header("Stock", iconoVolver, iconoMenu,null,function(){ loadView('ventasporfecha') });
+        this.header = new Header("Ventas por Vendedor", iconoVolver, iconoMenu,null,function(){ navigateToMenu('stock'); });
         document.body.appendChild(this.header.getElement());
         return
     }
@@ -29,25 +30,28 @@ export class PlanillaStock {
         return
     }
 
-    createMostrarMainNav= ()=>{
-        const mainPedido= document.querySelector("main");
-        this.mainNav =  new MostrarMainNav("Stock", "Bajo stock", "Sin movimiento", true,false,false,null,()=>{ loadView('stockbajo');},()=>{ loadView('stocksinmvto');})
-        mainPedido.appendChild(this.mainNav.getElement());
-        return
+    createMostrarVendedor= ()=>{
+        const mainPedido=document.querySelector("main");
+        this.vendedor = new MostrarVendedor();
+        mainPedido.appendChild(this.vendedor.getElement());
+    }
+
+    createFiltroFecha= ()=>{
+        const mainPedido=document.querySelector("main");
+        this.filtro = new FiltroFecha()
+        mainPedido.appendChild(this.filtro.getElement())
     }
 
     createTablaEncabezado= ()=>{
         const mainPedido=document.querySelector("main");
-        this.encabezado = new TablaEncabezado("Producto", "Cant.")
+        this.encabezado = new TablaEncabezado("Cant.", "Producto", "Total")
         mainPedido.appendChild(this.encabezado.getElement());
-        return
     }
 
     createTablaDetalles= ()=>{
         const mainPedido=document.querySelector("main");
         this.detalles= new TablaDetalles();
         mainPedido.appendChild(this.detalles.getElement());
-        return
     }
 
     createLineaArticulos= ()=>{}///Acá se debe conectar a la bd y hacer el foreach o map
@@ -57,12 +61,11 @@ export class PlanillaStock {
         const mainPedido=document.querySelector("main");
         this.footer = new TablaFooter()
         mainPedido.appendChild(this.footer.getElement());
-        return
     }
 
     createBtnFlotante= ()=>{
         const mainPedido=document.querySelector("main");
-        this.btn = new BtnFlotante("descargar","contenedor-btn-flotante",()=>{alert("descarga exitosa")});
+        this.btn = new BtnFlotante("descargar");
         mainPedido.appendChild(this.btn.getElement());
 
     }
@@ -70,4 +73,4 @@ export class PlanillaStock {
 
 }
 
-new PlanillaStock();
+new PlanillaVtasxVendedor();

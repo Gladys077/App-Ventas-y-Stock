@@ -28,7 +28,7 @@ export class VentasPorVendedorPage {
 
     createMain() {
         const mainElement = document.createElement('main'); 
-        this.cardVtasPorVendedor = new CardVtasPorVendedor('', 'DIA', 'Buscar' , 'cambioDePassword'); // Inicializa con una lista vacía
+        this.cardVtasPorVendedor = new CardVtasPorVendedor('', 'DIA', 'Buscar' , 'VentasPorVendedorPlanilla'); // Inicializa con una lista vacía
         mainElement.appendChild(this.cardVtasPorVendedor.getElement());
         document.body.appendChild(mainElement); 
     }

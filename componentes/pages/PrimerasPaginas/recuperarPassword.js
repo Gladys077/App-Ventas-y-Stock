@@ -41,7 +41,7 @@ export class RecoverPasswordPage {
                 width: 75%;
             }
 
-            .search-input {
+            .login-input {
                 width: 100%;
                 height: 48px;
                 padding: 16px;
@@ -55,7 +55,7 @@ export class RecoverPasswordPage {
                 }
             }
 
-            .search-button {
+            .login-button {
                 width: 100%;
                 height: 48px;
                 padding: 12px;
@@ -131,12 +131,12 @@ export class RecoverPasswordPage {
         const input = document.createElement('input');
         input.type = 'email';
         input.placeholder = 'email@domain.com';
-        input.className = 'search-input';
+        input.className = 'login-input';
         input.required = true;
 
         const button = document.createElement('button');
         button.innerHTML = 'Enviar';
-        button.className = 'search-button';
+        button.className = 'login-button';
         button.addEventListener('click', async (event) => {
             event.preventDefault();
             const email = input.value;

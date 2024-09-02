@@ -15,7 +15,7 @@ export class NewProductPage {
     }
 
     createHeader() {
-        const header = new Header('Nuevo producto', iconoVolver, iconoMenu, null, function(){ navigateToPage('MenuStock'); });
+        const header = new Header('Nuevo producto', iconoVolver, iconoMenu, ()=>window.history.back() , ()=>navigateToPage('MenuStock'));
         document.body.appendChild(header.getElement());
     }
 

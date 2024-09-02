@@ -1,4 +1,5 @@
 import { ButtonContainer } from './btnsContainer.js';
+import { navigateToPage } from './navigateToPage.js';
 import { Notification } from './notificacion.js';
 import { Producto } from './producto.js';
 import { verificarCss } from './utils.js';
@@ -191,7 +192,6 @@ export class CardNewProduct {
     }
 
     createForm() {
-
         const form = document.createElement('form');
         form.className = 'nuevo-producto-form';
 
@@ -246,7 +246,8 @@ export class CardNewProduct {
 
             // Redirige a otra página si el proveedor es "Nuevo proveedor"
             if (selectedOption.textContent === 'Nuevo proveedor') {
-                window.location.href = '../../views/pages/nuevoproveedor.js';
+                ()=>navigateToPage('../../componentes/pages/SeccionStock/formnuevoproveedor.js');
+                
             }
         });
 

@@ -1,5 +1,7 @@
 import { navigateToPage } from "./navigateToPage.js";
 import { Notification } from "./notificacion.js";
+import {iconoLupa } from '../js/iconosSVG.js';
+
 
 // ---------- Valida fecha ---------- 
 export function isValidDate(dateString) {
@@ -105,30 +107,43 @@ export class ExtendedFabButton {
     
 }
 
-// ------------- Búsqueda de productos (venderBusquedaProducto, cargaStockBusqueda) -----------------
-export function createSearchContainer(onProductClick, ProductListClass = ProductList) {
+
+// ----------Búsqueda (input y lupa en una sola linea)------------
+
+export function createSearchContainer(onProductClick, ProductListClass = ProductList, maxHeight = 'calc(100vh - 350px)') {
     const container = document.createElement('div');
     container.className = 'search-container';
 
+    const searchWrapper = document.createElement('div');
+    searchWrapper.className = 'search-wrapper';
+
     const input = document.createElement('input');
     input.type = 'text';
-    input.placeholder = 'Escribe el nombre del producto';
+    input.placeholder = 'Nombre del producto';
     input.className = 'search-input';
 
     const button = document.createElement('button');
-    button.textContent = 'Buscar';
     button.className = 'search-button';
+    button.innerHTML = iconoLupa;
+    searchWrapper.appendChild(input);
+    searchWrapper.appendChild(button);
 
     const resultContainer = document.createElement('div');
     resultContainer.className = 'search-results';
 
-    container.appendChild(input);
-    container.appendChild(button);
+    container.appendChild(searchWrapper);
     container.appendChild(resultContainer);
 
-    button.addEventListener('click', () => {
+    button.addEventListener('click', performSearch);
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+
+    function performSearch() {
         const searchWord = input.value;
-        const productListInstance = new ProductListClass(searchWord, onProductClick);
+        const productListInstance = new ProductListClass(searchWord, onProductClick, maxHeight);
         const productListElement = productListInstance.render();
 
         resultContainer.innerHTML = '';
@@ -137,21 +152,184 @@ export function createSearchContainer(onProductClick, ProductListClass = Product
         } else {
             resultContainer.appendChild(productListElement);
         }
-    });
+    }
 
-  
+    const style = document.createElement('style');
+    style.textContent = `
+        .search-container {
+            max-width: 400px;
+            width: calc(100vw - 32px);
+            height: 100px;
+            margin: 40px auto 0;            
+            position: sticky; 
+            top: 0; 
+            padding: 10px; 
+        }
+        .search-wrapper {
+            display: flex;
+            background-color: #FFFFFF;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .search-wrapper2 {
+            display: flex;
+            background-color: #FFFFFF;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .search-input {
+            width: 100%;
+            height: 48px;
+            flex-grow: 1;
+            border: none;
+            padding: 12px 16px;
+            font-size: 16px;
+            outline: none;
+        }
+            
+        .search-button {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 0 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+                background-color: var(--color-hover);
+            }
+            &:active {
+                transform: scale(95%);
+            }    
+        }
+        .search-button svg {
+            fill: white;
+        }
+        .search-results {
+            margin-top: 20px;
+        }
+    `;
+    document.head.appendChild(style);
 
     return container;
 }
+
+
+// ---------------Búsqueda para CARDS (input + lupa) ----------------
+export function createSearchContainerCard(onProductClick, ProductListClass = ProductList, maxHeight = 'calc(100vh - 350px)') {
+    const container = document.createElement('div');
+    container.className = 'search-container';
+
+    const searchWrapper = document.createElement('div');
+    searchWrapper.className = 'search-wrapper';
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.placeholder = 'Nombre del producto';
+    input.className = 'search-input';
+
+    const button = document.createElement('button');
+    button.className = 'search-button';
+    button.innerHTML = iconoLupa;
+    searchWrapper.appendChild(input);
+    searchWrapper.appendChild(button);
+
+    const resultContainer = document.createElement('div');
+    resultContainer.className = 'search-results';
+
+    container.appendChild(searchWrapper);
+    container.appendChild(resultContainer);
+
+    button.addEventListener('click', performSearch);
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+
+    function performSearch() {
+        const searchWord = input.value;
+        const productListInstance = new ProductListClass(searchWord, onProductClick, maxHeight);
+        const productListElement = productListInstance.render();
+
+        resultContainer.innerHTML = '';
+        if (productListElement.children.length === 0) {
+            new Notification('../../img/emojis/triste.png', '¡No hay en stock!', 'error');
+        } else {
+            resultContainer.appendChild(productListElement);
+        }
+    }
+
+    const style = document.createElement('style');
+    style.textContent = `
+        .search-container {
+            max-width: 400px;
+            width: calc(100vw - 32px);
+            height: 60px;
+            margin: 20px auto 0;            
+            position: sticky; 
+            top: 0; 
+        }
+        .search-wrapper {
+            display: flex;
+            background-color: #FFFFFF;
+            overflow: hidden;
+        }
+        
+        .search-input {
+            width: 100%;
+            height: 48px;
+            flex-grow: 1;
+            border: none;
+            padding: 12px 16px;
+            font-size: 16px;
+            outline: none;
+        }
+            
+        .search-button {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 0 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+                background-color: var(--color-hover);
+            }
+            &:active {
+                transform: scale(95%);
+            }    
+        }
+        .search-button svg {
+            fill: white;
+        }
+        .search-results {
+            margin-top: 20px;
+        }
+    `;
+    document.head.appendChild(style);
+
+    return container;
+}
+
+// ------------- Búsqueda de productos (en dos línea = un input y debajo un btn buscar) -----------------
+// export function createBusqueda(onProductClick, ProductListClass = ProductList) {
+// }
 
 // ---------------Lista de producto (VENDER) ---------------------
 import { iconoComprar } from "./iconosSVG.js";
 
 export class ProductList {
-    constructor(searchWord, onProductClick) {
+    constructor(searchWord, onProductClick, maxHeight = 'calc(100vh - 350px)') {
         this.searchWord = searchWord;
         this.onProductClick = onProductClick;
         this.products = this.getProductsFromStorage();
+        this.maxHeight = maxHeight;
     }
 
     getProductsFromStorage() {
@@ -211,6 +389,7 @@ export class ProductList {
     render() {
         const productList = document.createElement('ul');
         productList.className = 'ul-product-list';
+        productList.style.maxHeight = this.maxHeight;
 
         const filteredProducts = this.filterAndSortProducts();
         
@@ -225,10 +404,11 @@ export class ProductList {
 
 //--------------Lista de productos con radio ------------
 export class RadioProductList {
-    constructor(searchWord, onProductClick) {
+    constructor(searchWord, onProductClick, maxHeight = 'calc(100vh - 350px)') {
         this.searchWord = searchWord;
         this.onProductClick = onProductClick;
         this.products = this.getProductsFromStorage();
+        this.maxHeight = maxHeight; 
     }
 
     getProductsFromStorage() {
@@ -280,6 +460,7 @@ export class RadioProductList {
     render() {
         const productList = document.createElement('ul');
         productList.className = 'ul-product-list';
+        productList.style.maxHeight = this.maxHeight;
 
         const filteredProducts = this.filterAndSortProducts();
         

@@ -29,7 +29,7 @@ export class createLoginPage {
                 margin-bottom: 60px;
             }
 
-            .search-input {
+            .login-input {
                 width: 100%;
                 height: 48px;
                 padding: 16px;
@@ -43,7 +43,7 @@ export class createLoginPage {
                 }
             }
 
-            .search-button {
+            .login-button {
                 width: 100%;
                 height: 48px;
                 padding: 12px;
@@ -97,19 +97,19 @@ createMain(){
     userName.id = 'username'
     userName.type = 'text';
     userName.placeholder = 'Usuario';
-    userName.className = 'search-input';
+    userName.className = 'login-input';
     userName.required = true;
 
     const passwordInput = document.createElement('input');
     passwordInput.type = 'password';
     passwordInput.placeholder = 'Contraseña';
-    passwordInput.className = 'search-input';
+    passwordInput.className = 'login-input';
     passwordInput.required = true;
     passwordInput.autocomplete = 'off';
 
     const loginButton = document.createElement('button');
     loginButton.innerHTML = 'Ingresar';
-    loginButton.className = 'search-button';
+    loginButton.className = 'login-button';
     loginButton.addEventListener('click', (event)=> {
         event.preventDefault(); 
 

@@ -1,7 +1,7 @@
 import { Header } from "../../js/header.js";
 import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js";
 import Main from "../../js/main.js";
-import { TablaEncabezado, FiltroFecha, TablaDetalles, Movimientosproducto, TablaFooter } from "../../../public/js/registros.js"
+import { TablaEncabezado, FiltroFecha, TablaDetalles, TablaFooter } from "../../js/registros.js"
 
 
 export class PlanillaMovimiento {

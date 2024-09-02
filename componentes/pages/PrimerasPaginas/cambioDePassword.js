@@ -35,7 +35,7 @@ export class ChangePassword {
                 margin-bottom: 8px;
             }
         
-            .search-input {
+            .login-input {
                 width: 100%;
                 height: 48px;
                 padding: 16px;
@@ -88,7 +88,7 @@ export class ChangePassword {
         const input1 = document.createElement('input');
         input1.type = 'password';
         input1.placeholder = 'Escribe tu contraseña actual';
-        input1.className = 'search-input';
+        input1.className = 'login-input';
         input1.required = true;
 
 
@@ -99,7 +99,7 @@ export class ChangePassword {
         const input2 = document.createElement('input');
         input2.type = 'password';
         input2.placeholder = `Escribe tu nueva contraseña`;
-        input2.className = 'search-input';
+        input2.className = 'login-input';
         input2.required = true;
 
 
@@ -110,7 +110,7 @@ export class ChangePassword {
         const input3 = document.createElement('input');
         input3.type = 'password';
         input3.placeholder = 'Escribe tu nueva contraseña';
-        input3.className = 'search-input';
+        input3.className = 'login-input';
         input3.required = true;
 
 

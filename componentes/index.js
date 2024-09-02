@@ -36,6 +36,7 @@ import { createLoginPage } from "./pages/PrimerasPaginas/LoginPage.js";
 //     createLoginPage();
 // });
 
+//------STOCK
 
 // -------> De Luma
 // import { PlanillaMovimiento } from '../../views/pagesJS/movimiento.js';

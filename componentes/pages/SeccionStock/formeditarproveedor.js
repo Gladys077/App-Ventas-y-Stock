@@ -1,11 +1,11 @@
 import { Header, iconoVolver, iconoMenu } from "../../js/header.js";
 import Main from "../../js/main.js";
-import { CrearInput , CrearTextArea} from "../js/formulariosvarios.js"
-import { conexionAPI } from "../js/services/conectionFakeApi.js"
+import { CrearInput , CrearTextArea} from "../../js/formulariosvarios.js"
+import { conexionAPI } from "../../../public/js/services/conectionFakeApi.js"
 import { ButtonContainer } from "../../js/btnsContainer.js"
 
 
-export class NuevoProveedor {
+export class EditarProveedor {
     constructor(){
         this.createHeader();
         this.mainPedido=this.createMain();
@@ -16,7 +16,7 @@ export class NuevoProveedor {
     }
 
     createHeader=()=>{
-        this.header = new Header("Nuevo proveedor", iconoVolver, iconoMenu,()=>{ loadView('stockcargaxremito');},()=>{ loadView('pedidolistaxproveedor');});
+        this.header = new Header("Proveedor", iconoVolver, iconoMenu,()=>{ loadView('stockcargaxremito');},()=>{ loadView('pedidolistaxproveedor');});
         document.body.appendChild(this.header.getElement());
         return
     }
@@ -60,27 +60,19 @@ export class NuevoProveedor {
         const form= document.querySelector("form");
         this.botones= new ButtonContainer("Guardar", "Cancelar",
                                                             (e)=>{
-                                                                    agregarProveedor(e);
-                                                                    form.reset();},
-                                                             ()=>{form.reset();},
+                                                                    editarDatos(e);
+                                                                    loadView("stocknuevoremito");
+                                                                    },
+                                                             ()=>{loadView("stocknuevoremito");},
                                                              "saveWhite" ,"cancelViolet")
         form.appendChild(this.botones.getButtonContainer());
     }
 
 
 
-}/*fin class NuevoProveedor */
-new NuevoProveedor;
+}/*fin class EditarProveedor */
+new EditarProveedor;
 
-    
-async function agregarProveedor(e){
-    e.preventDefault();
-    const nombre= document.querySelector(".contenedor-nombre-proveedor input").value;
-    const vendedor= document.querySelector(".contenedor-nombre-vendedor input").value;
-    const cel= document.querySelector(".contenedor-llamar input").value;
-    const email= document.querySelector(".contenedor-email input").value;
-    const notas= document.querySelector(".contenedor-notas textarea").value;
-    console.log(nombre, vendedor, cel, email, notas);
-    await conexionAPI.nuevoproveedor(nombre,[],vendedor,cel,email,notas)
-}/*fin agregarProveedor */
-
+async function editarDatos(e){
+    alert("datos editados");
+}

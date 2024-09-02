@@ -1,18 +1,20 @@
 import { Header } from '../../js/header.js';
+import { Footer } from '../../js/footer.js';
 import { iconoVolver } from '../../js/iconosSVG.js';
 import { createSearchContainer, RadioProductList, verificarCss } from '../../js/utils.js';
+import { ButtonContainer } from '../../js/btnsContainer.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 import { Notification } from '../../js/notificacion.js';
 import { ModalDialogo } from '../../js/modalDialogo.js';
 
 export class EliminarProductosPage {
-    constructor(useFullHeight = true) {
+    constructor() {
             document.body.innerHTML = ''; 
             if(!verificarCss('ul-product-list')) this.agregarCss();
             this.selectedProduct = [];
-            this.useFullHeight = useFullHeight;
             this.createHeader();
             this.createMain();
+            this.createFooter();
         }
 
     getElement() {
@@ -106,13 +108,9 @@ export class EliminarProductosPage {
     createMain(){
         const main = document.createElement('main');
         
-        const productSearch = createSearchContainer(this.onProductClick.bind(this), RadioProductList, true);
+        const productSearch = createSearchContainer(this.onProductClick.bind(this), RadioProductList, 'calc(100vh - 330px)');
         main.appendChild(productSearch);
 
-        // Para modificar la alt. de la lista de productos 
-        if (this.useFullHeight) {
-            document.documentElement.style.setProperty('--product-list-max-height', 'calc(100vh - 260px)');
-        }
 
         // Container para la lista de productos
         this.resultContainer = document.createElement('div');
@@ -120,17 +118,42 @@ export class EliminarProductosPage {
         main.appendChild(this.resultContainer);
 
         document.body.appendChild(main);
+
+    }
+
+    createFooter() {
+        this.footer = new Footer();
+        const buttonContainer = new ButtonContainer(
+            'Eliminar', 
+            'Cancelar', 
+            this.onEliminarClick.bind(this),
+            this.onCancelarClick.bind(this)
+        );
+        this.footer.getElement().appendChild(buttonContainer.getButtonContainer());
+        document.body.appendChild(this.footer.getElement());
+    }
+
+    onEliminarClick() {
+        if (!this.selectedProduct) {
+            new Notification('../../../img/emojis/pare.png', 'Selecciona un producto primero', 'error');
+            return;
+        }
+
+        new ModalDialogo('../../../img/emojis/trash.png', '¿Estás seguro de eliminarlo?', () => {
+            this.removeProductFromStock(this.selectedProduct[0]);     
+            new Notification('../../../img/emojis/trash.png', '¡Eliminaste el producto de tu stock!', 'success');
+            this.updateProductList(''); // Refresca la lista
+            // this.selectedProduct = null; // Conviene resetearla? Ver con LIO
+        });
+    }
+
+    onCancelarClick() {
+        navigateToPage('MenuStock');
     }
 
     onProductClick(producto, event) {
         if (event.target.closest('.product-radio')) {
-
-            new ModalDialogo('../img/emojis/trash.png', '¿Estás seguro de eliminarlo?', () => {
-                    this.removeProductFromStock(producto);     
-                    new Notification('../img/emojis/trash.png', '¡Eliminaste el producto de tu stock!', 'success');
-                });
-             
-            
+            this.selectedProduct = producto;
         }
     }
 
@@ -138,7 +161,9 @@ export class EliminarProductosPage {
         // Lógica para eliminar el producto del stock - VER CON LIO
         console.log('Producto eliminado:', producto);
         // Aquí iría la lógica para eliminar el producto de la BBDD
+        this.updateProductList('');
     }
+
     updateProductList(searchWord) {
         this.resultContainer.innerHTML = ''; 
         const productList = new RadioProductList(searchWord, this.onProductClick.bind(this));

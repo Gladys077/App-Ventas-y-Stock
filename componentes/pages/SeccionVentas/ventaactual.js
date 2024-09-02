@@ -1,16 +1,18 @@
 import { Header } from "../../js/header.js";
 import { iconoVolver, iconoMenu } from '../../js/iconosSVG.js';
 import Main from "../../js/main.js";
-import { TablaEncabezado, TablaDetalles, TablaFooter,  BtnFlotante } from "../../../public/js/registros.js"
+import { TablaEncabezado, TablaDetalles, TablaFooter,  BtnFlotante } from "../../js/registros.js"
 import { Footer } from "../../js/footer.js";
 import { ButtonContainer } from "../../js/btnsContainer.js";
-import { conexionAPI } from "../../../public/js/services/conectionFakeApi.js";
+import { conexionAPI } from "../../js/services/conectionFakeApi.js";
  
 
 
 
 export class PlanillaVentaActual {
     constructor(){
+        document.body.innerHTML = ''; 
+
         this.createHeader();
         this.mainPedido=this.createMain();
         this.createTablaEncabezado();
