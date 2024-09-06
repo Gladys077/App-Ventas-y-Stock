@@ -65,6 +65,7 @@ agregarCss() {
   }
 
   createMain() {
+    productSearch.value = '';
     const main = document.createElement("main");
 
     const productSearch = createSearchContainer(
@@ -85,7 +86,7 @@ agregarCss() {
   onProductClick(producto, event) {
     if (event.target.closest(".product-radio")) {
       localStorage.setItem("selectedProduct", JSON.stringify(producto));
-      navigateToPage("VentasPorProducto");
+      // navigateToPage("VentasPorProducto");
     }
   }
 

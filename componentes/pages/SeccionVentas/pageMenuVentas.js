@@ -79,7 +79,7 @@ export function createMenuVentas() {
         { src: '../../../img/iconos/vender1.png', alt: '', text: 'Vender', page: 'BuscadorParaVender' },
         { src: '../../../img/iconos/Movim-Dia.png', alt: '', text: 'Movimientos del día', page: 'Movimientos' },
         { src: '../../../img/iconos/ventasPorPersona.png', alt: '', text: 'Ventas de cada vendedor', page: 'VentasPorVendedor' },
-        { src: '../../../img/iconos/vta-x-producto.png', alt: '', text: 'Ventas por producto', page: 'BuscadorVentasPorProducto' },
+        { src: '../../../img/iconos/vta-x-producto.png', alt: '', text: 'Ventas por producto', page: 'ProductosVendidos' },
         { src: '../../../img/iconos/VtasPorFecha.png', alt: '', text: 'Ventas por fecha', page: 'VentasPorFecha' }
     ];
 

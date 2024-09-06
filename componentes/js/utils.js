@@ -142,7 +142,7 @@ export function createSearchContainer(onProductClick, ProductListClass = Product
     });
 
     function performSearch() {
-        const searchWord = input.value; //recupera el término de búsqueda del campo input 
+        const searchWord = input.value;
         const productListInstance = new ProductListClass(searchWord, onProductClick, maxHeight);
         const productListElement = productListInstance.render();
 
@@ -188,7 +188,7 @@ export function createSearchContainer(onProductClick, ProductListClass = Product
             font-size: 16px;
             outline: none;
         }
-            
+
         .search-button {
             background-color: var(--primary-color);
             border: none;
@@ -218,8 +218,9 @@ export function createSearchContainer(onProductClick, ProductListClass = Product
 }
 
 
+
 // ---------------Búsqueda para CARDS (input + lupa) ----------------
-export function createSearchContainerCard(onProductClick, ProductListClass = RadioProductList, maxHeight = 'calc(100vh - 350px)') {
+export function createSearchContainerCard(onSearch, ProductListClass = ProductList, maxHeight = 'calc(100vh - 350px)') {
     const container = document.createElement('div');
     container.className = 'search-container';
 
@@ -237,11 +238,15 @@ export function createSearchContainerCard(onProductClick, ProductListClass = Rad
     searchWrapper.appendChild(input);
     searchWrapper.appendChild(button);
 
-    const resultContainer = document.createElement('div');
-    resultContainer.className = 'search-results';
-
     container.appendChild(searchWrapper);
-    container.appendChild(resultContainer);
+
+    function performSearch() {
+        const searchWord = input.value;
+        console.log("Performing search for:", searchWord);  // Debugging line
+        if (typeof onSearch === 'function') {
+            onSearch(searchWord);
+        }
+    }
 
     button.addEventListener('click', performSearch);
     input.addEventListener('keypress', (e) => {
@@ -250,35 +255,23 @@ export function createSearchContainerCard(onProductClick, ProductListClass = Rad
         }
     });
 
-    function performSearch() {
-        const searchWord = input.value;
-        const productListInstance = new RadioProductList(searchWord, onProductClick, maxHeight = 'calc(100vh - 350px)');
-        const productListElement = productListInstance.render();
-
-        resultContainer.innerHTML = '';
-        if (productListElement.children.length === 0) {
-            new Notification('../../img/emojis/triste.png', '¡No hay en stock!', 'error');
-        } else {
-            resultContainer.appendChild(productListElement);
-        }
-    }
-
     const style = document.createElement('style');
     style.textContent = `
         .search-container {
             max-width: 400px;
             width: calc(100vw - 32px);
-            height: 60px;
-            margin: 20px auto 0;            
+            margin: 40px auto 0;            
             position: sticky; 
             top: 0; 
+            padding: 10px; 
         }
         .search-wrapper {
             display: flex;
             background-color: #FFFFFF;
+            border-radius: 25px;
             overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        
         .search-input {
             width: 100%;
             height: 48px;
@@ -288,7 +281,6 @@ export function createSearchContainerCard(onProductClick, ProductListClass = Rad
             font-size: 16px;
             outline: none;
         }
-            
         .search-button {
             background-color: var(--primary-color);
             border: none;
@@ -297,19 +289,15 @@ export function createSearchContainerCard(onProductClick, ProductListClass = Rad
             display: flex;
             align-items: center;
             justify-content: center;
-
-            &:hover {
-                background-color: var(--color-hover);
-            }
-            &:active {
-                transform: scale(95%);
-            }    
         }
+        .search-button:hover {
+            background-color: var(--color-hover);
+        }
+        .search-button:active {
+            transform: scale(95%);
+        }    
         .search-button svg {
             fill: white;
-        }
-        .search-results {
-            margin-top: 20px;
         }
     `;
     document.head.appendChild(style);

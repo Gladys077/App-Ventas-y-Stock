@@ -72,6 +72,7 @@ export class CardVtasPorProducto {
     agregarCss(){
         const style = document.createElement('style');
         style.textContent = `
+        
         .card {
             background-color: var(--background-color);
             border-radius: 12px;
@@ -79,7 +80,7 @@ export class CardVtasPorProducto {
             border-top-right-radius: 4px;
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
             margin: 0px auto;
-            width: 80%;
+            width: calc(100% - 32px);
             max-width: 400px;
             text-align: center;
             padding-bottom: 24px;
@@ -185,6 +186,32 @@ export class CardVtasPorProducto {
                 }
             }
         }
+            
+            
+      }
+        
+  
+        //   .ul-product-list {
+        //       margin-top: 16px;
+        //       list-style-type: none;
+        //       text-align: left;
+        //       overflow-y: auto; 
+        //       overflow-x: hidden;
+        //       background-color: #fff;
+        //   }
+  
+        //   .li-product-list {
+        //       border-bottom: 1px solid var(--secondary-color);
+        //       padding: 8px 0;
+        //       padding-left: 16px;
+        //       word-wrap: break-word;
+        //       overflow-wrap: break-word;
+        //   }
+  
+        //   .li-product-list:first-child{
+        //       border-top: 1px solid var(--secondary-color);
+        //   }
+      }
 
         `
         document.head.appendChild(style);
