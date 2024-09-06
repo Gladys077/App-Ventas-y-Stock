@@ -142,7 +142,7 @@ export function createSearchContainer(onProductClick, ProductListClass = Product
     });
 
     function performSearch() {
-        const searchWord = input.value;
+        const searchWord = input.value; //recupera el término de búsqueda del campo input 
         const productListInstance = new ProductListClass(searchWord, onProductClick, maxHeight);
         const productListElement = productListInstance.render();
 
@@ -219,7 +219,7 @@ export function createSearchContainer(onProductClick, ProductListClass = Product
 
 
 // ---------------Búsqueda para CARDS (input + lupa) ----------------
-export function createSearchContainerCard(onProductClick, ProductListClass = ProductList, maxHeight = 'calc(100vh - 350px)') {
+export function createSearchContainerCard(onProductClick, ProductListClass = RadioProductList, maxHeight = 'calc(100vh - 350px)') {
     const container = document.createElement('div');
     container.className = 'search-container';
 
@@ -252,7 +252,7 @@ export function createSearchContainerCard(onProductClick, ProductListClass = Pro
 
     function performSearch() {
         const searchWord = input.value;
-        const productListInstance = new ProductListClass(searchWord, onProductClick, maxHeight);
+        const productListInstance = new RadioProductList(searchWord, onProductClick, maxHeight = 'calc(100vh - 350px)');
         const productListElement = productListInstance.render();
 
         resultContainer.innerHTML = '';
@@ -404,11 +404,12 @@ export class ProductList {
 
 //--------------Lista de productos con radio ------------
 export class RadioProductList {
-    constructor(searchWord, onProductClick, maxHeight = 'calc(100vh - 350px)') {
+    constructor(searchWord, onProductClick, maxHeight = 'calc(100vh - 350px)', height = 'auto') {
         this.searchWord = searchWord;
         this.onProductClick = onProductClick;
         this.products = this.getProductsFromStorage();
         this.maxHeight = maxHeight; 
+        this.height = height;
     }
 
     getProductsFromStorage() {
@@ -461,6 +462,7 @@ export class RadioProductList {
         const productList = document.createElement('ul');
         productList.className = 'ul-product-list';
         productList.style.maxHeight = this.maxHeight;
+        productList.style.height = this.height;
 
         const filteredProducts = this.filterAndSortProducts();
         

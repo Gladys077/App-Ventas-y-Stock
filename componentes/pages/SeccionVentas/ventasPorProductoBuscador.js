@@ -112,3 +112,4 @@ agregarCss() {
 document.addEventListener("DOMContentLoaded", () => {
   new VentasPorProductoBuscador(true);
 });
+

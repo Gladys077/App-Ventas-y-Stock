@@ -64,15 +64,20 @@ export function navigateToPage(page) {
             });
             break;
 
-        case 'BuscadorVentasPorProducto': 
-            import('../pages/SeccionVentas/ventasPorProductoBuscador.js').then(module => {
-                new module.VentasPorProductoBuscador();
-            });
-            break;
+        // case 'BuscadorVentasPorProducto': 
+        //     import('../../proyecto/.js').then(module => {
+        //         new module.VentasPorProductoPage();
+        //     });
+        //     break;
 
         case 'VentasPorProducto': 
             import('../pages/SeccionVentas/ventasPorProducto.js').then(module => {
                 new module.VentasPorProductoPage();
+            });
+            break;
+            case 'ProductosVendidos': 
+            import('../pages/SeccionVentas/ProductosVendidos.js').then(module => {
+                new module.ProductosVendidos();
             });
             break;
 

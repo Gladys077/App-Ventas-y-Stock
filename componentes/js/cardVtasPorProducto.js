@@ -1,11 +1,10 @@
 import { Notification } from '../js/notificacion.js';
-import { isValidDate, formatDateInput, verificarCss, createSearchContainerCard } from '../js/utils.js';
+import { isValidDate, formatDateInput, verificarCss } from '../js/utils.js';
 import { navigateToPage } from '../js/navigateToPage.js';
 
-
 export class CardVtasPorProducto {
-    constructor(buscador, textBtn, onClick, includeUnidadesVendidas = true, cuadroInferiorTitulo = "Unidades vendidas", linkText = "Listado por fecha", page = 'MenuVentas') {
-        this._buscador = buscador;
+    constructor(title, textBtn, onClick, includeUnidadesVendidas = true, cuadroInferiorTitulo = "Unidades vendidas", linkText = "Listado por fecha", page = 'MenuVentas') {
+        this._title = title;
         this._textBtn = textBtn;
         this._onClick = onClick;
         this._includeUnidadesVendidas = includeUnidadesVendidas;
@@ -21,11 +20,11 @@ export class CardVtasPorProducto {
 
     }
 
-    get buscador() { 
-        return this._buscador; 
+    get title() { 
+        return this._title; 
     }
-    set title(buscador) {
-        this._buscador = buscador;
+    set title(title) {
+        this._title = title;
     }
     get textBtn() { 
         return this._textBtn; 
@@ -79,12 +78,11 @@ export class CardVtasPorProducto {
             border-top-left-radius: 4px;
             border-top-right-radius: 4px;
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-            margin: 24px auto;
+            margin: 0px auto;
             width: 80%;
             max-width: 400px;
             text-align: center;
             padding-bottom: 24px;
-            position: relative; 
 
             .card-title {
                 background-color: var(--primary-color);
@@ -186,42 +184,6 @@ export class CardVtasPorProducto {
                     line-height: 48px;
                 }
             }
-            .search-container {
-                max-width: 400px;
-                width: calc(100vw - 32px);
-                height: 60px;
-                margin: 40px auto 0;
-                position: sticky;
-                top: 0;
-                z-index: 1;
-            }
-            .search-wrapper {
-                display: flex;
-                background-color: #FFFFFF;
-                border-radius: 4px;
-                overflow: hidden;
-            }
-            .search-input {
-                width: 100%;
-                height: 48px;
-                flex-grow: 1;
-                border: none;
-                padding: 12px 16px;
-                font-size: 16px;
-            }
-            .search-button {
-                background: none;
-                border: none;
-                padding: 0 16px;
-                cursor: pointer;
-                font-size: 24px;
-            }
-            .search-results {
-                max-height: calc(100vh - 350px);
-                overflow-y: auto;
-                margin-top: 8px;
-            }
-        }
         }
 
         `
@@ -231,10 +193,9 @@ export class CardVtasPorProducto {
         this.element = document.createElement('div');
         this.element.className = 'card';
 
-        const buscador = createSearchContainerCard((product) =>{
-            // Aquí pondría la lógica para manejar el clic
-            console.log('Producto seleccionado: ${producto}');
-        })
+        const titleElement = document.createElement('h2');
+        titleElement.textContent = this._title;
+        titleElement.className = 'card-title';
 
         this.desdeInput = this.createDateInput('DESDE');
         this.hastaInput = this.createDateInput('HASTA');
@@ -252,7 +213,7 @@ export class CardVtasPorProducto {
             navigateToPage(this._page);
         });
 
-        this.element.appendChild(this.buscador);
+        this.element.appendChild(titleElement);
         this.element.appendChild(this.desdeInput);
         this.element.appendChild(this.hastaInput);
         this.element.appendChild(this.button);

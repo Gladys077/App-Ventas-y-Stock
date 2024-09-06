@@ -12,7 +12,7 @@ export class CardNewProduct {
         this._btnSecondaryCallback = btnSecondaryCallback;
         this._element = this.createForm();
         this._producto = new Producto('', '', 0, 0, 0);
-        if (!verificarCss('nuevo-producto-form')) this.agregarCss();
+        this.agregarCss();
     }
     get btnPrimary(){ 
         return this._btnPrimary; 

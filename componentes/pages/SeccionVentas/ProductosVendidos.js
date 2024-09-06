@@ -1,17 +1,18 @@
 import { Header } from '../../js/header.js';
 import { CardVtasPorProducto } from '../../js/cardVtasPorProducto.js';
 import { Footer } from '../../js/footer.js';
-import { FabButton } from '../../js/utils.js';
+import { FabButton, createSearchContainer, RadioProductList } from '../../js/utils.js';
 import { iconoDescargar, iconoVolver, iconoMenu } from '../../js/iconosSVG.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 
-export class VentasPorProductoPage {
+export class ProductosVendidos {
     constructor() {
         document.body.innerHTML = '';
         this.ventasPorProducto = null;
         this.createHeader();
         this.createMain();
-        this.createFooter();    }
+        this.createFooter();    
+    }
 
     
 
@@ -21,6 +22,25 @@ export class VentasPorProductoPage {
     }
 
     createMain() {
+        const main = document.createElement("main");
+
+        const productSearch = createSearchContainer(
+          this.onProductClick.bind(this),
+          RadioProductList,
+          "calc(100vh - 200px)"
+        );
+        main.appendChild(productSearch);
+    
+        // Container para la lista de productos
+        this.resultContainer = document.createElement("div");
+        this.resultContainer.classList.add("search-results");
+        main.appendChild(this.resultContainer);
+    
+        document.body.appendChild(main);
+
+
+
+
         const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
         const selectedProductName = selectedProduct ? selectedProduct.nombre : 'Nombre_del_producto';
         this.ventasPorProducto = new CardVtasPorProducto(selectedProductName, 'Buscar', true, () => this.onClick(), 'Unidades Vendidas', 'Ver la lista por fecha', 'Config');
@@ -36,6 +56,31 @@ export class VentasPorProductoPage {
             this.ventasPorProducto.limpiarInputs();
         }
     }
+    onProductClick(producto, event) {
+        if (event.target.closest(".product-radio")) {
+          localStorage.setItem("selectedProduct", JSON.stringify(producto));
+          navigateToPage("VentasPorProducto");
+        }
+      }
+    
+      updateProductList(searchWord) {
+        this.resultContainer.innerHTML = "";
+        const productList = new RadioProductList(
+          searchWord,
+          this.onProductClick.bind(this)
+        );
+        const productListElement = productList.render();
+    
+        if (productListElement.children.length === 0) {
+          new Notification(
+            "../../../img/emojis/asombro.png",
+            "¡No hay producto en stock!",
+            "error"
+          );
+        }
+    
+        this.resultContainer.appendChild(productListElement);
+      }
 
     createFooter() {
         const fabButton = new FabButton(iconoDescargar, 'Descargar', () => {
@@ -47,7 +92,7 @@ export class VentasPorProductoPage {
     }
 }
 
-    new VentasPorProductoPage();
+    new ProductosVendidos();
 
 
   //---------------------------VENTAS POR PRODUCTOS---------------------------
