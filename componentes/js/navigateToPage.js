@@ -133,15 +133,15 @@ export function navigateToPage(page) {
             });
             break;
 
-        case 'NuevoProducto':
-            import('../pages/SeccionStock/nuevoProducto.js').then(module => {
-                new module.NewProductPage();
-            });
-            break;
-
         case 'EditarProducto':
             import('../pages/SeccionStock/editarProducto.js').then(module => {
                 new module.EditProductPage();
+            });
+            break;
+
+        case 'NuevoProducto':
+            import('../pages/SeccionStock/nuevoProducto.js').then(module => {
+                new module.NewProductPage();
             });
             break;
 

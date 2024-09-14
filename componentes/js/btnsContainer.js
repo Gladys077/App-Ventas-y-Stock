@@ -5,8 +5,6 @@ export class ButtonContainer {
         this.addEventListeners(btnPrimaryCallback, btnSecondaryCallback);
     }
 
-
-
     createButtonContainer(btnPrimary, btnSecondary) {
         const buttonContainer = document.createElement('div');
         buttonContainer.className = 'button-container';

@@ -2,6 +2,7 @@ import { Header } from '../../js/header.js';
 import { iconoVolver } from "../../js/iconosSVG.js";
 import { CardEditProduct } from '../../js/cardEditProduct.js';
 import { Notification } from '../../js/notificacion.js';
+import { createSearchContainerCard, RadioProductList } from '../../js/utils.js';
 import { Producto } from '../../js/producto.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 
@@ -11,21 +12,100 @@ export class EditProductPage {
         this.productId = productId;
         this.createHeader();
         this.createMain();
+        this.agregarCss();
     }
-
+    agregarCss() {
+        const style = document.createElement("style");
+        style.textContent = ` 
+            .fondo-results {
+                position: fixed;
+                top: 135px;
+                left: 50%;
+                transform: translate(-50%,0);
+                width: calc(100vw - 32px);
+                max-width: 400px;
+                margin: 0 auto;
+                height: 100%;
+                background-color: rgba(255, 255, 255, 1);
+                z-index: 1000;
+                display: none;
+            }
+            
+            .search-results {
+                width: calc(100vw - 32px);
+                max-width: 400px;
+                max-height: calc(100vh - 160px);
+                height: 100vh;
+                overflow-y: auto;
+                background-color: #fff;
+                position: absolute;
+                top: 0px;
+                left: 50%;
+                transform: translate(-50%, 0);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .ul-product-list {
+                margin-top: 16px;
+                list-style-type: none;
+                text-align: left;
+                background-color: #fff;
+            }
+            .li-product-list {
+                border-bottom: 1px solid var(--secondary-color);
+                padding: 8px 0;
+                padding-left: 16px;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+            .li-product-list:first-child {
+                border-top: 1px solid var(--secondary-color);
+            }
+        `;
+        document.head.appendChild(style);
+    }
     createHeader() {
         const header = new Header('Editar Producto', iconoVolver, null, () => navigateToPage('MenuStock'));
         document.body.appendChild(header.getElement());
     }
 
     createMain() {
+        const main = document.createElement("main");
+
+        const productSearch = createSearchContainerCard(
+            this.handleSearch.bind(this),
+            RadioProductList,
+            "calc(100vh - 200px)"
+        );
+        main.appendChild(productSearch);
+
+        this.fondoResults = document.createElement("div");
+        this.fondoResults.classList.add("fondo-results");
+
+        this.resultContainer = document.createElement("div");
+        this.resultContainer.classList.add("search-results");
+        this.fondoResults.appendChild(this.resultContainer);
+
+        main.appendChild(this.fondoResults);
+
+        document.body.appendChild(main);
+
+        const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
+        // const selectedProductName = selectedProduct ? selectedProduct.nombre : 'Nombre_del_producto';
+        
+        
+    
+
         this.cardEditProduct = new CardEditProduct(
+            // selectedProductName,
             'Guardar', 
             'Cancelar', 
             this.btnPrimaryCallback.bind(this), 
             this.btnSecondaryCallback.bind(this)
         );
-        document.body.appendChild(this.cardEditProduct.getElement());
+
+        main.appendChild(this.cardEditProduct.getElement());
+
+
         this.loadProductData();
     }
     
@@ -85,6 +165,66 @@ export class EditProductPage {
         console.log('Click en btn cancelar');
         navigateToPage('MenuStock');
     }
+
+    handleSearch(searchWord) {
+        this.updateProductList(searchWord);
+    }
+
+    onClick() {
+        if (this.cardEditProduct.isBuscarMode) {
+            // Lógica para realizar la búsqueda
+        } else {
+            this.cardEditProduct.resetToBuscarMode();
+            this.cardEditProduct.limpiarInputs();
+        }
+    }
+    // Se ejecuta cuando el usuario hace clci sobre radiobtn
+    onProductClick(producto, event) {
+        if (event.target.closest(".product-radio")) {
+            localStorage.setItem("selectedProduct", JSON.stringify(producto)); //guardo el prod. elegido en LStorage
+            this.updateCardTitle(producto.nombre); // Actualizo el título de la card con el nombre del prod.
+
+
+            this.hideFondoResults(); // Oculto los resultados
+        }
+    }
+
+    updateCardTitle(productName) {
+        this.cardEditProduct.title = productName;
+        const titleElement = this.cardEditProduct.getElement().querySelector('.card-title');
+        if (titleElement) {
+            titleElement.textContent = productName;
+        }
+    }
+
+    updateProductList(searchWord) {
+        this.resultContainer.innerHTML = "";
+        const productList = new RadioProductList(
+            searchWord,
+            this.onProductClick.bind(this)
+        );
+        const productListElement = productList.render();
+
+        if (productListElement.children.length === 0) {
+            new Notification(
+                "../../../img/emojis/asombro.png",
+                "¡No hay producto en stock!",
+                "error"
+            );
+        } else {
+            this.resultContainer.appendChild(productListElement);
+            this.showFondoResults();
+        }
+    }
+
+    showFondoResults() {
+        this.fondoResults.style.display = 'block';
+    }
+
+    hideFondoResults() {
+        this.fondoResults.style.display = 'none';
+    }
+
 }
 
 // Inicialización de la página

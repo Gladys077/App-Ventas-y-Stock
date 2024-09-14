@@ -13,7 +13,8 @@ export class CargarStockSearchPage {
         this.createHeader();
         this.createMain();
         this.createFooter();
-        if (!verificarCss("ul-product-list"))  this.agregarCss();
+        // if (!verificarCss("ul-product-list"))  
+            this.agregarCss();
     }
 
     getElement() {
@@ -23,8 +24,8 @@ export class CargarStockSearchPage {
      agregarCss() {
         const style = document.createElement("style");
         style.textContent = ` 
-            .search-results {
-                max-width: 400px;
+            .search-results-stock {
+                max-width: 200px;
                 }
 
             .ul-product-list {
@@ -61,12 +62,12 @@ export class CargarStockSearchPage {
     createMain(){
         const main = document.createElement('main');
         
-        const productSearch = createSearchContainer(this.onProductClick.bind(this), RadioProductList);
+        const productSearch = createSearchContainer(this.onProductClick.bind(this), RadioProductList, 'calc(100vh - 290px)');
         main.appendChild(productSearch);
 
         // Container para la lista de productos
         this.resultContainer = document.createElement('div');
-        this.resultContainer.classList.add('search-results');
+        this.resultContainer.classList.add('search-results-stock');
         main.appendChild(this.resultContainer);
 
         document.body.appendChild(main);

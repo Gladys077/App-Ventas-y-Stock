@@ -109,7 +109,7 @@ export class CardVtasPorProducto {
                 border: 1px solid var(--secondary-color);
                 border-radius: 50px;
                 font-size: 18px;
-                margin-bottom: 24px;
+                margin-bottom: 12px;
                 padding: 8px;
                 height: 48px;
                 width: 80%;
@@ -190,27 +190,6 @@ export class CardVtasPorProducto {
             
       }
         
-  
-        //   .ul-product-list {
-        //       margin-top: 16px;
-        //       list-style-type: none;
-        //       text-align: left;
-        //       overflow-y: auto; 
-        //       overflow-x: hidden;
-        //       background-color: #fff;
-        //   }
-  
-        //   .li-product-list {
-        //       border-bottom: 1px solid var(--secondary-color);
-        //       padding: 8px 0;
-        //       padding-left: 16px;
-        //       word-wrap: break-word;
-        //       overflow-wrap: break-word;
-        //   }
-  
-        //   .li-product-list:first-child{
-        //       border-top: 1px solid var(--secondary-color);
-        //   }
       }
 
         `

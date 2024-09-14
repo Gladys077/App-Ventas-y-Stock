@@ -129,7 +129,7 @@ export function createSearchContainer(onProductClick, ProductListClass = Product
     searchWrapper.appendChild(button);
 
     const resultContainer = document.createElement('div');
-    resultContainer.className = 'search-results';
+    resultContainer.className = 'search-results-ventas';
 
     container.appendChild(searchWrapper);
     container.appendChild(resultContainer);
@@ -168,7 +168,7 @@ export function createSearchContainer(onProductClick, ProductListClass = Product
         .search-wrapper {
             display: flex;
             background-color: #FFFFFF;
-            border-radius: 25px;
+            border-radius: 4px;
             overflow: hidden;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
@@ -217,32 +217,33 @@ export function createSearchContainer(onProductClick, ProductListClass = Product
     return container;
 }
 
-
-
 // ---------------Búsqueda para CARDS (input + lupa) ----------------
 export function createSearchContainerCard(onSearch, ProductListClass = ProductList, maxHeight = 'calc(100vh - 350px)') {
     const container = document.createElement('div');
-    container.className = 'search-container';
+    container.className = 'search-container-card';
 
     const searchWrapper = document.createElement('div');
-    searchWrapper.className = 'search-wrapper';
+    searchWrapper.className = 'search-wrapper-card';
 
     const input = document.createElement('input');
     input.type = 'text';
     input.placeholder = 'Nombre del producto';
-    input.className = 'search-input';
+    input.className = 'search-input-card';
 
     const button = document.createElement('button');
-    button.className = 'search-button';
+    button.className = 'search-button-card';
     button.innerHTML = iconoLupa;
     searchWrapper.appendChild(input);
     searchWrapper.appendChild(button);
 
+    const resultContainer = document.createElement('div'); //nuevo
+    resultContainer.className = 'search-results-card'; //nuevo
+
     container.appendChild(searchWrapper);
+    container.appendChild(resultContainer); //nuevo
 
     function performSearch() {
-        const searchWord = input.value;
-        console.log("Performing search for:", searchWord);  // Debugging line
+        const searchWord = input.value; //toma el valor escrito en el input de buscar
         if (typeof onSearch === 'function') {
             onSearch(searchWord);
         }
@@ -257,22 +258,25 @@ export function createSearchContainerCard(onSearch, ProductListClass = ProductLi
 
     const style = document.createElement('style');
     style.textContent = `
-        .search-container {
-            max-width: 400px;
+        .search-container-card {
             width: calc(100vw - 32px);
-            margin: 40px auto 0;            
+            max-width: 400px;
+            margin: 5px auto;            
             position: sticky; 
             top: 0; 
-            padding: 10px; 
+            padding: 15px; 
         }
-        .search-wrapper {
+        
+        .search-wrapper-card {
             display: flex;
             background-color: #FFFFFF;
-            border-radius: 25px;
+            border-radius: 4px;
             overflow: hidden;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border: 1px solid var(--primary-color);
+            
         }
-        .search-input {
+        .search-input-card {
             width: 100%;
             height: 48px;
             flex-grow: 1;
@@ -281,7 +285,7 @@ export function createSearchContainerCard(onSearch, ProductListClass = ProductLi
             font-size: 16px;
             outline: none;
         }
-        .search-button {
+        .search-button-card {
             background-color: var(--primary-color);
             border: none;
             padding: 0 20px;
@@ -290,14 +294,17 @@ export function createSearchContainerCard(onSearch, ProductListClass = ProductLi
             align-items: center;
             justify-content: center;
         }
-        .search-button:hover {
+        .search-button-card:hover {
             background-color: var(--color-hover);
         }
-        .search-button:active {
+        .search-button-card:active {
             transform: scale(95%);
         }    
-        .search-button svg {
+        .search-button-card svg {
             fill: white;
+        }
+        .custom-width .search-container-card {
+            padding: 0; 
         }
     `;
     document.head.appendChild(style);
@@ -305,9 +312,7 @@ export function createSearchContainerCard(onSearch, ProductListClass = ProductLi
     return container;
 }
 
-// ------------- Búsqueda de productos (en dos línea = un input y debajo un btn buscar) -----------------
-// export function createBusqueda(onProductClick, ProductListClass = ProductList) {
-// }
+
 
 // ---------------Lista de producto (VENDER) ---------------------
 import { iconoComprar } from "./iconosSVG.js";

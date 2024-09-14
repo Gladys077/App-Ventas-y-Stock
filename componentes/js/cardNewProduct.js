@@ -49,15 +49,18 @@ export class CardNewProduct {
     agregarCss(){
         const style = document.createElement('style');
         style.textContent = `
+        
         .nuevo-producto-form {
             font-family: 'Roboto', sans-serif;
             border-radius: 4px 4px 12px 12px;
-            max-width: 400px;
-            width: calc(100% - 32px);
+            width: 400px;
+            max-width: calc(100% - 32px);
             margin: 16px auto;
             display: flex;
             flex-direction: column;
             align-items: center;
+            background-color: var(--background-color);
+            padding: 10px;
 
         .input-group {
             width: 100%;
@@ -134,8 +137,8 @@ export class CardNewProduct {
                 width: 100%;
                 height: 48px;
                 padding: 8px;
-                background-color: var(--background-color);
-                border: 1px solid #ccc;
+                background-color: none;
+                border: 2px solid var(--secondary-color);
                 border-radius: 4px;
                 font-size: 18px;
                 font-weight: 500;
@@ -186,6 +189,36 @@ export class CardNewProduct {
             }
         }
     }
+        .card {
+            // background-color: var(--background-color);
+            // border-radius: 12px;
+            // border-top-left-radius: 4px;
+            // border-top-right-radius: 4px;
+            // box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            // margin: 0px auto;
+            width: 100%;
+            // text-align: center;
+            // padding-bottom: 24px;
+
+            .card-title {
+                background-color: var(--primary-color);
+                min-height: 48px;
+                height: auto;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                font-size: 16px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                line-height: 1.4;
+                padding: 4px;
+                border-top-left-radius: 4px;
+                border-top-right-radius: 4px;
+                margin-bottom: 8px;
+                color: var(--text-claro);
+            }
 
 	`
         document.head.appendChild(style);
@@ -337,7 +370,7 @@ export class CardNewProduct {
         pedidoOptional.className = 'pedido-optional';
 
         const h4 = document.createElement('h4');
-        h4.textContent = 'Agregar al próximo pedido cuando el stock sea menor a:';
+        h4.textContent = '*Opcional: Agregar al próximo pedido cuando el stock sea menor a:';
 
         const stockCheck = document.createElement('div');
         stockCheck.className = 'stock-check';

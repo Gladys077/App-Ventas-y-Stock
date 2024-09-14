@@ -52,7 +52,7 @@ export class CardVtasPorVendedor {
         border-top-right-radius: 4px;
         box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
         margin: 24px auto;
-        width: 80%;
+        width: calc(100vw - 32px);
         max-width: 400px;
         text-align: center;
         padding-bottom: 24px;

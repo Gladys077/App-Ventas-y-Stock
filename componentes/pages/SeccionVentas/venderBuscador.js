@@ -10,7 +10,7 @@ import { Producto } from '../../js/producto.js';
 export class VenderProductSearchPage {
     constructor() {
         document.body.innerHTML = ''; 
-        if (!verificarCss("ul-product-list")) this.agregarCss();
+        if (!verificarCss("search-results-ventas")) this.agregarCss();
 
         this.selectedProducts = [];
         this.createHeader();
@@ -25,7 +25,7 @@ export class VenderProductSearchPage {
     agregarCss() {
         const style = document.createElement("style");
         style.textContent = ` 
-            .search-results {
+            .search-results-ventas {
                 max-width: 400px;
                 }
 
@@ -40,8 +40,8 @@ export class VenderProductSearchPage {
 
             .li-product-list {
                 border-bottom: 1px solid var(--secondary-color);
-                padding: 8px 0;
-                padding-left: 16px;
+                padding: 4px 0;
+                padding-left: 8px;
                 word-wrap: break-word;
                 overflow-wrap: break-word;
             }
@@ -63,12 +63,12 @@ export class VenderProductSearchPage {
     createMain(){
         const main = document.createElement('main');
         
-        const productSearch = createSearchContainer(this.onProductClick.bind(this), ProductList, 'calc(100vh - 300px)');
+        const productSearch = createSearchContainer(this.onProductClick.bind(this), ProductList, 'calc(100vh - 280px)');
         main.appendChild(productSearch);
 
         // Container para la lista de productos
         this.resultContainer = document.createElement('div');
-        this.resultContainer.classList.add('search-results');
+        this.resultContainer.classList.add('search-results-ventas');
         main.appendChild(this.resultContainer);
 
         document.body.appendChild(main);

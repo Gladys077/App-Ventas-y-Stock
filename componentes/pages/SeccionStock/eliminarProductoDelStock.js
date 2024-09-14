@@ -15,6 +15,7 @@ export class EliminarProductosPage {
             this.createHeader();
             this.createMain();
             this.createFooter();
+            this.agregarCss();
         }
 
     getElement() {
@@ -79,7 +80,7 @@ export class EliminarProductosPage {
                 margin-top: 16px;
                 list-style-type: none;
                 text-align: left;
-                max-height: var(--product-list-max-height, calc(100vh - 350px));
+                // max-height: var(--product-list-max-height, calc(100vh - 350px));
                 overflow-y: auto;
                 background-color: #fff;
 
