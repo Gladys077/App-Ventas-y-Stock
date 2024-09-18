@@ -5,10 +5,14 @@
 // import path from 'path';
 
 
-
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import ReactDOMServer from 'react-dom/server';
 import express from 'express';
-//import path from'path';
+import {App} from'./componentes/pages_react/app.js';
 
+
+const html = ReactDOMServer.renderToString(App);
 
 const app = express();
 app.disable('x-powered-by')
@@ -22,9 +26,9 @@ const port = 3001;
 //app.use(express.static(path.join(__dirname, 'public')));
 
 //Gladys
-app.use('/home',express.static('componentes'));
+app.use(express.static(html));
 //Luma
-app.use(express.static('public'));
+//app.use(express.static('public'));
 
 
 

@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node --watch index.js",
     "dev": "node --watch indexGla.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "react": "npm run react componentes/pages_react/app.js",
+    "test": "npm run build index.js"
   },
   "author": "LuMa, Gladys, Lion",
   "license": "ISC",
