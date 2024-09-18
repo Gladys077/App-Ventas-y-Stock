@@ -2,18 +2,18 @@
 // import cors from "cors";
 
 
-/*
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import ReactDOMServer from 'react-dom/server';
 import {App} from'./componentes/pages_react/app.js';
-*/
+
 
 import express from 'express';
 
 
 
-//const html = ReactDOMServer.renderToString(App);
+const html = ReactDOMServer.renderToString(App);
 
 const app = express();
 app.disable('x-powered-by')
@@ -25,8 +25,8 @@ const port = 3001;
 
 
 //Gladys
-//app.use(express.static(html));
-app.use('/home',express.static('componentes'));
+app.use(express.static(html));
+//app.use('/home',express.static('componentes'));
 
 //Luma
 //app.use(express.static('public'));
