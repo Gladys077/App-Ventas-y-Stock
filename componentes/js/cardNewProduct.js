@@ -12,35 +12,20 @@ export class CardNewProduct {
         this._btnSecondaryCallback = btnSecondaryCallback;
         this._element = this.createForm();
         this._producto = new Producto('', '', 0, 0, 0);
-        this.agregarCss();
+        if (!verificarCss('nuevo-producto-form')) this.agregarCss();
+       
     }
-    get btnPrimary(){ 
-        return this._btnPrimary; 
-    }
-    set btnPrimary(value){
-        this._btnPrimary = value;
-    }
+    get btnPrimary(){ return this._btnPrimary;  }
+    set btnPrimary(value){ this._btnPrimary = value; }
 
-    get btnSecondary(){
-        return this._btnSecondary;
-    }
-    set btnSecondary(value){
-        this._btnSecondary = value;
-    }
+    get btnSecondary(){ return this._btnSecondary; }
+    set btnSecondary(value){ this._btnSecondary = value; }
 
-    get btnPrimaryCallback(){
-        return this._btnPrimaryCallback;
-    }
-    set btnPrimaryCallback(value){
-        this._btnPrimaryCallback = value;
-    }
+    get btnPrimaryCallback(){ return this._btnPrimaryCallback; }
+    set btnPrimaryCallback(value){ this._btnPrimaryCallback = value; }
 
-    get btnSecondaryCallback(){
-        return this._btnSecondaryCallback;
-    }
-    set btnSecondaryCallback(value){
-        this._btnSecondaryCallback = value;
-    }
+    get btnSecondaryCallback(){ return this._btnSecondaryCallback; }
+    set btnSecondaryCallback(value){ this._btnSecondaryCallback = value; }
     
     getElement() {
         return this._element;
@@ -65,6 +50,11 @@ export class CardNewProduct {
         .input-group {
             width: 100%;
             margin-bottom: 16px;
+            h2.tit {
+                justify-content: center;
+                display: flex;
+                align-items: center;
+            }
 
             label {
                 display: block;
@@ -189,25 +179,28 @@ export class CardNewProduct {
             }
         }
     }
-        .card {
+        .pink {
+        background-color: var(--secondary-color);
+
+        }
+        // .card-newProduct {
             // background-color: var(--background-color);
             // border-radius: 12px;
             // border-top-left-radius: 4px;
             // border-top-right-radius: 4px;
             // box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
             // margin: 0px auto;
-            width: 100%;
+        //     width: 100%;
             // text-align: center;
             // padding-bottom: 24px;
 
             .card-title {
-                background-color: var(--primary-color);
                 min-height: 48px;
                 height: auto;
                 width: 100%;
                 display: flex;
                 align-items: center;
-                justify-content: center;
+                justify-items: center;
                 text-align: center;
                 font-size: 16px;
                 font-weight: 500;
@@ -216,9 +209,14 @@ export class CardNewProduct {
                 padding: 4px;
                 border-top-left-radius: 4px;
                 border-top-right-radius: 4px;
-                margin-bottom: 8px;
+                margin-bottom: 16px;
                 color: var(--text-claro);
             }
+        h2.tit {
+        justify-content: center;
+        display: flex;
+        align-items: center;
+}
 
 	`
         document.head.appendChild(style);
@@ -241,7 +239,7 @@ export class CardNewProduct {
 
     createProductInput() {
         const inputGroup = document.createElement('div');
-        inputGroup.className = 'input-group';
+        inputGroup.classList = 'input-group';
 
         const productInput = document.createElement('input');
         productInput.type = 'text';

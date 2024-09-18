@@ -1,7 +1,7 @@
 import { Header} from "../../js/header.js";
 import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js";
 import Main from "../../js/main.js";
-import { TablaEncabezado, MostrarMontoTotal, FiltroFecha, TablaDetalles, Ventastotales,TablaFooter, BtnFlotante } from "../../js/registros.js"
+import { TablaEncabezado, MostrarMontoTotal, FiltroFecha, TablaDetalles,TablaFooter, BtnFlotante } from "../../js/registros.js"
 
  
 
@@ -15,8 +15,7 @@ export class PlanillaVtasxFecha {
         this.createTablaDetalles();
         this.createTablaFooter();
         this.createBtnFlotante();
-        
-
+    
     }
 
     createHeader=()=>{

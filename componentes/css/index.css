@@ -17,11 +17,11 @@
 @import url(./proveedor.css);
 /* estilos de LU */
 
-/* @import url(./ventas.css);
+@import url(./ventas.css);
 @import url(./movimientos.css);
 @import url(./cardproveedor.css);
 @import url(./datoremito.css);
-@import url(./formularios.css); */
+@import url(./formularios.css);
 
 :root{
     --color-primario: #6810ad;

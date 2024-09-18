@@ -72,7 +72,9 @@ export class CardVtasPorProducto {
     agregarCss(){
         const style = document.createElement('style');
         style.textContent = `
-        
+        .espacio-encima {
+        margin-top: 20px; 
+    }
         .card {
             background-color: var(--background-color);
             border-radius: 12px;
@@ -272,7 +274,7 @@ export class CardVtasPorProducto {
             this.resetToBuscarMode();
             this.limpiarInputs();
         }
-        this._onClick(); // Llamada al callback original
+        // this._onClick(); // Llamada al callback original
     }
 
     addInputListeners() {
@@ -387,7 +389,7 @@ export class CardVtasPorProducto {
     
 
     mostrarListadoPorFecha() {
-        navigateToPage('ventasPorFecha');
+        navigateToPage('ListaXFecha_vtaProd');
     // Limpio cualquier listado anterior
     const listadoPrevio = this.element.querySelector('.listado-por-fecha');
     if (listadoPrevio) {

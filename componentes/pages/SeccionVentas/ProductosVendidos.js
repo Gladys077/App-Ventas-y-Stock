@@ -68,7 +68,7 @@ export class ProductosVendidos {
     }
 
     createHeader() {
-        this.header = new Header('Unidades vendidas', iconoVolver, iconoMenu, () => { navigateToPage('BuscadorVentasPorProducto') }, () => { navigateToPage('MenuVentas') });
+        this.header = new Header('Unidades vendidas', iconoVolver, null, () => { navigateToPage('MenuVentas') });
         document.body.appendChild(this.header.getElement());
     }
 
@@ -95,7 +95,7 @@ export class ProductosVendidos {
 
         const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
         const selectedProductName = selectedProduct ? selectedProduct.nombre : 'Nombre_del_producto';
-        this.ventasPorProducto = new CardVtasPorProducto(selectedProductName, 'Buscar', true, () => this.onClick(), 'Unidades Vendidas', 'Ver la lista por fecha', 'Config');
+        this.ventasPorProducto = new CardVtasPorProducto(selectedProductName, 'Buscar', true, () => this.onClick(), 'Unidades Vendidas', 'Ver la lista por fecha', 'VentaxProducto-Listado');
         // document.body.appendChild(this.ventasPorProducto.getElement());
         main.appendChild(this.ventasPorProducto.getElement());
 

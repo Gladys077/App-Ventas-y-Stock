@@ -29,6 +29,7 @@ export function navigateToPage(page) {
             import('../pages/PrimerasPaginas/configuracion.js').then(module => {
                 new module.ConfigurationPage();
             });
+            break;
 
         //----------------Sección Ventas
         case 'MenuVentas':
@@ -64,25 +65,14 @@ export function navigateToPage(page) {
             });
             break;
 
-        // case 'BuscadorVentasPorProducto': 
-        //     import('../../proyecto/.js').then(module => {
-        //         new module.VentasPorProductoPage();
-        //     });
-        //     break;
-
-        case 'VentasPorProducto': 
-            import('../pages/SeccionVentas/ventasPorProducto.js').then(module => {
-                new module.VentasPorProductoPage();
-            });
-            break;
-            case 'ProductosVendidos': 
+        case 'ProductosVendidos': 
             import('../pages/SeccionVentas/ProductosVendidos.js').then(module => {
                 new module.ProductosVendidos();
             });
             break;
 
-        case 'ListaXFecha_vtaProd': //Lu
-            import('../pages/SeccionVentas/listaXFecha_vtaProd.js').then(module => {
+        case 'VentaxProducto-Listado': //Lu
+            import('../pages/SeccionVentas/ventaXProd-Listado.js').then(module => {
                 new module.PlanillaVtasxFecha();
             });
             break;
@@ -92,9 +82,9 @@ export function navigateToPage(page) {
                 new module.VentasPorFechaPage();
             });
             break;
-            case 'ListadoPorFecha': //Lu
-            import('../pages/SeccionVentas/listaXFecha_vtaProd.js').then(module => {
-               new module.PlanillaVtasxFecha();
+            case 'VentasPorVendedorPlanilla': //Lu
+            import('../pages/SeccionVentas/ventasPorVendedorPlanilla.js').then(module => {
+               new module.PlanillaVtasxVendedor();
             });
             break;
 
