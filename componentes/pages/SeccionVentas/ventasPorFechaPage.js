@@ -23,8 +23,6 @@ export class VentasPorFechaPage {
     createMain() {
         // const selectedProductName = 'Nombre_del_producto'; 
         this.ventasPorFecha = new CardVtasPorProducto('', 'Buscar', () => this.onClick, true, 'Importe facturado');
-        this.ventasPorFecha.element.className.add('espacio-encima'); 
-
         document.body.appendChild(this.ventasPorFecha.armarCardVtasPorProducto());
     }
 

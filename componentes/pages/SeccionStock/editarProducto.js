@@ -20,12 +20,12 @@ export class EditProductPage {
             .fondo-results {
                 position: fixed;
                 top: 135px;
-                left: 50%;
-                transform: translate(-50%,0);
+                // left: 50%;
+                // transform: translate(-50%,0);
                 width: calc(100vw - 32px);
                 max-width: 400px;
                 margin: 0 auto;
-                height: 100%;
+                height: 100vh;
                 background-color: rgba(255, 255, 255, 1);
                 z-index: 1000;
                 display: none;
@@ -34,14 +34,12 @@ export class EditProductPage {
             .search-results {
                 width: calc(100vw - 32px);
                 max-width: 400px;
-                max-height: calc(100vh - 160px);
+                // max-height: calc(100vh - 160px);
                 height: 100vh;
                 overflow-y: auto;
                 background-color: #fff;
                 position: absolute;
                 top: 0px;
-                left: 50%;
-                transform: translate(-50%, 0);
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             }
             .ul-product-list {
@@ -49,11 +47,12 @@ export class EditProductPage {
                 list-style-type: none;
                 text-align: left;
                 background-color: #fff;
+                margin-left: 8px;
             }
             .li-product-list {
                 border-bottom: 1px solid var(--secondary-color);
                 padding: 8px 0;
-                padding-left: 16px;
+                padding-left: 0px;
                 word-wrap: break-word;
                 overflow-wrap: break-word;
             }

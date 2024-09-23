@@ -62,8 +62,9 @@ export class CargarStockSearchPage {
     createMain(){
         const main = document.createElement('main');
         
-        const productSearch = createSearchContainer(this.onProductClick.bind(this), RadioProductList, 'calc(100vh - 290px)');
+        const productSearch = createSearchContainer(this.onProductClick.bind(this), RadioProductList, 'calc(100vh - 290px)', '¡No lo tenés en tu stock!');
         main.appendChild(productSearch);
+
 
         // Container para la lista de productos
         this.resultContainer = document.createElement('div');
@@ -117,7 +118,7 @@ export class CargarStockSearchPage {
         const productListElement = productList.render();
 
         if (productListElement.children.length === 0) {
-            new Notification('../../img/emojis/asombro.png', '¡No hay producto en stock!', 'error');
+            new Notification('../../img/emojis/asombro.png', '¡No lo tenés en tu stock!', 'error');
         }
 
         this.resultContainer.appendChild(productListElement);

@@ -141,11 +141,20 @@ export function navigateToPage(page) {
             });
             break;
 
+        case 'ListaProveedores':
+            import('../pages/SeccionStock/ListaProveedores.js').then(module => {
+                new module.ListaProveedores();
+            });
+            break;
+
         case 'ProximoPedido':
             import('../pages/SeccionStock/pedidoproximo.js').then(module => {
                 new module.PlanillaPedidoProximo();
             });
             break;
+
+
+
 
         case 'MenuPerfiles':
             import('../pages/SeccionPerfiles/menuPerfiles.js').then(module => {

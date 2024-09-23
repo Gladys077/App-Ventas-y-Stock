@@ -10,8 +10,6 @@ import { Producto } from '../../js/producto.js';
 export class VenderProductSearchPage {
     constructor() {
         document.body.innerHTML = ''; 
-        if (!verificarCss("search-results-ventas")) this.agregarCss();
-
         this.selectedProducts = [];
         this.createHeader();
         this.createMain();
@@ -21,39 +19,6 @@ export class VenderProductSearchPage {
     getElement() {
         return this.element;
     }
-
-    agregarCss() {
-        const style = document.createElement("style");
-        style.textContent = ` 
-            .search-results-ventas {
-                max-width: 400px;
-                }
-
-            .ul-product-list {
-                margin-top: 16px;
-                list-style-type: none;
-                text-align: left;
-                overflow-y: auto; 
-                overflow-x: hidden;
-                background-color: #fff;
-            }
-
-            .li-product-list {
-                border-bottom: 1px solid var(--secondary-color);
-                padding: 4px 0;
-                padding-left: 8px;
-                word-wrap: break-word;
-                overflow-wrap: break-word;
-            }
-
-            .li-product-list:first-child{
-                border-top: 1px solid var(--secondary-color);
-            }
-        }
-
-	    `;
-        document.head.appendChild(style);
-  }
 
     createHeader() {
         const header = new Header('Vender', iconoVolver, null, function() { navigateToPage('MenuVentas')});

@@ -10,77 +10,30 @@ import { ModalDialogo } from '../../js/modalDialogo.js';
 export class EliminarProductosPage {
     constructor() {
             document.body.innerHTML = ''; 
-            if(!verificarCss('ul-product-list')) this.agregarCss();
+            if(!verificarCss('search-results-elininar')) this.agregarCss();
             this.selectedProduct = [];
             this.createHeader();
             this.createMain();
             this.createFooter();
-            this.agregarCss();
         }
 
     getElement() {
         return this.element;
     }
-    agregarCss(){
+    agregarCss() {
         const style = document.createElement('style');
         style.textContent = `
-        .search-container {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 400px;
-            width: calc(100vw - 32px);
-            margin: 0 auto;
-            margin-top: 40px;
-            position: sticky;
-            top: 0;
-            padding: 10px;
-
-            .search-input {
-                width: 100%;
-                height: 48px;
-                padding: 16px;
-                margin-bottom: 16px;
-                border: 1px solid #ccc;
-                border-radius: 50px;
-                font-size: 16px;
-
-                &::placeholder {
-                    text-align: center;
-                }
-            }
-
-            .search-button {
-                width: 100%;
-                height: 48px;
-                padding: 12px;
-                background-color: var(--primary-color);
-                color: white;
-                border: none;
-                border-radius: 50px;
-                cursor: pointer;
-                font-size: 16px;
-                font-weight: 500;
-                box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
-
-                &:hover {
-                    background-color: var(--color-hover);
-                }
-
-                &:active {
-                    transform: scale(95%);
-                }
-            }
-
+            // .search-results-eliminar {
+            //     max-width: 300px;
+            //     }
             .ul-product-list {
                 width: calc(100vw - 32px);
-                max-width: 400px;
+                max-width: 380px;
                 padding: 0;
                 margin-top: 16px;
                 list-style-type: none;
                 text-align: left;
-                // max-height: var(--product-list-max-height, calc(100vh - 350px));
+                height: calc(100vh - 10px));
                 overflow-y: auto;
                 background-color: #fff;
 
@@ -95,8 +48,7 @@ export class EliminarProductosPage {
                         border-top: 1px solid var(--secondary-color);
                     }
                 }
-            }
-        }
+
 
 	    `
         document.head.appendChild(style);
@@ -109,13 +61,12 @@ export class EliminarProductosPage {
     createMain(){
         const main = document.createElement('main');
         
-        const productSearch = createSearchContainer(this.onProductClick.bind(this), RadioProductList, 'calc(100vh - 330px)');
+        const productSearch = createSearchContainer(this.onProductClick.bind(this), RadioProductList, 'calc(100vh - 280px)', '¡Ese producto no existe en tu stock!');
         main.appendChild(productSearch);
-
 
         // Container para la lista de productos
         this.resultContainer = document.createElement('div');
-        this.resultContainer.classList.add('search-results');
+        this.resultContainer.classList.add('search-results-eliminar');
         main.appendChild(this.resultContainer);
 
         document.body.appendChild(main);
@@ -162,20 +113,8 @@ export class EliminarProductosPage {
         // Lógica para eliminar el producto del stock - VER CON LIO
         console.log('Producto eliminado:', producto);
         // Aquí iría la lógica para eliminar el producto de la BBDD
-        this.updateProductList('');
     }
 
-    updateProductList(searchWord) {
-        this.resultContainer.innerHTML = ''; 
-        const productList = new RadioProductList(searchWord, this.onProductClick.bind(this));
-        const productListElement = productList.render();
-
-        if (productListElement.children.length === 0) {
-            new Notification('../../../img/emojis/asombro.png', '¡No hay producto en stock!', 'error');
-        }
-
-        this.resultContainer.appendChild(productListElement);
-    }
 }
 
     new EliminarProductosPage(true);

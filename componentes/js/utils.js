@@ -110,7 +110,7 @@ export class ExtendedFabButton {
 
 // ----------Búsqueda (input y lupa en una sola linea)------------
 
-export function createSearchContainer(onProductClick, ProductListClass = ProductList, maxHeight = 'calc(100vh - 350px)') {
+export function createSearchContainer(onProductClick, ProductListClass = ProductList, maxHeight = 'calc(100vh - 350px)', noResultsMessage = '¡No hay en stock!') {
     const container = document.createElement('div');
     container.className = 'search-container';
 
@@ -148,7 +148,7 @@ export function createSearchContainer(onProductClick, ProductListClass = Product
 
         resultContainer.innerHTML = '';
         if (productListElement.children.length === 0) {
-            new Notification('../../img/emojis/triste.png', '¡No hay en stock!', 'error');
+            new Notification('../../img/emojis/pare.png', noResultsMessage, 'error');
         } else {
             resultContainer.appendChild(productListElement);
         }
@@ -313,7 +313,6 @@ export function createSearchContainerCard(onSearch, ProductListClass = ProductLi
 }
 
 
-
 // ---------------Lista de producto (VENDER) ---------------------
 import { iconoComprar } from "./iconosSVG.js";
 
@@ -323,8 +322,41 @@ export class ProductList {
         this.onProductClick = onProductClick;
         this.products = this.getProductsFromStorage();
         this.maxHeight = maxHeight;
-    }
+        if (!verificarCss("search-results-ventas")) this.agregarCss();
 
+    }
+    agregarCss() {
+        const style = document.createElement("style");
+        style.textContent = ` 
+            .search-results-ventas {
+                max-width: 400px;
+                }
+
+            .ul-product-list {
+                margin-top: 16px;
+                list-style-type: none;
+                text-align: left;
+                overflow-y: auto; 
+                overflow-x: hidden;
+                background-color: #fff;
+            }
+
+            .li-product-list {
+                border-bottom: 1px solid var(--secondary-color);
+                padding: 4px 0;
+                padding-left: 8px;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            .li-product-list:first-child{
+                border-top: 1px solid var(--secondary-color);
+            }
+        }
+
+	    `;
+        document.head.appendChild(style);
+  }
     getProductsFromStorage() {
         try {
             const storedProducts = localStorage.getItem('productos');
@@ -403,6 +435,7 @@ export class RadioProductList {
         this.products = this.getProductsFromStorage();
         this.maxHeight = maxHeight; 
         this.height = height;
+        
     }
 
     getProductsFromStorage() {
@@ -467,6 +500,48 @@ export class RadioProductList {
         return productList;
     }
 }
+
+//--------------- Lista de proveedores -----------------
+// Clase que extiende RadioProductList para manejar proveedores
+export class RadioProveedorList extends RadioProductList {
+    constructor(searchWord, onProductClick, maxHeight = 'calc(100vh - 350px)', height = 'auto') {
+        super(searchWord, onProductClick, maxHeight, height);
+        this.proveedores = this.getProveedoresFromStorage();
+    }
+
+    getProveedoresFromStorage() {
+        try {
+            const storedProveedores = localStorage.getItem('proveedores');
+            return storedProveedores ? JSON.parse(storedProveedores) : [];
+        } catch (error) {
+            new Notification('../img/emojis/preocupado.png', '¡Error al descargar proveedores!', 'error');
+            return [];
+        }
+    }
+
+    filterAndSortProveedores() {
+        return this.proveedores
+            .filter(proveedor => proveedor.nombre.toLowerCase().includes(this.searchWord.toLowerCase()))
+            .sort((a, b) => a.nombre.localeCompare(b.nombre));
+    }
+
+    render() {
+        const proveedorList = document.createElement('ul');
+        proveedorList.className = 'ul-product-list';
+        proveedorList.style.maxHeight = this.maxHeight;
+        proveedorList.style.height = this.height;
+
+        const filteredProveedores = this.filterAndSortProveedores();
+        
+        filteredProveedores.forEach(proveedor => {
+            const listItem = this.createListItem(proveedor);
+            proveedorList.appendChild(listItem);
+        });
+
+        return proveedorList;
+    }
+}
+
 
 // -------------- Menú principal --------(ventas, stock, perfiles)
 export function createMenuPrincipal() {

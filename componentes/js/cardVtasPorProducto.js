@@ -72,9 +72,7 @@ export class CardVtasPorProducto {
     agregarCss(){
         const style = document.createElement('style');
         style.textContent = `
-        .espacio-encima {
-        margin-top: 20px; 
-    }
+        
         .card {
             background-color: var(--background-color);
             border-radius: 12px;
@@ -86,7 +84,7 @@ export class CardVtasPorProducto {
             max-width: 400px;
             text-align: center;
             padding-bottom: 24px;
-
+            
             .card-title {
                 background-color: var(--primary-color);
                 min-height: 48px;
