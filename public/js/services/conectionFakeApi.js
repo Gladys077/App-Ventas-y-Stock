@@ -37,6 +37,23 @@
             return conexionconvertida;
         }
 
+//CRUD PARA COMERCIO
+async function nuevocomercio(nombre, inscripcion, direccion, email, contacto){
+    const conexion = await fetch("http://localhost:3000/comercios",{
+        method:"POST" ,
+        headers:{"Content-type":"application/json"},   
+        body:JSON.stringify({
+            nombre: nombre,
+            inscripcion: inscripcion,
+            direccion:direccion,
+            email:email,
+            contacto: contacto
+        })
+    })
+    const conexionconvertida = await conexion.json();
+    return conexionconvertida;
+}
+
 //CRUD PARA PRODUCTOS________________________________________________________________________________
         async function listaarticulos(){
             try {
@@ -114,5 +131,5 @@
         }
 
 export const conexionAPI={
-    listaproveedores, nuevoproveedor, listaarticulos, articulospedidos, nuevoarticulo, borrararticulo, actualizarCant
+    listaproveedores, nuevoproveedor, nuevocomercio, listaarticulos, articulospedidos, nuevoarticulo, borrararticulo, actualizarCant
 }

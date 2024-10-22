@@ -48,6 +48,7 @@ function loadView(view) {
                     case 'stocksinmvto':
                         import('./pages/stocksinmvto.js') //.then((module)=>{module.PlanillaStockSinMvto();})
                         break;
+
                     default:
                         console.error('Vista no encontrada');
                 }
@@ -70,6 +71,6 @@ function loadView(view) {
 
 // Cargar la vista por defecto
 
-loadView("ventaactual")
+loadView("datoscomercio")
 
 

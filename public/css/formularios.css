@@ -2,7 +2,7 @@ main{
 
     form{
 
-        .contenedor-nombre-proveedor, .contenedor-nombre-vendedor, .contenedor-llamar, .contenedor-email, .contenedor-notas{
+        .contenedor-nombre-proveedor, .contenedor-nombre-vendedor, .contenedor-nombre-comercio, .contenedor-llamar, .contenedor-num-inscripcion, .contenedor-direccion, .contenedor-email, .contenedor-notas{
             display: flex;
             flex-direction: column;
             margin: auto;

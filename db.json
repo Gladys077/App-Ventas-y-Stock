@@ -104,12 +104,41 @@
       "cel": "2345675040",
       "email": "regalos@gmail.com",
       "notas": "solo a la mañana"
+    },
+    {
+      "id": "5b45",
+      "nombre": "Peggy Lu",
+      "lista": [],
+      "vendedor": "Sara",
+      "cel": "123456789",
+      "email": "peggylu@gmail.com",
+      "notas": "llamar lunes por la tarde. Pedido llega martes a la tarde"
+    },
+    {
+      "id": "7220",
+      "nombre": "",
+      "lista": [],
+      "vendedor": "",
+      "cel": "",
+      "email": "",
+      "notas": ""
+    }
+  ],
+  "comercios": [
+    {
+      "id": "411d",
+      "nombre": "Para Todos S.A.",
+      "inscripcion": "33-2483638922-2",
+      "direccion": "Calle falsa 123",
+      "email": "paratodos@gmail.com",
+      "contacto": "555232308"
     }
   ],
   "productos": [
     {
       "id": "1c23",
       "nombre": "Cuaderno Rivadavia T.dura 24h",
+      "cant": 1,
       "proveedores": [
         {
           "nombre": "Fulanito S.A",
@@ -117,17 +146,18 @@
         },
         {
           "nombre": "Menganito S.A",
-          "precio": 1000
+          "precio": 1100
         },
         {
           "nombre": "Proveeduria S.A",
-          "precio": 1000
+          "precio": 1050
         }
       ]
     },
     {
       "id": "1c63",
       "nombre": "Cuaderno Rivadavia T.dura 48h",
+      "cant": 1,
       "proveedores": [
         {
           "id": "fulanito",
@@ -137,7 +167,7 @@
         {
           "id": "menganito",
           "nombre": "Menganito S.A",
-          "precio": 1000
+          "precio": 900
         },
         {
           "id": "proveeduria",
@@ -222,7 +252,7 @@
     },
     {
       "id": "136",
-      "cant": 2,
+      "cant": 6,
       "producto": "Resaltador verde fluor",
       "precioUnitario": 1500
     }
