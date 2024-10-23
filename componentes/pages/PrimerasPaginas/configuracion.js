@@ -61,6 +61,7 @@ export class ConfigurationPage {
 
         const items = [
             { icon: '../../../img/iconos/candado.png', text: 'Cambio de contraseña', page: 'cambioDePassword' },
+            { icon: '../../../img/iconos/comercio.png', text: 'Datos del comercio', page: 'DatosDelComercio' },
             { icon: '../../../img/iconos/tutorial.png', text: 'Tutorial', page: 'tutorial' },
             { icon: '../../../img/iconos/tema.png', text: 'Modo claro-oscuro', action: this.toggleTheme.bind(this) }
         ];

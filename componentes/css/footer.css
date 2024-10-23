@@ -43,6 +43,10 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+
+    
+    position: relative; /*cambié fixed por relative*/
+    margin-top: auto; /* Empuja el footer hacia abajo */
 }
 
 footer button {

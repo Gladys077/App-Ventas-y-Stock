@@ -1,7 +1,16 @@
 /* Estilos del main menu */
+main {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 80px);
+    justify-content: space-between; /* Para mantener los elementos separados */
+}
+
+
 .menu{
     display: flex;
     flex-direction: column;
+    flex-grow: 1; 
     align-items: center;
 }
 /* Pestañas: ventas-stock-perfiles */
@@ -123,9 +132,10 @@ footer {
     color: var(--primary-color); 
     text-align: center;
     padding: 10px;
-    position: fixed;
     bottom: 0;
     width: 100%;
+    position: relative; /*cambié fixed por relative*/
+    margin-top: auto; /* Empuja el footer hacia abajo */
 }
 
 footer button {
