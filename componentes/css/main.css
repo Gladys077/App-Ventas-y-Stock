@@ -1,7 +1,7 @@
 main{
     width: calc(100% - 32px);
     max-width: 500px;
-    height: calc(100vh - 60px);
+    height: auto;
     max-height: 400px;
     display: flex;
     flex-direction: column;
@@ -134,21 +134,21 @@ main{
         scrollbar-width: none;
         padding-bottom: 75px;
         
-        .tabla_lineaArticulo{
+        .tabla_lineaArticulo, tabla_lineaPedido{
             position: relative;
             width: 100%;
             height: auto;
-            min-height: 45px;
+            /* min-height: 45px; */
             padding: 16px;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content:space-between;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
             border-bottom: 1px solid var(--color-border-articulo);
             font-size: 14px;
             font-style: normal;
-            /* text-align: end; */
+            
 
                 .cant{
                     width: 35px;
@@ -165,7 +165,7 @@ main{
                     hyphens: auto; /*para evitar desbordamiento de texto en las notas*/
                     width: 60%;
                     text-align: center;
-                }
+                }/*fin producto*/
                 
                 .precio{
                     display: flex;
@@ -207,13 +207,15 @@ main{
                     font-size: 13px;
                     font-weight: 400;
                     line-height: 13px;
+                    margin-top: 20px;
                     .proveedor_opcion{
                         width: 100%;
                         display:flex;
                         flex-direction: row;
                         align-items: center;
-                        justify-content: center;
+                        justify-content: left;
                         gap: 20px;
+                        padding-left: 20px;
                         padding-bottom: 20px;
                         input{
                             appearance: none;
@@ -229,7 +231,7 @@ main{
                         }
                     }/*fin proveedor_opcion*/
                     
-                }/*fin cont-provedores. se usa en pedido proximo*/
+                }/*fin cont-proveedores. se usa en pedido proximo*/
                 
                 ._oculto{
                     display: none;

@@ -1,8 +1,7 @@
-import { Header } from "../..//js/header.js";
-import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js"
+import { Header, iconoVolver, iconoMenu } from "../..//js/header.js";
 import Main from "../../js/main.js";
 import { BtnFlotante } from "../../js/registros.js"
-import { conexionAPI } from "../../../public/js/services/conectionFakeApi.js"
+import { conexionAPI } from "../js/services/conectionFakeApi.js"
 
 
 
@@ -19,7 +18,7 @@ export class PlanillaPedidoListaxProveedor{
     }
 
     createHeader=()=>{
-        this.header = new Header("Pedido listado x proveedor", iconoVolver, iconoMenu,null,()=>{loadView("pedidoproximo");});
+        this.header = new Header("Pedido listado x proveedor", iconoVolver, iconoMenu,()=>{loadView("pedidoproximo")},()=>{loadView("pedidoproximo");});
         document.body.appendChild(this.header.getElement());
         return
     }
