@@ -134,6 +134,152 @@
       "contacto": "555232308"
     }
   ],
+  "pedidos": [
+    {
+      "id": "c02",
+      "fecha": "13/10/24",
+      "descripcion": "Pedido Octubre",
+      "listaproductos": [
+        {
+          "id": "1c23",
+          "nombre": "Cuaderno Rivadavia T.dura 24h",
+          "cant": 1,
+          "proveedores": [
+            {
+              "nombre": "Fulanito S.A",
+              "precio": 1000
+            },
+            {
+              "nombre": "Menganito S.A",
+              "precio": 1100
+            },
+            {
+              "nombre": "Proveeduria S.A",
+              "precio": 1050
+            }
+          ]
+        },
+        {
+          "id": "1c63",
+          "nombre": "Cuaderno Rivadavia T.dura 48h",
+          "cant": 1,
+          "proveedores": [
+            {
+              "id": "fulanito",
+              "nombre": "Fulanito S.A",
+              "precio": 1000
+            },
+            {
+              "id": "menganito",
+              "nombre": "Menganito S.A",
+              "precio": 900
+            },
+            {
+              "id": "proveeduria",
+              "nombre": "Proveeduria S.A",
+              "precio": 1000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c03",
+      "fecha": "15/10/24",
+      "descripcion": "Pedido extras",
+      "listaproductos": [
+        {
+          "id": "1c23",
+          "nombre": "Cuaderno Rivadavia T.dura 24h",
+          "cant": 1,
+          "proveedores": [
+            {
+              "nombre": "Fulanito S.A",
+              "precio": 1000
+            },
+            {
+              "nombre": "Menganito S.A",
+              "precio": 1100
+            },
+            {
+              "nombre": "Proveeduria S.A",
+              "precio": 1050
+            }
+          ]
+        },
+        {
+          "id": "1c63",
+          "nombre": "Cuaderno Rivadavia T.dura 48h",
+          "cant": 1,
+          "proveedores": [
+            {
+              "id": "fulanito",
+              "nombre": "Fulanito S.A",
+              "precio": 1000
+            },
+            {
+              "id": "menganito",
+              "nombre": "Menganito S.A",
+              "precio": 900
+            },
+            {
+              "id": "proveeduria",
+              "nombre": "Proveeduria S.A",
+              "precio": 1000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cop-jrqvozszr",
+      "fecha": "24/10/2024",
+      "descripcion": "Pedido Noviembre",
+      "listaproductos": [
+        {
+          "id": "1c23",
+          "nombre": "Cuaderno Rivadavia T.dura 24h",
+          "cant": 1,
+          "proveedores": [
+            {
+              "nombre": "Fulanito S.A",
+              "precio": 1000
+            },
+            {
+              "nombre": "Menganito S.A",
+              "precio": 1100
+            },
+            {
+              "nombre": "Proveeduria S.A",
+              "precio": 1050
+            }
+          ]
+        },
+        {
+          "id": "1c63",
+          "nombre": "Cuaderno Rivadavia T.dura 48h",
+          "cant": 1,
+          "proveedores": [
+            {
+              "id": "fulanito",
+              "nombre": "Fulanito S.A",
+              "precio": 1000
+            },
+            {
+              "id": "menganito",
+              "nombre": "Menganito S.A",
+              "precio": 900
+            },
+            {
+              "id": "proveeduria",
+              "nombre": "Proveeduria S.A",
+              "precio": 1000
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "productos": [
     {
       "id": "1c23",
@@ -183,12 +329,6 @@
       "cant": 2,
       "producto": "Cuaderno Rivadavia T.dura 24h",
       "precioUnitario": 2000
-    },
-    {
-      "id": "124",
-      "cant": 2,
-      "producto": "Lapicera Vic azul",
-      "precioUnitario": 1000
     },
     {
       "id": "125",

@@ -71,6 +71,6 @@ function loadView(view) {
 
 // Cargar la vista por defecto
 
-loadView("datoscomercio")
+loadView("pedidoHistorial")
 
 
