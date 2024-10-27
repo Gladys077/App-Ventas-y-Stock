@@ -85,7 +85,7 @@ export function createMenuStock() {
         { src: '../../../img/iconos/eliminarProducto.png', alt: '', text: 'Eliminar Producto', page: 'EliminarProducto' },
         { src: '../../../img/iconos/proveedores.png', alt: '', text: 'Proveedores', page: 'ListaProveedores' },
         { src: '../../../img/iconos/proximoPedido.png', alt: '', text: 'Próximo Pedido', page: 'ProximoPedido' },
-        { src: '../../../img/iconos/historialPedidos.png', alt: '', text: 'Historial de Pedidos', page: 'HistorialPedidos' }
+        { src: '../../../img/iconos/historialPedidos.png', alt: '', text: 'Historial Pedidos', page: 'HistorialPedidos' }
 
     ];
 

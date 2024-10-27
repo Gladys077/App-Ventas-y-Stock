@@ -30,7 +30,11 @@ export function navigateToPage(page) {
                 new module.ConfigurationPage();
             });
             break;
-
+        case 'DatosDelComercio':
+            import('../pages/PrimerasPaginas/datoscomercio.js').then(module => {
+                new module.DatosComercio();
+            });
+            break;
         //----------------Sección Ventas
         case 'MenuVentas':
             import('../pages/SeccionVentas/pageMenuVentas.js').then(module => {
@@ -153,7 +157,11 @@ export function navigateToPage(page) {
             });
             break;
 
-
+        case 'FormNuevoProveedor':
+            import('../pages/SeccionStock/formnuevoproveedor.js').then(module => {
+                new module.NuevoProveedor();
+            });
+            break;
 
 
         case 'MenuPerfiles':

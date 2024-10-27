@@ -14,7 +14,7 @@ export class DatosComercio {
 
     
     createHeader=()=>{
-        this.header = new Header("Datos del Comercio", iconoVolver, iconoMenu,()=>{},()=>{ loadView('formnuevoproveedor');});
+        this.header = new Header("Datos del Comercio", iconoVolver, iconoMenu,()=>{},()=> navigateToPage('FormNuevoProveedor'));
         document.body.appendChild(this.header.getElement());
         return
     }

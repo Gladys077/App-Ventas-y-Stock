@@ -1,4 +1,4 @@
-import { Header, iconoVolver, iconoMenu, navigateToMenu } from "../../js/header.js";
+import { Header, iconoVolver, iconoMenu, navigateToMenu } from "../..//js/header.js";
 import Main from "../../js/main.js";
 import { TablaEncabezado, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
 import { Footer } from "../../js/footer.js"
@@ -20,7 +20,7 @@ export class PlanillaPedidoProximo {
         this.createTablaFooter();
 
         this.createFooter();
-        // this.createEnlace();
+        this.createEnlace();
         this.createButtonsFooter();
         this.createAzBtn();
 
@@ -57,30 +57,24 @@ export class PlanillaPedidoProximo {
     }
 
 
-    createLineaArticulo= (cant,nombre, proveedores)=>{
-        
+    createLineaArticulo= (nombre, proveedores)=>{
         const lineaArt = document.createElement("div");
         lineaArt.className = "tabla_lineaArticulo";
             
             const input = document.createElement("input");
             input.className = "cant";
-            input.value=`${cant}`;
-    
-        
+            input.value=1;
 
             const prod = document.createElement("div");
             prod.className="producto";
             prod.textContent= `${nombre}`;
-            // console.log(nombre);
+            console.log(nombre);
             
 
             const precio = document.createElement("div");
             precio.className = "precio";
-
-                let costo = parseInt(input.value) * 0;//este precio debería venir del proveedor ya seleccionado desde otra pantalla?? ahora vale cero
-                const spanprecio= document.createElement("span")
-                    spanprecio.textContent = costo;
-            precio.appendChild(spanprecio);
+                let costo = parseInt(input.value) * 1000//buscar como usar valor de input radio para hacer el calculo
+            precio.textContent = costo;//falta resolver
             
             const listaProv = document.createElement("div");
             listaProv.className = "cont-proveedores _oculto";
@@ -92,26 +86,18 @@ export class PlanillaPedidoProximo {
 
                             const radio = document.createElement("input");
                             radio.type = "radio"
-                            radio.name = `proveedor_${nombre}`;
+                            radio.name = "proveedor"
                             radio.value= `${proveedor.precio}`;
-                            radio.id = `prov_${proveedor.id}`;
+                            radio.id = `${proveedor.id}` /*no está bien definido */
                             
 
                             const label = document.createElement("label");
-                            label.htmlFor = `prov_${proveedor.id}`;
+                            label.for = `${proveedor.id}`; /*ver si está correcto, no está bien definido */
                             label.textContent = `${proveedor.nombre}`;
 
                             const span = document.createElement("span");
                             span.textContent = `${proveedor.precio}`;
 
-                            radio.addEventListener("change", () => {
-                                costo = parseInt(input.value) * parseInt(proveedor.precio); // Precio basado en cantidad y precio del proveedor
-                                spanprecio.textContent = costo; // Actualizamos el texto del precio
-                            });
-                            input.addEventListener("input", ()=>{
-                                costo = parseInt(input.value) * parseInt(proveedor.precio); // Precio basado en cantidad y precio del proveedor
-                                spanprecio.textContent = costo; // Actualizamos el texto del precio)
-                            });
                         opcion.append(radio, label,span);    
                         listaProv.appendChild(opcion);
                     })/*fin forEach */
@@ -147,34 +133,32 @@ export class PlanillaPedidoProximo {
         
         return lineaArt
         
-    }//Se crea la linea de articulo para hacer el foreach 
+    }//Se crea la linea de articulo. hacemos el foreach 
 
     mostrarLineasArticulos = async ()=>{
 
         const tablaDetalles = document.querySelector(".tabla_detalles");
         const articulos = await conexionAPI.listaarticulos();
-        // console.log(articulos);
+        console.log(articulos);
 
         if(articulos.length===0){
             const mensaje = document.createElement("span");
             mensaje.classList="no_hay_productos";
-            mensaje.innerText="no existen articulos en el pedido";
+            mensaje.innerText="no existen articulos en el pedio";
             main.appendChild(mensaje);
         }
 
         articulos.forEach(articulo=>{
-            tablaDetalles.append(this.createLineaArticulo(articulo.cant,articulo.nombre, articulo.proveedores))
-            console.log("nombre " + articulo.nombre,  "proveedores " +articulo.proveedores);
+            tablaDetalles.append(this.createLineaArticulo(articulo.nombre, articulo.proveedores))
+            console.log("nombre " + articulo.nombre,  "proveedotes " +articulo.proveedores);
         })
-
-        calcularTotal()
 
     }//Acá se debe conectar a la bd y hacemos el foreach para cada articulo
 
     createAgregarManualmente= ()=>{
-        const mainPedido = document.querySelector("main");
+        const tablaDetalle = document.querySelector(".tabla_detalles");
         this.boton= new BtnFlotante("agregaManualmente", "contenedor-btn-flotante agregarManualmente", ()=>{alert("Debe abrir un modal para agregar artículos manualmente");},"Agregar al pedido")
-        mainPedido.appendChild(this.boton.getElement());
+        tablaDetalle.appendChild(this.boton.getElement());
     }
 
     createTablaFooter= ()=>{
@@ -189,21 +173,21 @@ export class PlanillaPedidoProximo {
         return
     }
 
-    // createEnlace=()=>{
-    //     const footer =document.querySelector("footer");
-    //     const enlace = document.createElement("a");
-    //     enlace.href="#";//hay que agregar el enlace a pedidolistaxproveedor.js
-    //     enlace.textContent="Listado por proveedor";
-    //     enlace.addEventListener("click", ()=>{
-    //         loadView("pedidolistaxproveedor")
-    //     })
-    //     footer.appendChild(enlace);
-    //     return
-    // }
+    createEnlace=()=>{
+        const footer =document.querySelector("footer");
+        const enlace = document.createElement("a");
+        enlace.href="#";//hay que agregar el enlace a pedidolistaxproveedor.js
+        enlace.textContent="Listado por proveedor";
+        enlace.addEventListener("click", ()=>{
+            loadView("pedidolistaxproveedor")
+        })
+        footer.appendChild(enlace);
+        return
+    }
 
     createButtonsFooter=()=>{
         const footerRegistro= document.querySelector("footer");
-        this.botones= new ButtonContainer("Finalizar Pedido", "Listar por Proveedor", ()=>{console.log("se guardó pedido");},()=>{loadView("pedidolistaxproveedor")},"save2","pedidoPorProveedorViolet" )
+        this.botones= new ButtonContainer("Guardar", "Eliminar", ()=>{console.log("se guardó pedido");},()=>{console.log("se eliminó pedido");},"save2","trashViolet" )
         footerRegistro.appendChild(this.botones.getButtonContainer());
     }
 
@@ -221,23 +205,5 @@ function visibilidadOpciones(event){
     cont_proveedores.classList.toggle("_oculto");
     btnmostrar.classList.toggle("_oculto");
     btnocultar.classList.toggle("_oculto");
-
-}
-
-function calcularTotal(){
-    
-    const precios =document.querySelectorAll(".precio");
-    console.log(typeof(precios));
-    console.log("todos los precio", precios);
-        let totalPedido = 0;
-        precios.forEach(precio =>{
-            const span = precio.querySelector("span");
-            totalPedido += parseFloat(span.textContent);
-            // if(span&&span.textContent){
-            //     totalPedido += parseFloat(span.textContent);
-            // }
-            
-        });
-        document.querySelector(".valorTotal").textContent = `$${totalPedido}`;
 
 }
