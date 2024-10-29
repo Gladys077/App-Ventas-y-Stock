@@ -186,7 +186,7 @@
     {
       "id": "c03",
       "fecha": "15/10/2024",
-      "descripcion": "Pedido extras",
+      "descripcion": "Pedido extras octubre",
       "listaproductos": [
         {
           "id": "1c23",
@@ -282,7 +282,7 @@
     {
       "id": "cop-4tjnyov09",
       "fecha": "24/10/2024",
-      "descripcion": "Pedido Octubre",
+      "descripcion": "Pedido Noviembre 2",
       "listaproductos": [
         {
           "id": "1c23",
@@ -330,7 +330,7 @@
     {
       "id": "cop-hvanbte4o",
       "fecha": "24/10/2024",
-      "descripcion": "Pedido extras",
+      "descripcion": "Pedido extras Noviembre",
       "listaproductos": [
         {
           "id": "1c23",
@@ -378,7 +378,7 @@
     {
       "id": "cop-xmnzoffnw",
       "fecha": "29/10/2024",
-      "descripcion": "Pedido Octubre",
+      "descripcion": "Pedido Especial",
       "listaproductos": [
         {
           "id": "1c23",
@@ -474,55 +474,7 @@
     {
       "id": "cop-zprt0gfgn",
       "fecha": "29/10/2024",
-      "descripcion": "Pedido extras Diciembre",
-      "listaproductos": [
-        {
-          "id": "1c23",
-          "nombre": "Cuaderno Rivadavia T.dura 24h",
-          "cant": 1,
-          "proveedores": [
-            {
-              "nombre": "Fulanito S.A",
-              "precio": 1000
-            },
-            {
-              "nombre": "Menganito S.A",
-              "precio": 1100
-            },
-            {
-              "nombre": "Proveeduria S.A",
-              "precio": 1050
-            }
-          ]
-        },
-        {
-          "id": "1c63",
-          "nombre": "Cuaderno Rivadavia T.dura 48h",
-          "cant": 1,
-          "proveedores": [
-            {
-              "id": "fulanito",
-              "nombre": "Fulanito S.A",
-              "precio": 1000
-            },
-            {
-              "id": "menganito",
-              "nombre": "Menganito S.A",
-              "precio": 900
-            },
-            {
-              "id": "proveeduria",
-              "nombre": "Proveeduria S.A",
-              "precio": 1000
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "cop-q9dhs4jgr",
-      "fecha": "29/10/2024",
-      "descripcion": "Pedido extras Diciembre",
+      "descripcion": "Pedido extras navidad",
       "listaproductos": [
         {
           "id": "1c23",
@@ -674,13 +626,13 @@
     },
     {
       "id": "135",
-      "cant": 1,
+      "cant": 2,
       "producto": "Resaltador amarillo fluor",
       "precioUnitario": 1500
     },
     {
       "id": "136",
-      "cant": 6,
+      "cant": 5,
       "producto": "Resaltador verde fluor",
       "precioUnitario": 1500
     }

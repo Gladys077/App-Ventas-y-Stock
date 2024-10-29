@@ -35,7 +35,7 @@ export class PlanillaPedidoCopia {
             const contenidoPedido= await conexionAPI.obtenerpedido(this.pedidoId);
             console.log(" esta es la descripción del pedido ", contenidoPedido.descripcion);
             
-            this.header = new Header(`Copia - ${contenidoPedido.descripcion}`, iconoVolver, iconoMenu,()=>{loadView("pedidohistorial")},()=>{loadView("pedidolistaxproveedor")});
+            this.header = new Header(`${contenidoPedido.descripcion}`, iconoVolver, iconoMenu,()=>{loadView("pedidohistorial")},()=>{loadView("pedidolistaxproveedor")});
             document.body.insertBefore(this.header.getElement(), document.body.firstChild);
         } catch (error) {
         console.error("Error al cargar los detalles del pedido:",error)

@@ -1,6 +1,6 @@
 import { Header, iconoVolver, iconoMenu, navigateToMenu } from "../../js/header.js";
 import Main from "../../js/main.js";
-import { TablaEncabezado, MostrarMontoTotal, TablaDetalles, Ventasdeldia, TablaFooter, BtnFlotante } from "../../js/registros.js"
+import { TablaEncabezado, MostrarMontoTotal, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
 
  
 
@@ -9,7 +9,6 @@ export class PlanillaVtasdelDia {
     constructor(){
         this.createHeader();
         this.mainPedido=this.createMain();
-        this.createMostrarMonto();
         this.createMostrarMonto();
         this.createTablaEncabezado();
         this.createTablaDetalles();
@@ -37,15 +36,8 @@ export class PlanillaVtasdelDia {
         mainPedido.appendChild(this.monto.getElement());
     }
 
-    createMostrarMonto= ()=>{
-        const mainPedido=document.querySelector("main");
-        this.monto = new MostrarMontoTotal();
-        mainPedido.appendChild(this.monto.getElement());
-    }
-
     createTablaEncabezado= ()=>{
         const mainPedido=document.querySelector("main");
-        this.encabezado = new TablaEncabezado("Producto", "Cant.")
         this.encabezado = new TablaEncabezado("Producto", "Cant.")
         mainPedido.appendChild(this.encabezado.getElement());
     }
@@ -68,7 +60,7 @@ export class PlanillaVtasdelDia {
 
     createBtnFlotante= ()=>{
         const mainPedido=document.querySelector("main");
-        this.btn = new BtnFlotante("descargar");
+        this.btn = new BtnFlotante("descargar","contenedor-btn-flotante", ()=>{alert("Descarga exitosa")});
         mainPedido.appendChild(this.btn.getElement());
 
     }

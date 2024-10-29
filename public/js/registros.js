@@ -221,6 +221,46 @@ export class TablaFooter{
     }
 }/*fin TablaFooter. Se utiliza en todas las planillas*/
 
+export class BtnFlotante{
+
+    constructor(icon,classname,btnCallBack, texto){
+        this.icon = icon;
+        this.classname = classname;
+        this.texto = texto;
+        this.btnCallBack = btnCallBack;
+        this.element=this.agregarBton();
+    }
+    agregarBton = () =>{
+        const contenedor = document.createElement("div");
+            contenedor.className = this.classname;
+            const btn= document.createElement("img");
+                btn.src= `../../img/iconos/${this.icon}.png`;
+            contenedor.appendChild(btn);
+            if(this.texto){
+                const span = document.createElement("span");
+                span.textContent=this.texto;
+                contenedor.appendChild(span)
+            }
+            contenedor.addEventListener("click", this.btnCallBack)
+        return contenedor;    
+    }
+    getElement(){
+        return this.element
+    }
+
+}/*fin class BtnFlotante */
+
+
+
+
+
+
+
+
+
+
+
+//NO SE USAN, CONFIRMAR Y LUEGO BORRAR
 // export class Pedidoactual {
 //     constructor(item) {
 //         this.element=this.agregarItem(item)
@@ -254,37 +294,36 @@ export class TablaFooter{
 //         return this.element
 //     }
 // }/*fin  class Pedidoactual*/ 
-
-export class Ventasdeldia{
-    constructor(){
-        this.element=this.agregarItem();
-    }
-    agregarItem =(item) =>{
+// export class Ventasdeldia{
+//     constructor(){
+//         this.element=this.agregarItem();
+//     }
+//     agregarItem =(item) =>{
             
-    // creando elementos y asignando clases    
-        const lineaArticulo = document.createElement("div");
-            lineaArticulo.className="tabla_lineaArticulo";
+//     // creando elementos y asignando clases    
+//         const lineaArticulo = document.createElement("div");
+//             lineaArticulo.className="tabla_lineaArticulo";
 
-        const producto = document.createElement("div");
-            producto.className="producto";
-        const cantidad = document.createElement("div");
-            cantidad.className="cantidad";
+//         const producto = document.createElement("div");
+//             producto.className="producto";
+//         const cantidad = document.createElement("div");
+//             cantidad.className="cantidad";
 
-    //asignar valor a celdas
-        producto.textContent = item.producto;
-        cantidad.textContent = item.cantidad;
+//     //asignar valor a celdas
+//         producto.textContent = item.producto;
+//         cantidad.textContent = item.cantidad;
     
-    //agregar item a lineaArtículo    
-        lineaArticulo.append(producto, cantidad);
+//     //agregar item a lineaArtículo    
+//         lineaArticulo.append(producto, cantidad);
 
-        return lineaArticulo;
+//         return lineaArticulo;
 
-    }
-    getElement(){
-        return this.element
-    }
+//     }
+//     getElement(){
+//         return this.element
+//     }
     
-}/*fin class Ventasdeldia*/
+// }/*fin class Ventasdeldia*/
 
 // export class Movimientosproducto{
 //     constructor(item){
@@ -323,115 +362,86 @@ export class Ventasdeldia{
 //     }
 // }/*fin class Movimientosproducto. Revisar como se llama el producto*/
 
-export class Ventastotales{/*Falta desarrollar */
-    constructor(){
-        this.element=this.agregarItem(item);
-    }
-    llamandofecha=(item)=>{
-        const contenedorFecha =document.querySelector(".contenedor-fecha-venta");
-        const fecha = document.createElement("span");
-        fecha.textContent= item.fecha;
-        contenedorFecha.appendChild(fecha);
-    }
-    agregarItem =(item) =>{
+// export class Ventastotales{/*Falta desarrollar */
+//     constructor(){
+//         this.element=this.agregarItem(item);
+//     }
+//     llamandofecha=(item)=>{
+//         const contenedorFecha =document.querySelector(".contenedor-fecha-venta");
+//         const fecha = document.createElement("span");
+//         fecha.textContent= item.fecha;
+//         contenedorFecha.appendChild(fecha);
+//     }
+//     agregarItem =(item) =>{
             
-    // creando elementos y asignando clases    
-        const lineaArticulo = document.createElement("div");
-            lineaArticulo.className="tabla_lineaArticulo";
+//     // creando elementos y asignando clases    
+//         const lineaArticulo = document.createElement("div");
+//             lineaArticulo.className="tabla_lineaArticulo";
 
-        const producto = document.createElement("div");
-            producto.className="producto";
-        const cantidad = document.createElement("div");
-            cantidad.className="cantidad";
+//         const producto = document.createElement("div");
+//             producto.className="producto";
+//         const cantidad = document.createElement("div");
+//             cantidad.className="cantidad";
 
-    //asignar valor a celdas
-        producto.textContent = item.producto;
-        cantidad.textContent = item.cantidad;
+//     //asignar valor a celdas
+//         producto.textContent = item.producto;
+//         cantidad.textContent = item.cantidad;
     
-    //agregar item a lineaArtículo    
-        lineaArticulo.append(producto, cantidad);
+//     //agregar item a lineaArtículo    
+//         lineaArticulo.append(producto, cantidad);
 
-    return lineaArticulo;
+//     return lineaArticulo;
 
-    }
+//     }
 
-    getElement(){
-        return this.element
-    }
+//     getElement(){
+//         return this.element
+//     }
     
-}/*fin class Ventastotales. Revisar llamado de fechas*/
+// }/*fin class Ventastotales. Revisar llamado de fechas*/
 
-export class Ventasporvendedor{
-    constructor(item, fecha){
-        this.fecha=fecha
+// export class Ventasporvendedor{
+//     constructor(item, fecha){
+//         this.fecha=fecha
 
-        this.llamandoVendedor(item);
-        this.element=this.agregarItem(item);
-    }
+//         this.llamandoVendedor(item);
+//         this.element=this.agregarItem(item);
+//     }
 
-    llamandoVendedor = (item)=>{
-        const contenedorVendedor = document.querySelector(".contenedor-vendedor")
-        const vendedor = document.createElement("span");
-        vendedor.textContent= item.vendedor;//colocar nombre celda como figura en tabla de bd
-        contenedorVendedor.appendChild(vendedor)
-    }
+//     llamandoVendedor = (item)=>{
+//         const contenedorVendedor = document.querySelector(".contenedor-vendedor")
+//         const vendedor = document.createElement("span");
+//         vendedor.textContent= item.vendedor;//colocar nombre celda como figura en tabla de bd
+//         contenedorVendedor.appendChild(vendedor)
+//     }
     
-    agregarItem =(item) =>{
+//     agregarItem =(item) =>{
         
-    // creando elementos y asignando clases    
-        const lineaArticulo = document.createElement("div");
-            lineaArticulo.className="tabla_lineaArticulo";
+//     // creando elementos y asignando clases    
+//         const lineaArticulo = document.createElement("div");
+//             lineaArticulo.className="tabla_lineaArticulo";
         
-        const cantidad = document.createElement("div");
-            cantidad.className="cantidad";
-        const producto = document.createElement("div");
-            producto.className="producto";
-        const total = document.createElement("div");
-            total.className="total"; 
+//         const cantidad = document.createElement("div");
+//             cantidad.className="cantidad";
+//         const producto = document.createElement("div");
+//             producto.className="producto";
+//         const total = document.createElement("div");
+//             total.className="total"; 
         
 
-    //asignar valor a celdas
-        producto.textContent = item.producto;
-        cantidad.textContent = item.cantidad;
-        total.textContent = item.total;
+//     //asignar valor a celdas
+//         producto.textContent = item.producto;
+//         cantidad.textContent = item.cantidad;
+//         total.textContent = item.total;
     
-    //agregar item a lineaArtículo    
-        lineaArticulo.append(cantidad,producto, total);
+//     //agregar item a lineaArtículo    
+//         lineaArticulo.append(cantidad,producto, total);
 
-    return lineaArticulo;
+//     return lineaArticulo;
 
-    }
+//     }
 
-    getElement(){
-        return this.element
-    }
-}/*fin class ventasporvendedor Revisar*/
-
-export class BtnFlotante{
-
-    constructor(icon,classname,btnCallBack, texto){
-        this.icon = icon;
-        this.classname = classname;
-        this.texto = texto;
-        this.btnCallBack = btnCallBack;
-        this.element=this.agregarBton();
-    }
-    agregarBton = () =>{
-        const contenedor = document.createElement("div");
-            contenedor.className = this.classname;
-            const btn= document.createElement("img");
-                btn.src= `../../img/iconos/${this.icon}.png`;
-            contenedor.appendChild(btn);
-            if(this.texto){
-                const span = document.createElement("span");
-                span.textContent=this.texto;
-                contenedor.appendChild(span)
-            }
-            contenedor.addEventListener("click", this.btnCallBack)
-        return contenedor;    
-    }
-    getElement(){
-        return this.element
-    }
-
-}/*fin class BtnFlotante */
+//     getElement(){
+//         return this.element
+//     }
+// }/*fin class ventasporvendedor Revisar*/

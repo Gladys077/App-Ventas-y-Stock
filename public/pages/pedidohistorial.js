@@ -98,7 +98,7 @@ export class PlanillaPedidoHistorial {
                                 ...pedidoOriginal,
                                 id:`cop-${Math.random().toString(36).substr(2, 9)}`, //genera un nuevo id para la copia
                                 fecha: new Date().toLocaleDateString(), // Usamos la fecha actual
-                                descripcion: pedidoOriginal.descripcion,
+                                descripcion: `Copia ${pedidoOriginal.descripcion}`,
                                 listaproductos: [...pedidoOriginal.listaproductos], // Copiar los productos asociados
 
                             }
