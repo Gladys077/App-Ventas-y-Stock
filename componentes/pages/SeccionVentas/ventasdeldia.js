@@ -1,6 +1,6 @@
 import { Header, iconoVolver, iconoMenu, navigateToMenu } from "../../js/header.js";
 import Main from "../../js/main.js";
-import { TablaEncabezado, MostrarMontoTotal, TablaDetalles, Ventasdeldia, TablaFooter, BtnFlotante } from "../../js/registros.js"
+import { TablaEncabezado, MostrarMontoTotal, TablaDetalles, Ventasdeldia, TablaFooter, BtnFlotante } from "../../../public/js/registros.js"
 
  
 

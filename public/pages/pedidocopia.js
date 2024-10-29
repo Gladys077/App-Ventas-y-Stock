@@ -6,7 +6,7 @@ import { ButtonContainer } from "../../js/btnsContainer.js"
 import { conexionAPI } from "../js/services/conectionFakeApi.js"
 
 
-export class PlanillaPedidoProximo {
+export class PlanillaPedidoCopia {
     constructor(){
         this.createHeader();
         this.mainPedido=this.createMain();
@@ -27,7 +27,7 @@ export class PlanillaPedidoProximo {
     }
 
     createHeader=()=>{
-        this.header = new Header("Próximo pedido", iconoVolver, iconoMenu,()=>{loadView("historialpedido")},()=>{loadView("pedidolistaxproveedor")});
+        this.header = new Header("Copia - pedido", iconoVolver, iconoMenu,null,()=>{loadView("pedidolistaxproveedor")});
         document.body.appendChild(this.header.getElement());
         return
     }
@@ -209,7 +209,7 @@ export class PlanillaPedidoProximo {
 
 }
 
-new PlanillaPedidoProximo();
+new PlanillaPedidoCopia();
 
 
 function visibilidadOpciones(event){

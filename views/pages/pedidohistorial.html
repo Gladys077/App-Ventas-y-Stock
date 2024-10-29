@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Ventas y Stock - Historial de Pedidos</title>
+    <link rel="stylesheet" href="../../public/css/index.css">
+    <script>
+        function visibilidadOpciones(event){
+            const lineaArticulo=event.target.closest(".tabla_lineaArticulo")
+            const cont_proveedores=lineaArticulo.querySelector(".cont-proveedores");
+            const btnmostrar = lineaArticulo.querySelector(".mostrar-mas");
+            const btnocultar = lineaArticulo.querySelector(".mostrar-menos")
+
+            cont_proveedores.classList.toggle("_oculto");
+            btnmostrar.classList.toggle("_oculto");
+            btnocultar.classList.toggle("_oculto");
+
+        }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <div>
+            <img src="../../public/img/iconos/volver.png" alt="< Volver" title="Volver">
+        </div>
+        <div>
+            <h2>Historial de Pedidos</h2>
+        </div>
+        <div>
+            <nav></nav>
+            <button class="nav-toggle" aria-label="Abrir Menú"><img src="../../public/img/iconos/menu.png" alt="Menú"></button>
+        </div>
+    </header>   
+    <main class="main">
+        
+        <section class="tabla_encabezados">
+            <h3 class="th">Fecha</h3>
+            <h3 class="th">Descripción</h3>
+            <h3 class="th">Acciones</h3>
+        </section>
+        
+        <section class="tabla_detalles">
+
+            <div class="tabla_lineaPedido" id="P1">
+                <div class="fecha">13/10/2024</div>
+                <input class="descripcion" value="Pedido"></input>
+                <div class="acciones">
+                    <button class="copiarPedido"  onclick=""><img src="../../public/img/iconos/saveGreen.png" title="Hacer copia pedido" alt="Icon copiar"></button>
+                    <button class="borrarPedido" onclick=""><img src="../../public/img/iconos/trashRojo.PNG" title="Borrar pedido del historial" alt="Icon borrar"></button>
+                </div>
+            </div>
+            <div class="tabla_lineaPedido" id="P2">
+                <div class="fecha">20/10/2024</div>
+                <input class="descripcion" value="Pedido"></input>
+                <div class="acciones">
+                    <button class="copiarPedido"  onclick=""><img src="../../public/img/iconos/saveGreen.png" title="Hacer copia pedido" alt="Icon copiar"></button>
+                    <button class="borrarPedido" onclick=""><img src="../../public/img/iconos/trashRojo.PNG" title="Borrar pedido del historial" alt="Icon borrar"></button>
+                </div>
+            </div>
+ 
+        </section>
+
+    
+    </main>     
+    <footer class="footer-container">
+        <section class="button-container">
+            <button class="cancelar"> <img src="../../public/img/iconos/trashViolet.PNG" alt="Tacho de Basura"><span>Cancelar</span></button>
+            <button class="guardar"><img src="../../public/img/iconos/pedidowhite.png" alt="Confirmar Pedido"> <span>Guardar</span></button>
+        </section>
+        
+    </footer>
+</body>
+</html>

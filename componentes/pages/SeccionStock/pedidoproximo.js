@@ -1,6 +1,6 @@
 import { Header, iconoVolver, iconoMenu, navigateToMenu } from "../../js/header.js";
 import Main from "../../js/main.js";
-import { TablaEncabezado, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
+import { TablaEncabezado, TablaDetalles, TablaFooter, BtnFlotante } from "../../../public/js/registros.js"
 import { Footer } from "../../js/footer.js"
 import { ButtonContainer } from "../../js/btnsContainer.js"
 import { conexionAPI } from "../js/services/conectionFakeApi.js"

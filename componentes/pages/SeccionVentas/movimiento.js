@@ -1,11 +1,13 @@
 import { Header } from "../../js/header.js";
-import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js";
+import { iconoVolver } from "../../js/iconosSVG.js";
+import { navigateToPage } from "../../js/navigateToPage.js";
 import Main from "../../js/main.js";
-import { TablaEncabezado, FiltroFecha, TablaDetalles, TablaFooter } from "../../js/registros.js"
+import { TablaEncabezado, FiltroFecha, TablaDetalles, TablaFooter } from "../../../public/js/registros.js"
 
 
 export class PlanillaMovimiento {
     constructor(){
+        document.body.innerHTML = ''; 
         this.createHeader();
         this.mainPedido=this.createMain();
         this.createFiltroFecha();
@@ -15,7 +17,7 @@ export class PlanillaMovimiento {
     }
 
     createHeader=(producto ="Nombre_del_Producto")=>{
-        this.header = new Header(producto, iconoVolver, iconoMenu,null,function(){ navigateToMenu('stock'); });
+        this.header = new Header(producto, iconoVolver, null,()=>{ navigateToPage('MenuVentas')},);
         document.body.appendChild(this.header.getElement());
         return
     }

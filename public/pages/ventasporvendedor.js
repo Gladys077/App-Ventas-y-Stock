@@ -1,6 +1,6 @@
-import { Header, iconoVolver, iconoMenu, navigateToMenu } from "../../js/header.js";
-import Main from "../../js/main.js";
-import { TablaEncabezado, MostrarVendedor, FiltroFecha, TablaDetalles, Ventasporvendedor,TablaFooter, BtnFlotante } from "../../js/registros.js"
+import { Header, iconoVolver, iconoMenu, navigateToMenu } from "../js/header.js";
+import Main from "../js/main.js";
+import { TablaEncabezado, MostrarVendedor, FiltroFecha, TablaDetalles, Ventasporvendedor,TablaFooter, BtnFlotante } from "../js/registros.js"
 
  
 
@@ -65,7 +65,7 @@ export class PlanillaVtasxVendedor {
 
     createBtnFlotante= ()=>{
         const mainPedido=document.querySelector("main");
-        this.btn = new BtnFlotante("descargar");
+        this.btn = new BtnFlotante("iconoDescargar");
         mainPedido.appendChild(this.btn.getElement());
 
     }

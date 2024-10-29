@@ -18,7 +18,7 @@ export class PlanillaPedidoListaxProveedor{
     }
 
     createHeader=()=>{
-        this.header = new Header("Pedido listado x proveedor", iconoVolver, iconoMenu,null,()=>{loadView("pedidoproximo");});
+        this.header = new Header("Pedido listado x proveedor", iconoVolver, iconoMenu,()=>{loadView("pedidoproximo")},()=>{loadView("pedidoproximo");});
         document.body.appendChild(this.header.getElement());
         return
     }

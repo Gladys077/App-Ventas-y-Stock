@@ -1,7 +1,7 @@
 import { Header } from "../../js/header.js";
 import { iconoVolver, iconoMenu, iconoDescargar } from '../../js/iconosSVG.js';
 import Main from "../../js/main.js";
-import { TablaEncabezado, MostrarVendedor, FiltroFecha, TablaDetalles,TablaFooter, BtnFlotante } from "../../js/registros.js"
+import { TablaEncabezado, MostrarVendedor, FiltroFecha, TablaDetalles,TablaFooter, BtnFlotante } from "../../../public/js/registros.js"
  
 
 export class PlanillaVtasxVendedor {
@@ -14,8 +14,6 @@ export class PlanillaVtasxVendedor {
         this.createTablaDetalles();
         this.createTablaFooter();
         this.createBtnFlotante();
-        
-
     }
 
     createHeader=()=>{
@@ -65,7 +63,7 @@ export class PlanillaVtasxVendedor {
 
     createBtnFlotante= ()=>{
         const mainPedido=document.querySelector("main");
-        this.btn = new BtnFlotante("descargar");
+        this.btn = new BtnFlotante("iconoDescargar");
         mainPedido.appendChild(this.btn.getElement());
 
     }

@@ -31,7 +31,7 @@ export function navigateToPage(page) {
             });
             break;
         case 'DatosDelComercio':
-            import('../pages/PrimerasPaginas/datoscomercio.js').then(module => {
+            import('../../public/pages/datoscomercio.js').then(module => {
                 new module.DatosComercio();
             });
             break;
@@ -64,7 +64,7 @@ export function navigateToPage(page) {
             });
             break;
         case 'VentasPorVendedorPlanilla': //LU
-            import('../pages/SeccionVentas/ventasPorVendedorPlanilla.js').then(module => {
+            import('../../public/pages/ventasporvendedor.js').then(module => {
                 new module.PlanillaVtasxVendedor();
             });
             break;
@@ -84,11 +84,6 @@ export function navigateToPage(page) {
         case 'VentasPorFecha':
             import('../pages/SeccionVentas/ventasPorFechaPage.js').then(module => {
                 new module.VentasPorFechaPage();
-            });
-            break;
-            case 'VentasPorVendedorPlanilla': //Lu
-            import('../pages/SeccionVentas/ventasPorVendedorPlanilla.js').then(module => {
-               new module.PlanillaVtasxVendedor();
             });
             break;
 
