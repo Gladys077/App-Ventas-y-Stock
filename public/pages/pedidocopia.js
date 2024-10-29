@@ -6,8 +6,10 @@ import { ButtonContainer } from "../../js/btnsContainer.js"
 import { conexionAPI } from "../js/services/conectionFakeApi.js"
 
 
+
 export class PlanillaPedidoCopia {
-    constructor(){
+    constructor(pedidoId){
+        this.pedidoId=pedidoId;
         this.createHeader();
         this.mainPedido=this.createMain();
 
@@ -26,11 +28,20 @@ export class PlanillaPedidoCopia {
 
     }
 
-    createHeader=()=>{
-        this.header = new Header("Copia - pedido", iconoVolver, iconoMenu,null,()=>{loadView("pedidolistaxproveedor")});
-        document.body.appendChild(this.header.getElement());
-        return
+    
+
+    createHeader= async()=>{
+        try {
+            const contenidoPedido= await conexionAPI.obtenerpedido(this.pedidoId);
+            console.log(" esta es la descripción del pedido ", contenidoPedido.descripcion);
+            
+            this.header = new Header(`Copia - ${contenidoPedido.descripcion}`, iconoVolver, iconoMenu,()=>{loadView("pedidohistorial")},()=>{loadView("pedidolistaxproveedor")});
+            document.body.insertBefore(this.header.getElement(), document.body.firstChild);
+        } catch (error) {
+        console.error("Error al cargar los detalles del pedido:",error)
     }
+    }
+
 
     createMain=()=>{
         this.main = new Main()
@@ -152,17 +163,17 @@ export class PlanillaPedidoCopia {
     mostrarLineasArticulos = async ()=>{
 
         const tablaDetalles = document.querySelector(".tabla_detalles");
-        const articulos = await conexionAPI.listaarticulos();
+        const pedido = await conexionAPI.obtenerpedido(this.pedidoId);
         // console.log(articulos);
 
-        if(articulos.length===0){
+        if(pedido.listaproductos.length===0){
             const mensaje = document.createElement("span");
             mensaje.classList="no_hay_productos";
             mensaje.innerText="no existen articulos en el pedido";
             main.appendChild(mensaje);
         }
 
-        articulos.forEach(articulo=>{
+        pedido.listaproductos.forEach(articulo=>{
             tablaDetalles.append(this.createLineaArticulo(articulo.cant,articulo.nombre, articulo.proveedores))
             console.log("nombre " + articulo.nombre,  "proveedores " +articulo.proveedores);
         })
@@ -209,7 +220,9 @@ export class PlanillaPedidoCopia {
 
 }
 
-new PlanillaPedidoCopia();
+// new PlanillaPedidoCopia(id);
+
+
 
 
 function visibilidadOpciones(event){

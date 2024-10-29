@@ -87,7 +87,11 @@ export class PlanillaPedidoHistorial {
                         btnBorrar.appendChild(imgBorrar);
 
                         //se agrega eventos a los botones
-                        btnVerPedido.addEventListener("click",async(event)=>{console.log("falta desarrollar");})
+                        btnVerPedido.addEventListener("click",async(event)=>{
+                            const pedidoId= `${id}`;
+                            loadView(`pedidocopia?id=${pedidoId}`)
+                        })//me debe mostrar la lista de productos del pedido seleccionado
+                        
                         btnCopiar.addEventListener("click",async(event)=>{
                             const pedidoOriginal =  await conexionAPI.obtenerpedido(`${id}`)
                             const nuevaCopia = {

@@ -17,16 +17,29 @@ function loadView(view) {
         //Para crear el nuevo script    
             let script = document.createElement('script');
             script.type="module";
-            script.id="viewScript"
-            script.src = `./pages/${view}.js`;
+            script.id="viewScript";
+
+            //se agrega lo siguiente para recuperar info de lista de productos de un pedido guardado
+                const [viewName, params] = view.split("?");//extraigo nombre de la vista y cualquier otro parámetro agregado
+
+            script.src = `./pages/${viewName}.js`;
             script.defer = true;
 
 
             script.onload = () => {
-                console.log(`Script ${view}.js cargado`);
+                console.log(`Script ${viewName}.js cargado`);
+                const urlParams = new URLSearchParams(params);
+                const pedidoId = urlParams.get("id");
         
                 // Crear la instancia de la vista correspondiente
-                switch(view) {
+                switch(viewName) {
+                    case "pedidocopia":
+                        import("./pages/pedidocopia.js")
+                            .then((module) => {new module.PlanillaPedidoCopia(pedidoId);                           
+                        });
+                        
+                        break;
+
                     case 'ventaactual':
                         import('./pages/ventaactual.js');
                         break;
@@ -55,7 +68,8 @@ function loadView(view) {
             };
     
             script.onerror = () => {
-                console.error(`Error al cargar el script ${view}.js`);
+                console.error(`Error al cargar el script ${viewName}.js`);
+                
             }
 
             document.head.appendChild(script);
@@ -63,7 +77,7 @@ function loadView(view) {
             
     } catch (error) {
             
-            console.error(`Error al cargar el script ${view}.js`);
+            console.error(`Error al cargar el script ${viewName}.js`);
     
     }
     
