@@ -134,7 +134,7 @@ main{
         scrollbar-width: none;
         padding-bottom: 75px;
         
-        .tabla_lineaArticulo, tabla_lineaPedido{
+        .tabla_lineaArticulo, .tabla_lineaPedido{
             position: relative;
             width: 100%;
             height: auto;
@@ -143,31 +143,44 @@ main{
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content:space-between;
+            justify-content: space-between;
             flex-wrap: wrap;
             border-bottom: 1px solid var(--color-border-articulo);
             font-size: 14px;
             font-style: normal;
             
 
-                .cant{
+                .cant, .fecha{
                     width: 35px;
                     height: 35px;
-                    border: 0;
                     text-align: end;
                     padding-right: 4px;
                     border: 1px solid var(--color-border-articulo);
                 }/*fin cant*/
 
-                .producto{
+                .fecha{
+                    border: none;
+                    text-align: start;
+                    width: 80px;
+                    padding-top: 10px;
+                }/*fin fecha*/
+
+                .producto, .descripcion{
                     height: auto;
                     word-wrap: break-word;
                     hyphens: auto; /*para evitar desbordamiento de texto en las notas*/
                     width: 60%;
                     text-align: center;
                 }/*fin producto*/
+
+                .descripcion{
+                    border: 1px solid var(--color-border-articulo);
+                    height: 32px;
+                    text-align: left;
+                    padding-left: 10px;
+                }/*fin descripcion*/
                 
-                .precio{
+                .precio, .acciones{
                     display: flex;
                     flex-direction: row;
                     gap: 2px;
@@ -191,7 +204,26 @@ main{
                             background-color: var(--color-fondo);
                         }
                     }/*fin button*/
+                    
                 }/*fin precio*/
+                .acciones{
+                    width: 50px;
+                    align-items: center;
+                    justify-content: center;
+                    button{
+                        width: 26px;
+                        height: 24px;
+                        img{
+                            width: 24px;
+                            height: 24px;
+                        }
+                    }/*fin button*/
+                    .copiarPedido{
+                        img{
+                            width: 26px;
+                        }
+                    }
+                }/*fin acciones*/
                 
                 .cont-proveedores{
                     width: 100%;

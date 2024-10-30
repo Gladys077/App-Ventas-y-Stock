@@ -1,15 +1,28 @@
 .footer-container {
-    position: fixed;
-    display: flex;
+    /* position: fixed; */
+    
     justify-content: center;
-    align-items: center;
+    
     bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 32px);
     max-width: 400px;
     height: 60px;
-    box-sizing: border-box;
+    box-sizing: border-box; 
+
+    /* Código lu */
+   /* width: calc(100% - 32px);
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    gap: 8px;
+    margin: 14px auto 0px auto; */
+     /* position: relative; */
+        /* Fin Código lu */
+
 }
 
 .footer-container .logout-container {
@@ -56,3 +69,68 @@ footer button {
     font-size: 16px;
     cursor: pointer;
 }
+
+
+
+/* Código LU */
+.button-container {
+    width: calc(100% - 32px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    /* margin: 16px; */
+    
+    button{
+        display:flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        vertical-align: center;
+        gap: 4px;
+        max-width: 300px;
+        min-width: 40px;
+        width: 150px;
+        height: 48px;
+        margin-top: 6px;
+        border-radius: 100px;
+        border: 1px solid var(--color-primario);
+        box-shadow: 0px 4px 4px 0px #000000;
+        span{
+            font-size: 18px;   
+            font-weight: 500;
+            line-height: 24px;
+        }
+        img{
+            height: 28px;
+            margin-left: 10px;
+        }
+    }/*fin button*/
+    
+    .guardar{
+        background-color: var(--color-primario);
+        color: var(--color-blanco);
+        &:hover {
+            background-color: var(--color-hover);
+        }
+        &:active {
+            transform: scale(90%);
+        }
+
+    }
+     
+    .cancelar{
+        background-color: var(--color-blanco);
+        color: var(--color-primario);
+        &:hover {
+            background-color: var(--color-hover);
+            color: var(--color-blanco);
+        }
+        &:active {
+            transform: scale(90%);
+        }
+    }
+
+}/*fin button-container*/

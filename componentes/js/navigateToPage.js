@@ -47,7 +47,7 @@ export function navigateToPage(page) {
             });
             break;
         case 'ventaActual': //LU
-            import('../pages/SeccionVentas/ventaactual.js').then(module => {
+            import('../../public/pages/ventaactual.js').then(module => {
                 new module.PlanillaVentaActual();
             });
             break;
@@ -69,8 +69,8 @@ export function navigateToPage(page) {
             });
             break;
 
-        case 'ProductosVendidos': 
-            import('../pages/SeccionVentas/ProductosVendidos.js').then(module => {
+        case 'ventasPorProducto': 
+            import('../pages/SeccionVentas/ventasPorProducto.js').then(module => {
                 new module.ProductosVendidos();
             });
             break;

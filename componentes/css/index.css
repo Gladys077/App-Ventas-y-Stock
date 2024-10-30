@@ -15,13 +15,15 @@
 /* @import url(./loginYForms.css); */
 @import url(./menu.css);
 @import url(./proveedor.css);
+
 /* estilos de LU */
 
-@import url(./ventas.css);
-@import url(./movimientos.css);
-@import url(./cardproveedor.css);
-@import url(./datoremito.css);
-@import url(./formularios.css);
+@import url(../../public/css/main.css);
+@import url(../../public/css/ventas.css);
+@import url(../../public/css/movimientos.css);
+@import url(../../public/css/cardproveedor.css);
+@import url(../../public/css/datoremito.css);
+@import url(../../public/css/formularios.css);
 
 :root{
     --color-primario: #6810ad;
