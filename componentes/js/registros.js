@@ -203,7 +203,7 @@ export class TablaFooter{
         this.total=total;
         this.element=this.agregarFooter(total);
     }
-    agregarFooter= (total = "$ -,-")=>{
+    agregarFooter= (total = "$  -,-")=>{
         const contenedor= document.createElement("section");
             contenedor.className="tabla_footer";
         const textTotal= document.createElement("h3");

@@ -168,7 +168,7 @@ export function createSearchContainer(onProductClick, ProductListClass = Product
         .search-wrapper {
             display: flex;
             background-color: #FFFFFF;
-            border-radius: 4px;
+            border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }

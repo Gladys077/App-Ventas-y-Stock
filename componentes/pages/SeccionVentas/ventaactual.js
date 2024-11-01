@@ -5,7 +5,8 @@ import { TablaEncabezado, TablaDetalles, TablaFooter,  BtnFlotante } from "../..
 import { Footer } from "../../js/footer.js";
 import { ButtonContainer } from "../../js/btnsContainer.js";
 import { conexionAPI } from "../../../public/js/services/conectionFakeApi.js";
- 
+import { navigateToPage } from '../../js/navigateToPage.js';
+
 
 
 
@@ -28,7 +29,9 @@ export class PlanillaVentaActual {
     }
 
     createHeader=()=>{
-        this.header = new Header("Venta Actual", iconoVolver, iconoMenu,function(){ loadView('formnuevoproveedor');},function(){ loadView('pedidoproximo');});
+        this.header = new Header("Venta Actual", iconoVolver, iconoMenu,
+            ()=>navigateToPage('BuscadorParaVender'),
+            ()=>navigateToPage('MenuVentas'));
         document.body.appendChild(this.header.getElement());
         return
     }
@@ -145,7 +148,6 @@ export class PlanillaVentaActual {
         footerRegistro.appendChild(this.botones.getButtonContainer());
     
     }
-
 
 }/*fin PlanillaVentaActual */
 

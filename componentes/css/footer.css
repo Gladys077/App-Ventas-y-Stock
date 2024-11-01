@@ -1,28 +1,27 @@
 .footer-container {
-    /* position: fixed; */
+    position: fixed;
     
     justify-content: center;
-    
     bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 32px);
-    max-width: 400px;
+    max-width: 500px;
     height: 60px;
     box-sizing: border-box; 
 
     /* Código lu */
-   /* width: calc(100% - 32px);
-    max-width: 500px;
+    /* width: calc(100% - 32px);
+    max-width: 400px; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: end;
+    /* justify-content: end; */
     gap: 8px;
-    margin: 14px auto 0px auto; */
+    /* margin: 14px auto 0px auto; */
      /* position: relative; */
         /* Fin Código lu */
-
+    
 }
 
 .footer-container .logout-container {
@@ -79,7 +78,7 @@ footer button {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     padding: 10px;
     /* margin: 16px; */
     
@@ -97,7 +96,7 @@ footer button {
         margin-top: 6px;
         border-radius: 100px;
         border: 1px solid var(--color-primario);
-        box-shadow: 0px 4px 4px 0px #000000;
+        box-shadow: 0px 4px 4px 0px #aaa9a9;
         span{
             font-size: 18px;   
             font-weight: 500;
@@ -105,7 +104,7 @@ footer button {
         }
         img{
             height: 28px;
-            margin-left: 10px;
+            margin-right: 4px;
         }
     }/*fin button*/
     
