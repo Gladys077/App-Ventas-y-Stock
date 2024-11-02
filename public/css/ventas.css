@@ -1,7 +1,7 @@
 
 main{
     /*estilo contenedor-filtro-fecha es igual que en movimiento.css*/
-    .contenedor-monto-total, .contenedor-vendedor{
+    .contenedor-monto-total, .contenedor-vendedor, .contenedor-producto{
             color: var(--color-blanco);
             height: 40px;
             background: var(--color-primario);

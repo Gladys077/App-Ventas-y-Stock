@@ -50,7 +50,7 @@ function loadView(view) {
                         import('./pages/ventasporvendedor.js')
                         break;
                     case 'ventasporfecha':
-                        import('./pages/ventasporfecha.js')                       
+                        import('./pages/ventasxprodxfecha.js')                       
                         break;            
                     case 'stock':
                         import('./pages/stock.js')
@@ -85,6 +85,6 @@ function loadView(view) {
 
 // Cargar la vista por defecto
 
-loadView("pedidoHistorial")
+loadView("ventasdeldia")
 
 

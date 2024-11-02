@@ -54,7 +54,7 @@ export class PlanillaVtasdelDia {
 
     createTablaFooter= ()=>{
         const mainPedido=document.querySelector("main");
-        this.footer = new TablaFooter()
+        this.footer = new TablaFooter("--")
         mainPedido.appendChild(this.footer.getElement());
     }
 

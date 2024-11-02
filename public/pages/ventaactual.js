@@ -138,7 +138,7 @@ export class PlanillaVentaActual {
 
     createButtonsFooter=()=>{
         const footerRegistro= document.querySelector(".footer-container");
-        this.botones= new ButtonContainer("Finalizar", "Eliminar", ()=>{console.log("se guardó pedido");},()=>{console.log("se eliminó pedido");},"pedidowhite","trashViolet" )
+        this.botones= new ButtonContainer("Confirmar", "Eliminar", ()=>{console.log("se guardó pedido");},()=>{console.log("se eliminó pedido");},"pedidowhite","trashViolet" )
         footerRegistro.appendChild(this.botones.getButtonContainer());
     
     }
