@@ -1,4 +1,3 @@
-// proveedor.js
 export class Proveedor {
     constructor(id, empresaProveedora, nombreVendedor, telefonoCelular, email, notas) {
         this._id = id;

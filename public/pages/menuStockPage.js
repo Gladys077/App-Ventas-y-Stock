@@ -72,7 +72,7 @@ export function createMenuVentas() {
     menuVentas.classList.add('botonera-container');
 
     const buttonsData = [
-        { src: '../../../img/iconos/cargarStock.png', alt: '', text: 'Cargar Stock', page: 'CargarStock' },
+        { src: '../../../img/iconos/cargarStock.png', alt: '', text: 'Cargar Stock', page: 'CargarDeStock' },
         { src: '../../../img/iconos/stock.png', alt: '', text: 'Ver Stock', page: 'VerStock' },
         { src: '../../../img/iconos/editarProducto.png', alt: '', text: 'Editar Producto', page: 'EditarProducto' },
         { src: '../../../img/iconos/agregarProducto.png', alt: '', text: 'Nuevo Producto', page: 'NuevoProducto' },

@@ -1,4 +1,4 @@
-import { Notification } from "./notificacion.js";
+import { Notification } from "../js/notificacion.js";
 
 export class CardCargarStockCantidad {
   constructor(title, subtitle, cancelText, cargarText, showHeader = true) {

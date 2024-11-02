@@ -1,15 +1,17 @@
+
+
 export class ButtonContainer {
-    constructor(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback) {
-        this.buttonContainer = this.createButtonContainer(btnPrimary, btnSecondary);
+    constructor(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback,iconPrimary,iconSecondary) {
+        this.buttonContainer = this.createButtonContainer(btnPrimary, btnSecondary,iconPrimary,iconSecondary);
         this.addEventListeners(btnPrimaryCallback, btnSecondaryCallback);
     }
 
-    createButtonContainer(btnPrimary, btnSecondary) {
+    createButtonContainer(btnPrimary, btnSecondary,iconPrimary,iconSecondary) {
         const buttonContainer = document.createElement('div');
         buttonContainer.className = 'button-container';
 
-        const secondaryBtn = this.createButton(btnSecondary, 'cancelar');
-        const primaryBtn = this.createButton(btnPrimary, 'guardar');
+        const secondaryBtn = this.createButton(btnSecondary, 'cancelar', iconSecondary);
+        const primaryBtn = this.createButton(btnPrimary, 'guardar', iconPrimary);
 
         buttonContainer.appendChild(secondaryBtn);
         buttonContainer.appendChild(primaryBtn);
@@ -17,10 +19,15 @@ export class ButtonContainer {
         return buttonContainer;
     }
 
-    createButton(text, className) {
+    createButton(text, className, img) {
         const button = document.createElement('button');
         button.className = className;
-        button.textContent = text;
+        // button.textContent = text;
+            const icon = document.createElement("img");
+                icon.src=`../../public/img/iconos/${img}.png`;
+            const texto = document.createElement("span");
+                texto.textContent=text;
+        button.append(icon,texto);
         return button;
     }
 

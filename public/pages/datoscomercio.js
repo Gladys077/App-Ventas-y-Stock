@@ -1,8 +1,8 @@
-import { Header, iconoVolver, iconoMenu } from "../../js/header.js";
-import Main from "../../js/main.js";
+import { Header, iconoVolver, iconoMenu } from "../js/header.js";
+import Main from "../js/main.js";
 import { CrearInput } from "../js/formulariosvarios.js"
 import { conexionAPI } from "../js/services/conectionFakeApi.js"
-import { ButtonContainer } from "../../js/btnsContainer.js"
+import { ButtonContainer } from "../js/btnsContainer.js"
 
 export class DatosComercio {
     constructor(){
