@@ -2,7 +2,7 @@ import { Header, iconoVolver, iconoMenu, navigateToMenu } from "../../js/header.
 import Main from "../../js/main.js";
 import { TablaEncabezado, FiltroFecha, TablaDetalles, Movimientosproducto, TablaFooter } from "../../js/registros.js"
 
- 
+ ///importe total de ese día
 
 export class PlanillaMovimiento {
     constructor(){
@@ -14,8 +14,8 @@ export class PlanillaMovimiento {
         this.createTablaFooter();
     }
 
-    createHeader=(producto ="Nombre_del_Producto")=>{
-        this.header = new Header(producto, iconoVolver, iconoMenu,null,function(){ navigateToMenu('stock'); });
+    createHeader=()=>{
+        this.header = new Header("Ventas por Fecha", iconoVolver, iconoMenu,null,function(){ navigateToMenu('stock'); });
         document.body.appendChild(this.header.getElement());
         return
     }
@@ -33,7 +33,7 @@ export class PlanillaMovimiento {
     }
     createTablaEncabezado= ()=>{
         const mainPedido=document.querySelector("main");
-        this.encabezado = new TablaEncabezado("Fecha",  "Cantidad")
+        this.encabezado = new TablaEncabezado("Producto",  "Cantidad")
         mainPedido.appendChild(this.encabezado.getElement());
     }
 

@@ -117,6 +117,24 @@ export class MostrarVendedor{
     }    
 }/*fin class MostrarVendedor */
 
+export class MostrarProducto{
+    constructor(){
+        this.element=this.agregarMostrarProducto();
+    }
+    agregarMostrarProducto = (producto= "producto X") =>{
+        const contenedor = document.createElement("section");
+            contenedor.className = "contenedor-producto";
+            
+            const texto = document.createElement("span");
+                texto.textContent = producto;
+            contenedor.appendChild(texto);
+        return contenedor;    
+    }
+    getElement(){
+        return this.element
+    }    
+}/*fin class MostrarProducto */
+
 export class MostrarRemito{
     constructor(remito){
         
@@ -208,7 +226,7 @@ export class TablaFooter{
             contenedor.className="tabla_footer";
         const textTotal= document.createElement("h3");
             textTotal.className="total";
-            textTotal.textContent="Total";
+            textTotal.textContent="TOTAL";
         const valorTotal= document.createElement("h3");
             valorTotal.className="valorTotal";
             valorTotal.textContent=total;    
@@ -220,6 +238,43 @@ export class TablaFooter{
         return this.element
     }
 }/*fin TablaFooter. Se utiliza en todas las planillas*/
+
+export class Movimientosproducto{
+    constructor(item){
+        this.llamandoProducto(item);
+        this.element=this.agregarItem(item);
+    }
+
+    llamandoProducto = (item)=>{
+        const producto = document.querySelector(".nombreProducto")
+        //Asignando valor a producto
+        producto.textContent=item.producto;
+    }
+    agregarItem =(item) =>{
+            
+    // creando elementos y asignando clases    
+        const lineaArticulo = document.createElement("div");
+            lineaArticulo.className="tabla_lineaArticulo";
+
+        const fecha = document.createElement("div");
+            fecha.className="fecha";
+        const cantidad = document.createElement("div");
+            cantidad.className="cantidad";
+
+    //asignar valor a celdas
+        fecha.textContent = item.fecha;
+        cantidad.textContent = item.cantidad;
+    
+    //agregar item a lineaArtículo    
+        lineaArticulo.append(fecha,cantidad);
+        
+    return lineaArticulo;
+
+    }
+    getElement(){
+        return this.element
+    }
+}/*fin class Movimientosproducto. Revisar como se llama el producto*/
 
 export class BtnFlotante{
 
@@ -294,6 +349,7 @@ export class BtnFlotante{
 //         return this.element
 //     }
 // }/*fin  class Pedidoactual*/ 
+
 // export class Ventasdeldia{
 //     constructor(){
 //         this.element=this.agregarItem();
@@ -325,42 +381,6 @@ export class BtnFlotante{
     
 // }/*fin class Ventasdeldia*/
 
-// export class Movimientosproducto{
-//     constructor(item){
-//         this.llamandoProducto(item);
-//         this.element=this.agregarItem(item);
-//     }
-
-//     llamandoProducto = (item)=>{
-//         const producto = document.querySelector(".nombreProducto")
-//         //Asignando valor a producto
-//         producto.textContent=item.producto;
-//     }
-//     agregarItem =(item) =>{
-            
-//     // creando elementos y asignando clases    
-//         const lineaArticulo = document.createElement("div");
-//             lineaArticulo.className="tabla_lineaArticulo";
-
-//         const fecha = document.createElement("div");
-//             fecha.className="fecha";
-//         const cantidad = document.createElement("div");
-//             cantidad.className="cantidad";
-
-//     //asignar valor a celdas
-//         fecha.textContent = item.fecha;
-//         cantidad.textContent = item.cantidad;
-    
-//     //agregar item a lineaArtículo    
-//         lineaArticulo.append(fecha,cantidad);
-        
-//     return lineaArticulo;
-
-//     }
-//     getElement(){
-//         return this.element
-//     }
-// }/*fin class Movimientosproducto. Revisar como se llama el producto*/
 
 // export class Ventastotales{/*Falta desarrollar */
 //     constructor(){
