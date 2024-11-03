@@ -270,7 +270,7 @@ export function createSearchContainerCard(onSearch, ProductListClass = ProductLi
         .search-wrapper-card {
             display: flex;
             background-color: #FFFFFF;
-            border-radius: 4px;
+            border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             border: 1px solid var(--primary-color);

@@ -1,10 +1,8 @@
-
-
 import { Header } from '../../js/header.js';
 import { CardVtasPorProducto } from '../../js/cardVtasPorProducto.js';
 import { Footer } from '../../js/footer.js';
 import { FabButton, createSearchContainerCard, RadioProductList } from '../../js/utils.js';
-import { iconoDescargar, iconoVolver, iconoMenu } from '../../js/iconosSVG.js';
+import { iconoDescargar, iconoVolver } from '../../js/iconosSVG.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 
 export class ProductosVendidos {
@@ -90,7 +88,7 @@ export class ProductosVendidos {
         this.fondoResults.appendChild(this.resultContainer);
 
         main.appendChild(this.fondoResults);
-
+ 
         document.body.appendChild(main);
 
         const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
