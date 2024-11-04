@@ -387,7 +387,7 @@ export class CardVtasPorProducto {
     
 
     mostrarListadoPorFecha() {
-        navigateToPage('ListaXFecha_vtaProd');
+        navigateToPage('VentaxProducto-Listado');
     // Limpio cualquier listado anterior
     const listadoPrevio = this.element.querySelector('.listado-por-fecha');
     if (listadoPrevio) {

@@ -1,7 +1,7 @@
 import { Header} from "../../js/header.js";
 import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js";
 import Main from "../../js/main.js";
-import { TablaEncabezado, MostrarMontoTotal, FiltroFecha, TablaDetalles,TablaFooter, BtnFlotante } from "../../../public/js/registros.js"
+import { TablaEncabezado, MostrarMontoTotal, FiltroFecha, TablaDetalles,TablaFooter, BtnFlotante } from "../../js/registros.js"
 import { navigateToPage } from '../../js/navigateToPage.js';
  
 
@@ -20,7 +20,7 @@ export class PlanillaVtasxFecha {
     }
 
     createHeader=()=>{
-        this.header = new Header("Ventas por Fecha", iconoVolver, iconoMenu, null, ()=>{ navigateToPage('ventasPorProducto') }, ()=>{ navigateToPage('MenuVentas') });
+        this.header = new Header("Ventas por Fecha", iconoVolver, iconoMenu, ()=>{ navigateToPage('ventasPorProducto') }, ()=>{ navigateToPage('MenuVentas') });
         document.body.appendChild(this.header.getElement());
         return
     }

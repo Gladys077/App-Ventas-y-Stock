@@ -22,7 +22,7 @@ export class VentasPorFechaPage {
 
     createMain() {
         // const selectedProductName = 'Nombre_del_producto'; 
-        this.ventasPorFecha = new CardVtasPorProducto('', 'Buscar', () => this.onClick, true, 'Importe facturado');
+        this.ventasPorFecha = new CardVtasPorProducto('', 'Buscar', true,  () => this.onClick(), 'Importe facturado', 'Listado por fecha', 'MenuVentas');//cambiar MenuVentas x vista ventas por fecha planilla
         document.body.appendChild(this.ventasPorFecha.armarCardVtasPorProducto());
     }
 
@@ -36,10 +36,7 @@ export class VentasPorFechaPage {
 
   
     onClick() {
-      console.log('btn clickeado');
-      if (this.ventasPorFecha){
-        this.ventasPorFecha.toggleLastValue;
-      }
+      console.log('')
     }
   }
   

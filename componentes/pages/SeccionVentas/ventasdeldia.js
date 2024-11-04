@@ -1,15 +1,17 @@
-import { Header, iconoVolver, iconoMenu, navigateToMenu } from "../../js/header.js";
+import { Header } from "../../js/header.js";
 import Main from "../../js/main.js";
-import { TablaEncabezado, MostrarMontoTotal, TablaDetalles, Ventasdeldia, TablaFooter, BtnFlotante } from "../../../public/js/registros.js"
+import { navigateToPage } from "../../js/navigateToPage.js";
+import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js"
+import { TablaEncabezado, MostrarMontoTotal, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
 
  
 
 
 export class PlanillaVtasdelDia {
     constructor(){
+        document.body.innerHTML = '';
         this.createHeader();
         this.mainPedido=this.createMain();
-        this.createMostrarMonto();
         this.createMostrarMonto();
         this.createTablaEncabezado();
         this.createTablaDetalles();
@@ -20,7 +22,7 @@ export class PlanillaVtasdelDia {
     }
 
     createHeader=()=>{
-        this.header = new Header("Ventas del Día", iconoVolver, iconoMenu,null,function(){ navigateToMenu('stock'); });
+        this.header = new Header("Ventas del Día", iconoVolver, null, ()=>{ navigateToPage('MenuVentas'); });
         document.body.appendChild(this.header.getElement());
         return
     }
@@ -37,15 +39,8 @@ export class PlanillaVtasdelDia {
         mainPedido.appendChild(this.monto.getElement());
     }
 
-    createMostrarMonto= ()=>{
-        const mainPedido=document.querySelector("main");
-        this.monto = new MostrarMontoTotal();
-        mainPedido.appendChild(this.monto.getElement());
-    }
-
     createTablaEncabezado= ()=>{
         const mainPedido=document.querySelector("main");
-        this.encabezado = new TablaEncabezado("Producto", "Cant.")
         this.encabezado = new TablaEncabezado("Producto", "Cant.")
         mainPedido.appendChild(this.encabezado.getElement());
     }
@@ -62,13 +57,13 @@ export class PlanillaVtasdelDia {
 
     createTablaFooter= ()=>{
         const mainPedido=document.querySelector("main");
-        this.footer = new TablaFooter()
+        this.footer = new TablaFooter("--")
         mainPedido.appendChild(this.footer.getElement());
     }
 
     createBtnFlotante= ()=>{
         const mainPedido=document.querySelector("main");
-        this.btn = new BtnFlotante("descargar");
+        this.btn = new BtnFlotante("descargar","contenedor-btn-flotante", ()=>{alert("Descarga exitosa")});
         mainPedido.appendChild(this.btn.getElement());
 
     }

@@ -52,9 +52,9 @@ export function navigateToPage(page) {
             });
             break;
 
-        case 'Movimientos': //LU
-            import('../pages/SeccionVentas/movimiento.js').then(module => {
-                new module.PlanillaMovimiento();
+        case 'VentasDelDia': //LU
+            import('../pages/SeccionVentas/ventasdeldia.js').then(module => {
+                new module.PlanillaVtasdelDia();
             });
             break;
 
@@ -87,6 +87,14 @@ export function navigateToPage(page) {
             });
             break;
 
+        //SEGUIR ACÁ:
+
+        // case 'VentasxFechaPlanilla':
+        //         import('../pages/SeccionVentas/ventasporfechaplanilla.js').then(module => {
+        //             new module.PlanillaVentasPorFecha();
+        //         });
+        //         break;
+    
 
         //------------------Sección STOCK
 
@@ -122,6 +130,18 @@ export function navigateToPage(page) {
             });
             break;
 
+        case 'StockBajo':
+                import('../pages/SeccionStock/stockbajo.js').then(module => {
+                    new module.PlanillaStockBajo();
+                });
+                break;
+
+        case 'StockSinMvto':
+            import('../pages/SeccionStock/stocksinmvto.js').then(module => {
+                new module.PlanillaStockSinMvto();
+            });
+            break;
+            
         case 'EditarProducto':
             import('../pages/SeccionStock/editarProducto.js').then(module => {
                 new module.EditProductPage();
