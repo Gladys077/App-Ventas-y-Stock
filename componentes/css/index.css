@@ -63,7 +63,7 @@
 body{
     background: linear-gradient(var(--color-fondo), var(--color-blanco), var(--color-blanco));
     width: 100vw;
-    height: 100%;
+    height: 100vh;
     font-family: Roboto, sans-serif;
     display: flex;
     flex-direction: column;

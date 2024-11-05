@@ -20,7 +20,7 @@ export class PlanillaStockSinMvto {
     }
 
     createHeader=()=>{
-        this.header = new Header("Sin Movimiento", iconoVolver, iconoMenu,null,()=>{ navigateToPage('ventasporfecha') });
+        this.header = new Header("Sin Movimiento", iconoVolver, iconoMenu, ()=>{ navigateToPage('VerStock') }, ()=>{ navigateToPage('MenuStock') });
         document.body.appendChild(this.header.getElement());
         return
     }

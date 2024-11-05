@@ -2,12 +2,13 @@ import { Header } from "../../js/header.js";
 import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js";
 import { navigateToPage } from "../../js/navigateToPage.js"
 import Main from "../../js/main.js";
-import { TablaEncabezado, FiltroFecha, TablaDetalles, Movimientosproducto, TablaFooter } from "../../js/registros.js"
+import { TablaEncabezado, FiltroFecha, TablaDetalles, TablaFooter } from "../../js/registros.js"
 
  ///importe total de ese día
 
-export class PlanillaVentasPorFecha {
+export class PlanillaVtasPorFecha {
     constructor(){
+        document.body.innerHTML = '';
         this.createHeader();
         this.mainPedido=this.createMain();
         this.createFiltroFecha();
@@ -17,7 +18,7 @@ export class PlanillaVentasPorFecha {
     }
 
     createHeader=()=>{
-        this.header = new Header("Ventas por Fecha", iconoVolver, iconoMenu,null,()=>{ navigateToPage('MenuVentas'); });
+        this.header = new Header("Ventas por Fecha", iconoVolver, iconoMenu, ()=>{ navigateToPage('VentasPorFecha') }, ()=>{ navigateToPage('MenuVentas') });
         document.body.appendChild(this.header.getElement());
         return
     }
@@ -54,9 +55,6 @@ export class PlanillaVentasPorFecha {
         mainPedido.appendChild(this.footer.getElement());
     }
 
-    
-
-
 }
 
-new PlanillaMovimiento();
+new PlanillaVtasPorFecha();

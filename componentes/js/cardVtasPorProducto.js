@@ -79,7 +79,7 @@ export class CardVtasPorProducto {
             border-top-left-radius: 4px;
             border-top-right-radius: 4px;
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-            margin: 0px auto;
+            margin: 20px auto 10px;
             width: calc(100% - 32px);
             max-width: 400px;
             text-align: center;
@@ -129,6 +129,7 @@ export class CardVtasPorProducto {
                 font-size: 18px;
                 font-weight: bold;
                 padding: 8px 16px;
+                margin-top: 8px;
 
                 &:hover {
                     background-color: var(--color-hover);

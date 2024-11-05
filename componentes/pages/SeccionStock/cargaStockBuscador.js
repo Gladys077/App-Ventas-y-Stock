@@ -55,7 +55,7 @@ export class CargarStockSearchPage {
   }
 
     createHeader() {
-        const header = new Header('Cargar stock por producto', iconoVolver, null, function() { navigateToPage('MenuStock')});
+        const header = new Header('Cargar stock por producto', iconoVolver, null, ()=>{ navigateToPage('MenuCargaDeStock')});
         document.body.appendChild(header.getElement());
     }
 

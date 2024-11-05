@@ -1,8 +1,9 @@
-import { Header} from "../../js/header.js";
-import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js";
+import { Header } from "../../js/header.js";
+import {  iconoVolver, iconoMenu } from "../../js/iconosSVG.js";
+import { navigateToPage } from "../../js/navigateToPage.js";
 import Main from "../../js/main.js";
-import { TablaEncabezado, MostrarMontoTotal, FiltroFecha, TablaDetalles,TablaFooter, BtnFlotante } from "../../js/registros.js"
-import { navigateToPage } from '../../js/navigateToPage.js';
+import { TablaEncabezado, MostrarProducto, FiltroFecha, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
+
  
 
 export class PlanillaVtasxFecha {
@@ -10,31 +11,32 @@ export class PlanillaVtasxFecha {
         document.body.innerHTML = '';
         this.createHeader();
         this.mainPedido=this.createMain();
-        this.createMostrarMonto();
+        this.createMostrarNombreProducto();
         this.createFiltroFecha();
         this.createTablaEncabezado();
         this.createTablaDetalles();
         this.createTablaFooter();
         this.createBtnFlotante();
-    
-    }
+        
 
+    }
+//Listado venta por producto
     createHeader=()=>{
-        this.header = new Header("Ventas por Fecha", iconoVolver, iconoMenu, ()=>{ navigateToPage('ventasPorProducto') }, ()=>{ navigateToPage('MenuVentas') });
+        this.header = new Header("Listado por Fecha", iconoVolver, iconoMenu,()=>{ navigateToPage("ventasPorProducto")}, ()=>{ navigateToPage("MenuVentas")});
         document.body.appendChild(this.header.getElement());
         return
     }
-
+///Agregar nombre producto
     createMain=()=>{
         this.main = new Main()
         document.body.appendChild(this.main.getElement());
         return
     }
 
-    createMostrarMonto= ()=>{
+    createMostrarNombreProducto= ()=>{
         const mainPedido=document.querySelector("main");
-        this.monto = new MostrarMontoTotal();
-        mainPedido.appendChild(this.monto.getElement());
+        this.producto= new MostrarProducto();
+        mainPedido.appendChild(this.producto.getElement());
     }
 
     createFiltroFecha= ()=>{
@@ -45,7 +47,7 @@ export class PlanillaVtasxFecha {
 
     createTablaEncabezado= ()=>{
         const mainPedido=document.querySelector("main");
-        this.encabezado = new TablaEncabezado("Cant.", "Producto", "Total")
+        this.encabezado = new TablaEncabezado("Fecha","Cant.")
         mainPedido.appendChild(this.encabezado.getElement());
     }
 
@@ -60,7 +62,7 @@ export class PlanillaVtasxFecha {
 
     createTablaFooter= ()=>{
         const mainPedido=document.querySelector("main");
-        this.footer = new TablaFooter()
+        this.footer = new TablaFooter("--")
         mainPedido.appendChild(this.footer.getElement());
     }
 

@@ -262,7 +262,7 @@ export function createSearchContainerCard(onSearch, ProductListClass = ProductLi
         .search-container-card {
             max-width: 432px;
             width: calc(100vw - 32px);
-            margin: 10px auto;    
+            margin: 10px auto 10px;    
             position: sticky; 
             top: 0; 
             padding: 10px; 
