@@ -1,6 +1,8 @@
-import { Header, iconoVolver, iconoMenu, navigateToMenu } from "../../js/header.js";
+import { Header } from "../..//js/header.js";
+import { iconoVolver, iconoMenu } from "../..//js/iconosSVG.js";
+import { navigateToPage } from "../..//js/navigateToPage.js";
 import Main from "../../js/main.js";
-import { TablaEncabezado, TablaDetalles, TablaFooter, BtnFlotante } from "../../../public/js/registros.js"
+import { TablaEncabezado, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
 import { Footer } from "../../js/footer.js"
 import { ButtonContainer } from "../../js/btnsContainer.js"
 import { conexionAPI } from "../js/services/conectionFakeApi.js"
@@ -27,7 +29,7 @@ export class PlanillaPedidoProximo {
     }
 
     createHeader=()=>{
-        this.header = new Header("Próximo pedido", iconoVolver, iconoMenu,null,()=>{loadView("pedidolistaxproveedor")});
+        this.header = new Header("Próximo pedido", iconoVolver, iconoMenu, ()=>{ navigateToPage("historialpedido")}, ()=>{ navigateToPage("pedidolistaxproveedor")});
         document.body.appendChild(this.header.getElement());
         return
     }

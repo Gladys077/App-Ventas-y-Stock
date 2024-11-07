@@ -8,7 +8,7 @@ export class CardEditProduct extends CardNewProduct {
 
     createProductInput() {
         const inputGroup = document.createElement('div');
-        inputGroup.classList = 'input-group pink';
+        inputGroup.classList = 'input-group';
 
         const productName = document.createElement('h2');
         productName.textContent = this._title;

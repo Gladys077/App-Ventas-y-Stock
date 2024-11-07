@@ -3,7 +3,7 @@ import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js"
 import { navigateToPage } from "../../js/navigateToPage.js";
 import Main from "../../js/main.js";
 import { CrearInput } from "../../js/formulariosvarios.js"
-import { conexionAPI } from "../../../public/js/services/conectionFakeApi.js"
+import { conexionAPI } from "../../js/services/conectionFakeApi.js"
 
 export class NuevoRemito{
     constructor(){
@@ -16,7 +16,7 @@ export class NuevoRemito{
     }
 
     createHeader=()=>{
-        this.header = new Header("Carga de stock por remito", iconoVolver, iconoMenu,null,()=>{navigateToPage('MenuCargaDeStock')});
+        this.header = new Header("Carga de stock por remito", iconoVolver,null,()=>{navigateToPage('MenuCargaDeStock')});
         document.body.appendChild(this.header.getElement());
         return
     }

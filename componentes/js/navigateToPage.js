@@ -128,11 +128,21 @@ export function navigateToPage(page) {
 
 
 
-        case 'StockCargaXRemito': 
+        case 'StockNuevoRemito': 
             import('../pages/SeccionStock/stocknuevoremito.js').then(module => {
                 new module.NuevoRemito();
             });
             break;
+        case 'StockCargaXRemito': 
+            import('../pages/SeccionStock/stockcargaxremito.js').then(module => {
+                new module.PlanillaStockCargaxRemito();
+            });
+            break;
+        case 'CargarxRemitoBuscador': 
+            import('../pages/SeccionStock/cargaXRemitoBuscador.js').then(module => {
+                new module.CargarxRemitoBuscador();
+            });
+            break;            
 
 
 
@@ -153,6 +163,8 @@ export function navigateToPage(page) {
                 new module.PlanillaStockSinMvto();
             });
             break;
+
+            
             
         case 'EditarProducto':
             import('../pages/SeccionStock/editarProducto.js').then(module => {
