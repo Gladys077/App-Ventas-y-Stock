@@ -171,6 +171,7 @@ export function createSearchContainer(onProductClick, ProductListClass = Product
             border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border: 1px solid var(--primary-color);
         }
         .search-wrapper2 {
             display: flex;
@@ -259,18 +260,18 @@ export function createSearchContainerCard(onSearch, ProductListClass = ProductLi
     const style = document.createElement('style');
     style.textContent = `
         .search-container-card {
+            max-width: 432px;
             width: calc(100vw - 32px);
-            max-width: 400px;
-            margin: 5px auto;            
+            margin: 10px auto 10px;    
             position: sticky; 
             top: 0; 
-            padding: 15px; 
+            padding: 10px; 
         }
         
         .search-wrapper-card {
             display: flex;
             background-color: #FFFFFF;
-            border-radius: 4px;
+            border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             border: 1px solid var(--primary-color);
@@ -305,6 +306,9 @@ export function createSearchContainerCard(onSearch, ProductListClass = ProductLi
         }
         .custom-width .search-container-card {
             padding: 0; 
+        }
+        .search-results-card {
+            margin-top: 20px;
         }
     `;
     document.head.appendChild(style);

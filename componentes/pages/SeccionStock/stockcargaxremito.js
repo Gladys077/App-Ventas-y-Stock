@@ -1,13 +1,14 @@
 import { Header } from "../../js/header.js";
 import Main from "../../js/main.js";
-import { MostrarRemito, TablaEncabezado, TablaDetalles, TablaFooter, BtnFlotante } from "../../../public/js/registros.js"
+import { MostrarRemito, TablaEncabezado, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
 import { Footer } from "../../js/footer.js";
 import { ButtonContainer } from "../../js/btnsContainer.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
-import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js";
+import { iconoVolver } from "../../js/iconosSVG.js";
 
 export class PlanillaStockCargaxRemito {
     constructor(){
+        document.body.innerHTML = '';
         this.createHeader();
         this.mainPedido=this.createMain();
         this.createMostrarRemito();
@@ -22,7 +23,7 @@ export class PlanillaStockCargaxRemito {
     }
 
     createHeader=()=>{
-        this.header = new Header("Carga de stock por remito", iconoVolver, iconoMenu,()=>{navigateToPage("stocknuevoremito")},function(){ navigateToMenu('stock'); });
+        this.header = new Header("Carga de stock por remito", iconoVolver, null,()=>{navigateToPage("MenuCargaDeStock")});
         document.body.appendChild(this.header.getElement());
         return
     }

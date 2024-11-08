@@ -1,10 +1,8 @@
-
-
 import { Header } from '../../js/header.js';
 import { CardVtasPorProducto } from '../../js/cardVtasPorProducto.js';
-import { Footer } from '../../js/footer.js';
+// import { Footer } from '../../js/footer.js';
 import { FabButton, createSearchContainerCard, RadioProductList } from '../../js/utils.js';
-import { iconoDescargar, iconoVolver, iconoMenu } from '../../js/iconosSVG.js';
+import { iconoDescargar, iconoVolver } from '../../js/iconosSVG.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 
 export class ProductosVendidos {
@@ -35,7 +33,7 @@ export class ProductosVendidos {
             }
             
             .search-results {
-                width: calc(100vw - 32px);
+                width: 100vw;
                 max-width: 400px;
                 max-height: calc(100vh - 160px);
                 height: 100vh;
@@ -68,7 +66,7 @@ export class ProductosVendidos {
     }
 
     createHeader() {
-        this.header = new Header('Unidades vendidas', iconoVolver, null, () => { navigateToPage('MenuVentas') });
+        this.header = new Header('Ventas por producto', iconoVolver, null, () => { navigateToPage('MenuVentas') });
         document.body.appendChild(this.header.getElement());
     }
 
@@ -90,12 +88,12 @@ export class ProductosVendidos {
         this.fondoResults.appendChild(this.resultContainer);
 
         main.appendChild(this.fondoResults);
-
+ 
         document.body.appendChild(main);
 
         const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
         const selectedProductName = selectedProduct ? selectedProduct.nombre : 'Nombre_del_producto';
-        this.ventasPorProducto = new CardVtasPorProducto(selectedProductName, 'Buscar', true, () => this.onClick(), 'Unidades Vendidas', 'Ver la lista por fecha', 'VentaxProducto-Listado');
+        this.ventasPorProducto = new CardVtasPorProducto(selectedProductName, 'Buscar', true, () => this.onClick(), 'Ventas por producto', 'Ver la lista por fecha', 'VentasXProdXFecha');
         // document.body.appendChild(this.ventasPorProducto.getElement());
         main.appendChild(this.ventasPorProducto.getElement());
 

@@ -6,7 +6,7 @@ import { ModalInput } from '../../js/modalInput.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 import { Notification } from '../../js/notificacion.js';
 
-export class CargarStockSearchPage {
+export class CargarxRemitoBuscador {
     constructor() {
         document.body.innerHTML = ''; 
         this.selectedProducts = [];
@@ -123,9 +123,11 @@ export class CargarStockSearchPage {
 
         this.resultContainer.appendChild(productListElement);
     }
+
+
 }
 
-new CargarStockSearchPage();
+new CargarxRemitoBuscador();
 
 
 

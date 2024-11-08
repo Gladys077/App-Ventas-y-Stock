@@ -237,8 +237,9 @@ export function createMenuCargaDeStock() {
     menuStock.classList.add('botonera-container', 'large');
 
     const buttonsData = [
-        { src: '../../../img/iconos/cargarStock.png', alt: '', text: 'Carga de stock por producto', page: 'CargarStockSearchPage' },
-        { src: '../../../img/iconos/stock.png', alt: '', text: 'Carga de stock por remito', page: 'CargaStockXRemitoPage' }
+        { src: '../../../img/iconos/cargarStock.png', alt: '', text: 'Carga de stock por producto', page: 'StockCargaXProducto' },
+        // { src: '../../../img/iconos/stock.png', alt: '', text: 'Carga de stock por remito', page: 'StockNuevoRemito' }
+        { src: '../../../img/iconos/stock.png', alt: '', text: 'Carga de stock por remito', page: 'CargarxRemitoBuscador' }
     ];
 
     buttonsData.forEach(data => {

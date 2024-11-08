@@ -1,11 +1,13 @@
 import { Header } from "../../js/header.js";
-import { iconoVolver, iconoMenu, iconoDescargar } from '../../js/iconosSVG.js';
+import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js";
 import Main from "../../js/main.js";
-import { TablaEncabezado, MostrarVendedor, FiltroFecha, TablaDetalles,TablaFooter, BtnFlotante } from "../../../public/js/registros.js"
+import { TablaEncabezado, MostrarVendedor, FiltroFecha, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
+import { navigateToPage } from "../../js/navigateToPage.js";
  
 
 export class PlanillaVtasxVendedor {
     constructor(){
+        document.body.innerHTML = '';
         this.createHeader();
         this.mainPedido=this.createMain();
         this.createMostrarVendedor();
@@ -14,10 +16,12 @@ export class PlanillaVtasxVendedor {
         this.createTablaDetalles();
         this.createTablaFooter();
         this.createBtnFlotante();
+        
+
     }
 
     createHeader=()=>{
-        this.header = new Header("Ventas por Vendedor", iconoVolver, iconoMenu,null,function(){ navigateToMenu('stock'); });
+        this.header = new Header("Ventas por Vendedor", iconoVolver, iconoMenu, ()=>{ navigateToPage('VentasPorVendedor') },()=>{ navigateToPage('MenuVentas') });
         document.body.appendChild(this.header.getElement());
         return
     }
@@ -63,7 +67,7 @@ export class PlanillaVtasxVendedor {
 
     createBtnFlotante= ()=>{
         const mainPedido=document.querySelector("main");
-        this.btn = new BtnFlotante("iconoDescargar");
+        this.btn = new BtnFlotante("descargar","contenedor-btn-flotante", ()=>{alert("Descarga exitosa")});
         mainPedido.appendChild(this.btn.getElement());
 
     }

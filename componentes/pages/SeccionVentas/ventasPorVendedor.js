@@ -14,15 +14,15 @@ export class VentasPorVendedorPage {
         this.createMain();
         this.createFooter();
 
-        // Obtengo la lista de vendedores y actualizo la tarjeta
+        // Obtengo la lista de vendedores y actualizo la card
         const SellersList = this.getSellersList();
-        // this.cardVtasPorVendedor.updateSellersList(SellersList); // Actualiza la lista de vendedores en la tarjeta
+        // this.cardVtasPorVendedor.updateSellersList(SellersList); // Actualiza la lista de vendedores en la card
         
         this.salesDate = [];
     }
 
     createHeader() {
-        this.header = new Header('Ventas por vendedor', iconoVolver, null, () => { navigateToPage('MenuVentas')});
+        this.header = new Header('Ventas por vendedor', iconoVolver, null, ()=>{ navigateToPage('MenuVentas')});
         document.body.appendChild(this.header.getElement());
     }
 

@@ -1,4 +1,6 @@
-import { Header, iconoVolver, iconoMenu, navigateToMenu } from "../../js/header.js";
+import { Header } from "../../js/header.js";
+import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js";
+import { navigateToPage } from "../../js/navigateToPage.js";
 import Main from "../../js/main.js";
 import { TablaEncabezado, MostrarMainNav, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
 
@@ -6,6 +8,7 @@ import { TablaEncabezado, MostrarMainNav, TablaDetalles, TablaFooter, BtnFlotant
 
 export class PlanillaStockSinMvto {
     constructor(){
+        document.body.innerHTML = '';
         this.createHeader();
         this.mainPedido=this.createMain();
         this.createMostrarMainNav();
@@ -17,7 +20,7 @@ export class PlanillaStockSinMvto {
     }
 
     createHeader=()=>{
-        this.header = new Header("Sin Movimiento", iconoVolver, iconoMenu,null,()=>{ loadView('ventasporfecha') });
+        this.header = new Header("Sin Movimiento", iconoVolver, iconoMenu, ()=>{ navigateToPage('VerStock') }, ()=>{ navigateToPage('MenuStock') });
         document.body.appendChild(this.header.getElement());
         return
     }
@@ -30,7 +33,7 @@ export class PlanillaStockSinMvto {
 
     createMostrarMainNav= ()=>{
         const mainPedido= document.querySelector("main");
-        this.mainNav =  new MostrarMainNav("Stock", "Bajo stock", "Sin movimiento",false,false,true,()=>{ loadView('stock');},()=>{ loadView("stockbajo");},null)
+        this.mainNav =  new MostrarMainNav("Stock", "Bajo stock", "Sin movimiento",false,false,true,()=>{ navigateToPage('VerStock')},()=>{ navigateToPage("StockBajo")},null)
         mainPedido.appendChild(this.mainNav.getElement());
     }
 

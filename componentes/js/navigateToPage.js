@@ -52,11 +52,15 @@ export function navigateToPage(page) {
             });
             break;
 
-        case 'Movimientos': //LU
-            import('../pages/SeccionVentas/movimiento.js').then(module => {
-                new module.PlanillaMovimiento();
+
+
+      case 'VentasDelDia': //LU
+            import('../pages/SeccionVentas/ventasdeldia.js').then(module => {
+                new module.PlanillaVtasdelDia();
             });
             break;
+
+
 
         case 'VentasPorVendedor':
             import('../pages/SeccionVentas/ventasPorVendedor.js').then(module => {
@@ -69,24 +73,34 @@ export function navigateToPage(page) {
             });
             break;
 
+
+
         case 'ventasPorProducto': 
             import('../pages/SeccionVentas/ventasPorProducto.js').then(module => {
                 new module.ProductosVendidos();
             });
             break;
 
-        case 'VentaxProducto-Listado': //Lu
-            import('../pages/SeccionVentas/ventaXProd-Listado.js').then(module => {
+        case 'VentasXProdXFecha': //Lu
+            import('../pages/SeccionVentas/ventasxprodxfecha.js').then(module => {
                 new module.PlanillaVtasxFecha();
             });
             break;
             
+
+
         case 'VentasPorFecha':
             import('../pages/SeccionVentas/ventasPorFechaPage.js').then(module => {
                 new module.VentasPorFechaPage();
             });
             break;
 
+        case 'ventasxFecha-Listado':
+                import('../pages/SeccionVentas/ventasxFecha-Listado.js').then(module => {
+                    new module.PlanillaVtasPorFecha();
+                });
+                break;
+    
 
         //------------------Sección STOCK
 
@@ -98,23 +112,39 @@ export function navigateToPage(page) {
             });
             break;
 
-        case 'CargaDeStock':
+        case 'MenuCargaDeStock':
             import('../pages/SeccionStock/menuCargaDeStock.js').then(module => {
                 new module.CargaDeStock();
             });
             break;    
             
-        case 'CargarStockSearchPage':
+
+
+        case 'StockCargaXProducto':
             import('../pages/SeccionStock/cargaStockBuscador.js').then(module => {
                 new module.CargarStockSearchPage();
             });
             break;
 
-        case 'CargaStockXRemitoPage': 
+
+
+        case 'StockNuevoRemito': 
+            import('../pages/SeccionStock/stocknuevoremito.js').then(module => {
+                new module.NuevoRemito();
+            });
+            break;
+        case 'StockCargaXRemito': 
             import('../pages/SeccionStock/stockcargaxremito.js').then(module => {
                 new module.PlanillaStockCargaxRemito();
             });
             break;
+        case 'CargarxRemitoBuscador': 
+            import('../pages/SeccionStock/cargaXRemitoBuscador.js').then(module => {
+                new module.CargarxRemitoBuscador();
+            });
+            break;            
+
+
 
         case 'VerStock':
             import('../pages/SeccionStock/stock.js').then(module => {
@@ -122,6 +152,20 @@ export function navigateToPage(page) {
             });
             break;
 
+        case 'StockBajo':
+                import('../pages/SeccionStock/stockbajo.js').then(module => {
+                    new module.PlanillaStockBajo();
+                });
+                break;
+
+        case 'StockSinMvto':
+            import('../pages/SeccionStock/stocksinmvto.js').then(module => {
+                new module.PlanillaStockSinMvto();
+            });
+            break;
+
+            
+            
         case 'EditarProducto':
             import('../pages/SeccionStock/editarProducto.js').then(module => {
                 new module.EditProductPage();
@@ -158,6 +202,13 @@ export function navigateToPage(page) {
             });
             break;
 
+
+
+            case 'ventasmovimientos':
+                import('../../public/pages/ventasmovimientos.js').then(module => {
+                    new module.PlanillaMovimiento();
+                });
+                break;
 
         case 'MenuPerfiles':
             import('../pages/SeccionPerfiles/menuPerfiles.js').then(module => {
