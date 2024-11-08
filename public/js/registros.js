@@ -121,12 +121,14 @@ export class MostrarProducto{
     constructor(){
         this.element=this.agregarMostrarProducto();
     }
-    agregarMostrarProducto = (producto= "producto X") =>{
+    agregarMostrarProducto = (producto= "producto X_Cuaderno rivadavia 100 hojas tapa dura a cuadros y rayas") =>{
         const contenedor = document.createElement("section");
             contenedor.className = "contenedor-producto";
             
             const texto = document.createElement("span");
+                texto.className="marquee";
                 texto.textContent = producto;
+                texto.title="producto X_Cuaderno rivadavia 100 hojas tapa dura a cuadros y rayas"
             contenedor.appendChild(texto);
         return contenedor;    
     }
