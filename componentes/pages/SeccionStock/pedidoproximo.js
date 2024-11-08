@@ -1,15 +1,17 @@
 import { Header } from "../..//js/header.js";
-import { iconoVolver, iconoMenu } from "../..//js/iconosSVG.js";
+import { iconoVolver, iconoHistorial } from "../..//js/iconosSVG.js";
 import { navigateToPage } from "../..//js/navigateToPage.js";
 import Main from "../../js/main.js";
 import { TablaEncabezado, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
 import { Footer } from "../../js/footer.js"
 import { ButtonContainer } from "../../js/btnsContainer.js"
-import { conexionAPI } from "../js/services/conectionFakeApi.js"
+// import { conexionAPI } from "../js/services/conectionFakeApi.js"
 
 
 export class PlanillaPedidoProximo {
     constructor(){
+        document.body.innerHTML = '';
+
         this.createHeader();
         this.mainPedido=this.createMain();
 
@@ -29,7 +31,7 @@ export class PlanillaPedidoProximo {
     }
 
     createHeader=()=>{
-        this.header = new Header("Próximo pedido", iconoVolver, iconoMenu, ()=>{ navigateToPage("historialpedido")}, ()=>{ navigateToPage("pedidolistaxproveedor")});
+        this.header = new Header("Próximo pedido", iconoVolver, iconoHistorial, ()=>{ navigateToPage("MenuStock")}, ()=>{ navigateToPage("PedidoHistorial")});
         document.body.appendChild(this.header.getElement());
         return
     }

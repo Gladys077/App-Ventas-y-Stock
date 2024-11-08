@@ -196,6 +196,12 @@ export function navigateToPage(page) {
             });
             break;
 
+        case 'PedidoHistorial':
+            import('../pages/SeccionStock/pedidohistorial.js').then(module => {
+                new module.PlanillaPedidoHistorial();
+            });
+            break;
+
         case 'FormNuevoProveedor':
             import('../pages/SeccionStock/formnuevoproveedor.js').then(module => {
                 new module.NuevoProveedor();

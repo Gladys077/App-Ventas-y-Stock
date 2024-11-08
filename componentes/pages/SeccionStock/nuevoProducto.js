@@ -2,7 +2,7 @@ import { Header } from '../../js/header.js';
 import { iconoVolver, iconoMenu } from '../../js/iconosSVG.js';
 import { CardNewProduct } from '../../js/cardNewProduct.js';
 import { Notification } from '../../js/notificacion.js';
-import { Producto } from '../../js/producto.js';
+// import { Producto } from '../../js/producto.js';
 import { ModalInput } from '../../js/modalInput.js'; 
 import { navigateToPage } from "../../js/navigateToPage.js";
 
