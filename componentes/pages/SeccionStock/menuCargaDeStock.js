@@ -181,7 +181,7 @@ export class CargaDeStock {
     }
 
     createHeader() {
-        this.header = new Header('Administrador', iconoVolver, iconoAjustes, ()=> { navigateToPage('Login') }, ()=> { navigateToPage('Config') });
+        this.header = new Header('Administrador', iconoVolver, iconoAjustes, ()=> { navigateToPage('MenuStock') }, ()=> { navigateToPage('Config') });
         
         document.body.appendChild(this.header.getElement());
     }

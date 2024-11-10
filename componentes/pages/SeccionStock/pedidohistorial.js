@@ -25,7 +25,7 @@ export class PlanillaPedidoHistorial {
     }
 
     createHeader=()=>{
-        this.header = new Header ("Historial de Pedidos", iconoVolver, iconoMenu, null, ()=>{navigateToPage("pedidolistaxproveedor")});
+        this.header = new Header ("Historial de Pedidos", iconoVolver, iconoMenu,  ()=>window.history.back(), ()=>{navigateToPage("MenuStock")});
         document.body.appendChild(this.header.getElement());
         return
     }
