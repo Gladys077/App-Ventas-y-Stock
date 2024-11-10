@@ -25,7 +25,7 @@ export class ProductosVendidos {
                 transform: translate(-50%,0);
                 width: calc(100vw - 32px);
                 max-width: 400px;
-                margin: 0 auto;
+                margin: 16px auto 0;
                 height: 100%;
                 background-color: rgba(255, 255, 255, 1);
                 z-index: 1000;
@@ -33,7 +33,7 @@ export class ProductosVendidos {
             }
             
             .search-results {
-                width: 100vw;
+                width: calc(100vw - 32px);
                 max-width: 400px;
                 max-height: calc(100vh - 160px);
                 height: 100vh;
@@ -44,6 +44,8 @@ export class ProductosVendidos {
                 left: 50%;
                 transform: translate(-50%, 0);
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                
+                margin-left: 16px;
             }
             .ul-product-list {
                 margin-top: 16px;

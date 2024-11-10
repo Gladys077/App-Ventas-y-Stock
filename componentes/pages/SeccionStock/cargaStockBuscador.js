@@ -62,7 +62,11 @@ export class CargarStockSearchPage {
     createMain(){
         const main = document.createElement('main');
         
-        const productSearch = createSearchContainer(this.onProductClick.bind(this), RadioProductList, 'calc(100vh - 290px)', '¡No lo tenés en tu stock!');
+        const productSearch = createSearchContainer(
+            this.onProductClick.bind(this), 
+            RadioProductList, 
+            'calc(100vh - 290px)', 
+            '¡No lo tenés en tu stock!');
         main.appendChild(productSearch);
 
 

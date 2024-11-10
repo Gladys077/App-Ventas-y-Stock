@@ -162,9 +162,9 @@ export function createSearchContainer(onProductClick, ProductListClass = Product
         .search-container {
             max-width: 400px;
             width: calc(100vw - 32px);
-            height: 100px;
-            margin: 40px auto 0;            
-            position: sticky; 
+            // height: 100px;
+            margin: 10px auto 10px;            
+            // position: sticky; 
             top: 0; 
             padding: 10px; 
         }
