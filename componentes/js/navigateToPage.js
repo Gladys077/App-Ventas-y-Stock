@@ -138,9 +138,9 @@ export function navigateToPage(page) {
                 new module.PlanillaStockCargaxRemito();
             });
             break;
-        case 'CargarxRemitoBuscador': 
-            import('../pages/SeccionStock/cargaXRemitoBuscador.js').then(module => {
-                new module.CargarxRemitoBuscador();
+        case 'CargandoRemitoNro': 
+            import('../pages/SeccionStock/cargandoRemitoNro.js').then(module => {
+                new module.CargandoRemitoNro();
             });
             break;            
 

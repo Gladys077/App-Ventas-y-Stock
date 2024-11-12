@@ -1,18 +1,20 @@
 import { Header } from '../../js/header.js';
 import { createSearchContainer, RadioProductList, ExtendedFabButton, verificarCss } from '../../js/utils.js';
-import { Footer } from '../../js/footer.js';
-import { iconoAgregarArticulo, iconoVolver } from '../../js/iconosSVG.js';
+import { Footer } from "../../js/footer.js";
+import { ButtonContainer } from "../../js/btnsContainer.js";
+import { iconoVolver, iconoMenu } from '../../js/iconosSVG.js';
 import { ModalInput } from '../../js/modalInput.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 import { Notification } from '../../js/notificacion.js';
 
-export class CargarxRemitoBuscador {
+export class CargandoRemitoNro {
     constructor() {
         document.body.innerHTML = ''; 
         this.selectedProducts = [];
         this.createHeader();
         this.createMain();
         this.createFooter();
+        this.createButtonsFooter();
         // if (!verificarCss("ul-product-list"))  
             this.agregarCss();
     }
@@ -24,9 +26,9 @@ export class CargarxRemitoBuscador {
      agregarCss() {
         const style = document.createElement("style");
         style.textContent = ` 
-            .search-results-stock {
-                max-width: 200px;
-                }
+            // .search-results-stock {
+            //     max-width: 200px;
+            //     }
 
             .ul-product-list {
                 margin-top: 16px;
@@ -55,7 +57,7 @@ export class CargarxRemitoBuscador {
   }
 
     createHeader() {
-        const header = new Header('Cargar stock por producto', iconoVolver, null, ()=>{ navigateToPage('MenuCargaDeStock')});
+        const header = new Header('Cargando Remito N°', iconoVolver, iconoMenu, ()=>{ navigateToPage('StockCargaXRemito')}, ()=>{ navigateToPage('MenuCargaDeStock')});
         document.body.appendChild(header.getElement());
     }
 
@@ -74,16 +76,16 @@ export class CargarxRemitoBuscador {
         document.body.appendChild(main);
     }
     
-    createFooter() {
-        this.footer = new Footer();
+    createFooter=()=>{
+        this.footer = new Footer()
         document.body.appendChild(this.footer.getElement());
-
-        // Fab extended 
-        const iconSVG = iconoAgregarArticulo; 
-        const extendedFabButton = new ExtendedFabButton(iconSVG, 'Artículo nuevo', () => navigateToPage('NuevoProducto'));
+        return
+    }
+    createButtonsFooter=()=>{
+        const footerRegistro= document.querySelector(".footer-container");
+        this.botones= new ButtonContainer("Nuevo Producto", "Remito", ()=>{ navigateToPage('Remito')},()=>{ navigateToPage('NuevoProducto')},"agregarProducto" ,"remito")
+        footerRegistro.appendChild(this.botones.getButtonContainer());
     
-        const footerElement = document.querySelector('footer');
-        footerElement.appendChild(extendedFabButton.getElement());
     }
 
 
@@ -127,7 +129,7 @@ export class CargarxRemitoBuscador {
 
 }
 
-new CargarxRemitoBuscador();
+new CargandoRemitoNro();
 
 
 
