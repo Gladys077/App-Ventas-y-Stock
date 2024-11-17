@@ -34,8 +34,8 @@ export class createLoginPage {
                 height: 48px;
                 padding: 16px;
                 margin-bottom: 16px;
-                border: 1px solid #ccc;
                 border-radius: 50px;
+                border: 1px solid var(--secondary-color);
                 font-size: 16px;
 
                 &::placeholder {
