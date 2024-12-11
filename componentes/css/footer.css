@@ -98,9 +98,10 @@ footer button {
         border: 1px solid var(--color-primario);
         box-shadow: 0px 4px 4px 0px #aaa9a9;
         span{
-            font-size: 18px;   
+            font-size: 16px;   
             font-weight: 500;
-            line-height: 24px;
+            /* line-height: 24px; */
+            justify-items: left;
         }
         img{
             height: 28px;

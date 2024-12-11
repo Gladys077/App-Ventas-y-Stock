@@ -181,7 +181,7 @@ export class CargaDeStock {
     }
 
     createHeader() {
-        this.header = new Header('Administrador', iconoVolver, iconoAjustes, ()=> { navigateToPage('Login') }, ()=> { navigateToPage('Config') });
+        this.header = new Header('Administrador', iconoVolver, iconoAjustes, ()=> { navigateToPage('MenuStock') }, ()=> { navigateToPage('Config') });
         
         document.body.appendChild(this.header.getElement());
     }
@@ -238,7 +238,6 @@ export function createMenuCargaDeStock() {
 
     const buttonsData = [
         { src: '../../../img/iconos/cargarStock.png', alt: '', text: 'Carga de stock por producto', page: 'StockCargaXProducto' },
-        // { src: '../../../img/iconos/stock.png', alt: '', text: 'Carga de stock por remito', page: 'StockNuevoRemito' }
         { src: '../../../img/iconos/stock.png', alt: '', text: 'Carga de stock por remito', page: 'StockNuevoRemito' }
     ];
 

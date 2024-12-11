@@ -138,9 +138,9 @@ export function navigateToPage(page) {
                 new module.PlanillaStockCargaxRemito();
             });
             break;
-        case 'CargarxRemitoBuscador': 
-            import('../pages/SeccionStock/cargaXRemitoBuscador.js').then(module => {
-                new module.CargarxRemitoBuscador();
+        case 'CargandoRemitoNro': 
+            import('../pages/SeccionStock/cargandoRemitoNro.js').then(module => {
+                new module.CargandoRemitoNro();
             });
             break;            
 
@@ -193,6 +193,12 @@ export function navigateToPage(page) {
         case 'ProximoPedido':
             import('../pages/SeccionStock/pedidoproximo.js').then(module => {
                 new module.PlanillaPedidoProximo();
+            });
+            break;
+
+        case 'PedidoHistorial':
+            import('../pages/SeccionStock/pedidohistorial.js').then(module => {
+                new module.PlanillaPedidoHistorial();
             });
             break;
 

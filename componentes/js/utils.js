@@ -142,7 +142,10 @@ export function createSearchContainer(onProductClick, ProductListClass = Product
     });
 
     function performSearch() {
-        const searchWord = input.value;
+        const searchWord = input.value || '';
+        console.log('Término de búsqueda:', searchWord); // Para debugging
+
+
         const productListInstance = new ProductListClass(searchWord, onProductClick, maxHeight);
         const productListElement = productListInstance.render();
 
@@ -159,9 +162,9 @@ export function createSearchContainer(onProductClick, ProductListClass = Product
         .search-container {
             max-width: 400px;
             width: calc(100vw - 32px);
-            height: 100px;
-            margin: 40px auto 0;            
-            position: sticky; 
+            // height: 100px;
+            margin: 10px auto 10px;            
+            // position: sticky; 
             top: 0; 
             padding: 10px; 
         }
@@ -322,18 +325,22 @@ import { iconoComprar } from "./iconosSVG.js";
 
 export class ProductList {
     constructor(searchWord, onProductClick, maxHeight = 'calc(100vh - 350px)') {
-        this.searchWord = searchWord;
+        this.searchWord = searchWord || '';
         this.onProductClick = onProductClick;
         this.products = this.getProductsFromStorage();
         this.maxHeight = maxHeight;
         if (!verificarCss("search-results-ventas")) this.agregarCss();
+
+        console.log('ProductList creado con searchWord:', this.searchWord); // Para debugging
+        console.log('Productos cargados:', this.products); // Para debugging
+
 
     }
     agregarCss() {
         const style = document.createElement("style");
         style.textContent = ` 
             .search-results-ventas {
-                max-width: 400px;
+                max-width: 500px;
                 }
 
             .ul-product-list {
@@ -372,20 +379,45 @@ export class ProductList {
     }
 
     filterAndSortProducts() {
-        // Filtro los productos
-        const filteredProducts = this.products.filter(function(product) {
-            const productName = product.nombre.toLowerCase();
-            const searchTerm = this.searchWord.toLowerCase();
-            return productName.includes(searchTerm);
-        }, this);
-    
-        // Orden alfabético
-        const sortedProducts = filteredProducts.sort(function(a, b) {
-            return a.nombre.localeCompare(b.nombre);
+        if (!this.products || !Array.isArray(this.products)) {
+            console.error('No hay productos para filtrar:', this.products);
+            return [];
+        }
+
+        const searchTerm = (this.searchWord || '').toLowerCase();
+        
+        const filteredProducts = this.products.filter(product => {
+            if (!product || typeof product.nombre !== 'string') {
+                console.warn('Producto inválido:', product);
+                return false;
+            }
+            return product.nombre.toLowerCase().includes(searchTerm);
         });
     
-        return sortedProducts;
+        return filteredProducts.sort((a, b) => 
+            a.nombre.localeCompare(b.nombre)
+        );
     }
+
+    getProductsFromStorage() {
+        try {
+            const storedProducts = localStorage.getItem('productos');
+            if (!storedProducts) {
+                console.warn('No hay productos en localStorage');
+                return [];
+            }
+            const parsedProducts = JSON.parse(storedProducts);
+            if (!Array.isArray(parsedProducts)) {
+                console.error('Los productos almacenados no son un array:', parsedProducts);
+                return [];
+            }
+            return parsedProducts;
+        } catch (error) {
+            console.error('Error al obtener productos del localStorage:', error);
+            return [];
+        }
+    }
+ 
 
     createListItem(product) {
         const listItem = document.createElement('li');
@@ -434,28 +466,51 @@ export class ProductList {
 //--------------Lista de productos con radio ------------
 export class RadioProductList {
     constructor(searchWord, onProductClick, maxHeight = 'calc(100vh - 350px)', height = 'auto') {
-        this.searchWord = searchWord;
+        this.searchWord = searchWord || ''; // Aseguramos que nunca sea undefined
         this.onProductClick = onProductClick;
         this.products = this.getProductsFromStorage();
         this.maxHeight = maxHeight; 
         this.height = height;
         
+        console.log('RadioProductList creado con searchWord:', this.searchWord); // Para debugging
+        console.log('Productos cargados:', this.products); // Para debugging
     }
 
     getProductsFromStorage() {
         try {
             const storedProducts = localStorage.getItem('productos');
-            return storedProducts ? JSON.parse(storedProducts) : [];
+            if (!storedProducts) {
+                console.warn('No hay productos en localStorage');
+                return [];
+            }
+            const parsedProducts = JSON.parse(storedProducts);
+            if (!Array.isArray(parsedProducts)) {
+                console.error('Los productos almacenados no son un array:', parsedProducts);
+                return [];
+            }
+            return parsedProducts;
         } catch (error) {
             new Notification('../img/emojis/preocupado.png', '¡Error al descargar!', 'error');
-            
             return [];
         }
     }
 
     filterAndSortProducts() {
+        if (!this.products || !Array.isArray(this.products)) {
+            console.error('No hay productos para filtrar:', this.products);
+            return [];
+        }
+
+        const searchTerm = (this.searchWord || '').toLowerCase();
+        
         return this.products
-            .filter(product => product.nombre.toLowerCase().includes(this.searchWord.toLowerCase()))
+            .filter(product => {
+                if (!product || typeof product.nombre !== 'string') {
+                    console.warn('Producto inválido:', product);
+                    return false;
+                }
+                return product.nombre.toLowerCase().includes(searchTerm);
+            })
             .sort((a, b) => a.nombre.localeCompare(b.nombre));
     }
 
@@ -481,7 +536,11 @@ export class RadioProductList {
 
         listItem.addEventListener('click', (event) => {
             if (event.target.closest('.product-radio')) {
-                this.onProductClick(product, event);
+                if (typeof this.onProductClick === 'function') {
+                    this.onProductClick(product, event);
+                } else {
+                    console.warn('onProductClick no es una función válida');
+                }
             }
         });
 
@@ -496,6 +555,10 @@ export class RadioProductList {
 
         const filteredProducts = this.filterAndSortProducts();
         
+        if (filteredProducts.length === 0) {
+            console.log('No se encontraron productos que coincidan con la búsqueda');
+        }
+
         filteredProducts.forEach(product => {
             const listItem = this.createListItem(product);
             productList.appendChild(listItem);
@@ -611,7 +674,6 @@ export function verificarCss(_mensaje) {
         
     
   }
-
 
 
 

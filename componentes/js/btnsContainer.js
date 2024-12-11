@@ -24,7 +24,7 @@ export class ButtonContainer {
         button.className = className;
         // button.textContent = text;
             const icon = document.createElement("img");
-                icon.src=`../../public/img/iconos/${img}.png`;
+                icon.src=`../../img/iconos/${img}.png`;
             const texto = document.createElement("span");
                 texto.textContent=text;
         button.append(icon,texto);

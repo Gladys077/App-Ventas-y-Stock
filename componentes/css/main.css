@@ -7,7 +7,7 @@ main{
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    margin: 0px auto;
+    margin: 20px auto 20px;
     position: relative;
     overflow-y: scroll;
     scrollbar-width: none;
@@ -106,7 +106,7 @@ main{
                 height: 24px;
                 border: 1px solid var(--color-secundario);
                 box-shadow: 0px 4px 4px 0px var(--color-sombra);
-                background-color: var(--color-btn-flotante);
+                background-color: var(--secondary-color);
                 display: flex;
                 justify-content: center;
                 left: 65%;
@@ -130,7 +130,7 @@ main{
         flex-direction: column;
         align-items: center;
         width: calc(100% - 32px);
-        height: calc(100vh - 225px);
+        height: calc(100vh - 245px);
         overflow-y: scroll;
         scrollbar-width: none;
         padding-bottom: 75px;
@@ -310,8 +310,8 @@ main{
         width: 56px;
         height: 56px;
         line-height: 56px;
-        bottom: 115px;
-        right: 220px;
+        bottom: 130px;
+        /* right: 220px; */
         border-radius: 12px;
         text-align: center;
         font-size: 30px;
