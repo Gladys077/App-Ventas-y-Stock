@@ -57,7 +57,7 @@ export class PlanillaPedidoProximo {
     }
 
 
-    createLineaArticulo= (cant,nombre, proveedores)=>{
+    createLineaArticulo= (cant,nombre,proveedores)=>{
         
         const lineaArt = document.createElement("div");
         lineaArt.className = "tabla_lineaArticulo";
@@ -77,7 +77,7 @@ export class PlanillaPedidoProximo {
             const precio = document.createElement("div");
             precio.className = "precio";
 
-                let costo = parseInt(input.value) * 0;//este precio debería venir del proveedor ya seleccionado desde otra pantalla?? ahora vale cero
+                let costo = 0;//este precio debería venir del proveedor ya seleccionado desde otra pantalla?? ahora vale cero
                 const spanprecio= document.createElement("span")
                     spanprecio.textContent = costo;
             precio.appendChild(spanprecio);
@@ -105,12 +105,14 @@ export class PlanillaPedidoProximo {
                             span.textContent = `${proveedor.precio}`;
 
                             radio.addEventListener("change", () => {
-                                costo = parseInt(input.value) * parseInt(proveedor.precio); // Precio basado en cantidad y precio del proveedor
+                                costo = parseInt(input.value) * parseInt(radio.value); // Precio basado en cantidad y precio del proveedor
                                 spanprecio.textContent = costo; // Actualizamos el texto del precio
+                                calcularTotal()
                             });
-                            input.addEventListener("input", ()=>{
-                                costo = parseInt(input.value) * parseInt(proveedor.precio); // Precio basado en cantidad y precio del proveedor
+                            input.addEventListener("change", ()=>{
+                                costo = parseInt(input.value) * parseInt(radio.value); // Precio basado en cantidad y precio del proveedor
                                 spanprecio.textContent = costo; // Actualizamos el texto del precio)
+                                calcularTotal()
                             });
                         opcion.append(radio, label,span);    
                         listaProv.appendChild(opcion);
@@ -226,18 +228,17 @@ function visibilidadOpciones(event){
 
 function calcularTotal(){
     
-    const precios =document.querySelectorAll(".precio");
-    console.log(typeof(precios));
-    console.log("todos los precio", precios);
+    const precios =document.querySelectorAll(".precio span");
+    // console.log(typeof(precios));
+    // console.log("todos los precio", precios);
         let totalPedido = 0;
         precios.forEach(precio =>{
-            const span = precio.querySelector("span");
-            totalPedido += parseFloat(span.textContent);
-            // if(span&&span.textContent){
-            //     totalPedido += parseFloat(span.textContent);
-            // }
-            
+            const valor = parseFloat(precio.textContent) || 0;
+            totalPedido += valor;            
         });
+
+
         document.querySelector(".valorTotal").textContent = `$${totalPedido}`;
 
 }
+

@@ -37,21 +37,21 @@
         }
 
 //CRUD PARA COMERCIO
-async function nuevocomercio(nombre, inscripcion, direccion, email, contacto){
-    const conexion = await fetch("http://localhost:3000/comercios",{
-        method:"POST" ,
-        headers:{"Content-type":"application/json"},   
-        body:JSON.stringify({
-            nombre: nombre,
-            inscripcion: inscripcion,
-            direccion:direccion,
-            email:email,
-            contacto: contacto
-        })
-    })
-    const conexionconvertida = await conexion.json();
-    return conexionconvertida;
-}
+        async function nuevocomercio(nombre, inscripcion, direccion, email, contacto){
+            const conexion = await fetch("http://localhost:3000/comercios",{
+                method:"POST" ,
+                headers:{"Content-type":"application/json"},   
+                body:JSON.stringify({
+                    nombre: nombre,
+                    inscripcion: inscripcion,
+                    direccion:direccion,
+                    email:email,
+                    contacto: contacto
+                })
+            })
+            const conexionconvertida = await conexion.json();
+            return conexionconvertida;
+        }
 
 //CRUD PARA PEDIDOS________________________________________________________________________________
         async function listapedidos(){

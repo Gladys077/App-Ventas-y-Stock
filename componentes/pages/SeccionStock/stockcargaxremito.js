@@ -75,8 +75,8 @@ export class PlanillaStockCargaxRemito {
     }
 
     createButtonsFooter=()=>{
-        const footerRegistro= document.querySelector("footer");
-        this.botones= new ButtonContainer("Guardar", "Cancelar", ()=>{console.log("se guardó pedido");},()=>{console.log("se canceló pedido");},"save2","cancelViolet" )
+        const footerRegistro= document.querySelector(".footer-container");
+        this.botones= new ButtonContainer("Cargar", "Cancelar", ()=>{console.log("ingresando a Planilla Cargar Stock por Remito");},()=>{console.log("se canceló ingreso de stock por remito");},"save2","cancelViolet" )
         footerRegistro.appendChild(this.botones.getButtonContainer());
         return
     }

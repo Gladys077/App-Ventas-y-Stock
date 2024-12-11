@@ -2,6 +2,8 @@ import { Header } from "../../js/header.js";
 import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js"
 import { navigateToPage } from "../../js/navigateToPage.js";
 import Main from "../../js/main.js";
+import { Footer } from "../../js/footer.js";
+import { ButtonContainer } from "../../js/btnsContainer.js";
 import { CrearInput } from "../../js/formulariosvarios.js"
 import { conexionAPI } from "../../js/services/conectionFakeApi.js"
 
@@ -13,6 +15,8 @@ export class NuevoRemito{
         this.createCrearInput();
         this.crearCard();
         this.mostrarCards();
+        this.createFooter();
+        this.createButtonsFooter();
     }
 
     createHeader=()=>{
@@ -99,6 +103,18 @@ export class NuevoRemito{
         
     }
 
+    createFooter=()=>{
+        this.footer = new Footer()
+        document.body.appendChild(this.footer.getElement());
+        return
+    }
+
+    createButtonsFooter=()=>{
+        const footerRegistro= document.querySelector(".footer-container");
+        this.botones= new ButtonContainer("Cargar", "Cancelar", ()=>{console.log("ingresando a planilla Ingreso de stock por remito");},()=>{console.log("se canceló pedido");},"save2","cancelViolet" )
+        footerRegistro.appendChild(this.botones.getButtonContainer());
+        return
+    }
 
 }
 
