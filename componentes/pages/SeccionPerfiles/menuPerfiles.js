@@ -1,5 +1,5 @@
 import { Header } from "../../js/header.js";
-import { iconoAjustes, iconoVolver } from "../../js/iconosSVG.js";
+import { iconoAjustes, iconoPerfil, iconoPerfilEdit, iconoVolver, iconoCerrarSesion } from "../../js/iconosSVG.js";
 import { createMenuPrincipal } from "../../js/utils.js";
 import { Footer } from "../../js/footer.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
@@ -16,8 +16,6 @@ export class MenuPerfiles {
     getElement() {
         return this.element;
     }
-
-
 
     createHeader() {
         this.header = new Header('Administrador', iconoVolver, iconoAjustes, ()=> { navigateToPage('Login') }, ()=> { navigateToPage('Config') });
@@ -46,9 +44,9 @@ export class MenuPerfiles {
 
         logoutContainer.addEventListener('click', ()=> {navigateToPage('Login')});
 
-        const icon = document.createElement('img');
-        icon.src = '../../../img/iconos/CerrarSesion.png';
-        icon.alt = 'Icono Salida';
+        const icon = document.createElement('div');
+        icon.className = 'logout-icon';
+        icon.innerHTML = iconoCerrarSesion;
         logoutContainer.appendChild(icon);
 
         const logoutText = document.createElement('span');
@@ -57,7 +55,6 @@ export class MenuPerfiles {
         logoutContainer.appendChild(logoutText);
 
         footerElement.appendChild(logoutContainer);
-
         document.body.appendChild(footerElement);
     }
 
@@ -78,22 +75,21 @@ export function createMenuPerfiles() {
     menuPerfiles.classList.add('botonera-container', 'large');
 
     const buttonsData = [
-        { src: '../../../img/iconos/perfil.png', alt: '', text: 'Agrega nuevo perfil', page: 'nuevoPerfil' },
-        { src: '../../../img/iconos/perfilListo.png', alt: '', text: 'Ver / editar perfil', page: 'editPerfil' }
+        { icon: iconoPerfil, alt: '', text: 'Agrega nuevo perfil', page: 'nuevoPerfil' },
+        { icon: iconoPerfilEdit, alt: '', text: 'Ver / editar perfil', page: 'editPerfil' }
     ];
 
     buttonsData.forEach(data => {
         const button = document.createElement('button');
         button.classList.add('botonera', 'botonera-vertical');
 
-        const img = document.createElement('img');
-        img.src = data.src;
-        img.alt = data.alt;
+        const iconContainer = document.createElement('div');
+        iconContainer.innerHTML = `<div class="icon-menu">${data.icon}</div>`;
 
         const h3 = document.createElement('h3');
         h3.textContent = data.text;
 
-        button.appendChild(img);
+        button.appendChild(iconContainer);
         button.appendChild(h3);
         button.addEventListener('click', () => navigateToPage(data.page));
 

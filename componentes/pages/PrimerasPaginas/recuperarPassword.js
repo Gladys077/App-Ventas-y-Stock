@@ -1,6 +1,6 @@
 import { Header } from '../../js/header.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
-import { iconoVolver } from '../../js/iconosSVG.js';
+import { iconoVolver, iconoCandado } from '../../js/iconosSVG.js';
 import { verificarCss } from '../../js/utils.js';
 
 export class RecoverPasswordPage {
@@ -119,10 +119,10 @@ export class RecoverPasswordPage {
         container.classList.add('container-password');
         container.method = 'POST';
 
-        const image = document.createElement('img');
-        image.src = '../../../img/iconos/candado.png';
-        image.alt = 'Imagen de candado, para la contraseña';
-        image.className = 'candado-class'; 
+        const icon = document.createElement('div');
+        icon.className = 'candado-class'; 
+        icon.innerHTML = iconoCandado;
+        
 
         const textRecuperar = document.createElement('span');
         textRecuperar.innerHTML = 'Ingresa el mail con el que te registraste, allí recibirás tu contraseña';
@@ -149,7 +149,7 @@ export class RecoverPasswordPage {
             }
         });
 
-        container.appendChild(image);
+        container.appendChild(icon);
         container.appendChild(textRecuperar);
         container.appendChild(input);
         container.appendChild(button);

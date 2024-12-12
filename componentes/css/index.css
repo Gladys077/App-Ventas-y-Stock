@@ -6,7 +6,7 @@
 @import url(./ventas.css);
 @import url(./main.css); */
 @import url(./header.css);
-@import url(./footer.css);
+@import url(./footer2.css);
 @import url(./btnsContainer.css);
 /* @import url(./cardBase.css); */
 /* @import url(./cardNewProd.css); */
@@ -63,12 +63,41 @@
 body{
     background: linear-gradient(var(--color-fondo), var(--color-blanco), var(--color-blanco));
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     font-family: Roboto, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center; 
     align-content: center; 
+    /* display: grid;
+    min-height: 100dvh;
+    grid-template-rows: auto 1fr auto;
+    justify-content: center; */
 } 
+
+
+.icon {
+    width: 24px;
+    height: 24px;
+}
+
+.icon-large {
+    width: 64px; 
+    height: 64px;
+    margin-bottom: 8px;
+}
+.icon-menu {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 8px;
+}
+
+.icon-item {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 16px;
+    margin-right: 8px;
+
+}
 
 

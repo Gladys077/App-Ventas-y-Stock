@@ -22,6 +22,8 @@ main {
     margin-top: 10px;
     /* margin-bottom: 8px; */
     z-index: 2;
+    position: sticky;
+    top: 0; 
 }
 
 .tab {
@@ -65,13 +67,14 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
-    padding: 40px 20px 20px 20px;
+    padding: 20px;
     width: calc(100% - 32px);
     min-height: calc(100vh - 185px);
     max-width: 400px;
-    margin-top: -20px;
+    margin-bottom: 20px;
     border-radius: 0 0 20px 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,.25);
+
 }
 
 .botonera-container button {
@@ -127,42 +130,18 @@ main {
 }
 
 /* Estilos del footer */
-footer {
-    background-color: transparent; 
-    color: var(--primary-color); 
-    text-align: center;
-    padding: 10px;
-    bottom: 0;
-    width: 100%;
-    position: relative; /*cambié fixed por relative*/
-    margin-top: auto; /* Empuja el footer hacia abajo */
-}
 
-footer button {
-    background-color: transparent; 
-    border: none; 
-    color: var(--primary-color); 
-    font-size: 16px; 
-    cursor: pointer;
-}
 
-.logout-container {
+
+/* .logout-container {
     border: none;
-    background-color: transparent; 
-
-    display: flex;
-    align-items: center;
     gap: 4px;
     margin-top: 20px; 
 }
 
-.logout-container img {
-    width: 24px;
-    height: 24px;
-}
 
 .logout-text {
     font-size: 16px;
     display: flex;
     flex: end;
-}
+} */

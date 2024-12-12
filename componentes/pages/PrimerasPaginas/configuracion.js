@@ -1,5 +1,5 @@
 import { Header } from '../../js/header.js';
-import { iconoVolver } from '../../js/iconosSVG.js'
+import { iconoCandado, iconoComercio, iconoTema, iconoTutorial, iconoVolver } from '../../js/iconosSVG.js'
 import { navigateToPage } from '../../js/navigateToPage.js';
 import { verificarCss } from '../../js/utils.js';
 
@@ -60,28 +60,24 @@ export class ConfigurationPage {
         main.appendChild(configList); 
 
         const items = [
-            { icon: '../../../img/iconos/candado.png', text: 'Cambio de contraseña', page: 'cambioDePassword' },
-            { icon: '../../../img/iconos/comercio.png', text: 'Datos del comercio', page: 'DatosDelComercio' },
-            { icon: '../../../img/iconos/tutorial.png', text: 'Tutorial', page: 'tutorial' },
-            { icon: '../../../img/iconos/tema.png', text: 'Modo claro-oscuro', action: this.toggleTheme.bind(this) }
+            { icon: iconoCandado, text: 'Cambio de contraseña', page: 'cambioDePassword' },
+            { icon: iconoComercio, text: 'Datos del comercio', page: 'DatosDelComercio' },
+            { icon: iconoTutorial, text: 'Tutorial', page: 'tutorial' },
+            { icon: iconoTema, text: 'Modo claro-oscuro', action: this.toggleTheme.bind(this) }
         ];
     
         items.forEach(item => {  
             const listItem = document.createElement('div');
             listItem.className = 'list-item';
     
-            const icon = document.createElement('img');
-            icon.className='img-config';
-            icon.src = item.icon;
-            icon.alt = item.text + ' icon';  
-            icon.width = 24;  
-            icon.height = 24; 
+            const iconContainer = document.createElement('div');
+            iconContainer.innerHTML=`<div class="icon-item">${item.icon}</div>`;
     
             const text = document.createElement('span');
             text.className = 'txt-config';
             text.textContent = item.text;
     
-            listItem.appendChild(icon);
+            listItem.appendChild(iconContainer);
             listItem.appendChild(text);
             configList.appendChild(listItem);
             main.appendChild(configList);

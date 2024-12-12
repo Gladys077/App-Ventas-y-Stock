@@ -1,11 +1,8 @@
 import { Header } from "../../js/header.js";
 import Main from "../../js/main.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
-import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js"
+import { iconoVolver } from "../../js/iconosSVG.js"
 import { TablaEncabezado, MostrarMontoTotal, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
-
- 
-
 
 export class PlanillaVtasdelDia {
     constructor(){
@@ -17,8 +14,6 @@ export class PlanillaVtasdelDia {
         this.createTablaDetalles();
         this.createTablaFooter();
         this.createBtnFlotante();
-        
-
     }
 
     createHeader=()=>{
@@ -53,8 +48,6 @@ export class PlanillaVtasdelDia {
 
     createLineaArticulos= ()=>{}///Acá se debe conectar a la bd y hacer el foreach o map
 
-
-
     createTablaFooter= ()=>{
         const mainPedido=document.querySelector("main");
         this.footer = new TablaFooter("--")
@@ -67,8 +60,6 @@ export class PlanillaVtasdelDia {
         mainPedido.appendChild(this.btn.getElement());
 
     }
-
-
 }
 
 new PlanillaVtasdelDia();

@@ -1,5 +1,5 @@
 import { Header } from "../../js/header.js";
-import { iconoAjustes, iconoVolver } from "../../js/iconosSVG.js";
+import { iconoAjustes, iconoVolver, iconoCargarStock, iconoStock, iconoEditarProducto, iconoNuevoProducto, iconoEliminarProducto, iconoProveedores, iconoVerPedido, iconoHistorial, iconoCerrarSesion } from "../../js/iconosSVG.js";
 import { createMenuPrincipal } from "../../js/utils.js";
 import { Footer } from "../../js/footer.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
@@ -44,9 +44,9 @@ export class MenuStockPage {
 
         logoutContainer.addEventListener('click', ()=> {navigateToPage('Login')});
 
-        const icon = document.createElement('img');
-        icon.src = '../../../img/iconos/CerrarSesion.png';
-        icon.alt = 'Icono Salida';
+        const icon = document.createElement('div');
+        icon.className = 'logout-icon';
+        icon.innerHTML = iconoCerrarSesion;
         logoutContainer.appendChild(icon);
 
         const logoutText = document.createElement('span');
@@ -78,14 +78,14 @@ export function createMenuStock() {
     menuStock.classList.add('botonera-container');
 
     const buttonsData = [
-        { src: '../../../img/iconos/cargarStock.png', alt: '', text: 'Cargar Stock', page: 'MenuCargaDeStock' },
-        { src: '../../../img/iconos/stock.png', alt: '', text: 'Ver Stock', page: 'VerStock' },
-        { src: '../../../img/iconos/editarProducto.png', alt: '', text: 'Editar Producto', page: 'EditarProducto' },
-        { src: '../../../img/iconos/agregarProducto.png', alt: '', text: 'Nuevo Producto', page: 'NuevoProducto' },
-        { src: '../../../img/iconos/eliminarProducto.png', alt: '', text: 'Eliminar Producto', page: 'EliminarProducto' },
-        { src: '../../../img/iconos/proveedores.png', alt: '', text: 'Proveedores', page: 'ListaProveedores' },
-        { src: '../../../img/iconos/proximoPedido.png', alt: '', text: 'Próximo Pedido', page: 'ProximoPedido' },
-        { src: '../../../img/iconos/historialPedidos.png', alt: '', text: 'Historial Pedidos', page: 'PedidoHistorial' }
+        { icon: iconoCargarStock, alt: '', text: 'Cargar Stock', page: 'MenuCargaDeStock' },
+        { icon: iconoStock, alt: '', text: 'Ver Stock', page: 'VerStock' },
+        { icon: iconoEditarProducto, alt: '', text: 'Editar Producto', page: 'EditarProducto' },
+        { icon: iconoNuevoProducto, alt: '', text: 'Nuevo Producto', page: 'NuevoProducto' },
+        { icon: iconoEliminarProducto, alt: '', text: 'Eliminar Producto', page: 'EliminarProducto' },
+        { icon: iconoProveedores, alt: '', text: 'Proveedores', page: 'ListaProveedores' },
+        { icon: iconoVerPedido, alt: '', text: 'Próximo Pedido', page: 'ProximoPedido' },
+        { icon: iconoHistorial, alt: '', text: 'Historial Pedidos', page: 'PedidoHistorial' }
 
     ];
 
@@ -93,14 +93,13 @@ export function createMenuStock() {
         const button = document.createElement('button');
         button.classList.add('botonera');
 
-        const img = document.createElement('img');
-        img.src = data.src;
-        img.alt = data.alt;
+        const iconContainer = document.createElement('div');
+        iconContainer.innerHTML = `<div class="icon-menu">${data.icon}</div>`;
 
         const h3 = document.createElement('h3');
         h3.textContent = data.text;
 
-        button.appendChild(img);
+        button.appendChild(iconContainer);
         button.appendChild(h3);
         button.addEventListener('click', () => navigateToPage(data.page));
 

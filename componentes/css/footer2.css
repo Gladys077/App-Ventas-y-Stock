@@ -1,43 +1,47 @@
 .footer-container {
-    /* bottom: 40px; */
+    /* position: fixed; */
+    
+    bottom: 40px;
+    /* left: 50%;
+    transform: translateX(-50%); */
     width: calc(100% - 32px);
     max-width: 500px;
-    height: 60px;
+    margin-top: 10px;
+    
+    justify-content: center;
     box-sizing: border-box; 
-    background-color: transparent;
 
     /* Código lu */
+    /* width: calc(100% - 32px);
+    max-width: 400px; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: end; */
     gap: 8px;
-    margin: 14px auto 0px auto;
-    position: relative;
+    /* margin: 14px auto 0px auto; */
+     /* position: relative; */
         /* Fin Código lu */
     
 }
 
-.footer-container .logout-container {
+.logout-container {
     display: flex;
     align-content: center;
     justify-content: center;
-    align-items: center;
-    background-color: transparent;
+    align-items: flex-end;
+    margin-top: 10px;
     cursor: pointer;
-    border: none;
-    
-    /* margin-top: 20px; */
 }
 
-.footer-container .logout-container img {
+.logout-icon {
     margin-right: 10px;
     width: 24px;
     height: 24px;
     filter: invert(36%) sepia(75%) saturate(6233%) hue-rotate(255deg) contrast(95%);
 }
 
-.footer-container .logout-container .logout-text {
+.logout-text {
     color: var(--primary-color);
     font-size: 16px;
     font-weight: 500;
@@ -49,9 +53,13 @@ footer {
     color: var(--primary-color);
     text-align: center;
     padding: 10px;
+    /* position: fixed; */
+    /* bottom: 0; */
     width: 100%;
+
+    
     position: relative; /*cambié fixed por relative*/
-   margin-top: auto; /*  Empuja el footer hacia abajo */
+    margin-bottom: 10px; /* Empuja el footer hacia abajo */
 }
 
 footer button {
