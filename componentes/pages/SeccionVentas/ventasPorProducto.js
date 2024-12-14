@@ -21,13 +21,13 @@ export class ProductosVendidos {
             .fondo-results {
                 position: fixed;
                 top: 135px;
-                left: 50%;
+                left: 49.4%;
                 transform: translate(-50%,0);
                 width: calc(100vw - 32px);
                 max-width: 400px;
                 margin: 16px auto 0;
                 height: 100%;
-                background-color: rgba(255, 255, 255, 1);
+                // background-color: rgba(255, 255, 255, 1);
                 z-index: 1000;
                 display: none;
             }

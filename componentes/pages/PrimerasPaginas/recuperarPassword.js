@@ -2,6 +2,8 @@ import { Header } from '../../js/header.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 import { iconoVolver, iconoCandado } from '../../js/iconosSVG.js';
 import { verificarCss } from '../../js/utils.js';
+import { Notification } from "../../js/notificacion.js";
+
 
 export class RecoverPasswordPage {
     constructor() {
@@ -102,7 +104,7 @@ export class RecoverPasswordPage {
                 new Notification('../../../img/emojis/triste.png', 'No se encontró una cuenta con ese email.', 'error');
             }
         } catch (error) {
-            new Notification('../../../img/emojis/preocupado.png', 'Hubo un problema al intentar recuperar tu contraseña. Intenta nuevamente más tarde.', 'error');
+            new Notification('../../../img/emojis/preocupado.png', 'Parece que el email no es el correcto. Intenta nuevamente.', 'error');
         }
     }
 
@@ -140,11 +142,13 @@ export class RecoverPasswordPage {
         button.addEventListener('click', async (event) => {
             event.preventDefault();
             const email = input.value;
+            // Email vacío
             if (email.trim() === '') {
                 new Notification('../../../img/emojis/pare.png', 'Debes ingresar tu email.', 'error');
+                // Email inválido
             } else if (!this.isValidEmail(email)) {
                 new Notification('../../../img/emojis/señalar.png', 'Por favor, ingresa un email válido.', 'error');
-            } else {
+            } else { // Email válido, verificando en la "base de datos"
                 await this.sendPassword(email);
             }
         });

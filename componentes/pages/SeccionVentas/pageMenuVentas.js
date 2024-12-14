@@ -39,6 +39,8 @@ export class PageMenuVentas {
         const footer = new Footer();
         const footerElement = footer.getElement();
 
+        footerElement.style.position = 'static'; // Cambié el 'position' a 'static'
+
         const logoutContainer = document.createElement('button');
         logoutContainer.className = 'logout-container';
 

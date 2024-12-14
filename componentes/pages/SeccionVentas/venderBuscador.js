@@ -27,8 +27,9 @@ export class VenderProductSearchPage {
 
     createMain(){
         const main = document.createElement('main');
+        main.style.maxheight = "calc(100vh - 270px)";
         
-        const productSearch = createSearchContainer(this.onProductClick.bind(this), ProductList, 'calc(100vh - 280px)');
+        const productSearch = createSearchContainer(this.onProductClick.bind(this), ProductList, 'calc(100vh - 240px)');
         main.appendChild(productSearch);
 
         // Container para la lista de productos
@@ -42,6 +43,7 @@ export class VenderProductSearchPage {
     createFooter() {
         this.footer = new Footer();
         document.body.appendChild(this.footer.getElement());
+
 
         // Fab extended (ver venta actual)
         const iconSVG = iconoVerPedido; 

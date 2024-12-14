@@ -91,7 +91,6 @@ export class ChangePassword {
         input1.className = 'login-input';
         input1.required = true;
 
-
         const subtitle2 = document.createElement('h4');
         subtitle2.innerHTML = 'Contraseña actual';
         subtitle2.className = 'subtitlePass';
@@ -101,7 +100,6 @@ export class ChangePassword {
         input2.placeholder = `Escribe tu nueva contraseña`;
         input2.className = 'login-input';
         input2.required = true;
-
 
         const subtitle3 = document.createElement('h4');
         subtitle3.innerHTML = 'Confirma tu nueva contraseña';

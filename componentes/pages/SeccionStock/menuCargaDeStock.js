@@ -1,5 +1,5 @@
 import { Header } from "../../js/header.js";
-import { iconoAjustes, iconoVolver } from "../../js/iconosSVG.js";
+import { iconoAjustes, iconoVolver, iconoNuevoProducto, iconoCerrarSesion, iconoRemito } from "../../js/iconosSVG.js";
 import { createMenuPrincipal, verificarCss } from "../../js/utils.js";
 import { Footer } from "../../js/footer.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
@@ -205,9 +205,9 @@ export class CargaDeStock {
         const logoutContainer = document.createElement('button');
         logoutContainer.className = 'logout-container';
 
-        const icon = document.createElement('img');
-        icon.src = '../../../img/iconos/CerrarSesion.png';
-        icon.alt = 'Icono Salida';
+        const icon = document.createElement('div');
+        icon.className = 'logout-icon';
+        icon.innerHTML = iconoCerrarSesion;
         logoutContainer.appendChild(icon);
 
         const logoutText = document.createElement('span');
@@ -237,22 +237,21 @@ export function createMenuCargaDeStock() {
     menuStock.classList.add('botonera-container', 'large');
 
     const buttonsData = [
-        { src: '../../../img/iconos/cargarStock.png', alt: '', text: 'Carga de stock por producto', page: 'StockCargaXProducto' },
-        { src: '../../../img/iconos/stock.png', alt: '', text: 'Carga de stock por remito', page: 'StockNuevoRemito' }
+        { icon: iconoNuevoProducto, alt: '', text: 'Carga de stock por producto', page: 'StockCargaXProducto' },
+        { icon: iconoRemito, alt: '', text: 'Carga de stock por remito', page: 'StockNuevoRemito' }
     ];
 
     buttonsData.forEach(data => {
         const button = document.createElement('button');
         button.classList.add('botonera', 'botonera-vertical');
 
-        const img = document.createElement('img');
-        img.src = data.src;
-        img.alt = data.alt;
+        const iconContainer = document.createElement('div');
+        iconContainer.innerHTML = `<div class="icon-menu">${data.icon}</div>`;
 
         const h3 = document.createElement('h3');
         h3.textContent = data.text;
 
-        button.appendChild(img);
+        button.appendChild(iconContainer);
         button.appendChild(h3);
         button.addEventListener('click', () => navigateToPage(data.page));
 

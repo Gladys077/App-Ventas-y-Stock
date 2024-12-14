@@ -1,5 +1,5 @@
 import { Header } from "../../js/header.js";
-import { iconoAjustes, iconoVolver, iconoCargarStock, iconoStock, iconoEditarProducto, iconoNuevoProducto, iconoEliminarProducto, iconoProveedores, iconoVerPedido, iconoHistorial, iconoCerrarSesion } from "../../js/iconosSVG.js";
+import { iconoAjustes, iconoVolver, iconoCargarStock, iconoStock, iconoEditarProducto, iconoNuevoProducto, iconoEliminarProducto, iconoProveedores, iconoProximoPedido, iconoHistorial, iconoCerrarSesion } from "../../js/iconosSVG.js";
 import { createMenuPrincipal } from "../../js/utils.js";
 import { Footer } from "../../js/footer.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
@@ -39,9 +39,11 @@ export class MenuStockPage {
         const footer = new Footer();
         const footerElement = footer.getElement();
 
+        footerElement.style.position = 'static'; // Cambié el 'position' a 'static'
+
         const logoutContainer = document.createElement('button');
         logoutContainer.className = 'logout-container';
-
+    
         logoutContainer.addEventListener('click', ()=> {navigateToPage('Login')});
 
         const icon = document.createElement('div');
@@ -84,7 +86,7 @@ export function createMenuStock() {
         { icon: iconoNuevoProducto, alt: '', text: 'Nuevo Producto', page: 'NuevoProducto' },
         { icon: iconoEliminarProducto, alt: '', text: 'Eliminar Producto', page: 'EliminarProducto' },
         { icon: iconoProveedores, alt: '', text: 'Proveedores', page: 'ListaProveedores' },
-        { icon: iconoVerPedido, alt: '', text: 'Próximo Pedido', page: 'ProximoPedido' },
+        { icon: iconoProximoPedido, alt: '', text: 'Próximo Pedido', page: 'ProximoPedido' },
         { icon: iconoHistorial, alt: '', text: 'Historial Pedidos', page: 'PedidoHistorial' }
 
     ];

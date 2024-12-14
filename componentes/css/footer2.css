@@ -1,27 +1,17 @@
 .footer-container {
-    /* position: fixed; */
+    position: fixed;
     
-    bottom: 40px;
-    /* left: 50%;
-    transform: translateX(-50%); */
+    bottom: 0px;
     width: calc(100% - 32px);
     max-width: 500px;
-    margin-top: 10px;
-    
+    margin-top: 0px;
     justify-content: center;
     box-sizing: border-box; 
 
-    /* Código lu */
-    /* width: calc(100% - 32px);
-    max-width: 400px; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: end; */
     gap: 8px;
-    /* margin: 14px auto 0px auto; */
-     /* position: relative; */
-        /* Fin Código lu */
     
 }
 
