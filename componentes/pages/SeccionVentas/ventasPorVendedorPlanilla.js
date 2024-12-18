@@ -16,8 +16,6 @@ export class PlanillaVtasxVendedor {
         this.createTablaDetalles();
         this.createTablaFooter();
         this.createBtnFlotante();
-        
-
     }
 
     createHeader=()=>{

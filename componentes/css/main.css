@@ -106,7 +106,7 @@ main{
                 height: 24px;
                 border: 1px solid var(--color-secundario);
                 box-shadow: 0px 4px 4px 0px var(--color-sombra);
-                background-color: var(--secondary-color);
+                background-color: var(--color-fondo);
                 display: flex;
                 justify-content: center;
                 left: 65%;
@@ -296,7 +296,7 @@ main{
         height: 40px;
         padding: 16px;
         margin: 0px 16px 0px 16px;
-        background-color: var(--secondary-color);
+        background-color: var(--color-secundario);
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -323,7 +323,7 @@ main{
             height: 24px;
         }
         &:hover{
-            background-color: var(--color-fondo);
+            background-color: var(--color-hover);
         }
         &:active{
             transform: scale(0.9);

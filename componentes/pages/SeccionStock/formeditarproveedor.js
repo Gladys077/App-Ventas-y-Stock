@@ -1,7 +1,8 @@
 import { Header, iconoVolver, iconoMenu } from "../../js/header.js";
 import Main from "../../js/main.js";
 import { CrearInput , CrearTextArea} from "../../js/formulariosvarios.js"
-import { conexionAPI } from "../../../public/js/services/conectionFakeApi.js"
+import { navigateToPage } from '../../js/navigateToPage.js';
+// import { conexionAPI } from "../../../public/js/services/conectionFakeApi.js"
 import { ButtonContainer } from "../../js/btnsContainer.js"
 
 
@@ -16,7 +17,7 @@ export class EditarProveedor {
     }
 
     createHeader=()=>{
-        this.header = new Header("Proveedor", iconoVolver, iconoMenu,()=>{ loadView('stockcargaxremito');},()=>{ loadView('pedidolistaxproveedor');});
+        this.header = new Header("Proveedor", iconoVolver, iconoMenu,() => navigateToPage('stockcargaxremito'),() => navigateToPage('pedidolistaxproveedor'));
         document.body.appendChild(this.header.getElement());
         return
     }

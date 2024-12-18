@@ -99,15 +99,7 @@ export class CardCargarStockCantidad {
     const head = document.querySelector("head");
     const style = document.createElement("style");
     style.innerText = `
-:root {
-    --primary-color: #6810AD;
-    --secondary-color: #CAA5FB;
-    --text-color: #333333;
-    --background-color: #efefef;
-    --text-claro: #fff;
-    --color-hover: #9747FF;
-    --fondo-monto: #DEC9FA;
-}
+
 .card {
     font-family: Roboto, sans-serif;
     background-color: var(--background-color);
@@ -121,7 +113,7 @@ export class CardCargarStockCantidad {
 }
 
 .card-header {
-    background-color: var(--primary-color);
+    background-color: var(--color-primario);
     height: 48px;
     width: 100%;
     color: var(--text-claro);
@@ -175,12 +167,12 @@ export class CardCargarStockCantidad {
 
 .card-button-secondary {
     background-color: var(--background-color);
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--color-primario);
     color: #333;
 }
 
 .card-button-primary {
-    background-color: var(--primary-color);
+    background-color: var(--color-primario);
     color: white;
     cursor: pointer;
 } `;

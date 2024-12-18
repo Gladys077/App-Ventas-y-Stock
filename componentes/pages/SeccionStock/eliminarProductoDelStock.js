@@ -10,7 +10,7 @@ import { ModalDialogo } from '../../js/modalDialogo.js';
 export class EliminarProductosPage {
     constructor() {
             document.body.innerHTML = ''; 
-            if(!verificarCss('search-results-elininar')) this.agregarCss();
+            if(!verificarCss('search-results-eliminar')) this.agregarCss();
             this.selectedProduct = [];
             this.createHeader();
             this.createMain();
@@ -23,9 +23,7 @@ export class EliminarProductosPage {
     agregarCss() {
         const style = document.createElement('style');
         style.textContent = `
-            // .search-results-eliminar {
-            //     max-width: 300px;
-            //     }
+            
             .ul-product-list {
                 width: calc(100vw - 32px);
                 max-width: 380px;
@@ -38,14 +36,14 @@ export class EliminarProductosPage {
                 background-color: #fff;
 
                 .li-product-list {
-                    border-bottom: 1px solid var(--secondary-color);
+                    border-bottom: 1px solid var(--color-secundario);
                     padding: 8px 0;
                     padding-left: 16px;
                     word-wrap: break-word;
                     overflow-wrap: break-word;
 
                     &:first-child {
-                        border-top: 1px solid var(--secondary-color);
+                        border-top: 1px solid var(--color-secundario);
                     }
                 }
 

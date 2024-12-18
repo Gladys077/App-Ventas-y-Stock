@@ -1,8 +1,10 @@
 import { Header, iconoVolver, iconoMenu } from "../../js/header.js";
+import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js";
 import Main from "../../js/main.js";
-import { CrearInput , CrearTextArea} from "../../js/formulariosvarios.js"
-import { conexionAPI } from "../../../public/js/services/conectionFakeApi.js"
-import { ButtonContainer } from "../../js/btnsContainer.js"
+import { CrearInput , CrearTextArea} from "../../js/formulariosvarios.js";
+import { conexionAPI } from "../../../public/js/services/conectionFakeApi.js";
+import { ButtonContainer } from "../../js/btnsContainer.js";
+import { navigateToPage } from '../../js/navigateToPage.js';
 
 
 export class NuevoProveedor {
@@ -12,11 +14,10 @@ export class NuevoProveedor {
         this.createInputs();
         this.createTextArea();
         this.createButtonsForm();
-
     }
 
     createHeader=()=>{
-        this.header = new Header("Nuevo proveedor", iconoVolver, iconoMenu,()=>{ loadView('stockcargaxremito');},()=>{ loadView('pedidolistaxproveedor');});
+        this.header = new Header("Nuevo proveedor", iconoVolver, iconoMenu,()=>navigateToPage('stockcargaxremito'),()=>navigateToPage('pedidolistaxproveedor'));
         document.body.appendChild(this.header.getElement());
         return
     }

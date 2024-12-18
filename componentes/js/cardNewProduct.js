@@ -68,7 +68,7 @@ export class CardNewProduct {
                 width: 100%;
                 height: 48px;
                 padding: 0 12px;
-                border: 1.5px solid var(--secondary-color);
+                border: 1.5px solid var(--color-secundario);
                 border-radius: 4px;
                 font-size: 16px;
                 transition: border-color 0.3s;
@@ -120,7 +120,7 @@ export class CardNewProduct {
                 display: block;
                 margin: auto;
                 margin-bottom: 4px;
-                color: var(--primary-color);
+                color: var(--color-primario);
             }
 
             .precio-venta-display {
@@ -128,11 +128,11 @@ export class CardNewProduct {
                 height: 48px;
                 padding: 8px;
                 background-color: none;
-                border: 2px solid var(--secondary-color);
+                border: 2px solid var(--color-secundario);
                 border-radius: 4px;
                 font-size: 18px;
                 font-weight: 500;
-                color: var(--primary-color);
+                color: var(--color-primario);
                 text-align: center;
                 align-content: center;
             }
@@ -171,7 +171,7 @@ export class CardNewProduct {
                     width: 150px;
                     height: 48px;
                     padding: 0 12px;
-                    border: 1px solid var(--secondary-color);
+                    border: 1px solid var(--color-secundario);
                     border-radius: 4px;
                     font-size: 16px;
                     text-align: center;
@@ -180,7 +180,7 @@ export class CardNewProduct {
         }
     }
         .pink {
-        background-color: var(--secondary-color);
+        background-color: var(--color-secundario);
 
         }
         // .card-newProduct {

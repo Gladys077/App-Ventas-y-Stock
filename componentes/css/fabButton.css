@@ -14,7 +14,7 @@
     height: 56px;
     padding: 12px;
     border-radius: 16px;
-    background-color: var(--secondary-color);
+    background-color: var(--color-secundario);
     display: flex;
     justify-content: center;
     align-items: center;

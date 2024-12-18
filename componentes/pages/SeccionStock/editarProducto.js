@@ -20,8 +20,6 @@ export class EditProductPage {
             .fondo-results {
                 position: fixed;
                 top: 135px;
-                // left: 50%;
-                // transform: translate(-50%,0);
                 width: calc(100vw - 32px);
                 max-width: 400px;
                 margin: 0 auto;
@@ -34,7 +32,6 @@ export class EditProductPage {
             .search-results {
                 width: calc(100vw - 32px);
                 max-width: 400px;
-                // max-height: calc(100vh - 160px);
                 height: 100vh;
                 overflow-y: auto;
                 background-color: #fff;
@@ -50,14 +47,14 @@ export class EditProductPage {
                 margin-left: 8px;
             }
             .li-product-list {
-                border-bottom: 1px solid var(--secondary-color);
+                border-bottom: 1px solid var(--color-secundario);
                 padding: 8px 0;
                 padding-left: 0px;
                 word-wrap: break-word;
                 overflow-wrap: break-word;
             }
             .li-product-list:first-child {
-                border-top: 1px solid var(--secondary-color);
+                border-top: 1px solid var(--color-secundario);
             }
         `;
         document.head.appendChild(style);

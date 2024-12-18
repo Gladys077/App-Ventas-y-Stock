@@ -32,7 +32,7 @@
 }
 
 .logout-text {
-    color: var(--primary-color);
+    color: var(--color-primario);
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
@@ -40,7 +40,7 @@
 
 footer {
     background-color: transparent;
-    color: var(--primary-color);
+    color: var(--color-primario);
     text-align: center;
     padding: 10px;
     /* position: fixed; */
@@ -55,7 +55,7 @@ footer {
 footer button {
     background-color: transparent;
     border: none;
-    color: var(--primary-color);
+    color: var(--color-primario);
     font-size: 16px;
     cursor: pointer;
 }

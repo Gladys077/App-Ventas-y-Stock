@@ -61,7 +61,7 @@ export class RecoverPasswordPage {
                 width: 100%;
                 height: 48px;
                 padding: 12px;
-                background-color: var(--primary-color);
+                background-color: var(--color-primario);
                 color: white;
                 border: none;
                 border-radius: 50px;

@@ -26,10 +26,6 @@ export class CargandoRemitoNro {
      agregarCss() {
         const style = document.createElement("style");
         style.textContent = ` 
-            // .search-results-stock {
-            //     max-width: 200px;
-            //     }
-
             .ul-product-list {
                 margin-top: 16px;
                 list-style-type: none;
@@ -40,7 +36,7 @@ export class CargandoRemitoNro {
             }
 
             .li-product-list {
-                border-bottom: 1px solid var(--secondary-color);
+                border-bottom: 1px solid var(--color-secundario);
                 padding: 8px 0;
                 padding-left: 16px;
                 word-wrap: break-word;
@@ -48,7 +44,7 @@ export class CargandoRemitoNro {
             }
 
             .li-product-list:first-child{
-                border-top: 1px solid var(--secondary-color);
+                border-top: 1px solid var(--color-secundario);
             }
         }
 

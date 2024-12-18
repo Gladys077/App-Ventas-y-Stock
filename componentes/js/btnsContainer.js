@@ -19,12 +19,12 @@ export class ButtonContainer {
         return buttonContainer;
     }
 
-    createButton(text, className, img) {
+    createButton(text, className, icon) {
         const button = document.createElement('button');
         button.className = className;
         // button.textContent = text;
-            const icon = document.createElement("img");
-                icon.src=`../../img/iconos/${img}.png`;
+            const icon = document.createElement("div");
+            icon.innerHTML=`${icon}`;
             const texto = document.createElement("span");
                 texto.textContent=text;
         button.append(icon,texto);

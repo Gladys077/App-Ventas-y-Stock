@@ -288,8 +288,9 @@ export class BtnFlotante{
     agregarBton = () =>{
         const contenedor = document.createElement("div");
             contenedor.className = this.classname;
-            const btn= document.createElement("img");
-                btn.src= `../../img/iconos/${this.icon}.png`;
+
+            const btn= document.createElement("div");
+            btn.innerHTML = `${this.icon}`;
             contenedor.appendChild(btn);
             if(this.texto){
                 const span = document.createElement("span");

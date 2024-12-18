@@ -35,7 +35,7 @@ export class createLoginPage {
                 padding: 16px;
                 margin-bottom: 16px;
                 border-radius: 50px;
-                border: 1px solid var(--secondary-color);
+                border: 1px solid var(--color-secundario);
                 font-size: 16px;
 
                 &::placeholder {
@@ -47,7 +47,7 @@ export class createLoginPage {
                 width: 100%;
                 height: 48px;
                 padding: 12px;
-                background-color: var(--primary-color);
+                background-color: var(--color-primario);
                 color: white;
                 border: none;
                 border-radius: 50px;
@@ -67,7 +67,7 @@ export class createLoginPage {
 
             .forgot-password {
                 margin-top: 16px;
-                color: var(--primary-color);
+                color: var(--color-primario);
 
                 &:hover {
                     font-weight: 700;

@@ -21,7 +21,7 @@
 
 .button-container .cancelar {
     background-color: var(--background-color);
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--color-primario);
 }
 
 .button-container .cancelar:hover {
@@ -33,7 +33,7 @@
 }
 
 .button-container .guardar {
-    background-color: var(--primary-color);
+    background-color: var(--color-primario);
     color: white;
 }
 .button-container .guardar:hover {

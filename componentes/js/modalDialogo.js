@@ -74,7 +74,7 @@
       width: 80%;
       max-width: 300px;
       background-color: #ffffff;
-      border: 1px solid #6810ad;
+      border: 1px solid var(--color-primario);
       margin: 15% auto;
       padding: 24px;
       border-radius: 28px;
@@ -119,17 +119,17 @@
       min-width: 110px;
       padding: 16px;
       border-radius: 28px;
-      border: 1.5px solid #6810ad;
+      border: 1.5px solid var(--color-primario);
       text-align: center;
       height: 48px;
       font-weight: 500;
   }
   .btn-cancel{
-      background-color: #dadada;
-      color: #6810ad;
+      background-color: var(--background-menu);
+      color:var(--color-primario);
   }
   .btn-confirm{
-      background-color: #6810ad;
+      background-color:var(--color-primario);
       color: #fff;
   }
       `

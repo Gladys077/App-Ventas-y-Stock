@@ -1,7 +1,7 @@
 import { Header } from "../../js/header.js";
 import Main from "../../js/main.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
-import { iconoVolver } from "../../js/iconosSVG.js"
+import { iconoVolver, iconoDescargar } from "../../js/iconosSVG.js"
 import { TablaEncabezado, MostrarMontoTotal, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
 
 export class PlanillaVtasdelDia {
@@ -56,7 +56,7 @@ export class PlanillaVtasdelDia {
 
     createBtnFlotante= ()=>{
         const mainPedido=document.querySelector("main");
-        this.btn = new BtnFlotante("descargar","contenedor-btn-flotante", ()=>{alert("Descarga exitosa")});
+        this.btn = new BtnFlotante(iconoDescargar,"contenedor-btn-flotante", ()=>{alert("Descarga exitosa")});
         mainPedido.appendChild(this.btn.getElement());
 
     }

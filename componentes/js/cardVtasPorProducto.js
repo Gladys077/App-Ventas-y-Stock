@@ -86,7 +86,7 @@ export class CardVtasPorProducto {
             padding-bottom: 24px;
             
             .card-title {
-                background-color: var(--primary-color);
+                background-color: var(--color-primario);
                 min-height: 48px;
                 height: auto;
                 width: 100%;
@@ -106,7 +106,7 @@ export class CardVtasPorProducto {
             }
 
             .card-input {
-                border: 1px solid var(--secondary-color);
+                border: 1px solid var(--color-secundario);
                 border-radius: 50px;
                 font-size: 18px;
                 margin-bottom: 12px;
@@ -121,7 +121,7 @@ export class CardVtasPorProducto {
                 height: 48px;
                 width: 80%;
                 max-width: 250px;
-                background-color: var(--primary-color);
+                background-color: var(--color-primario);
                 border: none;
                 border-radius: 50px;
                 color: var(--text-claro);
@@ -141,7 +141,7 @@ export class CardVtasPorProducto {
             }
 
             .card-link {
-                color: var(--primary-color);
+                color: var(--color-primario);
                 font-size: 16px;
                 font-weight: 500;
                 text-align: center;
@@ -178,7 +178,7 @@ export class CardVtasPorProducto {
                     border-radius: 0 0 4px 4px;
                     font-size: 16px;
                     font-weight: 500;
-                    color: var(--primary-color);
+                    color: var(--color-primario);
                     margin: auto;
                     border: 1px solid var(--color-hover);
                     height: 48px;
