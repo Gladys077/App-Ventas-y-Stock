@@ -85,6 +85,6 @@ function loadView(view) {
 
 // Cargar la vista por defecto
 
-loadView("stocknuevoremito")
+loadView("pedidoproximo")
 
 
