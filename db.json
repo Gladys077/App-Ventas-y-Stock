@@ -122,6 +122,24 @@
       "cel": "",
       "email": "",
       "notas": ""
+    },
+    {
+      "id": "deae",
+      "nombre": "",
+      "lista": [],
+      "vendedor": "",
+      "cel": "",
+      "email": "",
+      "notas": ""
+    },
+    {
+      "id": "eed4",
+      "nombre": "",
+      "lista": [],
+      "vendedor": "",
+      "cel": "",
+      "email": "",
+      "notas": ""
     }
   ],
   "comercios": [
@@ -132,6 +150,30 @@
       "direccion": "Calle falsa 123",
       "email": "paratodos@gmail.com",
       "contacto": "555232308"
+    },
+    {
+      "id": "fb6e",
+      "nombre": "",
+      "inscripcion": "",
+      "direccion": "",
+      "email": "",
+      "contacto": ""
+    },
+    {
+      "id": "abb8",
+      "nombre": "Rosalinda",
+      "inscripcion": "30-23433007-2",
+      "direccion": "Los Ciruelos 23",
+      "email": "rosalinda@gmail.com",
+      "contacto": "26123456767"
+    },
+    {
+      "id": "2fbb",
+      "nombre": "",
+      "inscripcion": "",
+      "direccion": "",
+      "email": "",
+      "contacto": ""
     }
   ],
   "pedidos": [
