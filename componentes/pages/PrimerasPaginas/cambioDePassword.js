@@ -2,6 +2,7 @@ import { Header } from '../../js/header.js';
 import { iconoVolver } from '../../js/iconosSVG.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 import { verificarCss } from '../../js/utils.js';
+import { Notification } from '../../js/notificacion.js';
 
 export class ChangePassword {
     constructor() {
@@ -40,7 +41,7 @@ export class ChangePassword {
                 height: 48px;
                 padding: 16px;
                 margin-bottom: 16px;
-                border: 1px solid #ccc;
+                border: 1px solid var(--color-secundario);
                 border-radius: 50px;
                 font-size: 16px;
         
@@ -92,7 +93,7 @@ export class ChangePassword {
         input1.required = true;
 
         const subtitle2 = document.createElement('h4');
-        subtitle2.innerHTML = 'Contraseña actual';
+        subtitle2.innerHTML = 'Nueva contraseña';
         subtitle2.className = 'subtitlePass';
 
         const input2 = document.createElement('input');
@@ -111,12 +112,61 @@ export class ChangePassword {
         input3.className = 'login-input';
         input3.required = true;
 
-
         const button = document.createElement('button');
         button.innerHTML = 'Guardar';
         button.className = 'button-change-passw';
         button.addEventListener('click', (event) => {
             event.preventDefault();
+
+            const currentPassword = input1.value.trim();
+            const newPassword = input2.value.trim();
+            const confirmNewPassword = input3.value.trim();
+
+            
+            // Ejemplo de contraseña almacenada en la BBDD (simulado - cuando tengamos la BBDD BORRAR ESTO)
+            const storedPassword = 'contraseña';
+
+            // Validar campos vacíos
+            if (!currentPassword || !newPassword || !confirmNewPassword) {
+                new Notification(
+                    '../../../img/emojis/pensando.png',
+                    'Falta completar alguno de los campos',
+                    'error'
+                );
+                return;
+            }
+
+            // Validar contraseña actual
+            if (currentPassword !== storedPassword) {
+                new Notification(
+                    '../../../img/emojis/pare.png',
+                    'Contraseña actual incorrecta',
+                    'error'
+                );
+                return;
+            }
+
+            // Validar coincidencia de las nuevas contraseñas
+            if (newPassword !== confirmNewPassword) {
+                new Notification(
+                    '../../../img/emojis/triste.png',
+                    'No coinciden las nuevas contraseñas',
+                    'error'
+                );
+                return;
+            }
+
+            // Si pasa todas las validaciones
+            new Notification(
+                '../../../img/emojis/feliz.png',
+                'Contraseña cambiada exitosamente',
+                'success'
+            );
+
+            // Lógica para guardar la nueva contraseña en la BBDD (simulado) Ver con LIO
+            console.log('Nueva contraseña guardada:', newPassword);
+ 
+
             //Lógica para guardar info en BBDD
             navigateToPage('MenuVentas');
         });

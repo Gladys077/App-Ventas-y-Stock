@@ -3,6 +3,7 @@ import { navigateToPage } from './navigateToPage.js';
 import { Notification } from './notificacion.js';
 import { Producto } from './producto.js';
 import { verificarCss } from './utils.js';
+import { iconoGuardar, iconoCancel } from './iconosSVG.js';
 
 export class CardNewProduct {
     constructor(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback) {
@@ -180,19 +181,10 @@ export class CardNewProduct {
         }
     }
         .pink {
-        background-color: var(--color-secundario);
+            background-color: var(--color-secundario);
 
         }
-        // .card-newProduct {
-            // background-color: var(--background-color);
-            // border-radius: 12px;
-            // border-top-left-radius: 4px;
-            // border-top-right-radius: 4px;
-            // box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-            // margin: 0px auto;
-        //     width: 100%;
-            // text-align: center;
-            // padding-bottom: 24px;
+       
 
             .card-title {
                 min-height: 48px;
@@ -216,7 +208,12 @@ export class CardNewProduct {
         justify-content: center;
         display: flex;
         align-items: center;
-}
+        }
+        button div svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
 
 	`
         document.head.appendChild(style);
@@ -390,7 +387,14 @@ export class CardNewProduct {
     }
 
     createButtonContainer() {
-        const btnsContainer = new ButtonContainer(this.btnPrimary, this.btnSecondary, this.btnPrimaryCallback, this.btnSecondaryCallback);
+        const btnsContainer = new ButtonContainer(
+            this.btnPrimary, 
+            this.btnSecondary, 
+            this.btnPrimaryCallback, 
+            this.btnSecondaryCallback, 
+            iconoGuardar, 
+            iconoCancel
+        );
         return btnsContainer.getButtonContainer();
     }
 

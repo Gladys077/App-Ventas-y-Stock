@@ -233,6 +233,7 @@ export class CardVtasPorVendedor {
     this.input = document.createElement('input');
     this.input.placeholder = 'DD/MM/AAAA';
     this.input.className = 'card-input';
+    this.input.type = "date";
     this.input.addEventListener('input', formatDateInput);
     this.input.addEventListener('blur', (e) => this.handleDateChange(e));
 

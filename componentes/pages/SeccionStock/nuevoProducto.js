@@ -1,5 +1,5 @@
 import { Header } from '../../js/header.js';
-import { iconoVolver, iconoMenu } from '../../js/iconosSVG.js';
+import { iconoVolver, iconoMenu, iconoCancel, iconoGuardar  } from '../../js/iconosSVG.js';
 import { CardNewProduct } from '../../js/cardNewProduct.js';
 import { Notification } from '../../js/notificacion.js';
 // import { Producto } from '../../js/producto.js';
@@ -22,7 +22,7 @@ export class NewProductPage {
     createMain() {
         this.cardNewProduct = new CardNewProduct(
             'Guardar', 
-            'Cancelar', 
+            'Cancel', 
             this.btnPrimaryCallback.bind(this), 
             this.btnSecondaryCallback.bind(this)
         );

@@ -11,6 +11,7 @@ export class MenuPerfiles {
         this.createMain();
         this.createFooter();
         this.setActiveTab('Perfiles');
+
     }
 
     getElement() {

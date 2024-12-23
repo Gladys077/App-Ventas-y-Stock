@@ -206,7 +206,7 @@ export const iconoCancel = `
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="24px" height="24px" viewBox="0 0 512.000000 512.000000"
+  viewBox="0 0 512.000000 512.000000"
  preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.16, written by Peter Selinger 2001-2019
@@ -645,7 +645,7 @@ fill="#000000" stroke="none">
 
 export const iconoGuardar = `
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="516.000000pt" height="484.000000pt" viewBox="0 0 516.000000 484.000000"
+ width="24" height="24" viewBox="0 0 516.000000 484.000000"
  preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.16, written by Peter Selinger 2001-2019
