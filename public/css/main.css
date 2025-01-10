@@ -132,7 +132,7 @@ main{
         height: 1000px;
         overflow-y: scroll;
         scrollbar-width: none;
-        padding-bottom: 75px;
+        padding-bottom: 110px;
         
         .tabla_lineaArticulo, .tabla_lineaPedido{
             position: relative;

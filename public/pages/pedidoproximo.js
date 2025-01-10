@@ -56,15 +56,14 @@ export class PlanillaPedidoProximo {
         mainPedido.appendChild(this.detalles.getElement());
     }
 
-
     createLineaArticulo= (cant,nombre,proveedores)=>{
         
         const lineaArt = document.createElement("div");
         lineaArt.className = "tabla_lineaArticulo";
             
-            const input = document.createElement("input");
-            input.className = "cant";
-            input.value=`${cant}`;
+            const unidades = document.createElement("input");
+            unidades.className = "cant";
+            unidades.value=`${cant}`;
     
         
 
@@ -105,14 +104,26 @@ export class PlanillaPedidoProximo {
                             span.textContent = `${proveedor.precio}`;
 
                             radio.addEventListener("change", () => {
-                                costo = parseInt(input.value) * parseInt(radio.value); // Precio basado en cantidad y precio del proveedor
+                                costo = parseInt(unidades.value) * parseInt(radio.value); // Precio basado en cantidad y precio del proveedor
+                                console.log("cant: ", unidades.value);
+                                console.log("precio: ", radio.value);
+                                console.log("total: ", costo);
                                 spanprecio.textContent = costo; // Actualizamos el texto del precio
                                 calcularTotal()
                             });
-                            input.addEventListener("change", ()=>{
-                                costo = parseInt(input.value) * parseInt(radio.value); // Precio basado en cantidad y precio del proveedor
-                                spanprecio.textContent = costo; // Actualizamos el texto del precio)
-                                calcularTotal()
+                            unidades.addEventListener("change", ()=>{
+
+                                const proveedorSeleccionado = lineaArt.querySelector("input[type='radio']:checked");
+                                if (proveedorSeleccionado) {
+                                    costo = parseInt(unidades.value) * parseInt(proveedorSeleccionado.value); // Precio basado en cantidad y precio del proveedor
+                                    console.log("cant: ", unidades.value);
+                                    console.log("precio: ", proveedorSeleccionado.value);
+                                    console.log("total: ", costo);
+                                    spanprecio.textContent = costo; // Actualizamos el texto del precio)
+                                    calcularTotal()
+                                } else {
+                                        console.warn("No hay proveedor seleccionado.");
+                                }
                             });
                         opcion.append(radio, label,span);    
                         listaProv.appendChild(opcion);
@@ -145,11 +156,11 @@ export class PlanillaPedidoProximo {
                 visibilidadOpciones(event)
             })
         
-        lineaArt.append(input, prod, precio, listaProv, btnMas, btnMenos)
+        lineaArt.append(unidades, prod, precio, listaProv, btnMas, btnMenos)
         
         return lineaArt
         
-    }//Se crea la linea de articulo para hacer el foreach 
+    }//Se crea la linea de articulo para hacer el foreach en "MostrarLineasArticulos"
 
     mostrarLineasArticulos = async ()=>{
 
@@ -229,8 +240,8 @@ function visibilidadOpciones(event){
 function calcularTotal(){
     
     const precios =document.querySelectorAll(".precio span");
-    // console.log(typeof(precios));
-    // console.log("todos los precio", precios);
+        console.log(typeof(precios));
+        console.log("todos los precio", precios);
         let totalPedido = 0;
         precios.forEach(precio =>{
             const valor = parseFloat(precio.textContent) || 0;

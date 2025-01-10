@@ -111,10 +111,17 @@ export class PlanillaPedidoProximo {
                             radio.addEventListener("change", () => {
                                 costo = parseInt(input.value) * parseInt(proveedor.precio); // Precio basado en cantidad y precio del proveedor
                                 spanprecio.textContent = costo; // Actualizamos el texto del precio
+                                calcularTotal()
                             });
                             input.addEventListener("input", ()=>{
-                                costo = parseInt(input.value) * parseInt(proveedor.precio); // Precio basado en cantidad y precio del proveedor
+                                const proveedorSeleccionado = lineaArt.querySelector("input[type='radio']:checked");
+                                if (proveedorSeleccionado) {
+                                costo = parseInt(input.value) * parseInt(proveedorSeleccionado.precio); // Precio basado en cantidad y precio del proveedor
                                 spanprecio.textContent = costo; // Actualizamos el texto del precio)
+                                    calcularTotal()
+                                } else {
+                                        console.warn("No hay proveedor seleccionado.");
+                                }
                             });
                         opcion.append(radio, label,span);    
                         listaProv.appendChild(opcion);

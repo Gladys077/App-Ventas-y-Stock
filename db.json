@@ -678,5 +678,79 @@
       "producto": "Resaltador verde fluor",
       "precioUnitario": 1500
     }
+  ],
+  "stock": [
+    {
+      "id": "123",
+      "cant": 2,
+      "producto": "Cuaderno Rivadavia T.dura 24h",
+      "pp": 2
+    },
+    {
+      "id": "125",
+      "cant": 2,
+      "producto": "Goma tinta-lápiz",
+      "pp": 2
+    },
+    {
+      "id": "126",
+      "cant": 4,
+      "producto": "Cuaderno Rivadavia Tapa dura 48h a cuadros, varias secciones",
+      "pp": 2
+    },
+    {
+      "id": "127",
+      "cant": 2,
+      "producto": "Lápiz artístico",
+      "pp": 2
+    },
+    {
+      "id": "128",
+      "cant": 1,
+      "producto": "Resaltador amarillo fluor",
+      "pp": 2
+    },
+    {
+      "id": "129",
+      "cant": 4,
+      "producto": "Resaltador verde fluor",
+      "pp": 2
+    },
+    {
+      "id": "130",
+      "cant": 2,
+      "producto": "Cuaderno Rivadavia T.dura 24h",
+      "pp": 2
+    },
+    {
+      "id": "131",
+      "cant": 2,
+      "producto": "Lapicera Vic azul",
+      "pp": 2
+    },
+    {
+      "id": "132",
+      "cant": 3,
+      "producto": "Goma tinta-lápiz",
+      "pp": 2
+    },
+    {
+      "id": "133",
+      "cant": 5,
+      "producto": "Cuaderno Rivadavia Tapa dura 48h a cuadros, varias secciones",
+      "pp": 2
+    },
+    {
+      "id": "135",
+      "cant": 10,
+      "producto": "Resaltador amarillo fluor",
+      "pp": 2
+    },
+    {
+      "id": "136",
+      "cant": 5,
+      "producto": "Resaltador verde fluor",
+      "pp": 2
+    }
   ]
 }
