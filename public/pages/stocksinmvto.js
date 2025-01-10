@@ -11,7 +11,7 @@ export class PlanillaStockSinMvto {
         this.createMostrarMainNav();
         this.createTablaEncabezado();
         this.createTablaDetalles();
-        this.createTablaFooter();
+        // this.createTablaFooter();
         this.createBtnFlotante();
 
     }

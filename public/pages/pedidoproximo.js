@@ -56,7 +56,6 @@ export class PlanillaPedidoProximo {
         mainPedido.appendChild(this.detalles.getElement());
     }
 
-
     createLineaArticulo= (cant,nombre,proveedores)=>{
         
         const lineaArt = document.createElement("div");
