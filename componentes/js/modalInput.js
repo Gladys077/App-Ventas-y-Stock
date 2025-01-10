@@ -84,7 +84,7 @@ export class ModalInput {
           max-width: 300px;
           background-color: #ffffff;
           border: 1px solid var(--color-primario);
-          margin: 45% auto;
+          margin: 5% auto;
           padding: 24px;
           border-radius: 28px;
           text-align: center;

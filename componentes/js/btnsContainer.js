@@ -1,6 +1,4 @@
 
-import { iconoGuardar, iconoCancel } from './iconosSVG.js';
-
 export class ButtonContainer {
     constructor(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback,iconPrimary,iconSecondary) {
         // Este el contenedor con botones 

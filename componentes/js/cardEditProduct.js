@@ -1,5 +1,4 @@
 import { CardNewProduct } from './cardNewProduct.js';
-import { createSearchContainerCard } from './utils.js';
 
 export class CardEditProduct extends CardNewProduct {
     constructor(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback) {
@@ -14,20 +13,21 @@ export class CardEditProduct extends CardNewProduct {
         productName.textContent = this._title;
         productName.classList = 'productInput card-title tit';
 
-        productName.addEventListener('input', (e)=>{
+        productName.addEventListener('input', (e) => {
             this._producto.nombre = e.target.value;
-        })
+        });
 
         inputGroup.appendChild(productName);
         return inputGroup;
     }
+
     updateCardTitle(productName) {
         const titleElement = this._element.querySelector('.card-title');
         if (titleElement) {
             titleElement.textContent = productName;
         }
     }
-    
+
     onProductClick(product) {
         // Actualizar el producto seleccionado
         this._producto.nombre = product.nombre;
@@ -35,11 +35,12 @@ export class CardEditProduct extends CardNewProduct {
         this._producto.costo = product.costo;
         this._producto.porcentaje = product.porcentaje;
         this._producto.stockMinimo = product.stockMinimo;
+        this._producto.cantidadProximoPedido = product.cantidadProximoPedido || null;
 
         // Actualizar los campos del formulario
         this.updateFormFields();
 
-        // actualizar el título de la card
+        // Actualizar el título de la card
         this.updateCardTitle(product.nombre);
     }
 
@@ -49,15 +50,20 @@ export class CardEditProduct extends CardNewProduct {
         const costoInput = this._element.querySelector('.costoInput');
         const porcentajeInput = this._element.querySelector('.porcentajeInput');
         const stockMinimoInput = this._element.querySelector('.stock-check input');
+        const pedidoOptionalInput = this._element.querySelector('.pedido-optional input'); // Campo opcional
 
         productName.value = this._producto.nombre;
         proveedorSelect.value = this._producto.proveedor;
         costoInput.value = this._producto.costo;
         porcentajeInput.value = this._producto.porcentaje;
         stockMinimoInput.value = this._producto.stockMinimo;
+        pedidoOptionalInput.value = this._producto.cantidadProximoPedido || '';
 
         this.mostrarPrecioVenta();
     }
 
-    
+    createForm() {
+        // Llamar al formulario de la clase base sin duplicar elementos
+        return super.createForm();
+    }
 }

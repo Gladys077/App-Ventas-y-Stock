@@ -3,7 +3,7 @@ import { navigateToPage } from './navigateToPage.js';
 import { Notification } from './notificacion.js';
 import { Producto } from './producto.js';
 import { verificarCss } from './utils.js';
-import { iconoGuardar, iconoCancel } from './iconosSVG.js';
+import { iconoGuardar, iconoCancelViolet } from './iconosSVG.js';
 
 export class CardNewProduct {
     constructor(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback) {
@@ -14,6 +14,8 @@ export class CardNewProduct {
         this._element = this.createForm();
         this._producto = new Producto('', '', 0, 0, 0);
         if (!verificarCss('nuevo-producto-form')) this.agregarCss();
+        this._modal = null;
+        this.initModal();
        
     }
     get btnPrimary(){ return this._btnPrimary;  }
@@ -208,16 +210,227 @@ export class CardNewProduct {
         justify-content: center;
         display: flex;
         align-items: center;
+        background: white;
+        color: black;
         }
-        button div svg {
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
+        button.guardar div svg {
+        fill: white;
+        filter: invert(1);
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
         }
-
+        button.cancelar div svg {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+        }
+        button.cancelar:hover div svg {
+        fill: white;
+        filter:invert(1);
+        }
+    
 	`
         document.head.appendChild(style);
     }
+
+    initModal() {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.style.display = 'none';
+        
+        const modalContent = document.createElement('div');
+        modalContent.className = 'modal-content-proveedor';
+        
+        const form = document.createElement('form');
+        form.className = 'proveedor-form';
+        
+        // Inputs del proveedor
+        const inputs = [
+            { id: 'nombre-proveedor', label: 'Empresa Proveedora', type: 'text' },
+            { id: 'nombre-vendedor', label: 'Nombre del Vendedor/a', type: 'text' },
+            { id: 'celular', label: 'Teléfono / Celular', type: 'text' },
+            { id: 'email', label: 'Email', type: 'text' }
+        ];
+
+        inputs.forEach(input => {
+            const div = document.createElement('div');
+            div.className = 'input-group';
+            
+            const label = document.createElement('label');
+            label.htmlFor = input.id;
+            label.textContent = input.label;
+            
+            const inputElement = document.createElement('input');
+            inputElement.type = input.type;
+            inputElement.id = input.id;
+            inputElement.className = 'modal-input';
+            
+            div.appendChild(label);
+            div.appendChild(inputElement);
+            form.appendChild(div);
+        });
+
+        // Textarea
+        const textareaGroup = document.createElement('div');
+        textareaGroup.className = 'input-group';
+        
+        const textareaLabel = document.createElement('label');
+        textareaLabel.htmlFor = 'notas';
+        textareaLabel.textContent = 'Notas';
+        
+        const textarea = document.createElement('textarea');
+        textarea.id = 'notas';
+        textarea.className = 'modal-textarea';
+        
+        textareaGroup.appendChild(textareaLabel);
+        textareaGroup.appendChild(textarea);
+        form.appendChild(textareaGroup);
+
+        // Botones
+        const buttonContainer = new ButtonContainer(
+            'Guardar',
+            'Cancelar',
+            (e) => this.handleProveedorSubmit(e),
+            (e) => {
+                e.preventDefault(); // Previene cualquier comportamiento por defecto
+                this.closeModal(); // Sólo cierra el modal
+            },
+            iconoGuardar,
+            iconoCancelViolet
+        );
+
+        form.appendChild(buttonContainer.getButtonContainer());
+        modalContent.appendChild(form);
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+        
+        this._modal = modal;
+
+        // Agregar estilos
+        this.addModalStyles();
+    }
+
+    addModalStyles() {
+        const style = document.createElement('style');
+        style.textContent = `
+            .modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+            }
+
+            .modal-content-proveedor {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: var(--background-color);
+                margin: 16px auto;
+                padding: 20px;
+                border-radius: 8px;
+                width: 80%;
+                max-width: 400px;
+                max-height: 95vh;
+                overflow-y: auto;
+            }
+
+            .modal-input, .modal-textarea {
+                width: 100%;
+                padding: 8px;
+                margin: 8px 0;
+                border: 1.5px solid var(--color-secundario);
+                border-radius: 4px;
+            }
+
+            .modal-textarea {
+                min-height: 80px;
+                resize: vertical;
+                padding-bottom: 0;
+                margin-bottom: 0;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    createProveedorSelect() {
+        const inputGroup = document.createElement('div');
+        inputGroup.className = 'input-group';
+
+        const select = document.createElement('select');
+        select.className = 'proveedorSelect';
+
+        const options = ['Selecciona el proveedor', 'NUEVO PROVEEDOR', 'Sin datos'];
+        options.forEach(optionText => {
+            const option = document.createElement('option');
+            option.textContent = optionText;
+            option.className = 'option';
+            select.appendChild(option);
+        });
+
+        select.addEventListener('change', (e) => {
+            this._producto.proveedor = e.target.value;
+
+            const selectedOption = select.options[select.selectedIndex];
+            selectedOption.classList.add('selected-option');
+
+            if (selectedOption.textContent === 'NUEVO PROVEEDOR') {
+                this.openModal();
+            }
+        });
+
+        inputGroup.appendChild(select);
+        return inputGroup;
+    }
+
+    openModal() {
+        this._modal.style.display = 'block';
+        document.body.classList.add('modal-open');
+    }
+    
+    closeModal() {
+        this._modal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+        this._modal.querySelector('form').reset();
+
+        // Restablecer el valor del select al valor predeterminado
+        const select = document.querySelector('.proveedorSelect');
+        select.selectedIndex = 0; // Esto selecciona la primera opción (por defecto "Selecciona el proveedor")
+        }
+
+handleProveedorSubmit(e) {
+    e.preventDefault();
+    
+    const nombreProveedor = document.getElementById('nombre-proveedor').value;
+    if (!nombreProveedor.trim()) {
+        new Notification('../img/emojis/pare.png', '¡Falta el nombre del proveedor!', 'error');
+        return;
+    }
+    
+    const formData = {
+        empresa: nombreProveedor,
+        vendedor: document.getElementById('nombre-vendedor').value,
+        telefono: document.getElementById('celular').value,
+        email: document.getElementById('email').value,
+        notas: document.getElementById('notas').value
+    };
+    
+    const select = document.querySelector('.proveedorSelect');
+    const option = document.createElement('option');
+    option.textContent = formData.empresa;
+    option.value = formData.empresa;
+    select.insertBefore(option, select.children[select.children.length - 1]);
+    
+    option.selected = true;
+    this._producto.proveedor = formData.empresa;
+
+    this.closeModal();
+}
 
     createForm() {
         const form = document.createElement('form');
@@ -251,38 +464,6 @@ export class CardNewProduct {
         return inputGroup;
     }
 
-    createProveedorSelect() {
-        const inputGroup = document.createElement('div');
-        inputGroup.className = 'input-group';
-
-        const select = document.createElement('select');
-        select.className = 'proveedorSelect';
-
-        const options = ['Selecciona el proveedor', 'Nuevo proveedor', 'Sin datos'];
-        options.forEach(optionText => {
-            const option = document.createElement('option');
-            option.textContent = optionText;
-            option.className = 'option';
-            select.appendChild(option);
-        });
-
-        select.addEventListener('change', (e)=> {
-            this._producto.proveedor = e.target.value;
-
-            const selectedOption = select.options[select.selectedIndex];
-            selectedOption.classList.add('selected-option');
-
-            // Redirige a otra página si el proveedor es "Nuevo proveedor"
-            if (selectedOption.textContent === 'Nuevo proveedor') {
-                ()=>navigateToPage('../../componentes/pages/SeccionStock/formnuevoproveedor.js');
-                
-            }
-        });
-
-        inputGroup.appendChild(select);
-        return inputGroup;
-    }
-
     createCostoPorcentaje() {
         const costoPorcentaje = document.createElement('div');
         costoPorcentaje.className = 'costo-porcentaje';
@@ -297,9 +478,18 @@ export class CardNewProduct {
         costoInput.classList.add('interiorInput');
         porcentajeInput.classList.add('interiorInput');
 
+        // Modifica los eventListeners para actualizar el precio correctamente
         costoInput.addEventListener('input', (e) => {
-            this._producto.costo = parseFloat(e.target.value) || 0;
-            this.mostrarPrecioVenta();
+            const costoValue = parseFloat(e.target.value) || 0;
+            this._producto.costo = costoValue;
+            
+            // Mostrar el costo como precio de venta inicial
+            this.precioVentaDisplay.value = costoValue.toFixed(2);
+            
+            // Si ya hay un porcentaje, calcular el precio con el porcentaje
+            if (this._producto.porcentaje > 0) {
+                this.mostrarPrecioVenta();
+            }
         });
 
         porcentajeInput.addEventListener('input', (e) => {
@@ -339,9 +529,33 @@ export class CardNewProduct {
         const label = document.createElement('label');
         label.textContent = 'Precio de venta';
 
-        this.precioVentaDisplay = document.createElement('div');
+        // this.precioVentaDisplay = document.createElement('div');
+        // this.precioVentaDisplay.className = 'precio-venta-display';
+        // this.precioVentaDisplay.textContent = '$ 0';
+        // Cambiar de div a input
+        this.precioVentaDisplay = document.createElement('input');
         this.precioVentaDisplay.className = 'precio-venta-display';
-        this.precioVentaDisplay.textContent = '$ 0';
+        this.precioVentaDisplay.type = 'number';
+        this.precioVentaDisplay.step = '0.01';
+        this.precioVentaDisplay.placeholder = '$ 0.00';
+        
+        // Agregar evento para manejar cambios directos en el precio de venta
+        this.precioVentaDisplay.addEventListener('input', (e) => {
+            const nuevoPrecioVenta = parseFloat(e.target.value) || 0;
+            const costo = this._producto.costo || 0;
+            
+            if (costo > 0) {
+                // Calcular el nuevo porcentaje basado en el precio de venta ingresado
+                const nuevoPorcentaje = ((nuevoPrecioVenta / costo) - 1) * 100;
+                
+                // Actualizar el input del porcentaje
+                const porcentajeInput = document.getElementById('porcentaje');
+                if (porcentajeInput) {
+                    porcentajeInput.value = nuevoPorcentaje.toFixed(2);
+                    this._producto.porcentaje = nuevoPorcentaje;
+                }
+            }
+        });
 
         precioVenta.appendChild(label);
         precioVenta.appendChild(this.precioVentaDisplay);
@@ -357,7 +571,7 @@ export class CardNewProduct {
 
     mostrarPrecioVenta() {
         const precioVenta = this._producto.costo * (1 + this._producto.porcentaje / 100);
-        this.precioVentaDisplay.textContent = `$${precioVenta.toFixed(2)}`;
+    this.precioVentaDisplay.value = precioVenta.toFixed(2); // Actualiza el valor del input correctamente
     }
 
     createPedidoOptional() {
@@ -393,7 +607,7 @@ export class CardNewProduct {
             this.btnPrimaryCallback, 
             this.btnSecondaryCallback, 
             iconoGuardar, 
-            iconoCancel
+            iconoCancelViolet
         );
         return btnsContainer.getButtonContainer();
     }
@@ -406,7 +620,6 @@ export class CardNewProduct {
         this.precioVentaDisplay.textContent = '$ 0';
         document.querySelector('.stock-check input').value = '';
         this._producto = new Producto('', '', 0, 0, 0); // Debería resetear el producto? 
-
     }
 
     validarCampos() {

@@ -1,5 +1,5 @@
 import { Header } from '../../js/header.js';
-import { iconoVolver, iconoMenu, iconoCancel, iconoGuardar  } from '../../js/iconosSVG.js';
+import { iconoVolver, iconoMenu } from '../../js/iconosSVG.js';
 import { CardNewProduct } from '../../js/cardNewProduct.js';
 import { Notification } from '../../js/notificacion.js';
 // import { Producto } from '../../js/producto.js';
@@ -12,8 +12,11 @@ export class NewProductPage {
         document.body.innerHTML = ''; 
         this.createHeader();
         this.createMain();
+        this.createFooter();
     }
-
+    getElement() {
+        return this.element;
+    }
     createHeader() {
         const header = new Header('Nuevo producto', iconoVolver, iconoMenu, ()=>window.history.back(), ()=>navigateToPage('MenuStock'));
         document.body.appendChild(header.getElement());
@@ -141,7 +144,7 @@ export class NewProductPage {
         }
     }
     
-
+    
     
 }
 

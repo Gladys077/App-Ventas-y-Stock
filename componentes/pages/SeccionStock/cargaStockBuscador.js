@@ -65,7 +65,7 @@ export class CargarStockSearchPage {
         const productSearch = createSearchContainer(
             this.onProductClick.bind(this), 
             RadioProductList, 
-            'calc(100vh - 290px)', 
+            'calc(100vh - 220px)', 
             '¡No lo tenés en tu stock!');
         main.appendChild(productSearch);
 
