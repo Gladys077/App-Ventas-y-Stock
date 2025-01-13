@@ -1,0 +1,63 @@
+.container-form-proveedor {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-proveedor {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-proveedor, .notas-proveedor {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.notas-proveedor {
+    height: 100px;
+    resize: vertical;
+}
+
+.button-group-proveedor {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.button-group-proveedor button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#cancelar {
+    background-color: var(--background-color);
+    border: 1px solid var(--primary-color);
+    color: white;
+}
+
+#guardar {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.button-group-proveedor button:hover {
+    background-color: var(--);
+}
+
