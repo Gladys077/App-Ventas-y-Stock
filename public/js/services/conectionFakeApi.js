@@ -212,6 +212,25 @@
             return conexionconvertida;
         }
 
+//CRUD PARA STOCK___________________________________________________________________________________        
+async function stockDisponible(){
+    try {
+        const conexion = await fetch("http://localhost:3000/stock",{
+            method:"GET",
+            headers:{
+                "Content-type":"application/json",
+            }
+        })
+
+        const respuesta = await conexion.json();
+        return respuesta;
+        
+    } catch (error) {
+        console.error(error)
+        
+    }
+}
+
 export const conexionAPI={
-    listaproveedores, nuevoproveedor, nuevocomercio, listapedidos, obtenerpedido, crearpedido, actualizarPedido, borrarpedido, listaarticulos, articulospedidos, nuevoarticulo, borrararticulo, actualizarCant
+    listaproveedores, nuevoproveedor, nuevocomercio, listapedidos, obtenerpedido, crearpedido, actualizarPedido, borrarpedido, listaarticulos, articulospedidos, nuevoarticulo, borrararticulo, actualizarCant, stockDisponible
 }

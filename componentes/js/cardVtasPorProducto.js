@@ -106,6 +106,7 @@ export class CardVtasPorProducto {
             }
 
             .card-input {
+                font-family: Roboto, sans-serif;
                 border: 1px solid var(--color-secundario);
                 border-radius: 50px;
                 font-size: 18px;
@@ -237,6 +238,7 @@ export class CardVtasPorProducto {
         const input = document.createElement('input');
         input.placeholder = 'DD/MM/AAAA';
         input.className = 'card-input';
+        input.type = "date";
         input.maxLength = 10;
         input.addEventListener('input', formatDateInput);
         input.addEventListener('blur', (e) => this.handleDateChange(e, label));

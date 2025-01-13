@@ -7,7 +7,6 @@ export class createLoginPage {
         document.body.innerHTML = '';
         if (!verificarCss('login')) this.agregarCss();
         this.createMain();
-
     }
 
     agregarCss(){
@@ -127,11 +126,11 @@ createMain(){
             return;
         }
         else if (!userNameList.includes(userNameValue)) {
-            new Notification('../../../img/emojis/pare.png', 'No tienes acceso. Contacta al dueño para ser agregado como nuevo vendedor.', 'error');
+            new Notification('../../../img/emojis/pare.png', 'No tienes acceso. Contacta al administrador para ser agregado como nuevo vendedor.', 'error');
             return;
         }
         else if (!userPasswordList.includes(passwordValue)) {
-            new Notification('../../../img/emojis/pare.png', 'Por favor, ingresa un email válido.', 'error');
+            new Notification('../../../img/emojis/pare.png', 'Credenciales inválidas', 'error');
         } else {
             navigateToPage('MenuVentas');
         }

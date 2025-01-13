@@ -1,8 +1,11 @@
 import { Header } from '../../js/header.js';
 import { createSearchContainer, RadioProveedorList } from '../../js/utils.js';
-import { iconoVolver } from '../../js/iconosSVG.js';
+import { iconoVolver, iconoProveedores } from '../../js/iconosSVG.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 import { Notification } from '../../js/notificacion.js';
+
+import { Footer } from '../../js/footer.js';
+import { ExtendedFabButton } from '../../js/utils.js';
 
 export class ListaProveedores {
     constructor() {
@@ -10,6 +13,7 @@ export class ListaProveedores {
         this.proveedor = [];
         this.createHeader();
         this.createMain();
+        this.createFooter();
         // if (!verificarCss("ul-product-list"))  
             this.agregarCss();
     }
@@ -74,6 +78,18 @@ export class ListaProveedores {
         if (event.target.closest('.product-radio')) {
             // Lógica para buscar en la lista de proveedores
         } 
+    }
+
+    createFooter() {
+        this.footer = new Footer();
+        document.body.appendChild(this.footer.getElement());
+
+        // Fab extended (nuevo proveedor)
+        const iconSVG = iconoProveedores; 
+        const extendedFabButton = new ExtendedFabButton(iconSVG, 'Nuevo Proveedor', () => navigateToPage('nuevoProveedor'));
+    
+        const footerElement = document.querySelector('footer');
+        footerElement.appendChild(extendedFabButton.getElement());
     }
 
    

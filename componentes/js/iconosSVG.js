@@ -206,7 +206,7 @@ export const iconoCancel = `
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="24px" height="24px" viewBox="0 0 512.000000 512.000000"
+  viewBox="0 0 512.000000 512.000000"
  preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.16, written by Peter Selinger 2001-2019
@@ -232,13 +232,13 @@ c-210 210 -384 382 -387 382 -3 0 -73 -68 -155 -150z"/>
 
 export const iconoCancelViolet = `
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="24pt" height="24pt" viewBox="0 0 512.000000 512.000000"
+viewBox="0 0 512.000000 512.000000"
  preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.16, written by Peter Selinger 2001-2019
 </metadata>
 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
+fill="#6810ad" stroke="none">
 <path d="M2368 4689 c-479 -37 -963 -264 -1318 -619 -368 -368 -583 -838 -621
 -1358 -58 -799 335 -1559 1024 -1979 477 -291 1063 -383 1605 -252 67 16 128
 27 135 23 6 -4 9 -3 4 1 -4 5 44 27 105 50 288 107 547 274 768 495 301 301
@@ -645,7 +645,7 @@ fill="#000000" stroke="none">
 
 export const iconoGuardar = `
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="516.000000pt" height="484.000000pt" viewBox="0 0 516.000000 484.000000"
+ width="24" height="24" viewBox="0 0 516.000000 484.000000"
  preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.16, written by Peter Selinger 2001-2019

@@ -12,8 +12,11 @@ export class NewProductPage {
         document.body.innerHTML = ''; 
         this.createHeader();
         this.createMain();
+        this.createFooter();
     }
-
+    getElement() {
+        return this.element;
+    }
     createHeader() {
         const header = new Header('Nuevo producto', iconoVolver, iconoMenu, ()=>window.history.back(), ()=>navigateToPage('MenuStock'));
         document.body.appendChild(header.getElement());
@@ -22,7 +25,7 @@ export class NewProductPage {
     createMain() {
         this.cardNewProduct = new CardNewProduct(
             'Guardar', 
-            'Cancelar', 
+            'Cancel', 
             this.btnPrimaryCallback.bind(this), 
             this.btnSecondaryCallback.bind(this)
         );
@@ -141,7 +144,7 @@ export class NewProductPage {
         }
     }
     
-
+    
     
 }
 

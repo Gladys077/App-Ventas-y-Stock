@@ -1,8 +1,9 @@
 
-
 export class ButtonContainer {
     constructor(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback,iconPrimary,iconSecondary) {
+        // Este el contenedor con botones 
         this.buttonContainer = this.createButtonContainer(btnPrimary, btnSecondary,iconPrimary,iconSecondary);
+        // Agrego los eventos correspondientes
         this.addEventListeners(btnPrimaryCallback, btnSecondaryCallback);
     }
 
@@ -23,11 +24,14 @@ export class ButtonContainer {
         const button = document.createElement('button');
         button.className = className;
         // button.textContent = text;
-            const icon = document.createElement("div");
-            icon.innerHTML=`${icon}`;
-            const texto = document.createElement("span");
-                texto.textContent=text;
-        button.append(icon,texto);
+        const iconDiv = document.createElement("div");
+        iconDiv.innerHTML = icon;
+
+        // Contenedor para el texto
+        const texto = document.createElement("span");
+        texto.textContent=text;
+
+        button.append(iconDiv,texto);
         return button;
     }
 

@@ -1,12 +1,9 @@
 export function navigateToPage(page) {
+/*
+    window.history.pushState(null, '', `/${page}`); // Esto muestra la página en el navegador
+    */
     document.body.innerHTML = '';
 
-    // window.history.pushState(null, '', `/${page}`); // Esto muestra la página en el navegador
-//     loadPage(page);  //Carga el contenido de la página
-
-// }
-// function loadPage(page){
-//     document.body.innerHTML = '';
 
     switch(page) {
         //---------------Primeras Páginas
@@ -231,13 +228,16 @@ export function navigateToPage(page) {
     }
 }
 
+/*
+// Maneja cambios en el historial del navegador
+window.addEventListener('popstate', () => {
+    const currentPage = window.location.pathname.slice(1) || 'Login';
+    navigateToPage(currentPage); // Carga la página actual basada en la URL
+});
 
-// Manejar la navegación del navegador (botones atrás/adelante)
-// window.addEventListener('popstate', () => {
-//     loadPage(window.location.pathname.slice(1) || 'Login');
-// });
-
-// // Manejar la carga inicial de la página
-// window.addEventListener('load', () => {
-//     loadPage(window.location.pathname.slice(1) || 'Login');
-// });
+// Carga inicial
+window.addEventListener('load', () => {
+    const initialPage = window.location.pathname.slice(1) || 'Login';
+    navigateToPage(initialPage); // Carga la página inicial
+});
+*/

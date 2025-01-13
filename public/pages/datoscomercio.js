@@ -62,7 +62,7 @@ export class DatosComercio {
     }
 
 }/*fin class DatosComercio */
-new DatosComercio;
+// new DatosComercio;
 
 async function agregarComercio(e){
     e.preventDefault();
