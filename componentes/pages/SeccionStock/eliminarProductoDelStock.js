@@ -1,6 +1,6 @@
 import { Header } from '../../js/header.js';
 import { Footer } from '../../js/footer.js';
-import { iconoVolver } from '../../js/iconosSVG.js';
+import { iconoVolver, iconoEliminarProducto, iconoCancel, iconoCancelViolet } from '../../js/iconosSVG.js';
 import { createSearchContainer, RadioProductList, verificarCss } from '../../js/utils.js';
 import { ButtonContainer } from '../../js/btnsContainer.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
@@ -78,7 +78,8 @@ export class EliminarProductosPage {
             'Cancelar', 
             this.onEliminarClick.bind(this),
             this.onCancelarClick.bind(this),
-
+            iconoEliminarProducto,
+            iconoCancelViolet
         );
         this.footer.getElement().appendChild(buttonContainer.getButtonContainer());
         document.body.appendChild(this.footer.getElement());
