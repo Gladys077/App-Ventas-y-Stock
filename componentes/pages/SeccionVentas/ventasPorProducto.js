@@ -9,6 +9,18 @@ export class ProductosVendidos {
     constructor() {
         document.body.innerHTML = '';
         this.ventasPorProducto = null;
+
+        // Limpia el producto seleccionado al salir de la página ("beforeunload es un evento del navegador que se activa cuando el usuario cierra la pestaña o ventana del navegador; cuando recarga la pág., o cuando se navega a otra pág.")
+        window.addEventListener('beforeunload', () => {
+            localStorage.removeItem('selectedProduct');
+
+            // Limpiar también el título de la card si existe
+            const titleElement = document.querySelector('.card-title');
+            if (titleElement) {
+                titleElement.textContent = '';
+            }
+        });
+
         this.createHeader();
         this.createMain();
         this.createFooter();    
@@ -95,7 +107,14 @@ export class ProductosVendidos {
 
         const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
         const selectedProductName = selectedProduct ? selectedProduct.nombre : 'Nombre_del_producto';
-        this.ventasPorProducto = new CardVtasPorProducto(selectedProductName, 'Buscar', true, () => this.onClick(), 'Ventas por producto', 'Ver la lista por fecha', 'VentasXProdXFecha');
+        this.ventasPorProducto = new CardVtasPorProducto(
+            selectedProductName || 'Nombre del producto', 
+            'Buscar', 
+            true, 
+            () => this.onClick(), 
+            'Ventas por producto', 
+            'Ver la lista por fecha', 
+            'VentasXProdXFecha');
         // document.body.appendChild(this.ventasPorProducto.getElement());
         main.appendChild(this.ventasPorProducto.getElement());
 

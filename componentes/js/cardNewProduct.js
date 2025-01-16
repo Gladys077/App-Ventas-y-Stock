@@ -75,6 +75,7 @@ export class CardNewProduct {
                 border-radius: 4px;
                 font-size: 16px;
                 transition: border-color 0.3s;
+                color: black;
 
                 &.interiorInput {
                     text-align: center;
@@ -529,10 +530,6 @@ handleProveedorSubmit(e) {
         const label = document.createElement('label');
         label.textContent = 'Precio de venta';
 
-        // this.precioVentaDisplay = document.createElement('div');
-        // this.precioVentaDisplay.className = 'precio-venta-display';
-        // this.precioVentaDisplay.textContent = '$ 0';
-        // Cambiar de div a input
         this.precioVentaDisplay = document.createElement('input');
         this.precioVentaDisplay.className = 'precio-venta-display';
         this.precioVentaDisplay.type = 'number';
@@ -571,7 +568,7 @@ handleProveedorSubmit(e) {
 
     mostrarPrecioVenta() {
         const precioVenta = this._producto.costo * (1 + this._producto.porcentaje / 100);
-    this.precioVentaDisplay.value = precioVenta.toFixed(2); // Actualiza el valor del input correctamente
+        this.precioVentaDisplay.value = precioVenta.toFixed(2); // Actualiza el valor del input correctamente
     }
 
     createPedidoOptional() {
@@ -623,33 +620,48 @@ handleProveedorSubmit(e) {
     }
 
     validarCampos() {
-        const producto = this._producto;
+        // Obtiene los valores actuales directamente del DOM
+        const nombre = document.querySelector('.productInput').value;
+        const proveedor = document.querySelector('.proveedorSelect').value;
+        const costo = parseFloat(document.getElementById('costo').value);
+        const porcentaje = parseFloat(document.getElementById('porcentaje').value);
     
-        if (!producto.nombre.trim() || 
-        producto.proveedor === 'Selecciona el proveedor' || 
-        producto.costo <= 0 ||
-        producto.porcentaje < 0) {
-            
-            new Notification('../../img/emojis/pare.png', '¡Espera! Te falta completar algún dato.', 'error');
+        // Limpiar los bordes rojos anteriores
+        document.querySelector('.productInput').style.borderColor = 'var(--color-secundario)';
+        document.querySelector('.proveedorSelect').style.borderColor = 'var(--color-secundario)';
+        document.getElementById('costo').style.borderColor = 'var(--color-secundario)';
+        document.getElementById('porcentaje').style.borderColor = 'var(--color-secundario)';
+    
+        if (!nombre.trim()) {
+            new Notification('../../img/emojis/pare.png', 'Por favor, ingresa el nombre del producto.', 'error');
+            return false;
+        } 
+        
+        if (proveedor === 'Selecciona el proveedor') {
+            new Notification('../../img/emojis/pare.png', 'Por favor, selecciona un proveedor.', 'error');
+            return false;
+        } 
+        
+        if (isNaN(costo) || costo <= 0) {
+            new Notification('../../img/emojis/pare.png', 'Por favor, ingresa un costo válido.', 'error');
+            return false;
+        } 
+        
+        if (isNaN(porcentaje) || porcentaje < 0) {
+            new Notification('../../img/emojis/pare.png', 'Por favor, ingresa un porcentaje válido.', 'error');
             return false;
         }
     
-        return true;
+        return true; // Todos los datos son válidos
     }
 
     obtenerDatosProducto() { 
-        const producto = document.querySelector('.productInput').value;
-        const proveedor = document.querySelector('.proveedorSelect').value;
-        const costo = parseFloat(document.querySelector('.costoInput').value);
-        const porcentaje = parseFloat(document.querySelector('.porcentajeInput').value);
-        const stockMinimo = parseInt(document.querySelector('.stock-check input').value, 10) || 0;
-    
         return {
-            nombre: producto,
-            proveedor: proveedor,
-            costo: costo,
-            porcentaje: porcentaje,
-            stockMinimo: stockMinimo
+            nombre: document.querySelector('.productInput').value.trim(),
+            proveedor: document.querySelector('.proveedorSelect').value,
+            costo: parseFloat(document.getElementById('costo').value) || 0,
+            porcentaje: parseFloat(document.getElementById('porcentaje').value) || 0,
+            stockMinimo: parseInt(document.querySelector('.stock-check input').value, 10) || 0
         };
     }
 }

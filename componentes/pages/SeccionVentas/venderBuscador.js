@@ -14,6 +14,11 @@ export class VenderProductSearchPage {
         this.createHeader();
         this.createMain();
         this.createFooter();
+
+         // Limpia el producto seleccionado al salir o actualizar la página
+         window.addEventListener('beforeunload', () => {
+            localStorage.removeItem('selectedProduct');
+        });
     }
 
     getElement() {
@@ -25,7 +30,7 @@ export class VenderProductSearchPage {
         document.body.appendChild(header.getElement());
     }
 
-    createMain(){
+    createMain() {
         const main = document.createElement('main');
         main.style.maxheight = "calc(100vh - 270px)";
         

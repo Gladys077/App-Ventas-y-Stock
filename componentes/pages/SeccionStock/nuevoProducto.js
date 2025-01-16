@@ -12,7 +12,6 @@ export class NewProductPage {
         document.body.innerHTML = ''; 
         this.createHeader();
         this.createMain();
-        this.createFooter();
     }
     getElement() {
         return this.element;

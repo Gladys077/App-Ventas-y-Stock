@@ -95,7 +95,7 @@ main{
         }
          
         .cancelar{
-            background-color: var(--color-blanco);
+            background-color: var(--background-color);
             color: var(--color-primario);
             &:hover {
                 background-color: var(--color-hover);

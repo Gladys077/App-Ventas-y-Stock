@@ -9,8 +9,9 @@ export class CardEditProduct extends CardNewProduct {
         const inputGroup = document.createElement('div');
         inputGroup.classList = 'input-group';
 
-        const productName = document.createElement('h2');
-        productName.textContent = this._title;
+        const productName = document.createElement('input');
+        productName.type = "text";
+        productName.value = this._title;
         productName.classList = 'productInput card-title tit';
 
         productName.addEventListener('input', (e) => {
@@ -22,9 +23,11 @@ export class CardEditProduct extends CardNewProduct {
     }
 
     updateCardTitle(productName) {
-        const titleElement = this._element.querySelector('.card-title');
+        this.cardEditProduct.title = productName;
+
+        const titleElement = this.cardEditProduct.getElement().querySelector('.card-title');
         if (titleElement) {
-            titleElement.textContent = productName;
+            titleElement.value = productName || ''; 
         }
     }
 
@@ -50,7 +53,7 @@ export class CardEditProduct extends CardNewProduct {
         const costoInput = this._element.querySelector('.costoInput');
         const porcentajeInput = this._element.querySelector('.porcentajeInput');
         const stockMinimoInput = this._element.querySelector('.stock-check input');
-        const pedidoOptionalInput = this._element.querySelector('.pedido-optional input'); // Campo opcional
+        const pedidoOptionalInput = this._element.querySelector('.pedido-optional input'); 
 
         productName.value = this._producto.nombre;
         proveedorSelect.value = this._producto.proveedor;
@@ -63,7 +66,7 @@ export class CardEditProduct extends CardNewProduct {
     }
 
     createForm() {
-        // Llamar al formulario de la clase base sin duplicar elementos
+        // Llama al formulario de la clase base sin duplicar elementos
         return super.createForm();
     }
 }

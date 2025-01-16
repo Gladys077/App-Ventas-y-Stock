@@ -15,7 +15,7 @@
     padding: 12px;
     border-radius: 16px;
     background-color: var(--color-secundario);
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     align-items: center;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.24);

@@ -85,14 +85,10 @@ export class EditProductPage {
 
         document.body.appendChild(main);
 
-        const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
-        // const selectedProductName = selectedProduct ? selectedProduct.nombre : 'Nombre_del_producto';
+        const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));        
         
-        
-    
 
         this.cardEditProduct = new CardEditProduct(
-            // selectedProductName,
             'Guardar', 
             'Cancelar', 
             this.btnPrimaryCallback.bind(this), 
@@ -130,6 +126,7 @@ export class EditProductPage {
                 if (guardadoExitoso) {
                     new Notification('../../../img/emojis/like.png', '¡Producto actualizado exitosamente!', 'success');
                     navigateToPage('MenuStock');
+
                 } else {
                     new Notification('../../../img/emojis/pare.png', '¡Ups! Hubo un fallo al guardar los cambios. Por favor, intenta de nuevo.', 'error');
                 }
@@ -189,7 +186,7 @@ export class EditProductPage {
         this.cardEditProduct.title = productName;
         const titleElement = this.cardEditProduct.getElement().querySelector('.card-title');
         if (titleElement) {
-            titleElement.textContent = productName;
+            titleElement.value = productName;
         }
     }
 

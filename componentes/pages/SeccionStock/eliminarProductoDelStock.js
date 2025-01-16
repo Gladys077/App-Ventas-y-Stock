@@ -77,7 +77,8 @@ export class EliminarProductosPage {
             'Eliminar', 
             'Cancelar', 
             this.onEliminarClick.bind(this),
-            this.onCancelarClick.bind(this)
+            this.onCancelarClick.bind(this),
+
         );
         this.footer.getElement().appendChild(buttonContainer.getButtonContainer());
         document.body.appendChild(this.footer.getElement());
@@ -110,7 +111,6 @@ export class EliminarProductosPage {
     removeProductFromStock(producto) {
         // Lógica para eliminar el producto del stock - VER CON LIO
         console.log('Producto eliminado:', producto);
-        // Aquí iría la lógica para eliminar el producto de la BBDD
     }
 
 }

@@ -66,10 +66,12 @@
 body{
     background: linear-gradient(var(--color-fondo), var(--color-blanco), var(--color-blanco));
     width: 100vw;
-    min-height: 100vh;
     font-family: Roboto, sans-serif;
     display: flex;
     flex-direction: column;
+    
+    min-height: 100vh;
+    /* margin: 0; */
     align-items: center; 
     align-content: center; 
 }
