@@ -1,0 +1,168 @@
+/* Estilos del main menu */
+main {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 80px);
+    justify-content: space-between; /* Para mantener los elementos separados */
+}
+
+
+.menu{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+    align-items: center;
+}
+/* Pestañas: ventas-stock-perfiles */
+.main-menu {
+    max-width: 400px;
+    max-height: 48px;
+    width: calc(100vw - 32px);
+    display: flex;
+    margin-top: 10px;
+    /* margin-bottom: 8px; */
+    z-index: 2;
+}
+
+.tab {
+    max-height: 48px;
+    flex: 1;
+    padding: 10px;
+    background-color: var(-background-fondo);
+    border: 1px solid var(--secondary-color);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--primary-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+}
+.left-btn{
+    border-radius: 50px 0 0 50px;
+}
+.left-btn:active {
+    background-color: var(--primary-color);
+    color: white;
+}
+.right-btn{
+    border-radius: 0 50px 50px 0;
+}
+
+.tab:hover {
+    transform: scale(90%);
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.tab.active {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+}
+
+/* Estilos del contenedor de botones de ventas */
+.botonera-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 40px 20px 20px 20px;
+    width: calc(100% - 32px);
+    min-height: calc(100vh - 185px);
+    max-width: 400px;
+    margin-top: -20px;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+}
+
+.botonera-container button {
+    background-color: var(--background-color);
+    border: 2px solid var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: calc(50% - 5px); 
+    height: auto; 
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;
+}
+.botonera-container .btn-large {
+    min-width: 100%;
+}
+
+.botonera-container button img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.botonera-container button:hover {
+    background-color: var(--color-hover);
+    transform: scale(95%);
+    color: white;
+    
+}
+
+.large{
+    width: calc(100% - 32px); 
+    align-content: center;
+}
+
+.botonera-vertical {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+    margin-bottom: 10px;
+    max-height: 20vh;
+}
+
+.botonera-vertical img {
+    display: block;
+    margin: 0 auto;
+}
+
+.botonera-vertical h3 {
+    text-align: center;
+}
+
+/* Estilos del footer */
+footer {
+    background-color: transparent; 
+    color: var(--primary-color); 
+    text-align: center;
+    padding: 10px;
+    bottom: 0;
+    width: 100%;
+    position: relative; /*cambié fixed por relative*/
+    margin-top: auto; /* Empuja el footer hacia abajo */
+}
+
+footer button {
+    background-color: transparent; 
+    border: none; 
+    color: var(--primary-color); 
+    font-size: 16px; 
+    cursor: pointer;
+}
+
+.logout-container {
+    border: none;
+    background-color: transparent; 
+
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 20px; 
+}
+
+.logout-container img {
+    width: 24px;
+    height: 24px;
+}
+
+.logout-text {
+    font-size: 16px;
+    display: flex;
+    flex: end;
+}
