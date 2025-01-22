@@ -1,5 +1,5 @@
 import { Header } from "../..//js/header.js";
-import { iconoVolver, iconoHistorial } from "../..//js/iconosSVG.js";
+import { iconoVolver, iconoHistorial, iconoGuardar, iconoAZ } from "../..//js/iconosSVG.js";
 import { navigateToPage } from "../..//js/navigateToPage.js";
 import Main from "../../js/main.js";
 import { TablaEncabezado, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
@@ -50,7 +50,7 @@ export class PlanillaPedidoProximo {
 
     createAzBtn=()=>{
         const encabezado = document.querySelector(".tabla_encabezados");
-        this.btn = new BtnFlotante("AZprimario", "az-btn",()=>{console.log("Función para ordenar alfabéticamente la lista de pedido");})
+        this.btn = new BtnFlotante(iconoAZ, "az-btn",()=>{console.log("Función para ordenar alfabéticamente la lista de pedido");})
         encabezado.appendChild(this.btn.getElement());
     }
 

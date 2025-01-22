@@ -4,18 +4,16 @@
     this._iconSrc = iconSrc;
     this._message = message;
     this._confirmCallback = ConfirmCallback;
-    this._cancelCallback;
-    // this._modalElement;
     this._padre = document.querySelector(padre);
-
     this.createModal();
   }
-  createModal() {
 
+  createModal() {
     this.agregarCss();
+
     // Crear el modal sólo si no existe
     const modal = document.querySelector('.modalDialogo')
-    if (modal==null || modal==NaN || modal=={}) {
+    if (!modal) {
       this._modalElement = document.createElement("div");
       this._modalElement.classList.add("modalDialogo");
 
@@ -33,7 +31,7 @@
       `;
 
       // Funcionalidad a los btns
-      this._modalElement.querySelector('.btn-cancel').addEventListener('click', () => this.closeModal());
+      this._modalElement.querySelector('.btn-cancel').addEventListener('click', () => {this.closeModal()});
 
       this._modalElement.querySelector('.btn-confirm').addEventListener('click', () => {
         if (typeof this._confirmCallback === 'function') {
@@ -49,8 +47,7 @@
 
   closeModal() {
     if (this._modalElement) {
-     const padre = this._modalElement.parentNode;
-     padre.removeChild(this._modalElement);
+     this._modalElement.remove();
     }
   }
 

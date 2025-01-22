@@ -1,6 +1,6 @@
 .button-container {
     max-width: calc(100% - 0px);
-    width: 500px;
+    width: 400px;
     display: flex;
     justify-content: center;
     padding: 10px;
@@ -28,8 +28,14 @@
         &:active {
             transform: scale(90%);
             }
+        div svg{
+            height: 24px;
+            width: 24px;
+            margin-right: 8px;
+        }
+
     }
-    .button-container .guardar {
+    .guardar {
         background-color: var(--color-primario);
         color: white;
         &:hover {
@@ -38,8 +44,16 @@
         &:active {
             transform: scale(90%);
         }
+        
+        div svg{
+            height: 24px;
+            width: 24px;
+            margin-right: 8px;
+            filter: invert(1)
+        }
     }
 }
+
 
 
 

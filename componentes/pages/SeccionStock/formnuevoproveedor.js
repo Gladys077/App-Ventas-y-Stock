@@ -1,14 +1,16 @@
-import { Header, iconoVolver, iconoMenu } from "../../js/header.js";
-import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js";
+import { Header } from "../../js/header.js";
+import { iconoVolver, iconoMenu, iconoCancelViolet, iconoGuardar } from "../../js/iconosSVG.js";
 import Main from "../../js/main.js";
 import { CrearInput , CrearTextArea} from "../../js/formulariosvarios.js";
-import { conexionAPI } from "../../../public/js/services/conectionFakeApi.js";
+// import { conexionAPI } from "../../../public/js/services/conectionFakeApi.js";
 import { ButtonContainer } from "../../js/btnsContainer.js";
 import { navigateToPage } from '../../js/navigateToPage.js';
+import { Notification } from "../../js/notificacion.js";
 
 
 export class NuevoProveedor {
     constructor(){
+        document.body.innerHTML = ''; 
         this.createHeader();
         this.mainPedido=this.createMain();
         this.createInputs();
@@ -17,7 +19,7 @@ export class NuevoProveedor {
     }
 
     createHeader=()=>{
-        this.header = new Header("Nuevo proveedor", iconoVolver, iconoMenu,()=>navigateToPage('stockcargaxremito'),()=>navigateToPage('pedidolistaxproveedor'));
+        this.header = new Header("Nuevo proveedor", iconoVolver, iconoMenu, ()=>window.history.back(), ()=>navigateToPage('MenuStock'));
         document.body.appendChild(this.header.getElement());
         return
     }
@@ -59,16 +61,17 @@ export class NuevoProveedor {
 
     createButtonsForm=()=>{
         const form= document.querySelector("form");
-        this.botones= new ButtonContainer("Guardar", "Cancelar",
-                                                            (e)=>{
-                                                                    agregarProveedor(e);
-                                                                    form.reset();},
-                                                             ()=>{form.reset();},
-                                                             "saveWhite" ,"cancelViolet")
+        this.botones= new ButtonContainer(
+            "Guardar", 
+            "Cancelar",
+            (e)=>{ agregarProveedor(e); // Llama a la función para guardar
+                   form.reset();},
+            (e) => { e.preventDefault(); // Evita comportamiento predeterminado (como recargar la página)
+            form.reset();}, // Limpia los campos escritos
+            iconoGuardar,
+            iconoCancelViolet);
         form.appendChild(this.botones.getButtonContainer());
-    }
-
-
+    };
 
 }/*fin class NuevoProveedor */
 new NuevoProveedor;
@@ -82,6 +85,62 @@ async function agregarProveedor(e){
     const email= document.querySelector(".contenedor-email input").value;
     const notas= document.querySelector(".contenedor-notas textarea").value;
     console.log(nombre, vendedor, cel, email, notas);
-    await conexionAPI.nuevoproveedor(nombre,[],vendedor,cel,email,notas)
-}/*fin agregarProveedor */
+    // await conexionAPI.nuevoproveedor(nombre,[],vendedor,cel,email,notas)
+
+
+    // Verificar campos obligatorios
+    if (!nombre) {
+        new Notification(
+            '../../../img/emojis/pare.png',
+            'Faltan completar el nombre de la empresa proveedora',
+            'error'
+        );
+    } else if (!vendedor) {
+            new Notification(
+                '../../../img/emojis/pare.png',
+                'Faltan completar el nombre del vendedor',
+                'error'
+            );
+    } else if (!cel) {
+                new Notification(
+                    '../../../img/emojis/pare.png',
+                    'Falta completar el número de teléfono o celular',
+                    'error'
+                );
+            } else {
+                
+                // Si toda la información está completa, puedes proceder a guardar
+                // await conexionAPI.nuevoproveedor(nombre, [], vendedor, cel, email, notas);
+
+                new Notification(
+                    '../../../img/emojis/like.png',
+                    '¡Proveedor guardado exitosamente!',
+                    'success'
+                );
+                // Aquí llamarías a la función para guardar el proveedor
+                form.reset(); // Vacía los campos únicamente si la información se guardó correctamente
+            }}
+
+    // Guardar la información
+    try {
+        console.log(nombre, vendedor, cel, email, notas);
+
+        // Notificación de éxito
+        new Notification(
+            '../../../img/emojis/like.png',
+            '¡El proveedor se guardó correctamente!',
+            'success'
+        );
+    } catch (error) {
+        console.error(error);
+        new Notification(
+            '../../../img/emojis/triste.png',
+            'Hubo un error al guardar el proveedor.',
+            'error'
+        );
+    }
+
+
+
+/*fin agregarProveedor */
 

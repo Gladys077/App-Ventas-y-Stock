@@ -86,7 +86,7 @@ export class ListaProveedores {
 
         // Fab extended (nuevo proveedor)
         const iconSVG = iconoProveedores; 
-        const extendedFabButton = new ExtendedFabButton(iconSVG, 'Nuevo Proveedor', () => navigateToPage('nuevoProveedor'));
+        const extendedFabButton = new ExtendedFabButton(iconSVG, 'Nuevo Proveedor', () => navigateToPage('FormNuevoProveedor'));
     
         const footerElement = document.querySelector('footer');
         footerElement.appendChild(extendedFabButton.getElement());
