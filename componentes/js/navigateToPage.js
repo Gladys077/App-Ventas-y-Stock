@@ -193,6 +193,13 @@ export function navigateToPage(page) {
             });
             break;
 
+        case 'ListarPorProveedor':
+            import('../pages/SeccionStock/pedidolistaxproveedor.js').then(module => {
+                new module.PlanillaPedidoProximo();
+            });
+            break;
+
+
         case 'PedidoHistorial':
             import('../pages/SeccionStock/pedidohistorial.js').then(module => {
                 new module.PlanillaPedidoHistorial();

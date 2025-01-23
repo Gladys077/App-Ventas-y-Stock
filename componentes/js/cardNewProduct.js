@@ -188,7 +188,6 @@ export class CardNewProduct {
 
         }
        
-
             .card-title {
                 min-height: 48px;
                 height: auto;

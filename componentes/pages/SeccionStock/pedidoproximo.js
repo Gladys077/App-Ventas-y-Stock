@@ -1,10 +1,13 @@
-import { Header } from "../..//js/header.js";
-import { iconoVolver, iconoHistorial, iconoGuardar, iconoAZ } from "../..//js/iconosSVG.js";
-import { navigateToPage } from "../..//js/navigateToPage.js";
+import { Header } from "../../js/header.js";
+import { iconoVolver, iconoHistorial, iconoGuardar, iconoAZ, iconoAgregarManualmente, iconoPedidoPorProveedorViolet } from "../../js/iconosSVG.js";
+import { navigateToPage } from "../../js/navigateToPage.js";
 import Main from "../../js/main.js";
-import { TablaEncabezado, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
-import { Footer } from "../../js/footer.js"
-import { ButtonContainer } from "../../js/btnsContainer.js"
+import { TablaEncabezado, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js";
+import { Footer } from "../../js/footer.js";
+import { ButtonContainer } from "../../js/btnsContainer.js";
+import { Notification } from "../../js/notificacion.js";
+import { ModalDialogo } from "../../js/modalDialogo.js";
+import { ModalInput } from "../../js/modalInput.js";
 // import { conexionAPI } from "../js/services/conectionFakeApi.js"
 
 
@@ -24,7 +27,6 @@ export class PlanillaPedidoProximo {
         this.createTablaFooter();
 
         this.createFooter();
-        // this.createEnlace();
         this.createButtonsFooter();
         this.createAzBtn();
 
@@ -70,14 +72,10 @@ export class PlanillaPedidoProximo {
             input.className = "cant";
             input.value=`${cant}`;
     
-        
-
             const prod = document.createElement("div");
             prod.className="producto";
             prod.textContent= `${nombre}`;
-            // console.log(nombre);
             
-
             const precio = document.createElement("div");
             precio.className = "precio";
 
@@ -184,7 +182,7 @@ export class PlanillaPedidoProximo {
 
     createAgregarManualmente= ()=>{
         const mainPedido = document.querySelector("main");
-        this.boton= new BtnFlotante("agregaManualmente", "contenedor-btn-flotante agregarManualmente", ()=>{alert("Debe abrir un modal para agregar artículos manualmente");},"Agregar al pedido")
+        this.boton= new BtnFlotante(iconoAgregarManualmente, "contenedor-btn-flotante agregarManualmente", ()=>{alert("Debe abrir un modal para agregar artículos manualmente");},"Agregar al pedido")
         mainPedido.appendChild(this.boton.getElement());
     }
 
@@ -200,24 +198,60 @@ export class PlanillaPedidoProximo {
         return
     }
 
-    // createEnlace=()=>{
-    //     const footer =document.querySelector("footer");
-    //     const enlace = document.createElement("a");
-    //     enlace.href="#";//hay que agregar el enlace a pedidolistaxproveedor.js
-    //     enlace.textContent="Listado por proveedor";
-    //     enlace.addEventListener("click", ()=>{
-    //         loadView("pedidolistaxproveedor")
-    //     })
-    //     footer.appendChild(enlace);
-    //     return
-    // }
-
     createButtonsFooter=()=>{
         const footerRegistro= document.querySelector("footer");
-        this.botones= new ButtonContainer("Finalizar Pedido", "Listar por Proveedor", ()=>{console.log("se guardó pedido");},()=>{loadView("pedidolistaxproveedor")},"save2","pedidoPorProveedorViolet" )
+        this.botones= new ButtonContainer("Finalizar Pedido", "Listar por Proveedor", this.btnPrimaryCallback.bind(this),()=>navigateToPage("ListarPorProveedor"), iconoGuardar, iconoPedidoPorProveedorViolet)
         footerRegistro.appendChild(this.botones.getButtonContainer());
     }
-
+    
+    btnPrimaryCallback(event) {
+        if (event) event.preventDefault();
+    
+        // Verificar si la planilla está vacía
+        const productos = document.querySelectorAll(".tabla_lineaArticulo");
+        if (productos.length === 0) {
+            new Notification('../../../img/emojis/pensando.png', 'No hay ningún producto en esta lista', 'error');
+            return;
+        }
+    
+        // Crear un modal para confirmar la acción
+        new ModalDialogo(
+            "../../../img/iconos/warning.png",
+            "Tu pedido se guardará en el historial y se vaciará la planilla",
+            () => {
+                // Si el usuario confirma, mostrar un input para el nombre del pedido
+                new ModalInput('Nombre del Pedido', (nombrePedido) => {
+                    if (nombrePedido) {
+                        // Obtener los datos de la planilla
+                        const planillaDatos = Array.from(productos).map(producto => {
+                            const cant = producto.querySelector(".cant").value;
+                            const nombre = producto.querySelector(".producto").textContent;
+                            const precio = producto.querySelector(".precio span").textContent;
+                            return { cantidad: cant, producto: nombre, precio: parseFloat(precio) };
+                        });
+    
+                        // Guardar en localStorage o BBDD (ejemplo con localStorage)
+                        const historialPedidos = JSON.parse(localStorage.getItem('historialPedidos')) || [];
+                        historialPedidos.push({ nombre: nombrePedido, fecha: new Date(), productos: planillaDatos });
+                        localStorage.setItem('historialPedidos', JSON.stringify(historialPedidos));
+    
+                        // Mostrar notificación de éxito
+                        new Notification('../../../img/emojis/like.png', 'Pedido guardado exitosamente en el historial.', 'success');
+    
+                        // Limpiar la planilla
+                        const tablaDetalles = document.querySelector(".tabla_detalles");
+                        while (tablaDetalles.firstChild) {
+                            tablaDetalles.removeChild(tablaDetalles.firstChild);
+                        }
+                        calcularTotal();
+                    } else {
+                        new Notification('../../../img/emojis/preocupado.png', 'Debe ingresar un nombre para el pedido.', 'error');
+                    }
+                });
+            }
+        );
+    }
+    
 }
 
 new PlanillaPedidoProximo();

@@ -1,7 +1,9 @@
-import { Header, iconoVolver, iconoMenu } from "../..//js/header.js";
+import { Header } from "../../js/header.js";
+import { iconoVolver, iconoMenu, iconoDescargar } from "../../js/iconosSVG.js";
+import { navigateToPage } from "../../js/navigateToPage.js"; 
 import Main from "../../js/main.js";
 import { BtnFlotante } from "../../js/registros.js"
-import { conexionAPI } from "../js/services/conectionFakeApi.js"
+// import { conexionAPI } from "../js/services/conectionFakeApi.js"
 
 
 
@@ -18,7 +20,7 @@ export class PlanillaPedidoListaxProveedor{
     }
 
     createHeader=()=>{
-        this.header = new Header("Pedido listado x proveedor", iconoVolver, iconoMenu,()=>{loadView("pedidoproximo")},()=>{loadView("pedidoproximo");});
+        this.header = new Header("Pedido listado x proveedor", iconoVolver, iconoMenu,()=>navigateToPage("ProximoPedido"),()=>navigateToPage("MenuStock"));
         document.body.appendChild(this.header.getElement());
         return
     }
@@ -106,7 +108,7 @@ export class PlanillaPedidoListaxProveedor{
 
     createBtnFlotante= ()=>{
         const mainPedido=document.querySelector("main");
-        this.btn = new BtnFlotante("descargar","contenedor-btn-flotante _listaxproveedor");
+        this.btn = new BtnFlotante(iconoDescargar,"contenedor-btn-flotante _listaxproveedor");
         mainPedido.appendChild(this.btn.getElement());
 
     }

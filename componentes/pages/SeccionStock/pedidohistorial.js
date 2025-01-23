@@ -1,5 +1,5 @@
 import { Header } from "../../js/header.js";
-import {iconoVolver, iconoMenu} from "../../js/iconosSVG.js";
+import {iconoVolver, iconoMenu, iconoGuardar, iconoCancelViolet} from "../../js/iconosSVG.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
 import Main from "../../js/main.js";
 import { TablaEncabezado, TablaDetalles} from "../../js/registros.js"
@@ -148,7 +148,7 @@ export class PlanillaPedidoHistorial {
 
     createButtonsFooter=()=>{
         const footerRegistro= document.querySelector("footer");
-        this.botones= new ButtonContainer("Guardar", "Cancelar", ()=>{console.log("se guardó pedido");},()=>{loadView("pedidolistaxproveedor")},"save2","cancelViolet" )
+        this.botones= new ButtonContainer("Guardar", "Cancelar", ()=>{console.log("se guardó pedido");},()=>{loadView("pedidolistaxproveedor")},iconoGuardar,iconoCancelViolet)
         footerRegistro.appendChild(this.botones.getButtonContainer());
     }
 
