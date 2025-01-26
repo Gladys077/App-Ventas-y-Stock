@@ -72,7 +72,7 @@ export class ModalInput {
           height: 100%;
           display: block;
           position: fixed;
-          z-index: 5;
+          z-index: 1005;
           top: 0;
           left: 0;
           margin: auto;

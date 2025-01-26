@@ -34,7 +34,10 @@ export class VenderProductSearchPage {
         const main = document.createElement('main');
         main.style.maxheight = "calc(100vh - 270px)";
         
-        const productSearch = createSearchContainer(this.onProductClick.bind(this), ProductList, 'calc(100vh - 240px)');
+        const productSearch = createSearchContainer(
+            this.onProductClick.bind(this), 
+            ProductList, 
+            'calc(100vh - 240px)');
         main.appendChild(productSearch);
 
         // Container para la lista de productos

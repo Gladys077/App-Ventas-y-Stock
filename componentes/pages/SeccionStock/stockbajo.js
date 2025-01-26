@@ -1,5 +1,5 @@
 import { Header } from "../../js/header.js";
-import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js";
+import { iconoVolver, iconoMenu, iconoDescargar } from "../../js/iconosSVG.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
 import Main from "../../js/main.js";
 import { TablaEncabezado, MostrarMainNav, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
@@ -59,7 +59,7 @@ export class PlanillaStockBajo {
 
     createBtnFlotante= ()=>{
         const mainPedido=document.querySelector("main");
-        this.btn = new BtnFlotante("descargar","contenedor-btn-flotante",()=>{alert("descarga exitosa")});
+        this.btn = new BtnFlotante(iconoDescargar,"contenedor-btn-flotante",()=>{alert("descarga exitosa")});
         mainPedido.appendChild(this.btn.getElement());
 
     }
