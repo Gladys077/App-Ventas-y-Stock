@@ -2,7 +2,7 @@ import { Header } from "../../js/header.js";
 import Main from "../../js/main.js";
 import { iconoVolver, iconoLupaN, iconoDescargar } from '../../js/iconosSVG.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
-import { createSearchContainer, ProductList } from '../../js/utils.js';
+import { createSearchContainer, RadioProductList, verificarCss } from '../../js/utils.js';
 import { TablaEncabezado, MostrarMainNav, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js";
 import { ModalInput } from "../../js/modalInput.js";
 import { Notification } from "../../js/notificacion.js";
@@ -10,6 +10,8 @@ import { Notification } from "../../js/notificacion.js";
 export class PlanillaStock {
     constructor() {
         document.body.innerHTML = '';
+        if(!verificarCss('search-results-eliminar')) this.agregarCss();
+        
         this.selectedProducts = [];
         this.createHeader();
         this.mainPedido = this.createMain();
@@ -23,6 +25,38 @@ export class PlanillaStock {
         window.addEventListener('beforeunload', () => {
             localStorage.removeItem('selectedProduct');
         });
+    }
+
+    agregarCss() {
+        const style = document.createElement('style');
+        style.textContent = `
+            
+            .ul-product-list {
+                width: calc(100vw - 32px);
+                max-width: 380px;
+                padding: 0;
+                margin-top: 16px;
+                list-style-type: none;
+                text-align: left;
+                height: calc(100vh - 10px));
+                overflow-y: auto;
+                background-color: #fff;
+
+                .li-product-list {
+                    border-bottom: 1px solid var(--color-secundario);
+                    padding: 8px 0;
+                    padding-left: 16px;
+                    word-wrap: break-word;
+                    overflow-wrap: break-word;
+
+                    &:first-child {
+                        border-top: 1px solid var(--color-secundario);
+                    }
+                }
+
+
+	    `
+        document.head.appendChild(style);
     }
 
     createHeader() {
@@ -79,10 +113,6 @@ export class PlanillaStock {
             unidades.className = "cant";
             unidades.value=`${cant}`;
     
-        
-
-
-        
         lineaArt.append(prod,unidades)
         
         return lineaArt
@@ -130,11 +160,13 @@ export class PlanillaStock {
         overlay.style.paddingTop = '52px';
 
         // Crea contenedor de búsqueda
-        const productSearch = createSearchContainer(
-            this.handleProductSelection.bind(this), 
-            ProductList, 
-            'calc(100vh - 240px)'
-        );
+        // const productSearch = createSearchContainer(
+        //     this.handleProductSelection.bind(this), 
+        //     ProductList, 
+        //     'calc(100vh - 240px)'
+        // );
+        const productSearch = createSearchContainer(this.onProductClick.bind(this), RadioProductList, 'calc(100vh - 280px)', '¡Ese producto no existe en tu stock!');
+        
         productSearch.style.zIndex = '1001';
 
         // Btn para cerrar el overlay
@@ -162,41 +194,30 @@ export class PlanillaStock {
         document.body.appendChild(overlay);
     }
 
-    handleProductSelection(producto) {
-        this.openQuantityModal(producto);
+    // Maneja la selección de un producto en la lista
+onProductClick(producto, event) {
+    if (event.target.closest('.product-radio')) {
+        this.updateStockList(producto);
+    }
+}
+
+updateStockList(selectedProduct) {
+    const tablaDetalles = document.querySelector(".tabla_detalles"); 
+    if (!tablaDetalles) {
+        console.error("No se encontró el contenedor de detalles de la tabla.");
+        return;
     }
 
-    openQuantityModal(producto) {
-        const modal = new ModalInput("Cantidad:",
-            (cantidad) => {
-                const selectedProduct = {
-                    id: producto.id,
-                    nombre: producto.nombre,
-                    precio: producto.precioVenta,
-                    cantidad: parseInt(cantidad, 10)
-                };
+    // Evitar duplicados: verificar si el producto ya está en la tabla
+    const existeProducto = [...tablaDetalles.children].some(linea => 
+        linea.querySelector(".producto")?.textContent === selectedProduct.nombre
+    );
+    if (existeProducto) return;
 
-                // Guarda el producto seleccionado en el stock
-                this.selectedProducts.push(selectedProduct);
-                localStorage.setItem('selectedProducts', JSON.stringify(this.selectedProducts));
-
-                // Actualiza la tabla de stock
-                this.updateStockList(selectedProduct);
-
-                new Notification('../../../img/emojis/like.png', 'Producto añadido al stock', 'success');
-            }, '1'
-        );
-    }
-
-    updateStockList(selectedProduct) {
-        const tablaDetalles = document.querySelector(".tabla_detalles"); 
-        if (tablaDetalles) {
-            const lineaArticulo = this.createLineaArticulo(selectedProduct.cantidad, selectedProduct.nombre);
-            tablaDetalles.appendChild(lineaArticulo);
-        } else {
-            console.error("No se encontró el contenedor de detalles de la tabla.");
-        }
-    }
+    // Crear y agregar la línea del producto
+    const lineaArticulo = this.createLineaArticulo(selectedProduct.cantidad, selectedProduct.nombre);
+    tablaDetalles.appendChild(lineaArticulo);
+}
 
 }
 

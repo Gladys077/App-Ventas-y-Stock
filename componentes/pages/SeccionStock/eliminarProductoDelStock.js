@@ -130,21 +130,21 @@ export class EliminarProductosPage {
         const stockActualizado = stockActual.filter(item => item.id !== producto.id);
         localStorage.setItem('stock', JSON.stringify(stockActualizado));
         
-        // Actualizar la UI después de eliminar
+        // Actualiza la UI después de eliminar
         this.updateProductList('');
     }
     updateProductList(searchTerm) {
-        // Implementar la lógica para actualizar la lista de productos mostrada
+        // Implementa la lógica para actualizar la lista de productos mostrada
         // Por ejemplo:
         const stock = JSON.parse(localStorage.getItem('stock') || '[]');
         const filteredStock = searchTerm ? 
             stock.filter(item => item.nombre.toLowerCase().includes(searchTerm.toLowerCase())) : 
             stock;
         
-        // Limpiar el contenedor de resultados
+        // Limpia el contenedor de resultados
         this.resultContainer.innerHTML = '';
         
-        // Crear y mostrar la nueva lista de productos
+        // Crea y mostrar la nueva lista de productos
         if (filteredStock.length > 0) {
             const ul = document.createElement('ul');
             ul.classList.add('ul-product-list');

@@ -3,7 +3,6 @@ import { iconoVolver, iconoDescargar } from '../../js/iconosSVG.js'
 import { CardVtasPorVendedor } from '../../js/cardVtasPorVendedor.js';
 import { Footer } from '../../js/footer.js';
 import { FabButton } from '../../js/utils.js';
-import { FiltroFecha } from "../../js/registros.js"
 import { Notification } from '../../js/notificacion.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 
