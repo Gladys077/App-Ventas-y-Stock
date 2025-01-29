@@ -18,7 +18,8 @@ export class PlanillaStock {
         this.createMostrarMainNav();
         this.createTablaEncabezado();
         this.createTablaDetalles();
-        this.createTablaFooter();
+        this.createLineaArticulo();
+        this.mostrarLineasArticulos();
         this.createBtnFlotante();
 
         // Limpia productos seleccionados al salir o actualizar la página
@@ -123,7 +124,7 @@ export class PlanillaStock {
 
         const tablaDetalles = document.querySelector(".tabla_detalles");
         const articulos = await conexionAPI.stockDisponible();
-        // console.log(articulos);
+        console.log(articulos);
 
         if(articulos.length===0){
             const mensaje = document.createElement("span");

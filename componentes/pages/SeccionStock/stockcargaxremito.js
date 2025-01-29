@@ -7,20 +7,34 @@ import { navigateToPage } from "../../js/navigateToPage.js";
 import { iconoVolver } from "../../js/iconosSVG.js";
 
 export class PlanillaStockCargaxRemito {
-    constructor(){
+    constructor(id) {
+        this.id = id;
+        this.init();
+    }
+
+    async init() {
         document.body.innerHTML = '';
         this.createHeader();
-        this.mainPedido=this.createMain();
-        this.createMostrarRemito();
+        this.mainPedido = this.createMain();
+        // this.createMostrarRemito();//ver
+        await this.traerRemito(); // Espera que se obtengan los datos antes de continuar
         this.createTablaEncabezado();
         this.createTablaDetalles();
         this.createTablaFooter();
         this.createBtnFlotante();
         this.createFooter();
         this.createButtonsFooter();
-        
-
     }
+
+
+        traerRemito=async()=>{
+            const remito=await conexionAPI.mostrarRemito(this.id);
+            console.log("remito recibido", remito);
+            console.log("remito recibido", remito.numero, remito.fecha, remito.proveedor);
+            const mainPedido= document.querySelector("main");
+            const datosRemito =  new MostrarRemito(remito.numero, remito.fecha, remito.proveedor)
+            mainPedido.appendChild(datosRemito.getElement());
+        }
 
     createHeader=()=>{
         this.header = new Header("Carga de stock por remito", iconoVolver, null,()=>{navigateToPage("MenuCargaDeStock")});
@@ -34,11 +48,11 @@ export class PlanillaStockCargaxRemito {
         return
     }
 
-    createMostrarRemito= ()=>{
-        const mainPedido= document.querySelector("main");
-        this.remito =  new MostrarRemito()
-        mainPedido.appendChild(this.remito.getElement());
-    }
+    // createMostrarRemito= ()=>{
+    //     const mainPedido= document.querySelector("main");
+    //     this.remito =  new MostrarRemito()
+    //     mainPedido.appendChild(this.remito.getElement());
+    // }
 
     createTablaEncabezado= ()=>{
         const mainPedido=document.querySelector("main");

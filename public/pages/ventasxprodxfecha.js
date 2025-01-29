@@ -1,4 +1,4 @@
-import { Header, iconoVolver, iconoMenu, navigateToMenu } from "../../js/header.js";
+import { Header, iconoVolver, iconoMenu } from "../../js/header.js";
 import Main from "../../js/main.js";
 import { TablaEncabezado, MostrarProducto, FiltroFecha, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
 

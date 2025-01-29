@@ -3,23 +3,40 @@ import Main from "../../js/main.js";
 import { MostrarRemito, TablaEncabezado, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
 import { Footer } from "../../js/footer.js";
 import { ButtonContainer } from "../../js/btnsContainer.js";
+import { conexionAPI } from "../js/services/conectionFakeApi.js";
 
 export class PlanillaStockCargaxRemito {
-    constructor(){
+    constructor(id) {
+        this.id = id;
+        this.init();
+    }
+
+    async init() {
         this.createHeader();
-        this.mainPedido=this.createMain();
-        this.createMostrarRemito();
+        this.mainPedido = this.createMain();
+        await this.traerRemito(); // Espera que se obtengan los datos antes de continuar
         this.createTablaEncabezado();
         this.createTablaDetalles();
         this.createTablaFooter();
         this.createBtnFlotante();
         this.createFooter();
         this.createButtonsFooter();
-        
-
     }
 
-    createHeader=()=>{
+
+    
+    traerRemito=async()=>{
+        const remito=await conexionAPI.mostrarRemito(this.id);
+        console.log("remito recibido", remito);
+        console.log("remito recibido", remito.numero, remito.fecha, remito.proveedor);
+        const mainPedido= document.querySelector("main");
+        const datosRemito =  new MostrarRemito(remito.numero, remito.fecha, remito.proveedor)
+        mainPedido.appendChild(datosRemito.getElement());
+    }
+
+    
+    createHeader= () => {
+        
         this.header = new Header("Carga de stock por remito", iconoVolver, iconoMenu,()=>{loadView("stocknuevoremito")},function(){ navigateToMenu('stock'); });
         document.body.appendChild(this.header.getElement());
         return
@@ -30,12 +47,11 @@ export class PlanillaStockCargaxRemito {
         document.body.appendChild(this.main.getElement());
         return
     }
+    
 
-    createMostrarRemito= ()=>{
-        const mainPedido= document.querySelector("main");
-        this.remito =  new MostrarRemito()
-        mainPedido.appendChild(this.remito.getElement());
-    }
+    // createMostrarRemito=()=>{   
+    //     this.traerRemito()
+    // }
 
     createTablaEncabezado= ()=>{
         const mainPedido=document.querySelector("main");
@@ -83,4 +99,4 @@ export class PlanillaStockCargaxRemito {
 
 }
 
-new PlanillaStockCargaxRemito();
+// new PlanillaStockCargaxRemito();

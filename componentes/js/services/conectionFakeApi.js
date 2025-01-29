@@ -18,7 +18,6 @@ async function listaproveedores(){
     }
 }
 
-
 async function nuevoproveedor(nombre, lista=[], vendedor, cel, email,notas){
     const conexion = await fetch("http://localhost:3000/proveedores",{
         method:"POST" ,
@@ -37,24 +36,143 @@ async function nuevoproveedor(nombre, lista=[], vendedor, cel, email,notas){
     return conexionconvertida;
 }
 
-//CRUD PARA COMERCIO
-async function nuevocomercio(nombre, inscripcion, direccion, email, contacto){
-const conexion = await fetch("http://localhost:3000/comercios",{
+///CRUD PARA REMITOS
+
+async function mostrarRemito(id){
+try {
+const conexion = await fetch(`http://localhost:3000/remito/${id}`,{
+    method:"GET",
+    headers:{
+        "Content-type":"application/json",
+    }
+})
+
+const respuesta = await conexion.json();
+return respuesta;
+
+} catch (error) {
+console.error(error)
+
+}
+}
+
+async function nuevoRemito(id,numero,fecha,proveedor,lista){
+const conexion = await fetch("http://localhost:3000/remito",{
 method:"POST" ,
 headers:{"Content-type":"application/json"},   
 body:JSON.stringify({
-    nombre: nombre,
-    inscripcion: inscripcion,
-    direccion:direccion,
-    email:email,
-    contacto: contacto
+    id:id,
+    numero:numero,
+    fecha:fecha,
+    proveedor:proveedor,
+    lista: lista,
 })
 })
 const conexionconvertida = await conexion.json();
 return conexionconvertida;
 }
 
-//CRUD PARA PRODUCTOS________________________________________________________________________________
+//CRUD PARA COMERCIO
+async function nuevocomercio(nombre, inscripcion, direccion, email, contacto){
+    const conexion = await fetch("http://localhost:3000/comercios",{
+        method:"POST" ,
+        headers:{"Content-type":"application/json"},   
+        body:JSON.stringify({
+            nombre: nombre,
+            inscripcion: inscripcion,
+            direccion:direccion,
+            email:email,
+            contacto: contacto
+        })
+    })
+    const conexionconvertida = await conexion.json();
+    return conexionconvertida;
+}
+
+//CRUD PARA PEDIDOS________________________________________________________________________________
+async function listapedidos(){
+    try {
+        const conexion = await fetch("http://localhost:3000/pedidos",{
+            method:"GET",
+            headers:{
+                "Content-type":"application/json",
+            }
+        })
+
+        const respuesta = await conexion.json();
+        return respuesta;
+        
+    } catch (error) {
+        console.error(error)
+        
+    }
+}
+
+async function obtenerpedido(id){
+    try {
+        const conexion = await fetch(`http://localhost:3000/pedidos/${id}`,{
+            method:"GET",
+            headers:{
+                "Content-type":"application/json",
+            }
+        })
+
+        const respuesta = await conexion.json();
+        return respuesta;
+        
+    } catch (error) {
+        console.error(error)
+        
+    }
+}
+
+async function crearpedido(datos){
+    try {
+        const conexion = await fetch("http://localhost:3000/pedidos", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datos)
+            });
+        const conexionconvertida = await conexion.json();
+        return conexionconvertida;    
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+async function actualizarPedido(id, descripcion){
+    try {
+        const conexion = await fetch(`http://localhost:3000/pedidos/${id}`,{
+            method:"PATCH" ,
+            headers:{"Content-type":"application/json"},
+            body:JSON.stringify({
+                descripcion: `${descripcion}`               
+            })
+
+        })
+        if (!conexion.ok) {
+            throw new Error(`Error: ${conexion.status} ${conexion.statusText}`);
+        } else {
+            console.log('Actualización exitosa en db.json');
+        }
+    } catch (error) {
+        console.error('Hubo un problema al actualizar el pedido:', error);
+    }
+
+}
+
+async function borrarpedido(id){
+    const conexion = await fetch(`http://localhost:3000/pedidos/${id}`,{
+        method:"DELETE" ,
+        headers:{"Content-type":"application/json"}
+    })
+    const conexionconvertida = await conexion.json();
+    return conexionconvertida;
+}
+
+//CRUD PARA PRODUCTOS___________________________________________________________________________________        
 async function listaarticulos(){
     try {
         const conexion = await fetch("http://localhost:3000/productos",{
@@ -130,6 +248,25 @@ async function actualizarCant(id){
     return conexionconvertida;
 }
 
+//CRUD PARA STOCK___________________________________________________________________________________        
+async function stockDisponible(){
+try {
+const conexion = await fetch("http://localhost:3000/stock",{
+    method:"GET",
+    headers:{
+        "Content-type":"application/json",
+    }
+})
+
+const respuesta = await conexion.json();
+return respuesta;
+
+} catch (error) {
+console.error(error)
+
+}
+}
+
 export const conexionAPI={
-listaproveedores, nuevoproveedor, nuevocomercio, listaarticulos, articulospedidos, nuevoarticulo, borrararticulo, actualizarCant
+listaproveedores, nuevoproveedor, mostrarRemito, nuevoRemito, nuevocomercio, listapedidos, obtenerpedido, crearpedido, actualizarPedido, borrarpedido, listaarticulos, articulospedidos, nuevoarticulo, borrararticulo, actualizarCant, stockDisponible
 }

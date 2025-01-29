@@ -76,7 +76,7 @@ main{
         background-color: var(--color-primario);
         p{
             font-size: 14px;
-            line-height: 14px;
+            line-height: 18px;
             font-weight: 500;
         }
     }/*fin contenedor-datos-remito. Se usa en remitos para mostras datos del proveedor*/

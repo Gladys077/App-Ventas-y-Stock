@@ -36,6 +36,42 @@
             return conexionconvertida;
         }
 
+///CRUD PARA REMITOS
+
+async function mostrarRemito(id){
+    try {
+        const conexion = await fetch(`http://localhost:3000/remito/${id}`,{
+            method:"GET",
+            headers:{
+                "Content-type":"application/json",
+            }
+        })
+
+        const respuesta = await conexion.json();
+        return respuesta;
+        
+    } catch (error) {
+        console.error(error)
+        
+    }
+}
+
+async function nuevoRemito(id,numero,fecha,proveedor,lista){
+    const conexion = await fetch("http://localhost:3000/remito",{
+        method:"POST" ,
+        headers:{"Content-type":"application/json"},   
+        body:JSON.stringify({
+            id:id,
+            numero:numero,
+            fecha:fecha,
+            proveedor:proveedor,
+            lista: lista,
+        })
+    })
+    const conexionconvertida = await conexion.json();
+    return conexionconvertida;
+}
+
 //CRUD PARA COMERCIO
         async function nuevocomercio(nombre, inscripcion, direccion, email, contacto){
             const conexion = await fetch("http://localhost:3000/comercios",{
@@ -232,5 +268,5 @@ async function stockDisponible(){
 }
 
 export const conexionAPI={
-    listaproveedores, nuevoproveedor, nuevocomercio, listapedidos, obtenerpedido, crearpedido, actualizarPedido, borrarpedido, listaarticulos, articulospedidos, nuevoarticulo, borrararticulo, actualizarCant, stockDisponible
+    listaproveedores, nuevoproveedor, mostrarRemito, nuevoRemito, nuevocomercio, listapedidos, obtenerpedido, crearpedido, actualizarPedido, borrarpedido, listaarticulos, articulospedidos, nuevoarticulo, borrararticulo, actualizarCant, stockDisponible
 }

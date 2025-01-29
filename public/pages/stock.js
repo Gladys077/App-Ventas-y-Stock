@@ -1,13 +1,20 @@
 import { Header, iconoVolver, iconoMenu, navigateToMenu } from "../../js/header.js";
 import Main from "../../js/main.js";
+import { iconoVolver, iconoLupaN, iconoDescargar } from '../../componentes/js/iconosSVG.js';
+import { navigateToPage } from '../../componentes/js/navigateToPage.js';
+import { createSearchContainer, ProductList } from '../../componentes/js/utils.js';
 import { TablaEncabezado, MostrarMainNav,TablaDetalles, TablaFooter,BtnFlotante } from "../../js/registros.js"
 import { conexionAPI } from "../js/services/conectionFakeApi.js"
+import { ModalInput } from "../../componentes/js/modalInput.js";
+import { Notification } from "../../componentes/js/notificacion.js";
 
 
  
 
 export class PlanillaStock {
     constructor(){
+        document.body.innerHTML = '';
+        this.selectedProducts = [];
         this.createHeader();
         this.mainPedido=this.createMain();
         this.createMostrarMainNav();
@@ -19,6 +26,10 @@ export class PlanillaStock {
         this.createBtnFlotante();
         
 
+                // Limpia productos seleccionados al salir o actualizar la página
+                window.addEventListener('beforeunload', () => {
+                    localStorage.removeItem('selectedProduct');
+                });
     }
 
     createHeader=()=>{
@@ -116,6 +127,91 @@ export class PlanillaStock {
     }
 
 
+    
+    openProductSearch() {
+        // Crea overlay para cubrir el main
+        const overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0'; 
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        overlay.style.zIndex = '900';
+        overlay.style.display = 'flex';
+        overlay.style.justifyContent = 'center';
+        overlay.style.paddingTop = '52px';
+
+        // Crea contenedor de búsqueda
+        const productSearch = createSearchContainer(
+            this.handleProductSelection.bind(this), 
+            ProductList, 
+            'calc(100vh - 240px)'
+        );
+        productSearch.style.zIndex = '1001';
+
+        // Btn para cerrar el overlay
+        const closeButton = document.createElement('button');
+        closeButton.textContent = '✕';
+        closeButton.style.position = 'absolute';
+        closeButton.style.fontWeight = 'bold';
+        closeButton.style.left = 'calc(50% + 250px)';  
+        closeButton.style.transform = 'translateX(-50%)';
+        closeButton.style.top = '20px';
+        closeButton.style.right = '20px';
+        closeButton.style.fontSize = '24px';
+        closeButton.style.color = '#fff';
+        closeButton.style.background = 'transparent';
+        closeButton.style.border = 'none';
+        closeButton.style.cursor = 'pointer';
+        closeButton.style.zIndex = '902';
+
+        closeButton.addEventListener('click', () => {
+            document.body.removeChild(overlay);
+        });
+
+        overlay.appendChild(closeButton);
+        overlay.appendChild(productSearch);
+        document.body.appendChild(overlay);
+    }
+
+    handleProductSelection(producto) {
+        this.openQuantityModal(producto);
+    }
+
+    openQuantityModal(producto) {
+        const modal = new ModalInput("Cantidad:",
+            (cantidad) => {
+                const selectedProduct = {
+                    id: producto.id,
+                    nombre: producto.nombre,
+                    precio: producto.precioVenta,
+                    cantidad: parseInt(cantidad, 10)
+                };
+
+                // Guarda el producto seleccionado en el stock
+                this.selectedProducts.push(selectedProduct);
+                localStorage.setItem('selectedProducts', JSON.stringify(this.selectedProducts));
+
+                // Actualiza la tabla de stock
+                this.updateStockList(selectedProduct);
+
+                new Notification('../../../img/emojis/like.png', 'Producto añadido al stock', 'success');
+            }, '1'
+        );
+       
+    }
+
+    updateStockList(selectedProduct) {
+        const tablaDetalles = document.querySelector(".tabla_detalles"); 
+        if (tablaDetalles) {
+            const lineaArticulo = this.createLineaArticulo(selectedProduct.cantidad, selectedProduct.nombre);
+            tablaDetalles.appendChild(lineaArticulo);
+        } else {
+            console.error("No se encontró el contenedor de detalles de la tabla.");
+        }
+    }
+    
 }
 
 new PlanillaStock();
