@@ -138,20 +138,23 @@ export class MostrarProducto{
 }/*fin class MostrarProducto */
 
 export class MostrarRemito{
-    constructor(remito){
-        
+    constructor(num, fech,prov){
+        this.numero=num;
+        this.fecha=fech;
+        this.proveedor=prov;
         this.element=this.agregarMostrarRemito();
     }
-    agregarMostrarRemito = function (remito= "REMITO X")  {
+    agregarMostrarRemito = function ()  {
+        
         const contenedor = document.createElement("section");
             contenedor.className = "contenedor-datos-remito";
             
             const proveedor = document.createElement("p");
-                proveedor.textContent = "Proveedor_"+remito.proveedor;
+                proveedor.textContent = "Proveedor_"+this.proveedor;
             const numero = document.createElement("p");
-                numero.textContent = "Remito N°: " + remito.numero;   
+                numero.textContent = "Remito N°: " + this.numero;   
             const fecha = document.createElement("p");
-                fecha.textContent ="Fecha: " +remito.fecha;     
+                fecha.textContent ="Fecha: " +this.fecha;     
 
 
             contenedor.append(proveedor, numero, fecha);

@@ -61,6 +61,8 @@ export class NuevoRemito{
                     linea.appendChild(span);
                         const input = document.createElement("input");
                         input.type ="radio";
+                        input.name= "proveedor"
+                        input.id= `${proveedor.nombre}`;
                     linea.appendChild(input);        
                 
                 card.appendChild(linea);
@@ -111,7 +113,13 @@ export class NuevoRemito{
 
     createButtonsFooter=()=>{
         const footerRegistro= document.querySelector(".footer-container");
-        this.botones= new ButtonContainer("Cargar", "Cancelar", ()=>{console.log("ingresando a planilla Ingreso de stock por remito");},()=>{console.log("se canceló pedido");},"save2","cancelViolet" )
+        this.botones= new ButtonContainer(
+            "Cargar", 
+            "Cancelar",
+             (e)=>{agregarRemito(e); },
+             ()=>{console.log("se canceló ingreso de stock");},
+             "save2",
+             "cancelViolet" )
         footerRegistro.appendChild(this.botones.getButtonContainer());
         return
     }
@@ -119,3 +127,18 @@ export class NuevoRemito{
 }
 
 new NuevoRemito();
+
+
+
+async function agregarRemito(e){
+    e.preventDefault();
+    const remitoid="rtn"+Math.floor(Math.random()*1000);
+    const numero= document.querySelector(".contenedor-remito input").value;
+    const fecha= document.querySelector(".contenedor-fecha input").value;
+    const proveedor= document.querySelector(".contenedor-proveedores input[type='radio']:checked").id;
+
+
+    console.log("datos que se envian", numero, fecha, proveedor,remitoid);
+    await conexionAPI.nuevoRemito(remitoid, numero,fecha,proveedor,[])
+    loadView(`stockcargaxremito?id=${remitoid}`)
+}/*fin agregarRemito */

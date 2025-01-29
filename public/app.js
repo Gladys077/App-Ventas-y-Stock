@@ -29,13 +29,14 @@ function loadView(view) {
             script.onload = () => {
                 console.log(`Script ${viewName}.js cargado`);
                 const urlParams = new URLSearchParams(params);
-                const pedidoId = urlParams.get("id");
+                const Id = urlParams.get("id");
+                
         
                 // Crear la instancia de la vista correspondiente
                 switch(viewName) {
                     case "pedidocopia":
                         import("./pages/pedidocopia.js")
-                            .then((module) => {new module.PlanillaPedidoCopia(pedidoId);                           
+                            .then((module) => {new module.PlanillaPedidoCopia(Id);                           
                         });
                         
                         break;
@@ -61,6 +62,14 @@ function loadView(view) {
                     case 'stocksinmvto':
                         import('./pages/stocksinmvto.js') //.then((module)=>{module.PlanillaStockSinMvto();})
                         break;
+                    
+                        case 'stockcargaxremito':
+                        import('./pages/stockcargaxremito.js') 
+                        .then((module) => {new module.PlanillaStockCargaxRemito(Id);                           
+                        });    
+                        break;
+
+
 
                     default:
                         console.error('Vista no encontrada');
@@ -84,7 +93,12 @@ function loadView(view) {
 }
 
 // Cargar la vista por defecto
+// loadView("pedidohistorial")
+// loadView("stocknuevoremito")
+// 
+loadView("ventasxprodxfecha")
 
-loadView("stock")
+// loadView("stockcargaxremito")
 
-
+// loadView("formnuevoproveedor")
+// loadView("stock")

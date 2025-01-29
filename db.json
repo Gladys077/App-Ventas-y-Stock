@@ -113,33 +113,6 @@
       "cel": "123456789",
       "email": "peggylu@gmail.com",
       "notas": "llamar lunes por la tarde. Pedido llega martes a la tarde"
-    },
-    {
-      "id": "7220",
-      "nombre": "",
-      "lista": [],
-      "vendedor": "",
-      "cel": "",
-      "email": "",
-      "notas": ""
-    },
-    {
-      "id": "deae",
-      "nombre": "",
-      "lista": [],
-      "vendedor": "",
-      "cel": "",
-      "email": "",
-      "notas": ""
-    },
-    {
-      "id": "eed4",
-      "nombre": "",
-      "lista": [],
-      "vendedor": "",
-      "cel": "",
-      "email": "",
-      "notas": ""
     }
   ],
   "comercios": [
@@ -751,6 +724,383 @@
       "cant": 5,
       "producto": "Resaltador verde fluor",
       "pp": 2
+    }
+  ],
+  "remito": [
+    {
+      "id": "r123",
+      "numero": "234",
+      "proveedor": "Fulanito",
+      "fecha": "2025/01/13",
+      "lista": [
+        {
+          "Cant": 4,
+          "Prod": "Carpeta con argollas",
+          "Costo": 1200
+        },
+        {
+          "Cant": 4,
+          "Prod": "Lapiz Negro HB - Faber Castle",
+          "Costo": 1000
+        }
+      ]
+    },
+    {
+      "id": "r345",
+      "numero": "4",
+      "proveedor": "Menganito",
+      "fecha": "2025/01/13",
+      "lista": [
+        {
+          "Cant": 323,
+          "Prod": "Carpeta con argollas",
+          "Costo": 1200
+        },
+        {
+          "Cant": 223,
+          "Prod": "Lapiz Negro HB - Faber Castle",
+          "Costo": 1000
+        }
+      ]
+    },
+    {
+      "id": "rtn99"
+    },
+    {
+      "id": "rtn81"
+    },
+    {
+      "id": "rtn48",
+      "numero": "34234",
+      "fecha": "2025-01-16",
+      "proveedor": "Tijerita S.A.",
+      "lista": []
+    },
+    {
+      "id": "rtn922",
+      "numero": "3454",
+      "fecha": "2025-01-16",
+      "proveedor": "Tijerita S.A.",
+      "lista": []
+    },
+    {
+      "id": "rtn683",
+      "numero": "5767",
+      "fecha": "2025-01-09",
+      "proveedor": "Menganito S.A.",
+      "lista": []
+    },
+    {
+      "id": "rtn528",
+      "numero": "3443125125",
+      "fecha": "2025-01-16",
+      "proveedor": "Tijerita S.A.",
+      "lista": []
+    },
+    {
+      "id": "rtn910",
+      "numero": "314345",
+      "fecha": "2025-01-22",
+      "proveedor": "Proveeduría S.A.",
+      "lista": []
+    },
+    {
+      "id": "rtn831",
+      "numero": "3546234",
+      "fecha": "2025-01-14",
+      "proveedor": "Menganito S.A.",
+      "lista": []
+    },
+    {
+      "id": "rtn235",
+      "numero": "2412343",
+      "fecha": "2025-01-23",
+      "proveedor": "Pulgarcito",
+      "lista": []
+    },
+    {
+      "id": "rtn658",
+      "numero": "452352",
+      "fecha": "2025-01-15",
+      "proveedor": "Proveeduría S.A.",
+      "lista": []
+    },
+    {
+      "id": "rtn974",
+      "numero": "342423",
+      "fecha": "2025-01-08",
+      "proveedor": "Peggy Lu",
+      "lista": []
+    },
+    {
+      "id": "rtn14",
+      "numero": "3452421",
+      "fecha": "2025-01-15",
+      "proveedor": "Que te regalo",
+      "lista": []
+    },
+    {
+      "id": "rtn675",
+      "numero": "67453",
+      "fecha": "2025-01-14",
+      "proveedor": "Pulgarcito",
+      "lista": []
+    },
+    {
+      "id": "rtn649",
+      "numero": "343245",
+      "fecha": "2025-01-09",
+      "proveedor": "Tijerita S.A.",
+      "lista": []
+    },
+    {
+      "id": "rtn333",
+      "numero": "4465",
+      "fecha": "2025-01-08",
+      "proveedor": "Pulgarcito",
+      "lista": []
+    },
+    {
+      "id": "rtn236",
+      "numero": "123434",
+      "fecha": "2025-01-15",
+      "proveedor": "Fulanito S.A.",
+      "lista": []
+    },
+    {
+      "id": "rtn851",
+      "numero": "3435",
+      "fecha": "2025-01-14",
+      "proveedor": "Menganito S.A.",
+      "lista": []
+    },
+    {
+      "id": "rtn414",
+      "numero": "3412",
+      "fecha": "2025-01-15",
+      "proveedor": "Proveeduría S.A.",
+      "lista": []
+    },
+    {
+      "id": "rtn651",
+      "numero": "8765",
+      "fecha": "2025-01-15",
+      "proveedor": "Fulanito S.A.",
+      "lista": []
+    },
+    {
+      "id": "rtn779",
+      "numero": "53222",
+      "fecha": "2025-01-02",
+      "proveedor": "Proveeduría S.A.",
+      "lista": []
+    },
+    {
+      "id": "rtn370",
+      "numero": "54546",
+      "fecha": "2025-01-07",
+      "proveedor": "Tijerita S.A.",
+      "lista": []
+    },
+    {
+      "id": "rtn764",
+      "numero": "3421",
+      "fecha": "2025-01-09",
+      "proveedor": "Pulgarcito",
+      "lista": []
+    },
+    {
+      "id": "rtn643",
+      "numero": "56577",
+      "fecha": "2025-01-15",
+      "proveedor": "Proveeduría S.A.",
+      "lista": []
+    },
+    {
+      "id": "rtn269",
+      "numero": "3412",
+      "fecha": "2025-01-23",
+      "proveedor": "Tijerita S.A.",
+      "lista": []
+    },
+    {
+      "id": "rtn667",
+      "numero": "3456",
+      "fecha": "2025-01-08",
+      "proveedor": "Menganito S.A.",
+      "lista": []
+    },
+    {
+      "id": "rtn894",
+      "numero": "234",
+      "fecha": "2025-01-07",
+      "proveedor": "Fulanito S.A.",
+      "lista": []
+    },
+    {
+      "id": "rtn562",
+      "numero": "3445",
+      "fecha": "2025-01-16",
+      "proveedor": "Proveeduría S.A.",
+      "lista": []
+    }
+  ],
+  "historialventas": [
+    {
+      "id": "1334",
+      "producto": "Resaltador verde fluor",
+      "historial": [
+        {
+          "fecha": "2025-01-07",
+          "cant": 4
+        },
+        {
+          "fecha": "2025-01-08",
+          "cant": 3
+        },
+        {
+          "fecha": "2025-01-09",
+          "cant": 5
+        },
+        {
+          "fecha": "2025-01-10",
+          "cant": 3
+        },
+        {
+          "fecha": "2025-01-11",
+          "cant": 2
+        },
+        {
+          "fecha": "2025-01-12",
+          "cant": 5
+        },
+        {
+          "fecha": "2025-01-13",
+          "cant": 4
+        },
+        {
+          "fecha": "2025-01-14",
+          "cant": 3
+        },
+        {
+          "fecha": "2025-01-15",
+          "cant": 5
+        },
+        {
+          "fecha": "2025-01-16",
+          "cant": 3
+        },
+        {
+          "fecha": "2025-01-17",
+          "cant": 2
+        },
+        {
+          "fecha": "2025-01-18",
+          "cant": 5
+        },
+        {
+          "fecha": "2025-01-19",
+          "cant": 4
+        },
+        {
+          "fecha": "2025-01-20",
+          "cant": 3
+        },
+        {
+          "fecha": "2025-01-21",
+          "cant": 5
+        },
+        {
+          "fecha": "2025-01-22",
+          "cant": 3
+        },
+        {
+          "fecha": "2025-01-23",
+          "cant": 2
+        },
+        {
+          "fecha": "2025-01-24",
+          "cant": 5
+        }
+      ]
+    },
+    {
+      "id": "1335",
+      "producto": "Cuaderno rivadavia 100 hojas tapa dura a cuadro y rayas",
+      "historial": [
+        {
+          "fecha": "2025-01-07",
+          "cant": 14
+        },
+        {
+          "fecha": "2025-01-08",
+          "cant": 13
+        },
+        {
+          "fecha": "2025-01-09",
+          "cant": 15
+        },
+        {
+          "fecha": "2025-01-10",
+          "cant": 13
+        },
+        {
+          "fecha": "2025-01-11",
+          "cant": 12
+        },
+        {
+          "fecha": "2025-01-12",
+          "cant": 15
+        },
+        {
+          "fecha": "2025-01-13",
+          "cant": 14
+        },
+        {
+          "fecha": "2025-01-14",
+          "cant": 13
+        },
+        {
+          "fecha": "2025-01-15",
+          "cant": 15
+        },
+        {
+          "fecha": "2025-01-16",
+          "cant": 13
+        },
+        {
+          "fecha": "2025-01-17",
+          "cant": 12
+        },
+        {
+          "fecha": "2025-01-18",
+          "cant": 15
+        },
+        {
+          "fecha": "2025-01-19",
+          "cant": 14
+        },
+        {
+          "fecha": "2025-01-20",
+          "cant": 13
+        },
+        {
+          "fecha": "2025-01-21",
+          "cant": 15
+        },
+        {
+          "fecha": "2025-01-22",
+          "cant": 13
+        },
+        {
+          "fecha": "2025-01-23",
+          "cant": 12
+        },
+        {
+          "fecha": "2025-01-24",
+          "cant": 15
+        }
+      ]
     }
   ]
 }

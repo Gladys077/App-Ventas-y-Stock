@@ -3,7 +3,9 @@ import Main from "../../js/main.js";
 import { iconoVolver, iconoLupaN, iconoDescargar } from '../../js/iconosSVG.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 import { createSearchContainer, ProductList } from '../../js/utils.js';
-import { TablaEncabezado, MostrarMainNav, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js";
+import { TablaEncabezado, MostrarMainNav, TablaDetalles,  BtnFlotante } from "../../js/registros.js";
+import { conexionAPI } from "../../js/services/conectionFakeApi.js"
+
 import { ModalInput } from "../../js/modalInput.js";
 import { Notification } from "../../js/notificacion.js";
 
@@ -16,7 +18,8 @@ export class PlanillaStock {
         this.createMostrarMainNav();
         this.createTablaEncabezado();
         this.createTablaDetalles();
-        this.createTablaFooter();
+        this.createLineaArticulo();
+        this.mostrarLineasArticulos();
         this.createBtnFlotante();
 
         // Limpia productos seleccionados al salir o actualizar la página
@@ -93,7 +96,7 @@ export class PlanillaStock {
 
         const tablaDetalles = document.querySelector(".tabla_detalles");
         const articulos = await conexionAPI.stockDisponible();
-        // console.log(articulos);
+        console.log(articulos);
 
         if(articulos.length===0){
             const mensaje = document.createElement("span");
