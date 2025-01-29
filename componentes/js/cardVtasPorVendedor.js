@@ -1,4 +1,4 @@
-import { isValidDate, formatDateInput, verificarCss } from '../js/utils.js';
+import { verificarCss, Fecha } from '../js/utils.js';
 import { Notification } from '../js/notificacion.js';
 import { navigateToPage } from '../js/navigateToPage.js';
 
@@ -8,7 +8,7 @@ export class CardVtasPorVendedor {
       // this._vendedores = vendedores;  // Lista de vendedores
       this._title = title;
       this._subtitle = subtitle;
-      this._fecha = null;
+      this._fecha = null || new Fecha();
       this._textBtn = textBtn;
       this._selectedVendedor = null;
       this._monto = '';
@@ -230,13 +230,7 @@ export class CardVtasPorVendedor {
     subtitle.textContent = this._subtitle;
     subtitle.className = '.dia';
     
-    this.input = document.createElement('input');
-    this.input.placeholder = 'DD/MM/AAAA';
-    this.input.className = 'card-input';
-    this.input.type = "date";
-    this.input.addEventListener('input', formatDateInput);
-    this.input.addEventListener('blur', (e) => this.handleDateChange(e));
-
+    this.input = this._fecha.getElement();
     const button = document.createElement('button');
     button.textContent = this._textBtn;
     button.className = 'card-button';
@@ -266,15 +260,15 @@ export class CardVtasPorVendedor {
   }
 
   actualizarListaVendedores(vendedores) {
-    // Limpiar las opciones existentes
+    // Limpia las opciones existentes
     this.select.innerHTML = '';
 
-    // Añadir la opción por defecto
+    // Añade la opción por defecto
     const defaultOption = document.createElement('option');
     defaultOption.textContent = 'Elige el vendedor';
     this.select.appendChild(defaultOption);
 
-    // Añadir las nuevas opciones de vendedores
+    // Añade las nuevas opciones de vendedores
     // vendedores.forEach(vendedor => {
     //   const option = document.createElement('option');
     //   option.textContent = vendedor;
@@ -297,28 +291,33 @@ export class CardVtasPorVendedor {
     });
   }
 
-  handleDateChange(e) {
-    const value = e.target.value;
-    if (value && !isValidDate(value)) {
-        // new Notification('../../img/emojis/mueca.png', 'Fecha inválida. Use el formato DD/MM/AAAA', 'error');
-        e.target.value = '';
-        this._fecha = null;
-    } else {
-        this._fecha = value;
-    }
-  }
+  
 
   handleButtonClick() {
-    if (!this._selectedVendedor) {
-        new Notification('../../img/emojis/pensando.png', '¿Has elegido un vendedor?', 'error');
-        return;
+     this._fecha = this.input.value // Obtiene el valor del input de fecha
+
+    if (this._fecha) {
+      try {
+        // Llama a filtroFecha con la fecha seleccionada y procesa los resultados
+        const resultados = new Fecha(this._fecha);
+        console.log(`Resultados del filtro para la fecha ${this._fecha}:`, resultados);
+
+        // Aquí podrías actualizar el monto u otros elementos en la card con los resultados
+        this.actualizarMonto(resultados);
+      } catch (error) {
+        console.error('Error al filtrar por fecha:', error);
+      }
+    } else {
+      console.error('No se ha seleccionado una fecha válida');
+      new Notification('Por favor, selecciona una fecha válida.');
     }
-    if (!this._fecha) {
-        new Notification('../../img/emojis/pare.png', '¡Ingresa una fecha válida!', 'error');
-        return;
-    }
-    // Si ambos están seleccionados, procede con la búsqueda
-    this._onSearch(this._selectedVendedor, this._fecha);
   }
 
+  actualizarMonto(resultados) {
+    // Actualiza el monto o muestra información con los datos filtrados
+    const total = resultados.reduce((sum, item) => sum + item.monto, 0);
+    this.element.querySelector('.card-monto').textContent = `Monto total: $${total}`;
+  }
 }
+
+

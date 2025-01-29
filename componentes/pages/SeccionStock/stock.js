@@ -189,7 +189,6 @@ export class PlanillaStock {
                 new Notification('../../../img/emojis/like.png', 'Producto añadido al stock', 'success');
             }, '1'
         );
-       
     }
 
     updateStockList(selectedProduct) {
@@ -201,9 +200,7 @@ export class PlanillaStock {
             console.error("No se encontró el contenedor de detalles de la tabla.");
         }
     }
-    
 
-   
 }
 
 new PlanillaStock();

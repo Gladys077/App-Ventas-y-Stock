@@ -1330,7 +1330,7 @@ export const iconoTrash = `
 Created by potrace 1.16, written by Peter Selinger 2001-2019
 </metadata>
 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
+fill="#6810ad" stroke="none">
 <path d="M2039 4786 c-110 -41 -200 -122 -246 -221 -27 -57 -28 -68 -31 -232
 l-3 -173 -506 0 c-492 0 -507 -1 -539 -21 -97 -60 -101 -211 -6 -275 21 -15
 52 -20 142 -24 l115 -5 96 -1545 c53 -849 102 -1567 108 -1595 32 -142 136

@@ -3,6 +3,7 @@ import { iconoVolver, iconoDescargar } from '../../js/iconosSVG.js'
 import { CardVtasPorVendedor } from '../../js/cardVtasPorVendedor.js';
 import { Footer } from '../../js/footer.js';
 import { FabButton } from '../../js/utils.js';
+import { FiltroFecha } from "../../js/registros.js"
 import { Notification } from '../../js/notificacion.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 
@@ -15,8 +16,8 @@ export class VentasPorVendedorPage {
         this.createFooter();
 
         // Obtengo la lista de vendedores y actualizo la card
-        const SellersList = this.getSellersList();
-        // this.cardVtasPorVendedor.updateSellersList(SellersList); // Actualiza la lista de vendedores en la card
+        const vendedores = this.getSellersList() || [];
+        this.cardVtasPorVendedor.updateSellersList(SellersList); // Actualiza la lista de vendedores en la card
         
         this.salesDate = [];
     }
@@ -28,6 +29,7 @@ export class VentasPorVendedorPage {
 
     createMain() {
         const mainElement = document.createElement('main'); 
+        
         this.cardVtasPorVendedor = new CardVtasPorVendedor('', 'DIA', 'Buscar' , 'VentasPorVendedorPlanilla'); // Inicializa con una lista vacía
         mainElement.appendChild(this.cardVtasPorVendedor.getElement());
         document.body.appendChild(mainElement); 
