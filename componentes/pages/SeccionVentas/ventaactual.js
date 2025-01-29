@@ -1,13 +1,11 @@
 import { Header } from "../../js/header.js";
-import { iconoVolver, iconoMenu } from '../../js/iconosSVG.js';
+import { iconoVolver, iconoMenu, iconoTrash, iconoPedidoFinalizado } from '../../js/iconosSVG.js';
 import Main from "../../../public/js/main.js";
-import { TablaEncabezado, TablaDetalles, TablaFooter,  BtnFlotante } from "../../../public/js/registros.js"
+import { TablaEncabezado, TablaDetalles, TablaFooter, BtnFlotante } from "../../../public/js/registros.js"
 import { Footer } from "../../js/footer.js";
 import { ButtonContainer } from "../../js/btnsContainer.js";
 import { conexionAPI } from "../../../public/js/services/conectionFakeApi.js";
 import { navigateToPage } from '../../js/navigateToPage.js';
-
-
 
 
 export class PlanillaVentaActual {
@@ -24,7 +22,6 @@ export class PlanillaVentaActual {
         this.createBtnFlotante();
         this.createFooter();
         this.createButtonsFooter();
-        
 
     }
 
@@ -144,7 +141,7 @@ export class PlanillaVentaActual {
 
     createButtonsFooter=()=>{
         const footerRegistro= document.querySelector(".footer-container");
-        this.botones= new ButtonContainer("Finalizar", "Eliminar", ()=>{console.log("se guardó pedido");},()=>{console.log("se eliminó pedido");},"pedidowhite","trashViolet" )
+        this.botones= new ButtonContainer("Finalizar", "Eliminar", ()=>{console.log("se guardó pedido");},()=>{console.log("se eliminó pedido");},iconoPedidoFinalizado,iconoTrash )
         footerRegistro.appendChild(this.botones.getButtonContainer());
     
     }
