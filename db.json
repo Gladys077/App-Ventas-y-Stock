@@ -948,7 +948,7 @@
   "historialventas": [
     {
       "id": "1334",
-      "producto": "Resaltador verde fluor",
+      "nombre": "Resaltador verde fluor",
       "historial": [
         {
           "fecha": "2025-01-07",
@@ -1026,7 +1026,7 @@
     },
     {
       "id": "1335",
-      "producto": "Cuaderno rivadavia 100 hojas tapa dura a cuadro y rayas",
+      "nombre": "Cuaderno rivadavia 100 hojas tapa dura a cuadro y rayas",
       "historial": [
         {
           "fecha": "2025-01-07",

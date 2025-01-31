@@ -150,13 +150,17 @@ main{
             font-style: normal;
             
 
-                .cant, .fecha{
+                .cant, .fecha, .cantHist{
                     width: 35px;
                     height: 35px;
                     text-align: end;
                     padding-right: 4px;
                     border: 1px solid var(--color-border-articulo);
                 }/*fin cant*/
+
+                .cantHist{
+                    border: none;
+                }
 
                 .fecha{
                     border: none;
@@ -310,7 +314,7 @@ main{
         height: 56px;
         line-height: 56px;
         bottom: 50px;
-        right: 30px;
+        right: 40%;
         border-radius: 12px;
         text-align: center;
         font-size: 30px;

@@ -72,7 +72,18 @@ export class FiltroFecha{
                         hastaDato.className="fecha-hasta"    
                         hastaDato.type="date"    
                     fechaDatos.append(desdeDato,hastaDato)
-            filtroFecha.append(fechaEncabezado,fechaDatos);     
+                const btonFiltro =document.createElement("div") 
+                    btonFiltro.className="filtrarFecha";
+                    btonFiltro.title="Filtrar fechas";
+                    const btn = document.createElement("img");
+                    btn.src =`../../img/iconos/filtro.png`;
+                btonFiltro.appendChild(btn); 
+                
+      
+
+
+            
+            filtroFecha.append(fechaEncabezado,fechaDatos, btonFiltro);     
             return filtroFecha          
     }
     getElement(){
@@ -118,17 +129,19 @@ export class MostrarVendedor{
 }/*fin class MostrarVendedor */
 
 export class MostrarProducto{
-    constructor(){
+    constructor(producto){
+        this.producto=producto;
         this.element=this.agregarMostrarProducto();
     }
-    agregarMostrarProducto = (producto= "producto X_Cuaderno rivadavia 100 hojas tapa dura a cuadros y rayas") =>{
+    agregarMostrarProducto = () =>{
+        console.log("producto recibido:", this.producto);
         const contenedor = document.createElement("section");
             contenedor.className = "contenedor-producto";
             
             const texto = document.createElement("span");
                 texto.className="marquee";
-                texto.textContent = producto;
-                texto.title="producto X_Cuaderno rivadavia 100 hojas tapa dura a cuadros y rayas"
+                texto.textContent = `${this.producto}`;
+                texto.title=`${this.producto}`
             contenedor.appendChild(texto);
         return contenedor;    
     }
@@ -164,7 +177,7 @@ export class MostrarRemito{
         return this.element
     }    
 
-}/*fin class MostrarRemito. Se usa en la planilla stockCargaxRemito */
+}/*fin class MostrarRemito. Se usa en la planilla stockCargaxRemito NO SE ESTÄ USANDO */
 
 export  class TablaEncabezado{
     constructor(col1, col2, col3){
@@ -226,12 +239,12 @@ export class TablaFooter{
         this.total=total;
         this.element=this.agregarFooter(total);
     }
-    agregarFooter= (total = "$ -,-")=>{
+    agregarFooter= (texto="TOTAL", total = "$ -,-")=>{
         const contenedor= document.createElement("section");
             contenedor.className="tabla_footer";
         const textTotal= document.createElement("h3");
             textTotal.className="total";
-            textTotal.textContent="TOTAL";
+            textTotal.textContent= texto;
         const valorTotal= document.createElement("h3");
             valorTotal.className="valorTotal";
             valorTotal.textContent=total;    

@@ -54,6 +54,7 @@ export class FiltroFecha{
     }
     agregarFiltro = ()=>{
 
+
         const filtroFecha = document.createElement("section");
             filtroFecha.className="contenedor-filtro-fecha";
                 const fechaEncabezado = document.createElement("div");
@@ -72,8 +73,19 @@ export class FiltroFecha{
                         hastaDato.className="fecha-hasta"    
                         hastaDato.type="date"    
                     fechaDatos.append(desdeDato,hastaDato)
-            filtroFecha.append(fechaEncabezado,fechaDatos);     
-            return filtroFecha          
+                const btonFiltro =document.createElement("div") 
+                    btonFiltro.className="filtrarFecha";
+                    btonFiltro.title="Filtrar fechas";
+                    const btn = document.createElement("img");
+                    btn.src =`../../img/iconos/filtro.png`;
+                btonFiltro.appendChild(btn); 
+                
+      
+
+
+            
+            filtroFecha.append(fechaEncabezado,fechaDatos, btonFiltro);     
+            return filtroFecha                
     }
     getElement(){
         return this.element
@@ -221,12 +233,12 @@ export class TablaFooter{
         this.total=total;
         this.element=this.agregarFooter(total);
     }
-    agregarFooter= (total = "$ -,-")=>{
+    agregarFooter= (texto="TOTAL", total = "$ -,-")=>{
         const contenedor= document.createElement("section");
             contenedor.className="tabla_footer";
         const textTotal= document.createElement("h3");
             textTotal.className="total";
-            textTotal.textContent="TOTAL";
+            textTotal.textContent=texto;
         const valorTotal= document.createElement("h3");
             valorTotal.className="valorTotal";
             valorTotal.textContent=total;    

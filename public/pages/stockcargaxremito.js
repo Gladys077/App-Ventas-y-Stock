@@ -49,10 +49,6 @@ export class PlanillaStockCargaxRemito {
     }
     
 
-    // createMostrarRemito=()=>{   
-    //     this.traerRemito()
-    // }
-
     createTablaEncabezado= ()=>{
         const mainPedido=document.querySelector("main");
         this.encabezado = new TablaEncabezado("CANT", "PRODUCTO","PRECIO")

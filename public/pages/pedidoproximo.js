@@ -130,7 +130,7 @@ export class PlanillaPedidoProximo {
                     })/*fin forEach */
                 }/*fin ifarray */else{
                     console.error("Error: proveedores no es una lista o está vacía", proveedores)
-                }
+                }//fin else
             
             const btnMas = document.createElement("button");
             btnMas.className= "mostrar-mas";

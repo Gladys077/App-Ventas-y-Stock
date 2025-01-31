@@ -93,7 +93,7 @@ function loadView(view) {
 }
 
 // Cargar la vista por defecto
-// loadView("pedidohistorial")
+// loadView("pedidoproximo")
 // loadView("stocknuevoremito")
 // 
 loadView("ventasxprodxfecha")

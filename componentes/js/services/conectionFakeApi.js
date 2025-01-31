@@ -39,37 +39,37 @@ async function nuevoproveedor(nombre, lista=[], vendedor, cel, email,notas){
 ///CRUD PARA REMITOS
 
 async function mostrarRemito(id){
-try {
-const conexion = await fetch(`http://localhost:3000/remito/${id}`,{
-    method:"GET",
-    headers:{
-        "Content-type":"application/json",
+    try {
+        const conexion = await fetch(`http://localhost:3000/remito/${id}`,{
+            method:"GET",
+            headers:{
+                "Content-type":"application/json",
+            }
+        })
+
+        const respuesta = await conexion.json();
+        return respuesta;
+        
+    } catch (error) {
+        console.error(error)
+        
     }
-})
-
-const respuesta = await conexion.json();
-return respuesta;
-
-} catch (error) {
-console.error(error)
-
-}
 }
 
 async function nuevoRemito(id,numero,fecha,proveedor,lista){
-const conexion = await fetch("http://localhost:3000/remito",{
-method:"POST" ,
-headers:{"Content-type":"application/json"},   
-body:JSON.stringify({
-    id:id,
-    numero:numero,
-    fecha:fecha,
-    proveedor:proveedor,
-    lista: lista,
-})
-})
-const conexionconvertida = await conexion.json();
-return conexionconvertida;
+    const conexion = await fetch("http://localhost:3000/remito",{
+        method:"POST" ,
+        headers:{"Content-type":"application/json"},   
+        body:JSON.stringify({
+            id:id,
+            numero:numero,
+            fecha:fecha,
+            proveedor:proveedor,
+            lista: lista,
+        })
+    })
+    const conexionconvertida = await conexion.json();
+    return conexionconvertida;
 }
 
 //CRUD PARA COMERCIO
@@ -248,25 +248,47 @@ async function actualizarCant(id){
     return conexionconvertida;
 }
 
+
+//CRUD PARA HISTORIAL VENTAS
+async function historialVentaProducto(id){
+    try {
+
+        const conexion = await fetch(`http://localhost:3000/historialventas/${id}`,{
+            method:"GET",
+            headers:{
+                "Content-type":"application/json",
+            }
+        })
+
+        const respuesta = await conexion.json();
+        return respuesta;
+        
+    } catch (error) {
+        console.error(error)
+        
+    }
+}
+
+
 //CRUD PARA STOCK___________________________________________________________________________________        
 async function stockDisponible(){
-try {
-const conexion = await fetch("http://localhost:3000/stock",{
-    method:"GET",
-    headers:{
-        "Content-type":"application/json",
+    try {
+        const conexion = await fetch("http://localhost:3000/stock",{
+            method:"GET",
+            headers:{
+                "Content-type":"application/json",
+            }
+        })
+
+        const respuesta = await conexion.json();
+        return respuesta;
+        
+    } catch (error) {
+        console.error(error)
+        
     }
-})
-
-const respuesta = await conexion.json();
-return respuesta;
-
-} catch (error) {
-console.error(error)
-
-}
 }
 
 export const conexionAPI={
-listaproveedores, nuevoproveedor, mostrarRemito, nuevoRemito, nuevocomercio, listapedidos, obtenerpedido, crearpedido, actualizarPedido, borrarpedido, listaarticulos, articulospedidos, nuevoarticulo, borrararticulo, actualizarCant, stockDisponible
+listaproveedores, nuevoproveedor, mostrarRemito, nuevoRemito, nuevocomercio, listapedidos, obtenerpedido, crearpedido, actualizarPedido, borrarpedido, listaarticulos, articulospedidos, nuevoarticulo, borrararticulo, actualizarCant, historialVentaProducto, stockDisponible
 }
