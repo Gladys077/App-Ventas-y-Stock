@@ -54,20 +54,25 @@ export class PlanillaStockBajo {
         const lineaArt = document.createElement("div");
         lineaArt.className = "tabla_lineaArticulo";
 
+            const icon = document.createElement("img");
+            icon.src="../img/iconos/bajoStock.png";
+            icon.title=`Producto con bajo stock`;
+            icon.alt="icon";
+
             const prod = document.createElement("div");
             prod.className="producto";
             prod.textContent= `${nombre}`;
             // console.log(nombre);
 
-            const unidades = document.createElement("input");
-            unidades.className = "cant";
-            unidades.value=`${cant}`;
+            const unidades = document.createElement("div");
+            unidades.className = "cantHist";
+            unidades.textContent=`${cant}`;
     
         
 
 
         
-        lineaArt.append(prod,unidades)
+        lineaArt.append(icon,prod,unidades)
         
         return lineaArt
         

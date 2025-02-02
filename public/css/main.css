@@ -97,6 +97,7 @@ main{
             .th{
                 color: var(--color-primario);
                 text-align: center;
+        
             }
 
             .az-btn{
@@ -148,7 +149,10 @@ main{
             border-bottom: 1px solid var(--color-border-articulo);
             font-size: 14px;
             font-style: normal;
-            
+                    img{
+                        width: 20px;
+                        height: 20px;
+                    }
 
                 .cant, .fecha, .cantHist{
                     width: 35px;
@@ -160,6 +164,7 @@ main{
 
                 .cantHist{
                     border: none;
+                    padding-top: 10px;
                 }
 
                 .fecha{
@@ -174,7 +179,8 @@ main{
                     word-wrap: break-word;
                     hyphens: auto; /*para evitar desbordamiento de texto en las notas*/
                     width: 60%;
-                    text-align: center;
+                    text-align: left;
+                    
                 }/*fin producto*/
 
                 .descripcion{

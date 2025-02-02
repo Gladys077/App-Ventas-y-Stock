@@ -6,6 +6,7 @@ import { createSearchContainer, RadioProductList, verificarCss } from '../../js/
 import { TablaEncabezado, MostrarMainNav, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js";
 import { ModalInput } from "../../js/modalInput.js";
 import { Notification } from "../../js/notificacion.js";
+import { conexionAPI } from "../../js/services/conectionFakeApi.js"
 
 export class PlanillaStock {
     constructor() {
@@ -110,9 +111,9 @@ export class PlanillaStock {
             prod.textContent= `${nombre}`;
             // console.log(nombre);
 
-            const unidades = document.createElement("input");
-            unidades.className = "cant";
-            unidades.value=`${cant}`;
+            const unidades = document.createElement("div");
+            unidades.className = "cantHist";
+            unidades.textContent=`${cant}`;
     
         lineaArt.append(prod,unidades)
         
