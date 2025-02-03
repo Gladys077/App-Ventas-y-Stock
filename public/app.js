@@ -63,10 +63,14 @@ function loadView(view) {
                         import('./pages/stocksinmvto.js') //.then((module)=>{module.PlanillaStockSinMvto();})
                         break;
                     
-                        case 'stockcargaxremito':
+                    case 'stockcargaxremito':
                         import('./pages/stockcargaxremito.js') 
                         .then((module) => {new module.PlanillaStockCargaxRemito(Id);                           
                         });    
+                        break;
+
+                    case 'perfilmenu':
+                        import('../public/pages/perfilmenu.js')
                         break;
 
 
@@ -100,4 +104,5 @@ function loadView(view) {
 // loadView("stockcargaxremito")
 
 // loadView("formnuevoproveedor")
-loadView("stock")
+loadView("perfilModificar")
+// loadView("stock")
