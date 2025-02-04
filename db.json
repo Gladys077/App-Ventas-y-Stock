@@ -1114,5 +1114,55 @@
         }
       ]
     }
+  ],
+  "perfiles": [
+    {
+      "id": "2123",
+      "nombre": "Juan",
+      "apellido": "Perez",
+      "Tel": "11 660 2312",
+      "email": "juanperez@live.com.ar",
+      "verstock": true,
+      "recargastock": true,
+      "nuevoproducto": true,
+      "modproducto": true,
+      "eliminar": true
+    },
+    {
+      "id": "2124",
+      "nombre": "Luna",
+      "apellido": "Fernandez",
+      "tel": "11 555 2312",
+      "email": "lfernandez@live.com.ar",
+      "verstock": false,
+      "recargastock": false,
+      "nuevoproducto": false,
+      "modproducto": false,
+      "eliminarproducto": false
+    },
+    {
+      "id": "45a9",
+      "nombre": "Carina",
+      "apellido": "Corredera",
+      "tel": "234 985 2341",
+      "email": "carcorredera@gmail.com",
+      "verstock": true,
+      "recargastock": false,
+      "nuevoproducto": true,
+      "modproducto": false,
+      "eliminarproducto": false
+    },
+    {
+      "id": "bcb7",
+      "nombre": "Lionel",
+      "apellido": "Staricoff",
+      "tel": "232 325 2334",
+      "email": "elion@gmail.com",
+      "verstock": true,
+      "recargastock": true,
+      "nuevoproducto": true,
+      "modproducto": false,
+      "eliminarproducto": false
+    }
   ]
 }

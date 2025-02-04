@@ -249,7 +249,7 @@
         }
 
 
-//CRUD PARA HISTORIAL VENTAS
+//CRUD PARA HISTORIAL VENTAS________________________________________________________
         async function historialVentaProducto(id){
             try {
         
@@ -289,6 +289,37 @@
             }
         }
 
+
+//CRUD PARA PERFIL VENDEDOR__________________________________________________________________________        
+        
+async function crearPerfil(nombre, apellido,tel,email, verStock,upStock,nuevoProd, modProd,eliminarProd){
+    try {
+        const conexion = await fetch("http://localhost:3000/perfiles", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nombre: nombre,
+                apellido: apellido,
+                tel: tel,
+                email: email,
+                verstock: verStock,
+                recargastock: upStock,
+                nuevoproducto: nuevoProd,
+                modproducto:modProd,
+                eliminarproducto: eliminarProd
+
+            })
+            });
+        const conexionconvertida = await conexion.json();
+        return conexionconvertida;    
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+        
 export const conexionAPI={
-    listaproveedores, nuevoproveedor, mostrarRemito, nuevoRemito, nuevocomercio, listapedidos, obtenerpedido, crearpedido, actualizarPedido, borrarpedido, listaarticulos, articulospedidos, nuevoarticulo, borrararticulo, actualizarCant, historialVentaProducto, stockDisponible
+    listaproveedores, nuevoproveedor, mostrarRemito, nuevoRemito, nuevocomercio, listapedidos, obtenerpedido, crearpedido, actualizarPedido, borrarpedido, listaarticulos, articulospedidos, nuevoarticulo, borrararticulo, actualizarCant, historialVentaProducto, stockDisponible,crearPerfil
 }

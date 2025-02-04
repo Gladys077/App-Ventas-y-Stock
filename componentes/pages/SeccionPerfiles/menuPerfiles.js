@@ -76,8 +76,8 @@ export function createMenuPerfiles() {
     menuPerfiles.classList.add('botonera-container', 'large');
 
     const buttonsData = [
-        { icon: iconoPerfil, alt: '', text: 'Agrega nuevo perfil', page: 'nuevoPerfil' },
-        { icon: iconoPerfilEdit, alt: '', text: 'Ver / editar perfil', page: 'editPerfil' }
+        { icon: iconoPerfil, alt: '', text: 'Agrega nuevo perfil', page: 'perfilnuevo' },
+        { icon: iconoPerfilEdit, alt: '', text: 'Ver / editar perfil', page: 'perfilmodificar' }
     ];
 
     buttonsData.forEach(data => {

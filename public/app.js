@@ -104,5 +104,5 @@ function loadView(view) {
 // loadView("stockcargaxremito")
 
 // loadView("formnuevoproveedor")
-loadView("perfilModificar")
+loadView("perfilnuevo")
 // loadView("stock")

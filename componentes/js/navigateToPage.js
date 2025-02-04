@@ -221,10 +221,16 @@ export function navigateToPage(page) {
                 break;
 
         case 'MenuPerfiles':
-            import('../pages/SeccionPerfiles/menuPerfiles.js').then(module => {
+            import('../pages/SeccionPerfiles/menuperfiles.js').then(module => {
                 new module.MenuPerfiles();
             });
-            break;    
+            break; 
+
+        case 'perfilnuevo':
+            import('../pages/SeccionPerfiles/perfilnuevo.js').then(module => {
+                new module.NuevoPerfil();
+            });
+            break;       
 
 
 
