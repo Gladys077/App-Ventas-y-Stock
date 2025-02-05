@@ -2,7 +2,7 @@ import { Header } from '../../js/header.js';
 import { createSearchContainer, RadioProductList, ExtendedFabButton, verificarCss } from '../../js/utils.js';
 import { Footer } from "../../js/footer.js";
 import { ButtonContainer } from "../../js/btnsContainer.js";
-import { iconoVolver, iconoMenu } from '../../js/iconosSVG.js';
+import { iconoVolver, iconoMenu, iconoRemito, iconoAgregarArticulo } from '../../js/iconosSVG.js';
 import { ModalInput } from '../../js/modalInput.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 import { Notification } from '../../js/notificacion.js';
@@ -79,11 +79,9 @@ export class CargandoRemitoNro {
     }
     createButtonsFooter=()=>{
         const footerRegistro= document.querySelector(".footer-container");
-        this.botones= new ButtonContainer("Nuevo Producto", "Remito", ()=>{ navigateToPage('Remito')},()=>{ navigateToPage('NuevoProducto')},"agregarProducto" ,"remito")
+        this.botones= new ButtonContainer("Nuevo Producto", "Remito", ()=>{ navigateToPage('Remito')},()=>{ navigateToPage('NuevoProducto')}, iconoAgregarArticulo, iconoRemito)
         footerRegistro.appendChild(this.botones.getButtonContainer());
-    
     }
-
 
     onProductClick(producto, event) {
         if (event.target.closest('.product-radio')) {

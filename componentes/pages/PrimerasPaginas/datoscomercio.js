@@ -1,8 +1,10 @@
-import { Header, iconoVolver, iconoMenu } from "../../js/header.js";
+import { Header } from "../../js/header.js";
+import { iconoVolver, iconoMenu, iconoGuardar, iconoCancel } from "../../js/iconosSVG.js";
+import { navigateToPage } from "../../js/navigateToPage.js";
 import Main from "../../js/main.js";
-import { CrearInput } from "../js/formulariosvarios.js"
-import { conexionAPI } from "../js/services/conectionFakeApi.js"
-import { ButtonContainer } from "../../js/btnsContainer.js"
+import { CrearInput } from "../../js/formulariosvarios.js";
+import { conexionAPI } from "../../js/services/conectionFakeApi.js";
+import { ButtonContainer } from "../../js/btnsContainer.js";
 
 export class DatosComercio {
     constructor(){
@@ -11,10 +13,9 @@ export class DatosComercio {
         this.createInputs();
         this.createButtonsForm();
     }
-
     
     createHeader=()=>{
-        this.header = new Header("Datos del Comercio", iconoVolver, iconoMenu,()=>{},()=> navigateToPage('FormNuevoProveedor'));
+        this.header = new Header("Datos del Comercio", iconoVolver, iconoMenu, ()=>navigateToPage('Config'), ()=>navigateToPage('MenuVentas'));
         document.body.appendChild(this.header.getElement());
         return
     }
@@ -55,9 +56,9 @@ export class DatosComercio {
         this.botones= new ButtonContainer("Guardar", "Cancelar",
                                                             (e)=>{
                                                                 agregarComercio(e);
-                                                                form.reset();},
-                                                             ()=>{form.reset();},
-                                                             "saveWhite" ,"cancelViolet")
+                                                                form.reset()},
+                                                             ()=>{form.reset()},
+                                                             iconoGuardar, iconoCancel)
         form.appendChild(this.botones.getButtonContainer());
     }
 

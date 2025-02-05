@@ -14,10 +14,10 @@ export class ProductosVendidos {
         window.addEventListener('beforeunload', () => {
             localStorage.removeItem('selectedProduct');
 
-            // Limpiar también el título de la card si existe
-            const titleElement = document.querySelector('.card-title');
-            if (titleElement) {
-                titleElement.textContent = '';
+            // Limpia también el título de la card si existe
+            const productoElegido = document.querySelector('.card-title');
+            if (productoElegido) {
+                productoElegido.textContent = '';
             }
         });
 
@@ -144,9 +144,9 @@ export class ProductosVendidos {
 
     updateCardTitle(productName) {
         this.ventasPorProducto.title = productName;
-        const titleElement = this.ventasPorProducto.getElement().querySelector('.card-title');
-        if (titleElement) {
-            titleElement.textContent = productName;
+        const productoElegido = this.ventasPorProducto.getElement().querySelector('.card-title');
+        if (productoElegido) {
+            productoElegido.textContent = productName;
         }
     }
 

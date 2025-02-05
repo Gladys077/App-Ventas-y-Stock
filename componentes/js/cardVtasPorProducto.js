@@ -1,5 +1,5 @@
 import { Notification } from '../js/notificacion.js';
-import { isValidDate, formatDateInput, verificarCss } from '../js/utils.js';
+import { verificarCss } from '../js/utils.js';
 import { navigateToPage } from '../js/navigateToPage.js';
 
 export class CardVtasPorProducto {
@@ -188,22 +188,20 @@ export class CardVtasPorProducto {
                 }
             }
         }
-            
-            
       }
-        
       }
 
         `
         document.head.appendChild(style);
     }
+
     armarCardVtasPorProducto() {
         this.element = document.createElement('div');
         this.element.className = 'card';
 
-        const titleElement = document.createElement('h2');
-        titleElement.textContent = this._title;
-        titleElement.className = 'card-title';
+        const productoElegido = document.createElement('h2');
+        productoElegido.textContent = this._title;
+        productoElegido.className = 'card-title';
 
         this.desdeInput = this.createDateInput('DESDE');
         this.hastaInput = this.createDateInput('HASTA');
@@ -221,7 +219,7 @@ export class CardVtasPorProducto {
             navigateToPage(this._page);
         });
 
-        this.element.appendChild(titleElement);
+        this.element.appendChild(productoElegido);
         this.element.appendChild(this.desdeInput);
         this.element.appendChild(this.hastaInput);
         this.element.appendChild(this.button);
@@ -240,43 +238,63 @@ export class CardVtasPorProducto {
         input.className = 'card-input';
         input.type = "date";
         input.maxLength = 10;
-        input.addEventListener('input', formatDateInput);
-        input.addEventListener('blur', (e) => this.handleDateChange(e, label));
+        input.addEventListener('blur', (e) => this.handleInputChange(e, label));
         containerDate.appendChild(desdeHasta);
         containerDate.appendChild(input);
         return containerDate;
     }
 
-    handleDateChange(e, label) {
-        const value = e.target.value;
-        if (value && !isValidDate(value)) {
-            e.target.value = '';
-            return;
-        }
-        if (label === 'DESDE') {
-            this._fechaDesde = value || null;
-        } else {
-            this._fechaHasta = value || null;
-        }
-    }
+    // handleDateChange(e, label) {
+    //     const value = e.target.value;
+    //     if (value && !isValidDate(value)) {
+    //         e.target.value = '';
+    //         return;
+    //     }
+    //     if (label === 'DESDE') {
+    //         this._fechaDesde = value || null;
+    //     } else {
+    //         this._fechaHasta = value || null;
+    //     }
+    // }
 
     handleClick() {
-        if (this._isBuscarMode) {
-            if (!this._fechaDesde && !this._fechaHasta) {
-                new Notification('../../img/emojis/señalar.png', '¡Elige alguna fecha!', 'success');
-                return;
-            }
-            this.realizarBusqueda();
-            this._includeUnidadesVendidas = true;
-            this.button.textContent = 'Borrar';
-            this._isBuscarMode = false;
-            this.mostrarUnidadesVendidas();
-        } else {
-            this.resetToBuscarMode();
-            this.limpiarInputs();
+        console.log("Iniciando handleClick");
+
+        // Obtener el producto desde el título (Trim = elimina espacios innecesarios)
+        this.productoElegido = document.querySelector(".card-title")?.textContent.trim() || null;
+
+        console.log("Producto seleccionado:", this.productoElegido); // Debug
+    
+        if (!this.productoElegido || this.productoElegido === "") {
+            console.log("Intentando mostrar notificación de producto faltante");
+
+            new Notification('../../img/emojis/señalar.png', '¡Le faltó elegir un producto!', 'warning');
+            return;
         }
-        // this._onClick(); // Llamada al callback original
+    
+        // Obtener fechas
+        this._fechaDesde = document.querySelector(".card-input[type='date']:nth-of-type(1)").value;
+        this._fechaHasta = document.querySelector(".card-input[type='date']:nth-of-type(2)").value;
+    
+        if (this._fechaDesde && this._fechaHasta && this._fechaHasta < this._fechaDesde) {
+            new Notification('../../img/emojis/error.png', 'La fecha HASTA no puede ser anterior a la fecha DESDE.', 'warning');
+            return;
+        }
+    
+        // Realizar búsqueda
+        this.realizarBusqueda();
+    
+        if (!this.ventasFiltradas || this.ventasFiltradas.length === 0) {
+            new Notification('../../img/emojis/triste.png', 'No hubo ventas en esas fechas para el producto elegido.', 'info');
+            return;
+        }
+    
+        this._includeUnidadesVendidas = true;
+        this.button.textContent = 'Borrar';
+        this._isBuscarMode = false;
+        this.mostrarUnidadesVendidas();
     }
+    
 
     addInputListeners() {
         const inputs = [
@@ -284,20 +302,21 @@ export class CardVtasPorProducto {
             this.hastaInput.querySelector('input')
         ];
         inputs.forEach(input => {
-            input.addEventListener('input', () => this.handleInputChange());
+            input.addEventListener('input', (e) => this.handleInputChange(e));
         });
     }
 
-    handleInputChange(e, label) {
+    handleInputChange(e) {
+        if (!e || !e.target) return;
         const value = e.target.value;
-        if (value && !isValidDate(value)) {
-            e.target.value = '';
-            return;
-        }
-        if (label === 'DESDE') {
+        
+        if (e.target.classList.contains('desde')) {
             this._fechaDesde = value || null;
-        } else {
+        } else if (e.target.classList.contains('hasta')) {
             this._fechaHasta = value || null;
+        } else if (e.target.classList.contains('card-title')) { // Si el input es el del producto
+            this.productoElegido = textContent;
+            console.log("Producto seleccionado:", this.productoElegido); // Debug
         }
     }
 
@@ -367,8 +386,11 @@ export class CardVtasPorProducto {
         console.log('Ventas filtradas:', ventasFiltradas);
     
         this.calcularUnidadesVendidas();
+
+        console.log("Fecha Desde:", this._fechaDesde, "Fecha Hasta:", this._fechaHasta);
+console.log("Ventas Filtradas:", this.ventasFiltradas);
+
     }
-    
 
     calcularUnidadesVendidas() {
         if (!this.ventasFiltradas) return;
@@ -387,7 +409,6 @@ export class CardVtasPorProducto {
             boxCuadroInferior.textContent = totalUnidadesVendidas;
         }
     }
-    
 
     mostrarListadoPorFecha() {
         navigateToPage('VentaxProducto-Listado');

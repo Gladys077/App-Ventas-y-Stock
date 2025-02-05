@@ -294,29 +294,33 @@ export class CardVtasPorVendedor {
   
 
   handleButtonClick() {
-     this._fecha = this.input.value // Obtiene el valor del input de fecha
+    if (!this._selectedVendedor) {
+      new Notification('../../../img/emojis/pare.png', 'No has elegido un vendedor', 'error');
+      return;
+    }
 
-    if (this._fecha) {
-      try {
-        // Llama a filtroFecha con la fecha seleccionada y procesa los resultados
-        const resultados = new Fecha(this._fecha);
-        console.log(`Resultados del filtro para la fecha ${this._fecha}:`, resultados);
+    this._fecha = this.input.value; // Obtiene el valor del input de fecha
 
-        // Aquí podrías actualizar el monto u otros elementos en la card con los resultados
-        this.actualizarMonto(resultados);
-      } catch (error) {
-        console.error('Error al filtrar por fecha:', error);
+    if (!this._fecha) {
+      new Notification('../../../img/emojis/pare.png', 'No has elegido una fecha', 'error');
+      return;
+    }
+
+    try {
+      // Enviar los datos al manejador de búsqueda en VentasPorVendedorPage
+      const ventasPage = window.ventasPage; // Asumiendo que guardamos la instancia
+      if (ventasPage) {
+        ventasPage.handleSearchBBDD(this._selectedVendedor, this._fecha);
       }
-    } else {
-      console.error('No se ha seleccionado una fecha válida');
-      new Notification('Por favor, selecciona una fecha válida.');
+    } catch (error) {
+      console.error('Error al procesar la búsqueda:', error);
+      new Notification('../../../img/emojis/pare.png', 'Error al procesar la búsqueda', 'error');
     }
   }
 
-  actualizarMonto(resultados) {
-    // Actualiza el monto o muestra información con los datos filtrados
-    const total = resultados.reduce((sum, item) => sum + item.monto, 0);
-    this.element.querySelector('.card-monto').textContent = `Monto total: $${total}`;
+  actualizarMonto(monto) {
+    const montoElement = this.element.querySelector('.card-monto');
+    montoElement.textContent = `Monto total: $${monto.toLocaleString()}`;
   }
 }
 

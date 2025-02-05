@@ -18,7 +18,7 @@ export class PageMenuVentas {
     }
     
     createHeader() {
-        this.header = new Header('Administrador', iconoVolver, iconoAjustes, ()=> { navigateToPage('Login') }, ()=> { navigateToPage('Config') });
+        this.header = new Header('Menú Ventas', iconoVolver, iconoAjustes, ()=> { navigateToPage('Login') }, ()=> { navigateToPage('Config') });
         
         document.body.appendChild(this.header.getElement());
     }

@@ -104,7 +104,10 @@ main {
     background-color: var(--color-hover);
     transform: scale(95%);
     color: white;
-    
+
+    svg{
+        filter: invert(1);
+    }
 }
 
 .large{

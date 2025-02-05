@@ -9,6 +9,7 @@ import { navigateToPage } from '../../js/navigateToPage.js';
 export class VentasPorVendedorPage {
     constructor() {
         document.body.innerHTML = ''; 
+        window.ventasPage = this; // Guardamos la instancia para acceder desde la card
 
         this.createHeader();
         this.createMain();
@@ -16,7 +17,7 @@ export class VentasPorVendedorPage {
 
         // Obtengo la lista de vendedores y actualizo la card
         const vendedores = this.getSellersList() || [];
-        this.cardVtasPorVendedor.updateSellersList(SellersList); // Actualiza la lista de vendedores en la card
+        this.cardVtasPorVendedor.actualizarListaVendedores(vendedores);
         
         this.salesDate = [];
     }
@@ -48,44 +49,48 @@ export class VentasPorVendedorPage {
         this.salesDate = this.datosDePrueba(seller, date);
 
         if (this.salesDate.length === 0) {
-            new Notification('../../../img/emojis/pare.png', 'Sin ventas en esa fecha', 'success');
+            new Notification('../../../img/emojis/pare.png', 'En esa fecha no hubo ventas', 'error');
+            // Limpiar el monto mostrado cuando no hay ventas
+            this.cardVtasPorVendedor.actualizarMonto(0);
             return;
         }
 
         const totalSales = this.salesDate.reduce((total, sale) => total + sale.amount, 0);
-        this.updateDisplay(totalSales);
+        this.cardVtasPorVendedor.actualizarMonto(totalSales);
     
         console.log('Resultados:', this.salesDate);
     }
 
     updateDisplay(totalSales) {
-        const displayElement = document.querySelector('.total-sales-display');
-        displayElement.textContent = `Total: $${totalSales}`;
+        // const displayElement = document.querySelector('.total-sales-display');
+        // displayElement.textContent = `Total: $${totalSales}`;
+        this.cardVtasPorVendedor.actualizarMonto(totalSales);
+
     }
 
-    getSellersList() {
-        const data = this.datosDePrueba();
-        const SellersList = [...new Set(data.map(item => item.seller))];
-        return SellersList;
-    }
+    // getSellersList() {
+    //     const data = this.datosDePrueba();
+    //     const SellersList = [...new Set(data.map(item => item.seller))];
+    //     return SellersList;
+    // }
 
-    datosDePrueba(seller, date) {
-        const data = [
-            { date: '2024-07-10', seller: 'Lionel Messi', amount: 5000 },
-            { date: '2024-07-10', seller: 'Dibu Martinez', amount: 4500 },
-            { date: '2024-07-10', seller: 'Juan Pérez', amount: 1500 },
-            { date: '2024-07-10', seller: 'María García', amount: 2000 },
-            { date: '2024-07-10', seller: 'Juanita Pérez', amount: 1800 },
-            { date: '2024-07-10', seller: 'Mariano García', amount: 2200 },
-        ];
+    // datosDePrueba(seller, date) {
+    //     const data = [
+    //         { date: '2024-07-10', seller: 'Lionel Messi', amount: 5000 },
+    //         { date: '2024-07-10', seller: 'Dibu Martinez', amount: 4500 },
+    //         { date: '2024-07-10', seller: 'Juan Pérez', amount: 1500 },
+    //         { date: '2024-07-10', seller: 'María García', amount: 2000 },
+    //         { date: '2024-07-10', seller: 'Juanita Pérez', amount: 1800 },
+    //         { date: '2024-07-10', seller: 'Mariano García', amount: 2200 },
+    //     ];
 
-        if (seller || date) {
-            return data.filter(sale =>
-                (!seller || sale.seller === seller) && (!date || sale.date === date)
-            );
-        }
-        return data;
-    }
+    //     if (seller || date) {
+    //         return data.filter(sale =>
+    //             (!seller || sale.seller === seller) && (!date || sale.date === date)
+    //         );
+    //     }
+    //     return data;
+    // }
 
     handleDownloadClick() {
         if (this.salesDate.length > 0) {

@@ -28,7 +28,7 @@ export function navigateToPage(page) {
             });
             break;
         case 'DatosDelComercio':
-            import('../../public/pages/datoscomercio.js').then(module => {
+            import('../pages/PrimerasPaginas/datoscomercio.js').then(module => {
                 new module.DatosComercio();
             });
             break;

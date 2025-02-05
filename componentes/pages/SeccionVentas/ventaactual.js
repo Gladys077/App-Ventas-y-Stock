@@ -21,7 +21,7 @@ export class PlanillaVentaActual {
         this.createTablaFooter();
         this.createBtnFlotante();
         this.createFooter();
-        this.createButtonsFooter();
+        // this.createButtonsFooter();
 
     }
 
@@ -133,18 +133,31 @@ export class PlanillaVentaActual {
 
     }
 
-    createFooter=()=>{
-        this.footer = new Footer()
-        document.body.appendChild(this.footer.getElement());
-        return
-    }
+    // createFooter=()=>{
+    //     this.footer = new Footer()
+    //     document.body.appendChild(this.footer.getElement());
+    //     return
+    // }
 
-    createButtonsFooter=()=>{
-        const footerRegistro= document.querySelector(".footer-container");
-        this.botones= new ButtonContainer("Finalizar", "Eliminar", ()=>{console.log("se guardó pedido");},()=>{console.log("se eliminó pedido");},iconoPedidoFinalizado,iconoTrash )
-        footerRegistro.appendChild(this.botones.getButtonContainer());
+    // createButtonsFooter=()=>{
+    //     const footerRegistro= document.querySelector(".footer-container");
+    //     this.botones= new ButtonContainer("Finalizar", "Eliminar", ()=>{console.log("se guardó pedido");},()=>{console.log("se eliminó pedido");},iconoPedidoFinalizado,iconoTrash )
+    //     footerRegistro.appendChild(this.botones.getButtonContainer());
     
-    }
+    // }
+    createFooter() {
+            this.footer = new Footer();
+            const buttonContainer = new ButtonContainer(
+                'Finalizar', 
+                'Eliminar', 
+                this.onEliminarClick.bind(this),
+                this.onCancelarClick.bind(this),
+                iconoPedidoFinalizado,
+                iconoTrash
+            );
+            this.footer.getElement().appendChild(buttonContainer.getButtonContainer());
+            document.body.appendChild(this.footer.getElement());
+        }
 
 }/*fin PlanillaVentaActual */
 

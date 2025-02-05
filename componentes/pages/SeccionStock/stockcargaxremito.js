@@ -4,7 +4,7 @@ import { MostrarRemito, TablaEncabezado, TablaDetalles, TablaFooter, BtnFlotante
 import { Footer } from "../../js/footer.js";
 import { ButtonContainer } from "../../js/btnsContainer.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
-import { iconoVolver } from "../../js/iconosSVG.js";
+import { iconoCancelViolet, iconoCargarStock, iconoVolver } from "../../js/iconosSVG.js";
 
 export class PlanillaStockCargaxRemito {
     constructor(id) {
@@ -90,7 +90,7 @@ export class PlanillaStockCargaxRemito {
 
     createButtonsFooter=()=>{
         const footerRegistro= document.querySelector(".footer-container");
-        this.botones= new ButtonContainer("Cargar", "Cancelar", ()=>{console.log("ingresando a Planilla Cargar Stock por Remito");},()=>{console.log("se canceló ingreso de stock por remito");},"save2","cancelViolet" )
+        this.botones= new ButtonContainer("Cargar", "Cancelar", ()=>{console.log("ingresando a Planilla Cargar Stock por Remito");},()=>{console.log("se canceló ingreso de stock por remito");},iconoCargarStock,iconoCancelViolet )
         footerRegistro.appendChild(this.botones.getButtonContainer());
         return
     }

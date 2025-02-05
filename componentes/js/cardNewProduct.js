@@ -3,7 +3,7 @@ import { navigateToPage } from './navigateToPage.js';
 import { Notification } from './notificacion.js';
 import { Producto } from './producto.js';
 import { verificarCss } from './utils.js';
-import { iconoGuardar, iconoCancelViolet } from './iconosSVG.js';
+import { iconoGuardar, iconoCancelViolet, iconoCancel } from './iconosSVG.js';
 
 export class CardNewProduct {
     constructor(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback) {
@@ -15,9 +15,9 @@ export class CardNewProduct {
         this._producto = new Producto('', '', 0, 0, 0);
         if (!verificarCss('nuevo-producto-form')) this.agregarCss();
         this._modal = null;
-        this.initModal();
-       
+        this.initModal();   
     }
+
     get btnPrimary(){ return this._btnPrimary;  }
     set btnPrimary(value){ this._btnPrimary = value; }
 
@@ -226,8 +226,8 @@ export class CardNewProduct {
         margin-right: 8px;
         }
         button.cancelar:hover div svg {
-        fill: white;
-        filter:invert(1);
+        // fill: white;
+        filter: invert(1);
         }
     
 	`
@@ -603,7 +603,7 @@ handleProveedorSubmit(e) {
             this.btnPrimaryCallback, 
             this.btnSecondaryCallback, 
             iconoGuardar, 
-            iconoCancelViolet
+            iconoCancel
         );
         return btnsContainer.getButtonContainer();
     }
