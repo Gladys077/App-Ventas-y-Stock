@@ -292,34 +292,111 @@
 
 //CRUD PARA PERFIL VENDEDOR__________________________________________________________________________        
         
-async function crearPerfil(nombre, apellido,tel,email, verStock,upStock,nuevoProd, modProd,eliminarProd){
-    try {
-        const conexion = await fetch("http://localhost:3000/perfiles", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                nombre: nombre,
-                apellido: apellido,
-                tel: tel,
-                email: email,
-                verstock: verStock,
-                recargastock: upStock,
-                nuevoproducto: nuevoProd,
-                modproducto:modProd,
-                eliminarproducto: eliminarProd
+        async function crearPerfil(nombre, apellido,tel,email, verStock,upStock,nuevoProd, modProd,eliminarProd){
+            try {
+                const conexion = await fetch("http://localhost:3000/perfiles", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        nombre: nombre,
+                        apellido: apellido,
+                        Tel: tel,
+                        email: email,
+                        verstock: verStock,
+                        recargastock: upStock,
+                        nuevoproducto: nuevoProd,
+                        modproducto:modProd,
+                        eliminar: eliminarProd
+
+                    })
+                    });
+                const conexionconvertida = await conexion.json();
+                return conexionconvertida;    
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
+        async function listaperfiles(){
+            try {
+                const conexion = await fetch("http://localhost:3000/perfiles",{
+                    method:"GET",
+                    headers:{
+                        "Content-type":"application/json",
+                    }
+                })
+
+                const respuesta = await conexion.json();
+                return respuesta;
+                
+            } catch (error) {
+                console.error(error)
+                
+            }
+        }
+
+        async function mostrarPerfil(id){
+            try {
+        
+                const conexion = await fetch(`http://localhost:3000/perfiles/${id}`,{
+                    method:"GET",
+                    headers:{
+                        "Content-type":"application/json",
+                    }
+                })
+
+                const respuesta = await conexion.json();
+                return respuesta;
+                
+            } catch (error) {
+                console.error(error)
+                
+            }
+        }
+
+        async function actualizarPerfil(id,nombre, apellido,tel,email, verStock,upStock,nuevoProd, modProd,eliminarProd){
+            
+            const conexion = await fetch(`http://localhost:3000/perfiles/${id}`,{
+                method:"PUT" ,
+                headers:{"Content-type":"application/json"},
+                body:JSON.stringify({
+                        nombre:`${nombre}`,
+                        apellido: `${apellido}`,
+                        Tel:`${tel}` ,
+                        email: `${email}`,
+                        verstock: verStock,
+                        recargastock: upStock,
+                        nuevoproducto: nuevoProd,
+                        modproducto: modProd,
+                        eliminar:eliminarProd               
+                })
 
             })
-            });
-        const conexionconvertida = await conexion.json();
-        return conexionconvertida;    
-    } catch (error) {
-        console.error(error)
-    }
-}
+            const conexionconvertida = await conexion.json();
+            return conexionconvertida;
+        }
+
+
+        async function eliminarPerfil(id){
+            const conexion = await fetch(`http://localhost:3000/perfiles/${id}`,{
+                method:"DELETE" ,
+                headers:{"Content-type":"application/json"}
+            })
+            const conexionconvertida = await conexion.json();
+            return conexionconvertida;
+        }
 
         
 export const conexionAPI={
-    listaproveedores, nuevoproveedor, mostrarRemito, nuevoRemito, nuevocomercio, listapedidos, obtenerpedido, crearpedido, actualizarPedido, borrarpedido, listaarticulos, articulospedidos, nuevoarticulo, borrararticulo, actualizarCant, historialVentaProducto, stockDisponible,crearPerfil
+    listaproveedores, nuevoproveedor, 
+    mostrarRemito, nuevoRemito, 
+    nuevocomercio, 
+    listapedidos, obtenerpedido, crearpedido, actualizarPedido, borrarpedido, 
+    listaarticulos, articulospedidos, nuevoarticulo, borrararticulo, 
+    actualizarCant, 
+    historialVentaProducto, 
+    stockDisponible,
+    crearPerfil, listaperfiles, mostrarPerfil, actualizarPerfil, eliminarPerfil
 }

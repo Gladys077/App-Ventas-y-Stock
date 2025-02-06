@@ -1,9 +1,9 @@
 
 main{
     /*estilo contenedor-filtro-fecha es igual que en movimiento.css*/
-    .contenedor-monto-total, .contenedor-vendedor{
+    .contenedor-monto-total, .contenedor-vendedor, .contenedor-producto{
             color: var(--color-blanco);
-            height: 40px;
+            height: 80px;
             background: var(--color-primario);
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
@@ -15,6 +15,34 @@ main{
             text-align: center;
             margin-top: 4px;
             margin-bottom: 4px;
+            overflow: hidden;
+
+            .marquee {
+                white-space: nowrap;
+                overflow: hidden;
+                display: inline-block;
+                /* animation: scroll 10s linear infinite; */
+                width: calc(100% - 32px);
+                max-width: 400px;
+                text-overflow: ellipsis;
+            }
+            
+            @keyframes scroll {
+                0% { transform: translateX(100%); }
+                100% { transform: translateX(-100%); }
+            }
+            
+            .ellipse{
+                text-align: center;
+                width: 100px;
+                margin-right: 5px;
+                margin-left: 5px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                
+            }
+            
+
             
     }/*fin contenedor-monto-total*/
 

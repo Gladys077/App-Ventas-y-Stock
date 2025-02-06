@@ -91,7 +91,7 @@ export class PlanillaPedidoProximo {
 
                             const radio = document.createElement("input");
                             radio.type = "radio"
-                            radio.name = `proveedor_${nombre}`;
+                            radio.name = `proveedor`;
                             radio.value= `${proveedor.precio}`;
                             radio.id = `prov_${proveedor.id}`;
                             

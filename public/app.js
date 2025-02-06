@@ -72,6 +72,12 @@ function loadView(view) {
                     case 'perfilmenu':
                         import('../public/pages/perfilmenu.js')
                         break;
+                    
+                    case 'perfilModificar':
+                        import('./pages/perfilModificar.js') 
+                        .then((module) => {new module.ModificarPerfil(Id);                           
+                        });    
+                        break;
 
 
 
@@ -99,10 +105,12 @@ function loadView(view) {
 // Cargar la vista por defecto
 // loadView("pedidoproximo")
 // loadView("stocknuevoremito")
-// loadView("ventasxprodxfecha")
+    // loadView("ventasxprodxfecha")
+    loadView("ventaactual")
 
 // loadView("stockcargaxremito")
 
 // loadView("formnuevoproveedor")
-loadView("perfilnuevo")
+// loadView("perfilsolicitado")
 // loadView("stock")
+// loadView("")

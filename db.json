@@ -587,7 +587,7 @@
     },
     {
       "id": "125",
-      "cant": 2,
+      "cant": 7,
       "producto": "Goma tinta-lápiz",
       "precioUnitario": 500
     },
@@ -599,25 +599,19 @@
     },
     {
       "id": "127",
-      "cant": 2,
+      "cant": 6,
       "producto": "Lápiz artístico",
       "precioUnitario": 1000
     },
     {
       "id": "128",
-      "cant": 1,
+      "cant": 7,
       "producto": "Resaltador amarillo fluor",
       "precioUnitario": 1500
     },
     {
-      "id": "129",
-      "cant": 1,
-      "producto": "Resaltador verde fluor",
-      "precioUnitario": 1500
-    },
-    {
       "id": "130",
-      "cant": 2,
+      "cant": 1,
       "producto": "Cuaderno Rivadavia T.dura 24h",
       "precioUnitario": 2000
     },
@@ -641,7 +635,7 @@
     },
     {
       "id": "135",
-      "cant": 2,
+      "cant": 6,
       "producto": "Resaltador amarillo fluor",
       "precioUnitario": 1500
     },
@@ -1132,35 +1126,11 @@
       "id": "2124",
       "nombre": "Luna",
       "apellido": "Fernandez",
-      "tel": "11 555 2312",
+      "Tel": "11 555 2312",
       "email": "lfernandez@live.com.ar",
       "verstock": false,
       "recargastock": false,
       "nuevoproducto": false,
-      "modproducto": false,
-      "eliminarproducto": false
-    },
-    {
-      "id": "45a9",
-      "nombre": "Carina",
-      "apellido": "Corredera",
-      "tel": "234 985 2341",
-      "email": "carcorredera@gmail.com",
-      "verstock": true,
-      "recargastock": false,
-      "nuevoproducto": true,
-      "modproducto": false,
-      "eliminarproducto": false
-    },
-    {
-      "id": "bcb7",
-      "nombre": "Lionel",
-      "apellido": "Staricoff",
-      "tel": "232 325 2334",
-      "email": "elion@gmail.com",
-      "verstock": true,
-      "recargastock": true,
-      "nuevoproducto": true,
       "modproducto": false,
       "eliminarproducto": false
     }

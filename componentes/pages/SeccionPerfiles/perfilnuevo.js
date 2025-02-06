@@ -76,19 +76,36 @@ export class NuevoPerfil {
     }
 
 
-        createButtonsForm=()=>{
-            const form= document.querySelector("form");
-            this.botones= new ButtonContainer("Guardar", "Cancelar",
-                                                                (e)=>{
-                                                                        agregarProveedor(e);
-                                                                        form.reset();},
-                                                                 ()=>{form.reset();},
-                                                                 "saveWhite" ,"cancelViolet")
-            form.appendChild(this.botones.getButtonContainer());
-        }
+    createButtonsForm=()=>{
+        const form= document.querySelector("form");
+        this.botones= new ButtonContainer("Guardar", "Cancelar",
+                                                            (e)=>{
+                                                                    guardarPerfil(e);
+                                                                    form.reset();},
+                                                                ()=>{form.reset();},
+                                                                "saveWhite" ,"cancelViolet")
+        form.appendChild(this.botones.getButtonContainer());
+    }
     
 
 
 }
 
 new NuevoPerfil;
+
+
+async function guardarPerfil(e){
+    e.preventDefault();
+    const nombre = document.querySelector(".contenedor-nombre-perfil input").value;
+    const apellido = document.querySelector(".contenedor-apellido-perfil input").value;
+    const tel = document.querySelector(".contenedor-llamar input").value;
+    const email = document.querySelector(".contenedor-email input").value;
+    const verStock = document.querySelector(".contenedor-ver-stock input").checked;
+    const recargaStock = document.querySelector(".contenedor-recargar-stock input").checked;
+    const agregarProducto = document.querySelector(".contenedor-agregar-producto input").checked;
+    const modificarProducto = document.querySelector(".contenedor-modificar-producto input").checked;
+    const eliminarProducto = document.querySelector(".contenedor-eliminar-producto input").checked;
+
+    console.log(nombre, apellido, tel, email, verStock,recargaStock,agregarProducto,modificarProducto,eliminarProducto);
+    await conexionAPI.crearPerfil(nombre, apellido, tel, email, verStock,recargaStock,agregarProducto,modificarProducto,eliminarProducto)
+}/*fin guardarPerfil */

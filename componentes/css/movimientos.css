@@ -2,7 +2,7 @@ main{
     .contenedor-filtro-fecha{
         width: calc(100% - 32px);
         max-width: 500px;
-        
+        position: relative;
         .fechas-encabezado{
             width: 100%;
             display: flex;
@@ -44,6 +44,32 @@ main{
 
             }
         }/*fin fechas-datos*/
+        .filtrarFecha{
+            position: absolute;
+            background-color: var(--color-btn-flotante);
+            width: 30px;
+            height: 30px;
+            line-height: 24px;
+            bottom: 25px;
+            right: 46.5%;
+            border-radius: 100%;
+            text-align: center;
+            font-size: 12px;
+            box-shadow: 0px 6px 10px var(--color-sombra);
+            z-index:100;
+            transition:all ease-in-out 10ms transform ;
+            img{
+                padding: 6px 3px 0 3px;
+                width:24px;
+                height: 24px;
+            }
+            &:hover{
+                background-color: var(--color-fondo);
+            }
+            &:active{
+                transform: scale(0.9);
+            }
+        }
 
 
 

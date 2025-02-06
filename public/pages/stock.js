@@ -75,9 +75,6 @@ export class PlanillaStock {
             const unidades = document.createElement("div");
             unidades.className = "cantHist";
             unidades.textContent=`${cant}`;
-    
-        
-
 
         
         lineaArt.append(prod,unidades)
