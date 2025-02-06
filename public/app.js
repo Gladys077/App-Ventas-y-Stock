@@ -106,11 +106,12 @@ function loadView(view) {
 // loadView("pedidoproximo")
 // loadView("stocknuevoremito")
     // loadView("ventasxprodxfecha")
-    loadView("ventaactual")
+    // loadView("ventaactual")
 
 // loadView("stockcargaxremito")
 
 // loadView("formnuevoproveedor")
-// loadView("perfilsolicitado")
+// loadView("perfilnuevo")
+loadView("perfilsolicitado")
 // loadView("stock")
 // loadView("")

@@ -1112,19 +1112,19 @@
   "perfiles": [
     {
       "id": "2123",
-      "nombre": "Juan",
+      "nombre": "Juan Pablo",
       "apellido": "Perez",
       "Tel": "11 660 2312",
       "email": "juanperez@live.com.ar",
       "verstock": true,
       "recargastock": true,
-      "nuevoproducto": true,
-      "modproducto": true,
-      "eliminar": true
+      "nuevoproducto": false,
+      "modproducto": false,
+      "eliminar": false
     },
     {
       "id": "2124",
-      "nombre": "Luna",
+      "nombre": "Luciana",
       "apellido": "Fernandez",
       "Tel": "11 555 2312",
       "email": "lfernandez@live.com.ar",
@@ -1132,7 +1132,44 @@
       "recargastock": false,
       "nuevoproducto": false,
       "modproducto": false,
-      "eliminarproducto": false
+      "eliminarproducto": false,
+      "eliminar": false
+    },
+    {
+      "id": "a92d",
+      "nombre": "Lionel",
+      "apellido": "Staricoff",
+      "Tel": "54 9 11 4345523",
+      "email": "elion@gmail.com",
+      "verstock": true,
+      "recargastock": true,
+      "nuevoproducto": false,
+      "modproducto": true,
+      "eliminar": false
+    },
+    {
+      "id": "6464",
+      "nombre": "Carina ",
+      "apellido": "Corredera",
+      "Tel": "54 9231 3452266",
+      "email": "caricorredera@gmail.com",
+      "verstock": true,
+      "recargastock": true,
+      "nuevoproducto": false,
+      "modproducto": false,
+      "eliminar": false
+    },
+    {
+      "id": "76da",
+      "nombre": "Gladys ",
+      "apellido": "Romero",
+      "Tel": "54 9 11 324 5676",
+      "email": "gromero@gmail.com",
+      "verstock": false,
+      "recargastock": false,
+      "nuevoproducto": true,
+      "modproducto": true,
+      "eliminar": true
     }
   ]
 }
