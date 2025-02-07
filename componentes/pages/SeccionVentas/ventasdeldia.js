@@ -1,4 +1,5 @@
 import { Header } from "../../js/header.js";
+import { Footer } from "../../js/footer.js";
 import Main from "../../js/main.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
 import { iconoVolver, iconoDescargar } from "../../js/iconosSVG.js"
@@ -13,6 +14,7 @@ export class PlanillaVtasdelDia {
         this.createTablaEncabezado();
         this.createTablaDetalles();
         this.createTablaFooter();
+        this.createFooter();
         this.createBtnFlotante();
     }
 
@@ -60,6 +62,17 @@ export class PlanillaVtasdelDia {
         mainPedido.appendChild(this.btn.getElement());
 
     }
+
+    createFooter() {
+        this.footer = new Footer();
+        const buttonContainer = new BtnFlotante(
+                iconoDescargar,
+                "contenedor-btn-flotante", 
+                ()=>{alert("Descarga exitosa")}
+            );        
+            this.footer.getElement().appendChild(buttonContainer.getBtnFlotante());
+            document.body.appendChild(this.footer.getElement());
+        }
 }
 
 new PlanillaVtasdelDia();
