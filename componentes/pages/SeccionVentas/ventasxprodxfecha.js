@@ -3,7 +3,7 @@ import {  iconoVolver, iconoMenu } from "../../js/iconosSVG.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
 import Main from "../../js/main.js";
 import { TablaEncabezado, MostrarProducto, FiltroFecha, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
-import { conexionAPI } from "../js/services/conectionFakeApi.js";
+// import { conexionAPI } from "../js/services/conectionFakeApi.js";
  
 
 export class PlanillaVtasxFecha {
@@ -12,6 +12,8 @@ export class PlanillaVtasxFecha {
     }
 
     async init(){
+        document.body.innerHTML = ''; 
+
         this.createHeader();
         this.mainPedido=this.createMain();
         await this.traerProd();

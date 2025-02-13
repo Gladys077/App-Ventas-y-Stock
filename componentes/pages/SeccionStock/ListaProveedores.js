@@ -56,7 +56,7 @@ export class ListaProveedores {
   }
 
     createHeader() {
-        const header = new Header('Lista de Proveedores', iconoVolver, null, function() { navigateToPage('MenuStock')});
+        const header = new Header('Lista de Proveedores', iconoVolver, null, ()=> { navigateToPage('MenuStock')});
         document.body.appendChild(header.getElement());
     }
 

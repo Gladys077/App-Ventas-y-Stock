@@ -6,8 +6,6 @@ import { ButtonContainer } from "../js/btnsContainer.js";
 import { conexionAPI } from "../js/services/conectionFakeApi.js"
  
 
-
-
 export class PlanillaVentaActual {
     constructor(){
         this.createHeader();
@@ -20,8 +18,6 @@ export class PlanillaVentaActual {
         this.createBtnFlotante();
         this.createFooter();
         this.createButtonsFooter();
-        
-
     }
 
     createHeader=()=>{
@@ -98,7 +94,7 @@ export class PlanillaVentaActual {
         const articulos = await conexionAPI.articulospedidos();
         // console.log(articulos);
 
-        if(articulos.length===0){
+        if(articulos.length === 0){
             const mensaje = document.createElement("span");
             mensaje.classList="no_hay_productos";
             mensaje.innerText="no existen articulos en el pedido";

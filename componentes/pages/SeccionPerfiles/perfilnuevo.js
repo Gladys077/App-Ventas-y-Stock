@@ -1,12 +1,15 @@
-import { Header, iconoVolver, iconoMenu } from "../../js/header.js";
+import { Header } from "../../js/header.js";
+import { iconoVolver, iconoMenu, iconoGuardar, iconoCancel } from "../../js/iconosSVG.js"
 import Main from "../../js/main.js";
-import { CrearInput , CrearSectionOptions} from "../js/formulariosvarios.js"
-import { conexionAPI } from "../js/services/conectionFakeApi.js"
+import { CrearInput , CrearSectionOptions} from "../../js/formulariosvarios.js"
+// import { conexionAPI } from "../js/services/conectionFakeApi.js"
 import { ButtonContainer } from "../../js/btnsContainer.js"
+import { navigateToPage } from "../../js/navigateToPage.js";
 
 
 export class NuevoPerfil {
     constructor(){
+        document.body.innerHTML= '';
         this.createHeader();
         this.createMain();
         this.createInputs();
@@ -16,7 +19,7 @@ export class NuevoPerfil {
 
 
     createHeader=()=>{
-        this.header = new Header("Creando Nuevo Perfil", iconoVolver, iconoMenu, null, null);//hay que agregar la navegación de los botones
+        this.header = new Header("Creando Nuevo Perfil", iconoVolver, iconoMenu, ()=> { navigateToPage('MenuPerfiles') }, ()=> { navigateToPage('MenuVentas') });
         document.body.appendChild(this.header.getElement());
         return
     }
@@ -83,7 +86,7 @@ export class NuevoPerfil {
                                                                     guardarPerfil(e);
                                                                     form.reset();},
                                                                 ()=>{form.reset();},
-                                                                "saveWhite" ,"cancelViolet")
+                                                                iconoGuardar ,iconoCancel)
         form.appendChild(this.botones.getButtonContainer());
     }
     

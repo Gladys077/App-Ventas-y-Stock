@@ -8,6 +8,7 @@ import { ButtonContainer } from "../../js/btnsContainer.js";
 
 export class DatosComercio {
     constructor(){
+        document.body.innerHTML = '';
         this.createHeader();
         this.mainPedido=this.createMain();
         this.createInputs();
