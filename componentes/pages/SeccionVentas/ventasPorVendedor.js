@@ -36,7 +36,7 @@ export class VentasPorVendedorPage {
     }
 
     createFooter() {
-        // this.footer = new Footer();
+        this.footer = new Footer();
         const mainPedido = document.querySelector("main");
 
         document.body.appendChild(this.footer.getElement());
