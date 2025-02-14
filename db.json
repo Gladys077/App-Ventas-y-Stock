@@ -538,7 +538,7 @@
   "productos": [
     {
       "id": "1c23",
-      "nombre": "Cuaderno Rivadavia T.dura 24h",
+      "nombre": "cuaderno rivadavia t.dura 24h",
       "cant": 1,
       "proveedores": [
         {
@@ -557,7 +557,73 @@
     },
     {
       "id": "1c63",
-      "nombre": "Cuaderno Rivadavia T.dura 48h",
+      "nombre": "cuaderno rivadavia t.dura 48h",
+      "cant": 1,
+      "proveedores": [
+        {
+          "id": "fulanito",
+          "nombre": "Fulanito S.A",
+          "precio": 1000
+        },
+        {
+          "id": "menganito",
+          "nombre": "Menganito S.A",
+          "precio": 900
+        },
+        {
+          "id": "proveeduria",
+          "nombre": "Proveeduria S.A",
+          "precio": 1000
+        }
+      ]
+    },
+    {
+      "id": "1d63",
+      "nombre": "Goma tinta-lápiz",
+      "cant": 1,
+      "proveedores": [
+        {
+          "id": "fulanito",
+          "nombre": "Fulanito S.A",
+          "precio": 1000
+        },
+        {
+          "id": "menganito",
+          "nombre": "Menganito S.A",
+          "precio": 900
+        },
+        {
+          "id": "proveeduria",
+          "nombre": "Proveeduria S.A",
+          "precio": 1000
+        }
+      ]
+    },
+    {
+      "id": "2d64",
+      "nombre": "Resaltador verde fluor",
+      "cant": 1,
+      "proveedores": [
+        {
+          "id": "fulanito",
+          "nombre": "Fulanito S.A",
+          "precio": 1000
+        },
+        {
+          "id": "menganito",
+          "nombre": "Menganito S.A",
+          "precio": 900
+        },
+        {
+          "id": "proveeduria",
+          "nombre": "Proveeduria S.A",
+          "precio": 1000
+        }
+      ]
+    },
+    {
+      "id": "1d63",
+      "nombre": "Lápiz-Artístico",
       "cant": 1,
       "proveedores": [
         {
@@ -577,6 +643,8 @@
         }
       ]
     }
+    
+    
   ],
   "venta": [
     {
@@ -768,188 +836,8 @@
           "Costo": 1000
         }
       ]
-    },
-    {
-      "id": "rtn99"
-    },
-    {
-      "id": "rtn81"
-    },
-    {
-      "id": "rtn48",
-      "numero": "34234",
-      "fecha": "2025-01-16",
-      "proveedor": "Tijerita S.A.",
-      "lista": []
-    },
-    {
-      "id": "rtn922",
-      "numero": "3454",
-      "fecha": "2025-01-16",
-      "proveedor": "Tijerita S.A.",
-      "lista": []
-    },
-    {
-      "id": "rtn683",
-      "numero": "5767",
-      "fecha": "2025-01-09",
-      "proveedor": "Menganito S.A.",
-      "lista": []
-    },
-    {
-      "id": "rtn528",
-      "numero": "3443125125",
-      "fecha": "2025-01-16",
-      "proveedor": "Tijerita S.A.",
-      "lista": []
-    },
-    {
-      "id": "rtn910",
-      "numero": "314345",
-      "fecha": "2025-01-22",
-      "proveedor": "Proveeduría S.A.",
-      "lista": []
-    },
-    {
-      "id": "rtn831",
-      "numero": "3546234",
-      "fecha": "2025-01-14",
-      "proveedor": "Menganito S.A.",
-      "lista": []
-    },
-    {
-      "id": "rtn235",
-      "numero": "2412343",
-      "fecha": "2025-01-23",
-      "proveedor": "Pulgarcito",
-      "lista": []
-    },
-    {
-      "id": "rtn658",
-      "numero": "452352",
-      "fecha": "2025-01-15",
-      "proveedor": "Proveeduría S.A.",
-      "lista": []
-    },
-    {
-      "id": "rtn974",
-      "numero": "342423",
-      "fecha": "2025-01-08",
-      "proveedor": "Peggy Lu",
-      "lista": []
-    },
-    {
-      "id": "rtn14",
-      "numero": "3452421",
-      "fecha": "2025-01-15",
-      "proveedor": "Que te regalo",
-      "lista": []
-    },
-    {
-      "id": "rtn675",
-      "numero": "67453",
-      "fecha": "2025-01-14",
-      "proveedor": "Pulgarcito",
-      "lista": []
-    },
-    {
-      "id": "rtn649",
-      "numero": "343245",
-      "fecha": "2025-01-09",
-      "proveedor": "Tijerita S.A.",
-      "lista": []
-    },
-    {
-      "id": "rtn333",
-      "numero": "4465",
-      "fecha": "2025-01-08",
-      "proveedor": "Pulgarcito",
-      "lista": []
-    },
-    {
-      "id": "rtn236",
-      "numero": "123434",
-      "fecha": "2025-01-15",
-      "proveedor": "Fulanito S.A.",
-      "lista": []
-    },
-    {
-      "id": "rtn851",
-      "numero": "3435",
-      "fecha": "2025-01-14",
-      "proveedor": "Menganito S.A.",
-      "lista": []
-    },
-    {
-      "id": "rtn414",
-      "numero": "3412",
-      "fecha": "2025-01-15",
-      "proveedor": "Proveeduría S.A.",
-      "lista": []
-    },
-    {
-      "id": "rtn651",
-      "numero": "8765",
-      "fecha": "2025-01-15",
-      "proveedor": "Fulanito S.A.",
-      "lista": []
-    },
-    {
-      "id": "rtn779",
-      "numero": "53222",
-      "fecha": "2025-01-02",
-      "proveedor": "Proveeduría S.A.",
-      "lista": []
-    },
-    {
-      "id": "rtn370",
-      "numero": "54546",
-      "fecha": "2025-01-07",
-      "proveedor": "Tijerita S.A.",
-      "lista": []
-    },
-    {
-      "id": "rtn764",
-      "numero": "3421",
-      "fecha": "2025-01-09",
-      "proveedor": "Pulgarcito",
-      "lista": []
-    },
-    {
-      "id": "rtn643",
-      "numero": "56577",
-      "fecha": "2025-01-15",
-      "proveedor": "Proveeduría S.A.",
-      "lista": []
-    },
-    {
-      "id": "rtn269",
-      "numero": "3412",
-      "fecha": "2025-01-23",
-      "proveedor": "Tijerita S.A.",
-      "lista": []
-    },
-    {
-      "id": "rtn667",
-      "numero": "3456",
-      "fecha": "2025-01-08",
-      "proveedor": "Menganito S.A.",
-      "lista": []
-    },
-    {
-      "id": "rtn894",
-      "numero": "234",
-      "fecha": "2025-01-07",
-      "proveedor": "Fulanito S.A.",
-      "lista": []
-    },
-    {
-      "id": "rtn562",
-      "numero": "3445",
-      "fecha": "2025-01-16",
-      "proveedor": "Proveeduría S.A.",
-      "lista": []
     }
+    
   ],
   "historialventas": [
     {
@@ -1125,11 +1013,11 @@
     {
       "id": "2124",
       "nombre": "Luciana",
-      "apellido": "Fernandez",
+      "apellido": "Hernandez",
       "Tel": "11 555 2312",
       "email": "lfernandez@live.com.ar",
-      "verstock": false,
-      "recargastock": false,
+      "verstock": true,
+      "recargastock": true,
       "nuevoproducto": false,
       "modproducto": false,
       "eliminarproducto": false,
@@ -1155,9 +1043,9 @@
       "email": "caricorredera@gmail.com",
       "verstock": true,
       "recargastock": true,
-      "nuevoproducto": false,
+      "nuevoproducto": true,
       "modproducto": false,
-      "eliminar": false
+      "eliminar": true
     },
     {
       "id": "76da",

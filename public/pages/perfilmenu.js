@@ -1,8 +1,8 @@
-import { Header } from "../../../componentes/js/header.js";
-import { iconoAjustes, iconoPerfil, iconoPerfilEdit, iconoVolver, iconoCerrarSesion } from "../../../componentes/js/iconosSVG.js";
-import { createMenuPrincipal } from "../../../componentes/js/utils.js";
-import { Footer } from "../../../componentes/js/footer.js";
-import { navigateToPage } from "../../../componentes/js/navigateToPage.js";
+import { Header } from "../../componentes/js/header.js";
+import { iconoAjustes, iconoPerfil, iconoPerfilEdit, iconoVolver, iconoCerrarSesion } from "../../componentes/js/iconosSVG.js";
+import { createMenuPrincipal } from "../../componentes/js/utils.js";
+import { Footer } from "../../componentes/js/footer.js";
+import { navigateToPage } from "../../componentes/js/navigateToPage.js";
 
 export class MenuPerfiles {
     constructor() {
@@ -76,8 +76,8 @@ export function createMenuPerfiles() {
     menuPerfiles.classList.add('botonera-container', 'large');
 
     const buttonsData = [
-        { icon: iconoPerfil, alt: '', text: 'Agrega nuevo perfil', page: 'nuevoPerfil' },
-        { icon: iconoPerfilEdit, alt: '', text: 'Ver / editar perfil', page: 'editPerfil' }
+        { icon: iconoPerfil, alt: '', text: 'Agrega nuevo perfil', page: 'perfilnuevo' },
+        { icon: iconoPerfilEdit, alt: '', text: 'Ver / editar perfil', page: 'perfilsolicitado' }
     ];
 
     buttonsData.forEach(data => {
@@ -92,7 +92,7 @@ export function createMenuPerfiles() {
 
         button.appendChild(iconContainer);
         button.appendChild(h3);
-        button.addEventListener('click', () => navigateToPage(data.page));
+        button.addEventListener('click', () => loadView(data.page));
 
         menuPerfiles.appendChild(button);
     });

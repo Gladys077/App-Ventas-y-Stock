@@ -378,7 +378,6 @@
             return conexionconvertida;
         }
 
-
         async function eliminarPerfil(id){
             const conexion = await fetch(`http://localhost:3000/perfiles/${id}`,{
                 method:"DELETE" ,

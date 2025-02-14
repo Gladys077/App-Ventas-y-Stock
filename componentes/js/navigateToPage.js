@@ -230,6 +230,12 @@ export function navigateToPage(page) {
             import('../pages/SeccionPerfiles/perfilnuevo.js').then(module => {
                 new module.NuevoPerfil();
             });
+            break; 
+        
+        case 'perfilsolicitado':
+            import('../../public/pages/perfilsolicitado.js').then(module =>{
+                new module.SolicitarPerfil();
+            });
             break;       
 
 

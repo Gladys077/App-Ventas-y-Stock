@@ -104,14 +104,20 @@ function loadView(view) {
 
 // Cargar la vista por defecto
 // loadView("pedidoproximo")
-// loadView("stocknuevoremito")
+
+
     // loadView("ventasxprodxfecha")
     // loadView("ventaactual")
 
 // loadView("stockcargaxremito")
+// loadView("stocknuevoremito")
+loadView("stocknuevoremitocargaproductos")
 
 // loadView("formnuevoproveedor")
+
 // loadView("perfilnuevo")
-loadView("perfilsolicitado")
+// loadView("perfilsolicitado")
+// loadView("perfilmenu")
+
 // loadView("stock")
 // loadView("")

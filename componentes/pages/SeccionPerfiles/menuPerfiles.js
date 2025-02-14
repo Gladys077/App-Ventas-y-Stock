@@ -77,7 +77,7 @@ export function createMenuPerfiles() {
 
     const buttonsData = [
         { icon: iconoPerfil, alt: '', text: 'Agrega nuevo perfil', page: 'perfilnuevo' },
-        { icon: iconoPerfilEdit, alt: '', text: 'Ver / editar perfil', page: 'perfilmodificar' }
+        { icon: iconoPerfilEdit, alt: '', text: 'Ver / editar perfil', page: 'perfilsolicitado' }
     ];
 
     buttonsData.forEach(data => {
