@@ -1,5 +1,5 @@
 import { Header } from '../../js/header.js';
-import { CardVtasPorProducto } from '../../js/cardVtasPorProducto.js';
+import { CardVtasPorFecha } from '../../js/cardVtasPorFecha.js';
 import { Footer } from '../../js/footer.js';
 import { FabButton} from '../../js/utils.js';
 import { iconoVolver, iconoDescargar } from '../../js/iconosSVG.js';
@@ -13,7 +13,6 @@ export class VentasPorFechaPage {
         this.ventasPorFecha = null;
         this.createHeader();
         this.createMain();
-        this.createFooter();
     }
     createHeader() {
         this.header = new Header('Ventas por fecha', iconoVolver, null, ()=>navigateToPage('MenuVentas'));
@@ -21,18 +20,19 @@ export class VentasPorFechaPage {
     }
 
     createMain() {
-        // const selectedProductName = 'Nombre_del_producto'; 
-        this.ventasPorFecha = new CardVtasPorProducto('', 'Buscar', true,  () => this.onClick(), 'Importe facturado', 'Listado por fecha', 'ventasxFecha-Listado');
-        document.body.appendChild(this.ventasPorFecha.armarCardVtasPorProducto());
-    }
+        const main = document.createElement('main');
+        // Creo el card y lo agrego al main
+        this.ventasPorFecha = new CardVtasPorFecha('', 'Buscar', true,  () => this.onClick(), 'Importe facturado', 'Listado por fecha', 'ventasxFecha-Listado');
+        const cardElement = this.ventasPorFecha.armarCardVtasPorProducto();
+        main.appendChild(cardElement);
 
-    createFooter() {
-      this.footer = new Footer();
-      document.body.appendChild(this.footer.getElement());
-  
-      const downloadButton = new FabButton(iconoDescargar, this.handleDownloadClick);
-      this.footer.getElement().appendChild(downloadButton.getElement());
-  }
+        // Creo el FabButton y lo agregamos después del card
+        const downloadButton = new FabButton(iconoDescargar, this.handleDownloadClick);
+        main.appendChild(downloadButton.getElement());
+
+        // Agrego el main al body
+        document.body.appendChild(main);
+    }
 
   
     onClick() {

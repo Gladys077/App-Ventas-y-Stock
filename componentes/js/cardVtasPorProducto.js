@@ -79,7 +79,7 @@ export class CardVtasPorProducto {
             border-top-left-radius: 4px;
             border-top-right-radius: 4px;
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-            margin: 20px auto 10px;
+            margin: 8px auto 10px;
             width: calc(100% - 32px);
             max-width: 400px;
             text-align: center;
@@ -244,18 +244,6 @@ export class CardVtasPorProducto {
         return containerDate;
     }
 
-    // handleDateChange(e, label) {
-    //     const value = e.target.value;
-    //     if (value && !isValidDate(value)) {
-    //         e.target.value = '';
-    //         return;
-    //     }
-    //     if (label === 'DESDE') {
-    //         this._fechaDesde = value || null;
-    //     } else {
-    //         this._fechaHasta = value || null;
-    //     }
-    // }
 
     handleClick() {
         console.log("Iniciando handleClick");
@@ -268,7 +256,7 @@ export class CardVtasPorProducto {
         if (!this.productoElegido || this.productoElegido === "") {
             console.log("Intentando mostrar notificación de producto faltante");
 
-            new Notification('../../img/emojis/señalar.png', '¡Le faltó elegir un producto!', 'warning');
+            new Notification('../../img/emojis/señalar.png', '¡Le faltó elegir un producto!', 'error');
             return;
         }
     
@@ -277,7 +265,7 @@ export class CardVtasPorProducto {
         this._fechaHasta = document.querySelector(".card-input[type='date']:nth-of-type(2)").value;
     
         if (this._fechaDesde && this._fechaHasta && this._fechaHasta < this._fechaDesde) {
-            new Notification('../../img/emojis/error.png', 'La fecha HASTA no puede ser anterior a la fecha DESDE.', 'warning');
+            new Notification('../../img/emojis/error.png', 'La fecha HASTA no puede ser anterior a la fecha DESDE.', 'error');
             return;
         }
     
@@ -418,11 +406,7 @@ console.log("Ventas Filtradas:", this.ventasFiltradas);
         listadoPrevio.remove();
     }
 
-    // const resultados = this.resultadosBusqueda || [];
-    // if (resultados.length === 0) {
-    //     console.log('No hay resultados para mostrar.');
-    //     return;
-    // }
+
         const listadoContainer = document.createElement('div');
         listadoContainer.className = 'listado-por-fecha';
         
