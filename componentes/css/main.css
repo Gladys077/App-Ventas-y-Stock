@@ -331,8 +331,8 @@ main{
         align-items: center;
         transition: all ease-in-out 10ms transform ;
         svg{
-            width:40px;
-            height: 40px;
+            width: 24px;
+            height: 24px;
         }
         &:hover{
             background-color: var(--color-fondo);

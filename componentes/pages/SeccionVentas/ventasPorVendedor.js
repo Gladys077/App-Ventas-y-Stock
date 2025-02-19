@@ -1,7 +1,6 @@
 import { Header } from '../../js/header.js';
 import { iconoVolver, iconoDescargar } from '../../js/iconosSVG.js'
 import { CardVtasPorVendedor } from '../../js/cardVtasPorVendedor.js';
-import { Footer } from '../../js/footer.js';
 import { FabButton } from '../../js/utils.js';
 import { Notification } from '../../js/notificacion.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
@@ -9,11 +8,10 @@ import { navigateToPage } from '../../js/navigateToPage.js';
 export class VentasPorVendedorPage {
     constructor() {
         document.body.innerHTML = ''; 
-        window.ventasPage = this; // Guardamos la instancia para acceder desde la card
+        window.ventasPage = this; // Guarda la instancia para acceder desde la card
 
         this.createHeader();
         this.createMain();
-        this.createFooter();
 
         // Obtengo la lista de vendedores y actualizo la card
         const vendedores = this.getSellersList() || [];
@@ -28,25 +26,20 @@ export class VentasPorVendedorPage {
     }
 
     createMain() {
-        const mainElement = document.createElement('main'); 
-        
+        const main = document.createElement('main'); 
+
+        // Creo el card y lo agrego al main
         this.cardVtasPorVendedor = new CardVtasPorVendedor('', 'DIA', 'Buscar' , 'VentasPorVendedorPlanilla'); // Inicializa con una lista vacía
-        mainElement.appendChild(this.cardVtasPorVendedor.getElement());
-        document.body.appendChild(mainElement); 
-    }
+        main.appendChild(this.cardVtasPorVendedor.getElement());
 
-    createFooter() {
-        this.footer = new Footer();
-        const mainPedido = document.querySelector("main");
-
-        document.body.appendChild(this.footer.getElement());
-    
+        // Creo el botón y lo agrego después del card
         const downloadButton = new FabButton(iconoDescargar, this.handleDownloadClick.bind(this));
-        this.footer.getElement().appendChild(downloadButton.getElement());
+        main.appendChild(downloadButton.getElement());  
 
-        mainPedido.appendChild(this.btn.getElement());
-
+        document.body.appendChild(main); 
     }
+
+   
 
     handleSearchBBDD(seller, date) {
         console.log('Buscando ventas de:', seller, 'en la fecha:', date);
@@ -73,29 +66,6 @@ export class VentasPorVendedorPage {
 
     }
 
-    // getSellersList() {
-    //     const data = this.datosDePrueba();
-    //     const SellersList = [...new Set(data.map(item => item.seller))];
-    //     return SellersList;
-    // }
-
-    // datosDePrueba(seller, date) {
-    //     const data = [
-    //         { date: '2024-07-10', seller: 'Lionel Messi', amount: 5000 },
-    //         { date: '2024-07-10', seller: 'Dibu Martinez', amount: 4500 },
-    //         { date: '2024-07-10', seller: 'Juan Pérez', amount: 1500 },
-    //         { date: '2024-07-10', seller: 'María García', amount: 2000 },
-    //         { date: '2024-07-10', seller: 'Juanita Pérez', amount: 1800 },
-    //         { date: '2024-07-10', seller: 'Mariano García', amount: 2200 },
-    //     ];
-
-    //     if (seller || date) {
-    //         return data.filter(sale =>
-    //             (!seller || sale.seller === seller) && (!date || sale.date === date)
-    //         );
-    //     }
-    //     return data;
-    // }
 
     handleDownloadClick() {
         if (this.salesDate.length > 0) {

@@ -33,7 +33,7 @@ export class ProductosVendidos {
             .fondo-results {
                 position: fixed;
                 top: 135px;
-                left: 49.4%;
+                left: 49.5%;
                 transform: translate(-50%,0);
                 width: calc(100vw - 32px);
                 max-width: 400px;
@@ -46,7 +46,7 @@ export class ProductosVendidos {
             
             .search-results {
                 width: calc(100vw - 32px);
-                max-width: 400px;
+                max-width: 410px;
                 max-height: calc(100vh - 160px);
                 height: 100vh;
                 overflow-y: auto;
@@ -178,14 +178,6 @@ export class ProductosVendidos {
         this.fondoResults.style.display = 'none';
     }
 
-    // createFooter() {
-    //     const fabButton = new FabButton(iconoDescargar, 'Descargar', () => {
-    //         console.log('Descargar informe');
-    //     });
-    //     this.footer = new Footer();
-    //     this.footer.getElement().appendChild(fabButton.getElement());
-    //     document.body.appendChild(this.footer.getElement());
-    // }
 
     createFooter() {
         const footer = document.createElement('footer');

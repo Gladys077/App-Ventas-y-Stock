@@ -15,7 +15,6 @@ export class PlanillaStock {
         this.createTablaFooter();
         this.createBtnFlotante();
         
-
     }
 
     createHeader=()=>{
