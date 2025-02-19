@@ -195,7 +195,7 @@ export function navigateToPage(page) {
 
         case 'ListarPorProveedor':
             import('../pages/SeccionStock/pedidolistaxproveedor.js').then(module => {
-                new module.PlanillaPedidoProximo();
+                new module.PlanillaPedidoListaxProveedor();
             });
             break;
 
@@ -213,12 +213,7 @@ export function navigateToPage(page) {
             break;
 
 
-
-            case 'ventasmovimientos':
-                import('../../public/pages/ventasmovimientos.js').then(module => {
-                    new module.PlanillaMovimiento();
-                });
-                break;
+                //SECCION PERFILES
 
         case 'MenuPerfiles':
             import('../pages/SeccionPerfiles/menuperfiles.js').then(module => {
@@ -226,7 +221,7 @@ export function navigateToPage(page) {
             });
             break; 
 
-        case 'perfilnuevo':
+        case 'PerfilNuevo':
             import('../pages/SeccionPerfiles/perfilnuevo.js').then(module => {
                 new module.NuevoPerfil();
             });
@@ -238,6 +233,11 @@ export function navigateToPage(page) {
             });
             break;       
 
+        case 'PerfilModificar':
+            import('../pages/SeccionPerfiles/perfilModificar.js').then(module => {
+                new module.ModificarPerfil();
+            });
+            break;      
 
 
         default:

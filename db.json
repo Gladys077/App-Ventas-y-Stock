@@ -643,8 +643,6 @@
         }
       ]
     }
-    
-    
   ],
   "venta": [
     {
@@ -709,7 +707,7 @@
     },
     {
       "id": "136",
-      "cant": 5,
+      "cant": 4,
       "producto": "Resaltador verde fluor",
       "precioUnitario": 1500
     }
@@ -837,7 +835,6 @@
         }
       ]
     }
-    
   ],
   "historialventas": [
     {

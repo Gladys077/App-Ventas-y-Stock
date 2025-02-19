@@ -37,10 +37,15 @@ export class VentasPorVendedorPage {
 
     createFooter() {
         this.footer = new Footer();
+        const mainPedido = document.querySelector("main");
+
         document.body.appendChild(this.footer.getElement());
     
         const downloadButton = new FabButton(iconoDescargar, this.handleDownloadClick.bind(this));
         this.footer.getElement().appendChild(downloadButton.getElement());
+
+        mainPedido.appendChild(this.btn.getElement());
+
     }
 
     handleSearchBBDD(seller, date) {
