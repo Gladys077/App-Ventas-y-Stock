@@ -68,6 +68,14 @@ function loadView(view) {
                         .then((module) => {new module.PlanillaStockCargaxRemito(Id);                           
                         });    
                         break;
+                    case 'stocknuevoremito':
+                        import ('../public/pages/stocknuevoremito.js')  
+                        break;
+                    case 'stocknuevoremitocargaproductos':
+                        import('./pages/stocknuevoremitocargaproductos.js') 
+                        .then((module) => {new module.BuscadorProductos(Id);                           
+                        });    
+                        break;
 
                     case 'perfilmenu':
                         import('../public/pages/perfilmenu.js')
@@ -107,11 +115,11 @@ function loadView(view) {
 
 
     // loadView("ventasxprodxfecha")
-    loadView("ventaactual")
+    // loadView("ventaactual")
 
 // loadView("stockcargaxremito")
-// loadView("stocknuevoremito")
-// loadView("stocknuevoremitocargaproductos")
+loadView("stocknuevoremito")
+ //loadView("stocknuevoremitocargaproductos")
 
 // loadView("formnuevoproveedor")
 

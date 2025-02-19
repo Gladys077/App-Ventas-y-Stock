@@ -800,38 +800,82 @@
   ],
   "remito": [
     {
-      "id": "r123",
-      "numero": "234",
-      "proveedor": "Fulanito",
-      "fecha": "2025/01/13",
+      "id": "rtn82",
+      "numero": "23435",
+      "fecha": "2025-02-19",
+      "proveedor": "Menganito S.A.",
       "lista": [
         {
-          "Cant": 4,
-          "Prod": "Carpeta con argollas",
-          "Costo": 1200
+          "id": "2d64",
+          "cant": 10,
+          "nombre": "Resaltador verde fluor",
+          "precio": 2000
         },
         {
-          "Cant": 4,
-          "Prod": "Lapiz Negro HB - Faber Castle",
-          "Costo": 1000
+          "id": "1c63",
+          "cant": 21,
+          "nombre": "cuaderno rivadavia t.dura 48h",
+          "precio": 3800
+        },
+        {
+          "id": "2d64",
+          "cant": 10,
+          "nombre": "Resaltador verde fluor",
+          "precio": 2000
+        },
+        {
+          "id": "1c63",
+          "cant": 21,
+          "nombre": "cuaderno rivadavia t.dura 48h",
+          "precio": 3800
+        },
+        {
+          "id": "1d63",
+          "cant": 20,
+          "nombre": "Lápiz-Artístico",
+          "precio": 1300
         }
       ]
     },
     {
-      "id": "r345",
-      "numero": "4",
-      "proveedor": "Menganito",
-      "fecha": "2025/01/13",
+      "numero": "88994",
+      "fecha": "2025-02-19",
+      "proveedor": "Menganito S.A.",
+      "lista": "[object Object],[object Object]",
+      "id": "rtn412"
+    },
+    {
+      "numero": "453q",
+      "fecha": "2025-02-19",
+      "proveedor": "Menganito S.A.",
+      "lista": "[object Object],[object Object]",
+      "id": "rtn220"
+    },
+    {
+      "numero": "32323",
+      "fecha": "2025-02-19",
+      "proveedor": "Proveeduría S.A.",
       "lista": [
         {
-          "Cant": 323,
-          "Prod": "Carpeta con argollas",
-          "Costo": 1200
-        },
+          "id": "1c23",
+          "cant": 14,
+          "nombre": "cuaderno rivadavia t.dura 24h",
+          "precio": 2000
+        }
+      ],
+      "id": "rtn947"
+    },
+    {
+      "id": "rtn362",
+      "numero": "232",
+      "fecha": "2025-02-12",
+      "proveedor": "Menganito S.A.",
+      "lista": [
         {
-          "Cant": 223,
-          "Prod": "Lapiz Negro HB - Faber Castle",
-          "Costo": 1000
+          "id": "2d64",
+          "cant": 15,
+          "nombre": "Resaltador verde fluor",
+          "precio": 1600
         }
       ]
     }

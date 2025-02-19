@@ -72,6 +72,66 @@
             return conexionconvertida;
         }
 
+        async function borrarRemito(id){
+            const conexion = await fetch(`http://localhost:3000/remito/${id}`,{
+                method:"DELETE" ,
+                headers:{"Content-type":"application/json"}
+            })
+            const conexionconvertida = await conexion.json();
+            return conexionconvertida;
+        }
+
+        async function agregarItemRemito(id, listaProductos){
+            try {
+                const respuesta = await fetch(`http://localhost:3000/remito/${id}`)
+                if(!respuesta){
+                    throw new Error("No se pudo obtener remito");
+                }
+                const remito = await respuesta.json();
+                const productosActuales = remito.lista;
+                console.log(productosActuales);
+                const productosActualizados = [...productosActuales, ...listaProductos];
+
+                const conexion = await fetch(`http://localhost:3000/remito/${id}`,{
+                    method:"PATCH",
+                    headers:{"Content-type":"application/json"},
+                    body:JSON.stringify({
+                        lista: productosActualizados
+                    })
+                })
+
+                if(!conexion.ok){
+                    throw new Error("Error al actualizar el remito")
+                }
+
+                console.log("Item agregado con éxito");
+
+            } catch (error) {
+                console.error("Error: ", error)
+            }
+            
+
+        }
+
+        async function actualizarRemito(id,numero,fecha,proveedor,lista){
+            
+            const conexion = await fetch(`http://localhost:3000/remito/${id}`,{
+                method:"PUT" ,
+                headers:{"Content-type":"application/json"},
+                body:JSON.stringify({
+                        id:id,
+                        numero:`${numero}`,
+                        fecha: `${fecha}`,
+                        proveedor:`${proveedor}` ,
+                        lista: lista,
+                          
+                })
+
+            })
+            const conexionconvertida = await conexion.json();
+            return conexionconvertida;
+        }
+
 //CRUD PARA COMERCIO
         async function nuevocomercio(nombre, inscripcion, direccion, email, contacto){
             const conexion = await fetch("http://localhost:3000/comercios",{
@@ -390,7 +450,7 @@
         
 export const conexionAPI={
     listaproveedores, nuevoproveedor, 
-    mostrarRemito, nuevoRemito, 
+    mostrarRemito, nuevoRemito, borrarRemito, agregarItemRemito,actualizarRemito,
     nuevocomercio, 
     listapedidos, obtenerpedido, crearpedido, actualizarPedido, borrarpedido, 
     listaarticulos, articulospedidos, nuevoarticulo, borrararticulo, 

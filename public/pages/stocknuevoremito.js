@@ -134,9 +134,9 @@ async function agregarRemito(e){
     const numero= document.querySelector(".contenedor-remito input").value;
     const fecha= document.querySelector(".contenedor-fecha input").value;
     const proveedor= document.querySelector(".contenedor-proveedores input[type='radio']:checked").id;
-
+    
 
     console.log("datos que se envian", numero, fecha, proveedor,remitoid);
-    await conexionAPI.nuevoRemito(remitoid, numero,fecha,proveedor,[])
+    await conexionAPI.nuevoRemito(remitoid, numero,fecha,proveedor,"")
     loadView(`stockcargaxremito?id=${remitoid}`)
 }/*fin agregarRemito */
