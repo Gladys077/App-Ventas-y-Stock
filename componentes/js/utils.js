@@ -2,6 +2,16 @@ import { navigateToPage } from "./navigateToPage.js";
 import { Notification } from "./notificacion.js";
 import {iconoLupa } from '../js/iconosSVG.js';
 
+// Modifica el color de fondo del body
+function cambiarFondo(seccion) {
+    document.body.className = ""; // Elimina clases previas
+    document.body.classList.add(seccion); // Agrega la nueva clase
+}
+
+// Llama a la función cuando se carga una sección
+cambiarFondo("stock"); // O "ventas" o "perfiles" según la sección
+
+
 export class Fecha{
     constructor(){
         this.element = this.agregarFiltro();

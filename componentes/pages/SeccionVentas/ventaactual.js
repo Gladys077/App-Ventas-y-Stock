@@ -1,9 +1,10 @@
-import { Header, iconoVolver, iconoMenu} from "../js/header.js";
-import Main from "../js/main.js";
-import { TablaEncabezado, TablaDetalles, TablaFooter,  BtnFlotante } from "../js/registros.js"
-import { Footer } from "../js/footer.js";
-import { ButtonContainer } from "../js/btnsContainer.js";
-import { conexionAPI } from "../js/services/conectionFakeApi.js"
+import { Header} from "../../js/header.js";
+import { iconoVolver, iconoMenu, iconoPedidoListo, iconoTrash } from "../../js/iconosSVG.js"
+import Main from "../../js/main.js";
+import { TablaEncabezado, TablaDetalles, TablaFooter,  BtnFlotante } from "../../js/registros.js"
+import { Footer } from "../../js/footer.js";
+import { ButtonContainer } from "../../js/btnsContainer.js";
+import { conexionAPI } from "../../js/services/conectionFakeApi.js"
  
 
 export class PlanillaVentaActual {
@@ -21,7 +22,7 @@ export class PlanillaVentaActual {
     }
 
     createHeader=()=>{
-        this.header = new Header("Venta Actual", iconoVolver, iconoMenu,function(){ loadView('formnuevoproveedor');},function(){ loadView('pedidoproximo');});
+        this.header = new Header("Venta Actual", iconoVolver, iconoMenu, () => navigateToPage('BuscadorParaVender'), () => navigateToPage('MenuVentas'));
         document.body.appendChild(this.header.getElement());
         return
     }
@@ -134,7 +135,7 @@ export class PlanillaVentaActual {
 
     createButtonsFooter=()=>{
         const footerRegistro= document.querySelector(".footer-container");
-        this.botones= new ButtonContainer("Confirmar", "Eliminar", ()=>{console.log("se guardó pedido");},()=>{console.log("se eliminó pedido");},"pedidowhite","trashViolet" )
+        this.botones= new ButtonContainer("Confirmar", "Eliminar", ()=>{console.log("se guardó pedido");},()=>{console.log("se eliminó pedido");}, iconoPedidoListo, iconoTrash )
         footerRegistro.appendChild(this.botones.getButtonContainer());
     
     }
@@ -142,7 +143,7 @@ export class PlanillaVentaActual {
 
 }/*fin PlanillaVentaActual */
 
-new PlanillaVentaActual();
+// new PlanillaVentaActual();
 
 
 
