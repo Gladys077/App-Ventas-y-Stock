@@ -1,8 +1,7 @@
 main{
-
+    margin-top:16px;
     form{
-        padding-top: 16px;
-        
+
         .contenedor-nombre-proveedor, 
         .contenedor-nombre-vendedor, 
         .contenedor-nombre-comercio, 
@@ -13,6 +12,7 @@ main{
         .contenedor-notas,
         .contenedor-nombre-perfil,
         .contenedor-apellido-perfil
+        
         
         {
             display: flex;
@@ -86,7 +86,8 @@ main{
                 }
             }
 
-        }
+        }/*fin contenedor-permisos*/
+
         .contenedor-notas{
             margin-bottom: 60px;
             textarea{
@@ -97,9 +98,8 @@ main{
                 border-radius: 4px;
 
             }
-        }
+        }/*fin contenedor-notas*/
 
-        
         .button-container {
             width: calc(100% - 32px);
             display: flex;
@@ -124,7 +124,7 @@ main{
                 margin-top: 6px;
                 border-radius: 100px;
                 border: 1px solid var(--color-primario);
-                /* box-shadow: 0px 4px 4px 0px #000000; */
+                box-shadow: 0px 4px 4px 0px #000000;
                 span{
                     font-size: 16px;   
                     font-weight: 500;
@@ -162,8 +162,7 @@ main{
         }/*fin button-container*/
 
 
-    }    
-
+    }    /*fin form*/
     
     .opciones-perfiles{
         width:360px;
@@ -182,6 +181,7 @@ main{
             line-height: 40px;
             border-bottom: 1px solid #d9d9d9;
         }
-    }
+    }/*fin opciones-perfiles*/
+    
 
-}
+}/*fin main*/

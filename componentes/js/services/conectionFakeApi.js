@@ -72,6 +72,66 @@ async function nuevoRemito(id,numero,fecha,proveedor,lista){
     return conexionconvertida;
 }
 
+async function borrarRemito(id){
+    const conexion = await fetch(`http://localhost:3000/remito/${id}`,{
+        method:"DELETE" ,
+        headers:{"Content-type":"application/json"}
+    })
+    const conexionconvertida = await conexion.json();
+    return conexionconvertida;
+}
+
+async function agregarItemRemito(id, listaProductos){
+    try {
+        const respuesta = await fetch(`http://localhost:3000/remito/${id}`)
+        if(!respuesta){
+            throw new Error("No se pudo obtener remito");
+        }
+        const remito = await respuesta.json();
+        const productosActuales = remito.lista;
+        console.log(productosActuales);
+        const productosActualizados = [...productosActuales, ...listaProductos];
+
+        const conexion = await fetch(`http://localhost:3000/remito/${id}`,{
+            method:"PATCH",
+            headers:{"Content-type":"application/json"},
+            body:JSON.stringify({
+                lista: productosActualizados
+            })
+        })
+
+        if(!conexion.ok){
+            throw new Error("Error al actualizar el remito")
+        }
+
+        console.log("Item agregado con éxito");
+
+    } catch (error) {
+        console.error("Error: ", error)
+    }
+    
+
+}
+
+async function actualizarRemito(id,numero,fecha,proveedor,lista){
+    
+    const conexion = await fetch(`http://localhost:3000/remito/${id}`,{
+        method:"PUT" ,
+        headers:{"Content-type":"application/json"},
+        body:JSON.stringify({
+                id:id,
+                numero:`${numero}`,
+                fecha: `${fecha}`,
+                proveedor:`${proveedor}` ,
+                lista: lista,
+                  
+        })
+
+    })
+    const conexionconvertida = await conexion.json();
+    return conexionconvertida;
+}
+
 //CRUD PARA COMERCIO
 async function nuevocomercio(nombre, inscripcion, direccion, email, contacto){
     const conexion = await fetch("http://localhost:3000/comercios",{
@@ -249,7 +309,7 @@ async function actualizarCant(id){
 }
 
 
-//CRUD PARA HISTORIAL VENTAS
+//CRUD PARA HISTORIAL VENTAS________________________________________________________
 async function historialVentaProducto(id){
     try {
 
@@ -289,6 +349,113 @@ async function stockDisponible(){
     }
 }
 
+
+//CRUD PARA PERFIL VENDEDOR__________________________________________________________________________        
+
+async function crearPerfil(nombre, apellido,tel,email, verStock,upStock,nuevoProd, modProd,eliminarProd){
+    try {
+        const conexion = await fetch("http://localhost:3000/perfiles", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nombre: nombre,
+                apellido: apellido,
+                Tel: tel,
+                email: email,
+                verstock: verStock,
+                recargastock: upStock,
+                nuevoproducto: nuevoProd,
+                modproducto:modProd,
+                eliminar: eliminarProd
+
+            })
+            });
+        const conexionconvertida = await conexion.json();
+        return conexionconvertida;    
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+async function listaperfiles(){
+    try {
+        const conexion = await fetch("http://localhost:3000/perfiles",{
+            method:"GET",
+            headers:{
+                "Content-type":"application/json",
+            }
+        })
+
+        const respuesta = await conexion.json();
+        return respuesta;
+        
+    } catch (error) {
+        console.error(error)
+        
+    }
+}
+
+async function mostrarPerfil(id){
+    try {
+
+        const conexion = await fetch(`http://localhost:3000/perfiles/${id}`,{
+            method:"GET",
+            headers:{
+                "Content-type":"application/json",
+            }
+        })
+
+        const respuesta = await conexion.json();
+        return respuesta;
+        
+    } catch (error) {
+        console.error(error)
+        
+    }
+}
+
+async function actualizarPerfil(id,nombre, apellido,tel,email, verStock,upStock,nuevoProd, modProd,eliminarProd){
+    
+    const conexion = await fetch(`http://localhost:3000/perfiles/${id}`,{
+        method:"PUT" ,
+        headers:{"Content-type":"application/json"},
+        body:JSON.stringify({
+                nombre:`${nombre}`,
+                apellido: `${apellido}`,
+                Tel:`${tel}` ,
+                email: `${email}`,
+                verstock: verStock,
+                recargastock: upStock,
+                nuevoproducto: nuevoProd,
+                modproducto: modProd,
+                eliminar:eliminarProd               
+        })
+
+    })
+    const conexionconvertida = await conexion.json();
+    return conexionconvertida;
+}
+
+async function eliminarPerfil(id){
+    const conexion = await fetch(`http://localhost:3000/perfiles/${id}`,{
+        method:"DELETE" ,
+        headers:{"Content-type":"application/json"}
+    })
+    const conexionconvertida = await conexion.json();
+    return conexionconvertida;
+}
+
+
 export const conexionAPI={
-listaproveedores, nuevoproveedor, mostrarRemito, nuevoRemito, nuevocomercio, listapedidos, obtenerpedido, crearpedido, actualizarPedido, borrarpedido, listaarticulos, articulospedidos, nuevoarticulo, borrararticulo, actualizarCant, historialVentaProducto, stockDisponible
+listaproveedores, nuevoproveedor, 
+mostrarRemito, nuevoRemito, borrarRemito, agregarItemRemito,actualizarRemito,
+nuevocomercio, 
+listapedidos, obtenerpedido, crearpedido, actualizarPedido, borrarpedido, 
+listaarticulos, articulospedidos, nuevoarticulo, borrararticulo, 
+actualizarCant, 
+historialVentaProducto, 
+stockDisponible,
+crearPerfil, listaperfiles, mostrarPerfil, actualizarPerfil, eliminarPerfil
 }

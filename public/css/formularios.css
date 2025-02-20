@@ -13,6 +13,7 @@ main{
         .contenedor-nombre-perfil,
         .contenedor-apellido-perfil
         
+        
         {
             display: flex;
             flex-direction: column;
@@ -85,7 +86,8 @@ main{
                 }
             }
 
-        }
+        }/*fin contenedor-permisos*/
+
         .contenedor-notas{
             margin-bottom: 60px;
             textarea{
@@ -96,9 +98,8 @@ main{
                 border-radius: 4px;
 
             }
-        }
+        }/*fin contenedor-notas*/
 
-        
         .button-container {
             width: calc(100% - 32px);
             display: flex;
@@ -161,8 +162,7 @@ main{
         }/*fin button-container*/
 
 
-    }    
-
+    }    /*fin form*/
     
     .opciones-perfiles{
         width:360px;
@@ -181,6 +181,7 @@ main{
             line-height: 40px;
             border-bottom: 1px solid #d9d9d9;
         }
-    }
+    }/*fin opciones-perfiles*/
+    
 
-}
+}/*fin main*/

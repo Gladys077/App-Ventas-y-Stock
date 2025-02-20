@@ -1,17 +1,13 @@
-import { Header } from "../../js/header.js";
-import { iconoVolver, iconoMenu, iconoTrash, iconoPedidoFinalizado, iconoMasBlanco } from '../../js/iconosSVG.js';
-import Main from "../../js/main.js";
-import { TablaEncabezado, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
-import { Footer } from "../../js/footer.js";
-import { ButtonContainer } from "../../js/btnsContainer.js";
-import { conexionAPI } from "../../../public/js/services/conectionFakeApi.js";
-import { navigateToPage } from '../../js/navigateToPage.js';
-
+import { Header, iconoVolver, iconoMenu} from "../js/header.js";
+import Main from "../js/main.js";
+import { TablaEncabezado, TablaDetalles, TablaFooter,  BtnFlotante } from "../js/registros.js"
+import { Footer } from "../js/footer.js";
+import { ButtonContainer } from "../js/btnsContainer.js";
+import { conexionAPI } from "../js/services/conectionFakeApi.js"
+ 
 
 export class PlanillaVentaActual {
     constructor(){
-        document.body.innerHTML = ''; 
-
         this.createHeader();
         this.mainPedido=this.createMain();
         this.createTablaEncabezado();
@@ -21,14 +17,11 @@ export class PlanillaVentaActual {
         this.createTablaFooter();
         this.createBtnFlotante();
         this.createFooter();
-        // this.createButtonsFooter();
-
+        this.createButtonsFooter();
     }
 
     createHeader=()=>{
-        this.header = new Header("Venta Actual", iconoVolver, iconoMenu,
-            ()=>navigateToPage('BuscadorParaVender'),
-            ()=>navigateToPage('MenuVentas'));
+        this.header = new Header("Venta Actual", iconoVolver, iconoMenu,function(){ loadView('formnuevoproveedor');},function(){ loadView('pedidoproximo');});
         document.body.appendChild(this.header.getElement());
         return
     }
@@ -77,7 +70,7 @@ export class PlanillaVentaActual {
 
                     const buttonEliminar= document.createElement("button");
                         const iconEliminar = document.createElement("img");
-                        iconEliminar.src= "../../../img/iconos/cancel2rojo.png"
+                        iconEliminar.src= "../img/iconos/cancel2rojo.png"
                         iconEliminar.className = "iconEliminar";
                         iconEliminar.addEventListener("click", (event) =>{
                             const art = document.getElementById(`${id}`)
@@ -101,7 +94,7 @@ export class PlanillaVentaActual {
         const articulos = await conexionAPI.articulospedidos();
         // console.log(articulos);
 
-        if(articulos.length===0){
+        if(articulos.length === 0){
             const mensaje = document.createElement("span");
             mensaje.classList="no_hay_productos";
             mensaje.innerText="no existen articulos en el pedido";
@@ -128,36 +121,24 @@ export class PlanillaVentaActual {
     
     createBtnFlotante= ()=>{
         const mainPedido=document.querySelector("main");
-        this.btn = new BtnFlotante(iconoMasBlanco,"contenedor-btn-flotante adicionarArticulo", ()=>{alert("agregando nuevo item")});
+        this.btn = new BtnFlotante("masblanco","contenedor-btn-flotante adicionarArticulo", ()=>{alert("agregando nuevo item")});
         mainPedido.appendChild(this.btn.getElement());
 
     }
 
-    // createFooter=()=>{
-    //     this.footer = new Footer()
-    //     document.body.appendChild(this.footer.getElement());
-    //     return
-    // }
+    createFooter=()=>{
+        this.footer = new Footer()
+        document.body.appendChild(this.footer.getElement());
+        return
+    }
 
-    // createButtonsFooter=()=>{
-    //     const footerRegistro= document.querySelector(".footer-container");
-    //     this.botones= new ButtonContainer("Finalizar", "Eliminar", ()=>{console.log("se guardó pedido");},()=>{console.log("se eliminó pedido");},iconoPedidoFinalizado,iconoTrash )
-    //     footerRegistro.appendChild(this.botones.getButtonContainer());
+    createButtonsFooter=()=>{
+        const footerRegistro= document.querySelector(".footer-container");
+        this.botones= new ButtonContainer("Confirmar", "Eliminar", ()=>{console.log("se guardó pedido");},()=>{console.log("se eliminó pedido");},"pedidowhite","trashViolet" )
+        footerRegistro.appendChild(this.botones.getButtonContainer());
     
-    // }
-    createFooter() {
-            this.footer = new Footer();
-            const buttonContainer = new ButtonContainer(
-                'Finalizar', 
-                'Eliminar', 
-                this.onEliminarClick.bind(this),
-                this.onCancelarClick.bind(this),
-                iconoPedidoFinalizado,
-                iconoTrash
-            );
-            this.footer.getElement().appendChild(buttonContainer.getButtonContainer());
-            document.body.appendChild(this.footer.getElement());
-        }
+    }
+
 
 }/*fin PlanillaVentaActual */
 
