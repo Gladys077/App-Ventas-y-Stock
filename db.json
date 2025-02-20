@@ -653,7 +653,7 @@
     },
     {
       "id": "125",
-      "cant": 7,
+      "cant": 4,
       "producto": "Goma tinta-lápiz",
       "precioUnitario": 500
     },
@@ -707,7 +707,7 @@
     },
     {
       "id": "136",
-      "cant": 4,
+      "cant": 5,
       "producto": "Resaltador verde fluor",
       "precioUnitario": 1500
     }
@@ -838,44 +838,42 @@
       ]
     },
     {
-      "numero": "88994",
-      "fecha": "2025-02-19",
-      "proveedor": "Menganito S.A.",
-      "lista": "[object Object],[object Object]",
-      "id": "rtn412"
-    },
-    {
-      "numero": "453q",
-      "fecha": "2025-02-19",
-      "proveedor": "Menganito S.A.",
-      "lista": "[object Object],[object Object]",
-      "id": "rtn220"
-    },
-    {
-      "numero": "32323",
-      "fecha": "2025-02-19",
-      "proveedor": "Proveeduría S.A.",
+      "id": "rtn141",
+      "numero": "3422",
+      "fecha": "2025-02-20",
+      "proveedor": "Tijerita S.A.",
       "lista": [
         {
           "id": "1c23",
-          "cant": 14,
+          "cant": 10,
           "nombre": "cuaderno rivadavia t.dura 24h",
           "precio": 2000
+        },
+        {
+          "id": "1c23",
+          "cant": 10,
+          "nombre": "cuaderno rivadavia t.dura 24h",
+          "precio": 2000
+        },
+        {
+          "id": "1c63",
+          "cant": 10,
+          "nombre": "cuaderno rivadavia t.dura 48h",
+          "precio": 3800
         }
-      ],
-      "id": "rtn947"
+      ]
     },
     {
-      "id": "rtn362",
-      "numero": "232",
-      "fecha": "2025-02-12",
+      "id": "rtn530",
+      "numero": "6643",
+      "fecha": "2025-02-19",
       "proveedor": "Menganito S.A.",
       "lista": [
         {
-          "id": "2d64",
-          "cant": 15,
-          "nombre": "Resaltador verde fluor",
-          "precio": 1600
+          "id": "1d63",
+          "cant": 10,
+          "nombre": "Goma tinta-lápiz",
+          "precio": 200
         }
       ]
     }

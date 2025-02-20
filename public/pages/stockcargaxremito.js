@@ -106,10 +106,11 @@ export class PlanillaStockCargaxRemito {
             return lineaArt
             
 
-    }///se crea linea de articulo
+    }//fin creaLineaArticulo
 
     mostrarArticulos = async ()=>{
             const tablaDetalles = document.querySelector(".tabla_detalles");
+            tablaDetalles.innerHTML = "";
             const remito = await conexionAPI.mostrarRemito(this.id);
             console.log("datos de remito: ", remito)
             console.log(JSON.stringify(remito, null, 2));
@@ -128,27 +129,32 @@ export class PlanillaStockCargaxRemito {
     
             calcularTotal();
     
-        }//se muestran todas las líneas de artículos
+    }//Recibe los datos de remito de la api y muestra todas las líneas de artículos
 
     createTablaFooter= ()=>{
         const mainPedido=document.querySelector("main");
         this.footer = new TablaFooter()
         mainPedido.appendChild(this.footer.getElement());
-    }
+    }//fin createTabaFooter
 
     
     createBtnFlotante= ()=>{
         const mainPedido=document.querySelector("main");
-        this.btn = new BtnFlotante("masblanco","contenedor-btn-flotante adicionarArticulo", ()=>{loadView(`stocknuevoremitocargaproductos?id=${this.id}`)});
+        this.btn = new BtnFlotante(
+            "masblanco",
+            "contenedor-btn-flotante adicionarArticulo", 
+            ()=>{
+                document.querySelector(".tabla_detalles").innerHTML="";
+                loadView(`stocknuevoremitocargaproductos?id=${this.id}`)});
         mainPedido.appendChild(this.btn.getElement());
 
-    }
+    }//fin createBtnFlotante
 
     createFooter=()=>{
         this.footer = new Footer()
         document.body.appendChild(this.footer.getElement());
         return
-    }
+    }//Fin createFooter
 
     createButtonsFooter=()=>{
         const footerRegistro= document.querySelector(".footer-container");
@@ -179,7 +185,7 @@ export class PlanillaStockCargaxRemito {
 
 
 
-}
+}//fin class PlanillaStockCargaxRemito
 
 // new PlanillaStockCargaxRemito();
 

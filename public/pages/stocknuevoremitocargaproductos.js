@@ -174,6 +174,7 @@ export class BuscadorProductos{
 
                 const precio = document.createElement("input");
                 precio.className = "precioUnit";
+                precio.placeholder ="$ unitario";
                 precio.type = "text";
                 precio.value = nuevoItem.precio || 0;
                 precio.title = "Ingrese precio unitario";
@@ -194,11 +195,12 @@ export class BuscadorProductos{
                     lineaArt.remove();
                     console.log(productosSeleccionados);
                 });
-
+                console.log("listaAntes: ", productosSeleccionados);    
             lineaArt.append(cant, prod, precio,btnEliminar)
             detalle.appendChild(lineaArt);
             
             //agrego producto seleccionado al array
+
             productosSeleccionados.push({
                 id: nuevoItem.id,
                 cant: parseInt(cant.value),
