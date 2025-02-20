@@ -139,6 +139,6 @@ async function agregarRemito(e){
 
 
     console.log("datos que se envian", numero, fecha, proveedor,remitoid);
-    await conexionAPI.nuevoRemito(remitoid, numero,fecha,proveedor,[])
+    await conexionAPI.nuevoRemito(remitoid, numero,fecha,proveedor,"")
     loadView(`stockcargaxremito?id=${remitoid}`)
 }/*fin agregarRemito */

@@ -174,7 +174,7 @@ export class PlanillaStockCargaxRemito {
             )
         footerRegistro.appendChild(this.botones.getButtonContainer());
         return
-    }
+    }//fin createButtonsFooter
 
 
 
