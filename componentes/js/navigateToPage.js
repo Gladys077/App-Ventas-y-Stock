@@ -32,6 +32,7 @@ export function navigateToPage(page) {
                 new module.DatosComercio();
             });
             break;
+            
         //----------------Sección Ventas
         case 'MenuVentas':
             import('../pages/SeccionVentas/pageMenuVentas.js').then(module => {
