@@ -25,6 +25,7 @@ export class PageMenuVentas {
 
     createMain() {
         const main = document.createElement('main');
+        main.className = "main-menu";
         const menu = document.createElement('div');
         menu.className = 'menu';
 
@@ -39,7 +40,6 @@ export class PageMenuVentas {
         const footer = new Footer();
         const footerElement = footer.getElement();
 
-        footerElement.style.position = 'static'; // Cambié el 'position' a 'static'
 
         const logoutContainer = document.createElement('button');
         logoutContainer.className = 'logout-container';
@@ -62,7 +62,7 @@ export class PageMenuVentas {
     }
 
     setActiveTab(tabName) {
-        const buttons = document.querySelectorAll('.main-menu .tab');
+        const buttons = document.querySelectorAll('.btns-main-menu .tab');
         buttons.forEach(button => {
             if (button.textContent === tabName) {
                 button.classList.add('active');

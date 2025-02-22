@@ -1,6 +1,7 @@
 import { Header} from "../../js/header.js";
-import { iconoVolver, iconoMenu, iconoPedidoListo, iconoTrash } from "../../js/iconosSVG.js"
+import { iconoVolver, iconoMenu, iconoPedidoListo, iconoTrash, iconoMasBlanco } from "../../js/iconosSVG.js"
 import Main from "../../js/main.js";
+import { navigateToPage } from "../../js/navigateToPage.js";
 import { TablaEncabezado, TablaDetalles, TablaFooter,  BtnFlotante } from "../../js/registros.js"
 import { Footer } from "../../js/footer.js";
 import { ButtonContainer } from "../../js/btnsContainer.js";
@@ -122,7 +123,7 @@ export class PlanillaVentaActual {
     
     createBtnFlotante= ()=>{
         const mainPedido=document.querySelector("main");
-        this.btn = new BtnFlotante("masblanco","contenedor-btn-flotante adicionarArticulo", ()=>{alert("agregando nuevo item")});
+        this.btn = new BtnFlotante(iconoMasBlanco,"contenedor-btn-flotante adicionarArticulo", ()=>{alert("agregando nuevo item")});
         mainPedido.appendChild(this.btn.getElement());
 
     }

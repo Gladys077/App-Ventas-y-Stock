@@ -60,7 +60,7 @@ export class MenuPerfiles {
     }
 
     setActiveTab(tabName) {
-        const buttons = document.querySelectorAll('.main-menu .tab');
+        const buttons = document.querySelectorAll('.pestanas-menu .tab');
         buttons.forEach(button => {
             if (button.textContent === tabName) {
                 button.classList.add('active');

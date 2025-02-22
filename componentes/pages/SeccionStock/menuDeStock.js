@@ -39,7 +39,7 @@ export class MenuStockPage {
         const footer = new Footer();
         const footerElement = footer.getElement();
 
-        footerElement.style.position = 'static'; // Cambié el 'position' a 'static'
+        // footerElement.style.position = 'static'; // Cambié el 'position' a 'static'
 
         const logoutContainer = document.createElement('button');
         logoutContainer.className = 'logout-container';
@@ -64,7 +64,7 @@ export class MenuStockPage {
     }
 
     setActiveTab(tabName) {
-        const buttons = document.querySelectorAll('.main-menu .tab');
+        const buttons = document.querySelectorAll('.pestanas-menu .tab');
         buttons.forEach(button => {
             if (button.textContent === tabName) {
                 button.classList.add('active');

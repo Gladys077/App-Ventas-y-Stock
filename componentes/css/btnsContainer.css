@@ -1,12 +1,12 @@
 .button-container {
     max-width: calc(100% - 0px);
-    width: 400px;
+    width: 500px;
     display: flex;
     justify-content: center;
     padding: 10px;
     margin: 4px;
     gap: 8px;
-    margin-top: 20px;
+    margin-top: 12px;
 
     button {
         height: 48px;

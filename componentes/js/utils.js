@@ -637,7 +637,7 @@ export class RadioProveedorList extends RadioProductList {
 // -------------- Menú principal --------(ventas, stock, perfiles)
 export function createMenuPrincipal() {
     const menuPrincipal = document.createElement('div');
-    menuPrincipal.classList.add('main-menu');
+    menuPrincipal.classList.add('pestanas-menu');
 
     const ventasButton = document.createElement('button');
     ventasButton.classList.add('tab', 'left-btn');

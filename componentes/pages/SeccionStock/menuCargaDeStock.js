@@ -26,7 +26,7 @@ export class CargaDeStock {
             flex-direction: column;
             align-items: center;
 
-            .main-menu {
+            .pestanas-menu {
                 max-width: 400px;
                 max-height: 48px;
                 width: calc(100vw - 32px);
@@ -221,7 +221,7 @@ export class CargaDeStock {
     }
 
     setActiveTab(tabName) {
-        const buttons = document.querySelectorAll('.main-menu .tab');
+        const buttons = document.querySelectorAll('.pestanas-menu .tab');
         buttons.forEach(button => {
             if (button.textContent === tabName) {
                 button.classList.add('active');
