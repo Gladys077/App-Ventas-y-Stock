@@ -1,7 +1,7 @@
 import { Header } from '../../js/header.js';
 import { iconoVolver, iconoDescargar } from '../../js/iconosSVG.js'
 import { CardVtasPorVendedor } from '../../js/cardVtasPorVendedor.js';
-import { FabButton } from '../../js/utils.js';
+import { FabButton, handleDownloadClick } from '../../js/utils.js';
 import { Notification } from '../../js/notificacion.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 
@@ -33,7 +33,7 @@ export class VentasPorVendedorPage {
         main.appendChild(this.cardVtasPorVendedor.getElement());
 
         // Creo el botón y lo agrego después del card
-        const downloadButton = new FabButton(iconoDescargar, this.handleDownloadClick.bind(this));
+        const downloadButton = new FabButton(iconoDescargar, handleDownloadClick);
         main.appendChild(downloadButton.getElement());  
 
         document.body.appendChild(main); 
@@ -67,28 +67,8 @@ export class VentasPorVendedorPage {
     }
 
 
-    handleDownloadClick() {
-        if (this.salesDate.length > 0) {
-            this.generatePDF(this.salesDate);
-            new Notification('../../../img/emojis/like.png', '¡Descarga exitosa!', 'success');
-        } else {
-            new Notification('../../../img/emojis/asombro.png', 'No hay datos para descargar', 'error');
-        }
-    }
+    
 
-    generatePDF(data) {
-        const doc = new jsPDF();
-        
-        doc.text('Reporte de Ventas por Vendedor', 10, 10);
-        
-        let yPosition = 20;
-        data.forEach((sale, index) => {
-            doc.text(`${index + 1}. ${sale.date} - ${sale.seller}: $${sale.amount}`, 10, yPosition);
-            yPosition += 10;
-        });
-        
-        doc.save('reporte_ventas_por_vendedor.pdf');
-    }
 }
 
 new VentasPorVendedorPage();

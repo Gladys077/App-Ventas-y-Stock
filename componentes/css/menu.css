@@ -1,11 +1,5 @@
-/* Estilos del main menu */
-main {
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* min-height: calc(100vh - 205px); */
-    /* justify-content: space-between;   */
-    /* margin-bottom: 40px; */
-}
+/* Estilos del menu */
+
 
 .menu{
     display: flex;

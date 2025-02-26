@@ -1,7 +1,7 @@
 import { Header } from '../../js/header.js';
 import { CardVtasPorProducto } from '../../js/cardVtasPorProducto.js';
 // import { Footer } from '../../js/footer.js';
-import { FabButton, createSearchContainerCard, RadioProductList } from '../../js/utils.js';
+import { FabButton, createSearchContainerCard, RadioProductList, handleDownloadClick } from '../../js/utils.js';
 import { iconoDescargar, iconoVolver } from '../../js/iconosSVG.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 
@@ -118,6 +118,11 @@ export class ProductosVendidos {
         // document.body.appendChild(this.ventasPorProducto.getElement());
         main.appendChild(this.ventasPorProducto.getElement());
 
+        const downloadButton = new FabButton(iconoDescargar, handleDownloadClick);
+        main.appendChild(downloadButton.getElement());
+        
+        document.body.appendChild(main);
+
 
     }
 
@@ -179,14 +184,13 @@ export class ProductosVendidos {
     }
 
 
-    createFooter() {
-        const footer = document.createElement('footer');
-        const fabButton = new FabButton(iconoDescargar, 'Descargar', () => {
-            console.log('Descargar informe');
-        });
-        footer.appendChild(fabButton.getElement());
-        document.body.appendChild(footer);
-    }}
+    // createFooter() {
+    //     const footer = document.createElement('footer');
+    //     const fabButton = new FabButton(iconoDescargar, handleDownloadClick);
+    //     footer.appendChild(fabButton.getElement());
+    //     document.body.appendChild(footer);
+    // }
+    }
 
 new ProductosVendidos();
 

@@ -659,7 +659,7 @@
     },
     {
       "id": "126",
-      "cant": 4,
+      "cant": 10,
       "producto": "Cuaderno Rivadavia Tapa dura 48h a cuadros, varias secciones",
       "precioUnitario": 3500
     },
@@ -674,12 +674,6 @@
       "cant": 7,
       "producto": "Resaltador amarillo fluor",
       "precioUnitario": 1500
-    },
-    {
-      "id": "130",
-      "cant": 1,
-      "producto": "Cuaderno Rivadavia T.dura 24h",
-      "precioUnitario": 2000
     },
     {
       "id": "131",

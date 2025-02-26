@@ -229,7 +229,7 @@ export function navigateToPage(page) {
             break; 
         
         case 'perfilsolicitado':
-            import('../../public/pages/perfilsolicitado.js').then(module =>{
+            import('../pages/perfilsolicitado.js').then(module =>{
                 new module.SolicitarPerfil();
             });
             break;       
