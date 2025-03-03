@@ -3,7 +3,10 @@ import Main from "../../js/main.js";
 import { iconoVolver, iconoLupaN, iconoDescargar } from '../../js/iconosSVG.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 import { createSearchContainer, RadioProductList, verificarCss } from '../../js/utils.js';
-import { TablaEncabezado, MostrarMainNav, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js";
+import { TablaEncabezado, MostrarMainNav, TablaDetalles, TablaFooter} from "../../js/registros.js";
+import { Footer } from '../../js/footer.js';
+import { FabButton, handleDownloadClick } from '../../js/utils.js';
+
 import { ModalInput } from "../../js/modalInput.js";
 import { Notification } from "../../js/notificacion.js";
 import { conexionAPI } from "../../js/services/conectionFakeApi.js"
@@ -21,7 +24,7 @@ export class PlanillaStock {
         this.createTablaDetalles();
         this.createLineaArticulo();
         this.mostrarLineasArticulos();
-        this.createBtnFlotante();
+        this.createFooter();
 
         // Limpia productos seleccionados al salir o actualizar la página
         window.addEventListener('beforeunload', () => {
@@ -141,12 +144,6 @@ export class PlanillaStock {
 
     }//Acá se debe conectar a la bd y hacemos el foreach para cada articulo
 
-    createBtnFlotante() {
-        const mainPedido = document.querySelector("main");
-        this.btn = new BtnFlotante(iconoDescargar, "contenedor-btn-flotante", () => alert("descarga exitosa"));
-        mainPedido.appendChild(this.btn.getElement());
-    }
-
     openProductSearch() {
         // Crea overlay para cubrir el main
         const overlay = document.createElement('div');
@@ -220,7 +217,18 @@ updateStockList(selectedProduct) {
     const lineaArticulo = this.createLineaArticulo(selectedProduct.cantidad, selectedProduct.nombre);
     tablaDetalles.appendChild(lineaArticulo);
 }
+    createFooter() {
+        this.footer = new Footer();
+        this.createBtnFlotante();
+        document.body.appendChild(this.footer.getElement());
+        }
+    
+    createBtnFlotante= ()=>{
+        const downloadButton = new FabButton(iconoDescargar, ()=> handleDownloadClick("Stock"));
+        this.footer.getElement().appendChild(downloadButton.getElement());
+        }
 
+        
 }
 
 new PlanillaStock();

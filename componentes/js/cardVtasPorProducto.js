@@ -18,6 +18,10 @@ export class CardVtasPorProducto {
         this.addInputListeners(); // Para añadir listeners a los inputs
         if (!verificarCss('cuadroInferior')) this.agregarCss();
 
+        // Event listener para limpiar el título cuando se recarga o se sale de la página
+        window.addEventListener('beforeunload', () => this.resetTitle());
+
+
     }
 
     get title() { 
@@ -195,6 +199,16 @@ export class CardVtasPorProducto {
         document.head.appendChild(style);
     }
 
+ // Método para restablecer el título de la card
+ resetTitle() {
+    const cardTitle = this.element.querySelector('.card-title');
+    if (cardTitle) {
+        cardTitle.textContent = this._title; // Restablece al título original
+        
+        // También podríamos guardarlo en sessionStorage o localStorage para recuperarlo después
+        // localStorage.setItem('cardTitle', this._title);
+    }
+}
     armarCardVtasPorProducto() {
         this.element = document.createElement('div');
         this.element.className = 'card';
@@ -238,6 +252,14 @@ export class CardVtasPorProducto {
         input.className = 'card-input';
         input.type = "date";
         input.maxLength = 10;
+
+        // Agrego la clase para identificar fácilmente el input
+        if (label === 'DESDE') {
+            input.classList.add('desde');
+        } else if (label === 'HASTA') {
+            input.classList.add('hasta');
+        }
+
         input.addEventListener('blur', (e) => this.handleInputChange(e, label));
         containerDate.appendChild(desdeHasta);
         containerDate.appendChild(input);
@@ -248,22 +270,44 @@ export class CardVtasPorProducto {
     handleClick() {
         console.log("Iniciando handleClick");
 
-        // Obtener el producto desde el título (Trim = elimina espacios innecesarios)
-        this.productoElegido = document.querySelector(".card-title")?.textContent.trim() || null;
-
-        console.log("Producto seleccionado:", this.productoElegido); // Debug
-    
-        if (!this.productoElegido || this.productoElegido === "") {
-            console.log("Intentando mostrar notificación de producto faltante");
-
+        // Verificar si estamos en modo buscar o en modo borrar
+        if (!this._isBuscarMode) {
+            this.resetToBuscarMode();
+            this.limpiarInputs();
+            return;
+        }
+        
+        // Comprobar si se ha seleccionado un producto específico
+        const productoElegido = this.element.querySelector(".card-title")?.textContent.trim();
+        
+        // Si no hay producto o es el título predeterminado
+        if (!productoElegido || productoElegido === "" || 
+            productoElegido === "Nombre_del_producto" || 
+            productoElegido === "Nombre del producto") {
+            console.log("Mostrando notificación de producto faltante");
             new Notification('../../img/emojis/señalar.png', '¡Le faltó elegir un producto!', 'error');
             return;
         }
     
-        // Obtener fechas
-        this._fechaDesde = document.querySelector(".card-input[type='date']:nth-of-type(1)").value;
-        this._fechaHasta = document.querySelector(".card-input[type='date']:nth-of-type(2)").value;
+        // Obtener los elementos de input
+        const desdeInput = this.element.querySelector('.desde');
+        const hastaInput = this.element.querySelector('.hasta');
+        
+        // Obtener los valores de las fechas
+        this._fechaDesde = desdeInput ? desdeInput.value : null;
+        this._fechaHasta = hastaInput ? hastaInput.value : null;
+        
+        console.log("Fecha DESDE:", this._fechaDesde);
+        console.log("Fecha HASTA:", this._fechaHasta);
     
+        // Verificar si se ingresó la fecha desde
+        if (!this._fechaDesde || this._fechaDesde === "") {
+            console.log("Mostrando notificación de fecha desde faltante");
+            new Notification('../../img/emojis/señalar.png', '¡Le faltó ingresar la fecha DESDE!', 'error');
+            return;
+        }
+        
+        // Verificar si las fechas son válidas cuando ambas están presentes
         if (this._fechaDesde && this._fechaHasta && this._fechaHasta < this._fechaDesde) {
             new Notification('../../img/emojis/error.png', 'La fecha HASTA no puede ser anterior a la fecha DESDE.', 'error');
             return;
@@ -272,11 +316,13 @@ export class CardVtasPorProducto {
         // Realizar búsqueda
         this.realizarBusqueda();
     
+        // Verificar si hay resultados
         if (!this.ventasFiltradas || this.ventasFiltradas.length === 0) {
             new Notification('../../img/emojis/triste.png', 'No hubo ventas en esas fechas para el producto elegido.', 'info');
             return;
         }
     
+        // Cambiar a modo resultados
         this._includeUnidadesVendidas = true;
         this.button.textContent = 'Borrar';
         this._isBuscarMode = false;
@@ -302,10 +348,7 @@ export class CardVtasPorProducto {
             this._fechaDesde = value || null;
         } else if (e.target.classList.contains('hasta')) {
             this._fechaHasta = value || null;
-        } else if (e.target.classList.contains('card-title')) { // Si el input es el del producto
-            this.productoElegido = textContent;
-            console.log("Producto seleccionado:", this.productoElegido); // Debug
-        }
+        } 
     }
 
     mostrarUnidadesVendidas() {
@@ -351,13 +394,18 @@ export class CardVtasPorProducto {
     realizarBusqueda() {
         const productos = JSON.parse(localStorage.getItem('productos')) || [];
         let ventasFiltradas = [];
+        
+        // Obtener el producto elegido del título
+        const productoElegido = this.element.querySelector(".card-title")?.textContent.trim() || "";
     
         productos.forEach(producto => {
-            if (producto.ventas) {
+            // Solo procesar el producto elegido
+            if (producto.nombre === productoElegido && producto.ventas) {
                 producto.ventas.forEach(venta => {
                     const fechaVenta = new Date(venta.fecha);
-                    const fechaDesde = this._fechaDesde ? new Date(this._fechaDesde.split('/').reverse().join('-')) : null;
-                    const fechaHasta = this._fechaHasta ? new Date(this._fechaHasta.split('/').reverse().join('-')) : null;
+                    // Convertir fechas de formato YYYY-MM-DD a Date objects
+                    const fechaDesde = this._fechaDesde ? new Date(this._fechaDesde) : null;
+                    const fechaHasta = this._fechaHasta ? new Date(this._fechaHasta) : null;
     
                     if ((!fechaDesde || fechaVenta >= fechaDesde) && (!fechaHasta || fechaVenta <= fechaHasta)) {
                         ventasFiltradas.push({
@@ -369,19 +417,14 @@ export class CardVtasPorProducto {
                 });
             }
         });
-    
+
         this.ventasFiltradas = ventasFiltradas; // Guardo las ventas filtradas para usarlas 
         console.log('Ventas filtradas:', ventasFiltradas);
-    
-        this.calcularUnidadesVendidas();
-
         console.log("Fecha Desde:", this._fechaDesde, "Fecha Hasta:", this._fechaHasta);
-console.log("Ventas Filtradas:", this.ventasFiltradas);
-
     }
 
     calcularUnidadesVendidas() {
-        if (!this.ventasFiltradas) return;
+        if (!this.ventasFiltradas || this.ventasFiltradas.length === 0) return 0;
     
         let totalUnidadesVendidas = 0;
     
@@ -390,12 +433,7 @@ console.log("Ventas Filtradas:", this.ventasFiltradas);
         });
     
         console.log('Total de unidades vendidas:', totalUnidadesVendidas);
-    
-        // Actualizo el contenido del cuadro inferior
-        const boxCuadroInferior = this.element.querySelector('.boxCuadroInferior');
-        if (boxCuadroInferior) {
-            boxCuadroInferior.textContent = totalUnidadesVendidas;
-        }
+        return totalUnidadesVendidas;
     }
 
     mostrarListadoPorFecha() {

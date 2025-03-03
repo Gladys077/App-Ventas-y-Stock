@@ -1,9 +1,10 @@
 import { Header } from "../../js/header.js";
-import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js";
+import { iconoVolver, iconoMenu, iconoDescargar } from "../../js/iconosSVG.js";
 import { navigateToPage } from "../../js/navigateToPage.js"
 import Main from "../../js/main.js";
 import { TablaEncabezado, FiltroFecha, TablaDetalles, TablaFooter } from "../../js/registros.js"
-
+import { Footer } from '../../js/footer.js';
+import { FabButton, handleDownloadClick } from '../../js/utils.js';
  ///importe total de ese día
 
 export class PlanillaVtasPorFecha {
@@ -15,6 +16,7 @@ export class PlanillaVtasPorFecha {
         this.createTablaEncabezado();
         this.createTablaDetalles();
         this.createTablaFooter();
+        this.createFooter();
     }
 
     createHeader=()=>{
@@ -53,6 +55,17 @@ export class PlanillaVtasPorFecha {
         const mainPedido=document.querySelector("main");
         this.footer = new TablaFooter()
         mainPedido.appendChild(this.footer.getElement());
+    }
+
+    createFooter() {
+        this.footer = new Footer();
+        this.createBtnFlotante();
+        document.body.appendChild(this.footer.getElement());
+    }
+         
+    createBtnFlotante= ()=>{
+        const downloadButton = new FabButton(iconoDescargar, ()=> handleDownloadClick("Ventas_desde_hasta"));
+        this.footer.getElement().appendChild(downloadButton.getElement());
     }
 
 }

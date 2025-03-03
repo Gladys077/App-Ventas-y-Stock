@@ -3,6 +3,8 @@ import { iconoVolver, iconoMenu, iconoDescargar } from "../../js/iconosSVG.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
 import Main from "../../js/main.js";
 import { TablaEncabezado, MostrarMainNav, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
+import { Footer } from '../../js/footer.js';
+import { FabButton, handleDownloadClick } from '../../js/utils.js';
 import { conexionAPI } from "../../js/services/conectionFakeApi.js"
  
 
@@ -17,7 +19,7 @@ export class PlanillaStockSinMvto {
         this.createLineaArticulo();
         this.mostrarLineasArticulos();
         // this.createTablaFooter();
-        this.createBtnFlotante();
+        this.createFooter();
 
     }
 
@@ -112,12 +114,16 @@ export class PlanillaStockSinMvto {
         mainPedido.appendChild(this.footer.getElement());
     }
 
+    createFooter() {
+            this.footer = new Footer();
+            this.createBtnFlotante();
+            document.body.appendChild(this.footer.getElement());
+            }
+        
     createBtnFlotante= ()=>{
-        const mainPedido=document.querySelector("main");
-        this.btn = new BtnFlotante(iconoDescargar,"contenedor-btn-flotante",()=>{alert("descarga exitosa")});
-        mainPedido.appendChild(this.btn.getElement());
-
-    }
+            const downloadButton = new FabButton(iconoDescargar, ()=> handleDownloadClick("Artículos_sin_movimiento"));
+            this.footer.getElement().appendChild(downloadButton.getElement());
+            }
     
 
 
