@@ -1,7 +1,8 @@
 import { Header } from '../../js/header.js';
 import { iconoVolver, iconoDescargar } from '../../js/iconosSVG.js'
 import { CardVtasPorVendedor } from '../../js/cardVtasPorVendedor.js';
-import { FabButton } from '../../js/utils.js';
+import { Footer } from '../../js/footer.js';
+import { FabButton, handleDownloadClick } from '../../js/utils.js';
 import { Notification } from '../../js/notificacion.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 
@@ -12,6 +13,7 @@ export class VentasPorVendedorPage {
 
         this.createHeader();
         this.createMain();
+        this.createFooter();
 
         // Obtengo la lista de vendedores y actualizo la card
         const vendedores = this.getSellersList() || [];
@@ -32,14 +34,8 @@ export class VentasPorVendedorPage {
         this.cardVtasPorVendedor = new CardVtasPorVendedor('', 'DIA', 'Buscar' , 'VentasPorVendedorPlanilla'); // Inicializa con una lista vacía
         main.appendChild(this.cardVtasPorVendedor.getElement());
 
-        // Creo el botón y lo agrego después del card
-        const downloadButton = new FabButton(iconoDescargar, this.handleDownloadClick.bind(this));
-        main.appendChild(downloadButton.getElement());  
-
         document.body.appendChild(main); 
     }
-
-   
 
     handleSearchBBDD(seller, date) {
         console.log('Buscando ventas de:', seller, 'en la fecha:', date);
@@ -63,32 +59,21 @@ export class VentasPorVendedorPage {
         // const displayElement = document.querySelector('.total-sales-display');
         // displayElement.textContent = `Total: $${totalSales}`;
         this.cardVtasPorVendedor.actualizarMonto(totalSales);
-
     }
 
 
-    handleDownloadClick() {
-        if (this.salesDate.length > 0) {
-            this.generatePDF(this.salesDate);
-            new Notification('../../../img/emojis/like.png', '¡Descarga exitosa!', 'success');
-        } else {
-            new Notification('../../../img/emojis/asombro.png', 'No hay datos para descargar', 'error');
+    createFooter() {
+        this.footer = new Footer();
+        this.createBtnFlotante();
+        document.body.appendChild(this.footer.getElement());
         }
-    }
+    
+    createBtnFlotante= ()=>{
+        const downloadButton = new FabButton(iconoDescargar, ()=> handleDownloadClick("Ventas_por_vendedor"));
+        this.footer.getElement().appendChild(downloadButton.getElement());
+        }
+    
 
-    generatePDF(data) {
-        const doc = new jsPDF();
-        
-        doc.text('Reporte de Ventas por Vendedor', 10, 10);
-        
-        let yPosition = 20;
-        data.forEach((sale, index) => {
-            doc.text(`${index + 1}. ${sale.date} - ${sale.seller}: $${sale.amount}`, 10, yPosition);
-            yPosition += 10;
-        });
-        
-        doc.save('reporte_ventas_por_vendedor.pdf');
-    }
 }
 
 new VentasPorVendedorPage();

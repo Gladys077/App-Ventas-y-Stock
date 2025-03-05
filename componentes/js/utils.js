@@ -99,6 +99,26 @@ const footerElement = document.querySelector('footer');
 footerElement.appendChild(downloadButton.getElement());
 */
 
+// ----------- Función para descargar archivo en pdf ---------------
+export function handleDownloadClick(filename = 'reporte_ventas.pdf') {
+    const mainContent = document.querySelector('main')
+    if (mainContent) {
+        const options = {
+            margin: 0.5,
+            filename: filename, // Usamos el parámetro recibido
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        }
+        html2pdf().set(options).from(mainContent).save();
+        new Notification('../../../img/emojis/like.png', '¡Descarga exitosa!', 'success');
+    } else {
+        new Notification('../../../img/emojis/asombro.png', 'No hay datos para descargar', 'error');
+    }
+}
+
+
+
 // ------------- FAB EXTENDED ---------------
 export class ExtendedFabButton {
     constructor(iconSVG, label, onClick) {

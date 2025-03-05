@@ -1,6 +1,5 @@
 import { CardVtasPorProducto } from './cardVtasPorProducto.js';
 import { Notification } from '../js/notificacion.js';
-import { navigateToPage } from '../js/navigateToPage.js';
 
 export class CardVtasPorFecha extends CardVtasPorProducto {
     constructor(title, textBtn, onClick, includeUnidadesVendidas = true, cuadroInferiorTitulo = "Importe facturado", linkText = "Listado por fecha", page = 'ventasxFecha-Listado') {

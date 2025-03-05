@@ -3,6 +3,8 @@ import { Footer } from "../../js/footer.js";
 import Main from "../../js/main.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
 import { iconoVolver, iconoDescargar } from "../../js/iconosSVG.js"
+import { FabButton, handleDownloadClick } from '../../js/utils.js';
+// import { ButtonContainer } from "../../js/btnsContainer.js";
 import { TablaEncabezado, MostrarMontoTotal, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
 
 export class PlanillaVtasdelDia {
@@ -15,7 +17,6 @@ export class PlanillaVtasdelDia {
         this.createTablaDetalles();
         this.createTablaFooter();
         this.createFooter();
-        this.createBtnFlotante();
     }
 
     createHeader=()=>{
@@ -56,23 +57,16 @@ export class PlanillaVtasdelDia {
         mainPedido.appendChild(this.footer.getElement());
     }
 
-    createBtnFlotante= ()=>{
-        const mainPedido=document.querySelector("main");
-        this.btn = new BtnFlotante(iconoDescargar,"contenedor-btn-flotante", ()=>{alert("Descarga exitosa")});
-        mainPedido.appendChild(this.btn.getElement());
-
-    }
-
     createFooter() {
         this.footer = new Footer();
-        const buttonContainer = new BtnFlotante(
-                iconoDescargar,
-                "contenedor-btn-flotante", 
-                ()=>{alert("Descarga exitosa")}
-            );        
-            this.footer.getElement().appendChild(buttonContainer.getBtnFlotante());
-            document.body.appendChild(this.footer.getElement());
-        }
+        this.createBtnFlotante();
+        document.body.appendChild(this.footer.getElement());
+    }
+
+    createBtnFlotante= ()=>{
+        this.btn = new FabButton(iconoDescargar, ()=>handleDownloadClick("Ventas_de_hoy"));
+        this.footer.getElement().appendChild(this.btn.getElement());
+    }
 }
 
 new PlanillaVtasdelDia();

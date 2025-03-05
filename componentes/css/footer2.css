@@ -4,7 +4,6 @@
     bottom: 0px;
     width: calc(100% - 32px);
     max-width: 500px;
-    margin-top: 0px;
     justify-content: center;
     box-sizing: border-box; 
 
@@ -83,7 +82,7 @@ footer button {
         max-width: 300px;
         min-width: 40px;
         width: 150px;
-        height: 48px;
+        height: 40px;
         margin-top: 6px;
         border-radius: 100px;
         border: 1px solid var(--color-primario);

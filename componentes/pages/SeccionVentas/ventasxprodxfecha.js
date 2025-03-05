@@ -3,8 +3,10 @@ import {  iconoVolver, iconoMenu } from "../../js/iconosSVG.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
 import Main from "../../js/main.js";
 import { TablaEncabezado, MostrarProducto, FiltroFecha, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
-// import { conexionAPI } from "../js/services/conectionFakeApi.js";
- 
+import { conexionAPI } from "../js/services/conectionFakeApi.js";
+import { Footer } from '../../js/footer.js';
+import { FabButton, handleDownloadClick } from '../../js/utils.js';
+
 
 export class PlanillaVtasxFecha {
     constructor(){//cuando esté completo hay que agregar los parametros id, fechadesde y fechahasta
@@ -26,7 +28,7 @@ export class PlanillaVtasxFecha {
         this.createLineaArticulos();
         await this.mostrarLineasArticulos();
         this.createTablaFooter();
-        this.createBtnFlotante();
+        this.createFooter();    
     
     }
 
@@ -188,12 +190,17 @@ createMostrarNombreProducto= async()=>{
         observarCambiosTabla();
     }
 
-    createBtnFlotante= ()=>{
-        const mainPedido=document.querySelector("main");
-        this.btn = new BtnFlotante("descargar","contenedor-btn-flotante",()=>{alert("descarga exitosa")});
-        mainPedido.appendChild(this.btn.getElement());
-
+     createFooter() {
+            this.footer = new Footer();
+            this.createBtnFlotante();
+            document.body.appendChild(this.footer.getElement());
     }
+         
+    createBtnFlotante = () => {
+        const downloadButton = new FabButton(iconoDescargar, () => handleDownloadClick("Ventas_por_fecha"));
+        this.footer.getElement().appendChild(downloadButton.getElement());
+    }
+
 
     createEventFiltro = ()=>{
         const btnFiltro= document.querySelector(".filtrarFecha");

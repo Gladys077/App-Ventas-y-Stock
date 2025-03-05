@@ -1,10 +1,10 @@
 import { Header } from "../../js/header.js";
-import { iconoVolver, iconoMenu, iconoCancel, iconoGuardar } from "../../js/iconosSVG.js";
+import {iconoVolver, iconoMenu} from "../../js/iconosSVG.js";
 import Main from "../../js/main.js";
 import { Footer } from "../../js/footer.js"
 import { conexionAPI } from "../js/services/conectionFakeApi.js"
 import { ButtonContainer } from "../../js/btnsContainer.js"
-import { navigateToPage } from "../../js/navigateToPage.js";
+// import { navigateToPage } from "../../js/navigateToPage.js";
 
 
 export class SolicitarPerfil {
