@@ -232,7 +232,7 @@ export function navigateToPage(page) {
             });
             break; 
         
-        case 'PerfilSolicitado':
+        case 'perfilsolicitado':
             import('../pages/SeccionPerfiles/perfilsolicitado.js').then(module =>{
                 new module.SolicitarPerfil();
             });

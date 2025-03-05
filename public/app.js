@@ -21,6 +21,8 @@ function loadView(view) {
 
             //se agrega lo siguiente para recuperar info de lista de productos de un pedido guardado
                 const [viewName, params] = view.split("?");//extraigo nombre de la vista y cualquier otro parámetro agregado
+                
+
 
             script.src = `./pages/${viewName}.js`;
             script.defer = true;
@@ -115,10 +117,10 @@ function loadView(view) {
 
 
     // loadView("ventasxprodxfecha")
-loadView("ventaactual")
+// loadView("ventaactual")
 
 // loadView("stockcargaxremito")
-//loadView("stocknuevoremito")
+loadView("stocknuevoremito")
  //loadView("stocknuevoremitocargaproductos")
 
 // loadView("formnuevoproveedor")

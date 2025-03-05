@@ -876,6 +876,46 @@
           "precio": 200
         }
       ]
+    },
+    {
+      "id": "rtn165",
+      "numero": "6578",
+      "fecha": "2025-02-19",
+      "proveedor": "Proveeduría S.A.",
+      "lista": [
+        {
+          "id": "1c23",
+          "cant": 10,
+          "nombre": "cuaderno rivadavia t.dura 24h",
+          "precio": 2000
+        },
+        {
+          "id": "1c63",
+          "cant": 10,
+          "nombre": "cuaderno rivadavia t.dura 48h",
+          "precio": 4000
+        }
+      ]
+    },
+    {
+      "id": "rtn616",
+      "numero": "4567",
+      "fecha": "2025-02-20",
+      "proveedor": "Proveeduría S.A.",
+      "lista": [
+        {
+          "id": "1c23",
+          "cant": 10,
+          "nombre": "cuaderno rivadavia t.dura 24h",
+          "precio": 2000
+        },
+        {
+          "id": "1c63",
+          "cant": 10,
+          "nombre": "cuaderno rivadavia t.dura 48h",
+          "precio": 3800
+        }
+      ]
     }
   ],
   "historialventas": [

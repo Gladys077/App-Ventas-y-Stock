@@ -65,17 +65,17 @@ export class PlanillaStockCargaxRemito {
         const detalle = document.querySelector(".tabla_detalles")
         const lineaArt = document.createElement("div");
         lineaArt.className = "tabla_lineaArticulo";
-        lineaArt.id =`${id}`
+        lineaArt.id = id;
 
             const input = document.createElement("input");
             input.className = "cant";
-            input.value=`${cant}`;
-            input.setAttribute("data-price",`${precioUnitario}`)
+            input.value= cant;
+            input.setAttribute("data-price", precioUnitario)
             input.addEventListener("input", (event)=>actualizarPrecio(event))
 
             const prod = document.createElement("div");
             prod.className="producto";
-            prod.textContent= `${producto}`;
+            prod.textContent= producto;
                         
 
             const precio = document.createElement("div");

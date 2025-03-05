@@ -1,8 +1,10 @@
-import { Header, iconoVolver, iconoMenu } from "../../js/header.js";
+import { Header } from "../../js/header.js";
+import { iconoVolver, iconoMenu, iconoCancel, iconoGuardar } from "../../js/iconosSVG.js";
 import Main from "../../js/main.js";
 import { Footer } from "../../js/footer.js"
 import { conexionAPI } from "../js/services/conectionFakeApi.js"
 import { ButtonContainer } from "../../js/btnsContainer.js"
+import { navigateToPage } from "../../js/navigateToPage.js";
 
 
 export class SolicitarPerfil {
@@ -18,7 +20,7 @@ export class SolicitarPerfil {
 
 
     createHeader=()=>{
-        this.header = new Header("Ver o Editar Perfil", iconoVolver, iconoMenu, null, null);//hay que agregar la navegación de los botones
+        this.header = new Header("Ver o Editar Perfil", iconoVolver, iconoMenu, ()=> { navigateToPage('MenuPerfiles') }, ()=> { navigateToPage('MenuVentas')} );
         document.body.appendChild(this.header.getElement());
         return
     }
@@ -127,7 +129,8 @@ async function verPerfil(e){
     console.log(id);
 
     if(perfilSeleccionado){
-        loadView(`perfilModificar?id=${id}`)
+        navigateToPage(`perfilModificar?id=${id}`)
+        // loadView(`perfilModificar?id=${id}`)
              
     }else {
         alert("No hay vendedor seleccionado.");
