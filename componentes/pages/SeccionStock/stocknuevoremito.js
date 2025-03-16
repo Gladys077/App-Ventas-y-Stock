@@ -1,5 +1,5 @@
 import { Header } from "../../js/header.js";
-import { iconoVolver, iconoMenu } from "../../js/iconosSVG.js"
+import { iconoVolver, iconoMenu, iconoCancel, iconoGuardar} from "../../js/iconosSVG.js"
 import { navigateToPage } from "../../js/navigateToPage.js";
 import Main from "../../js/main.js";
 import { Footer } from "../../js/footer.js";
@@ -114,12 +114,11 @@ export class NuevoRemito{
     createButtonsFooter=()=>{
         const footerRegistro= document.querySelector(".footer-container");
         this.botones= new ButtonContainer(
-            "Cargar", 
+            "Guardar", 
             "Cancelar",
              (e)=>{agregarRemito(e); },
              ()=>{console.log("se canceló ingreso de stock");},
-             "save2",
-             "cancelViolet" )
+             iconoGuardar, iconoCancel )
         footerRegistro.appendChild(this.botones.getButtonContainer());
         return
     }

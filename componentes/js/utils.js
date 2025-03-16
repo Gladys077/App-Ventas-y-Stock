@@ -207,7 +207,7 @@ export function createSearchContainer(onProductClick, ProductListClass = Product
             max-width: 400px;
             width: calc(100vw - 32px);
             // height: 100px;
-            margin: 10px auto 10px;            
+            margin: 10px auto 0px;            
             // position: sticky; 
             top: 0; 
             padding: 10px; 
@@ -309,7 +309,7 @@ export function createSearchContainerCard(onSearch, ProductListClass = ProductLi
         .search-container-card {
             max-width: 432px;
             width: calc(100vw - 32px);
-            margin: 10px auto 10px;    
+            margin: 10px auto -10px;    
             position: sticky; 
             top: 0; 
             padding: 10px; 

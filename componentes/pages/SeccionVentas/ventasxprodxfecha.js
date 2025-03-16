@@ -1,9 +1,9 @@
 import { Header } from "../../js/header.js";
-import {  iconoVolver, iconoMenu } from "../../js/iconosSVG.js";
+import {  iconoVolver, iconoMenu, iconoDescargar } from "../../js/iconosSVG.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
 import Main from "../../js/main.js";
 import { TablaEncabezado, MostrarProducto, FiltroFecha, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
-import { conexionAPI } from "../js/services/conectionFakeApi.js";
+import { conexionAPI } from "../../js/services/conectionFakeApi.js";
 import { Footer } from '../../js/footer.js';
 import { FabButton, handleDownloadClick } from '../../js/utils.js';
 
@@ -18,16 +18,20 @@ export class PlanillaVtasxFecha {
 
         this.createHeader();
         this.mainPedido=this.createMain();
+
         await this.traerProd();
         await this.traerHistorialProd();
+        //  this.mainPedido.innerHTML = '';
+
         await this.createMostrarNombreProducto();
         this.createFiltroFecha();
         this.createEventFiltro();
         this.createTablaEncabezado();
         this.createTablaDetalles();
+        this.createTablaFooter();
+
         this.createLineaArticulos();
         await this.mostrarLineasArticulos();
-        this.createTablaFooter();
         this.createFooter();    
     
     }

@@ -1,10 +1,12 @@
 import { Header } from '../../js/header.js';
-import { iconoVolver } from "../../js/iconosSVG.js";
+import { iconoVolver, iconoCancel, iconoGuardar  } from "../../js/iconosSVG.js";
 import { CardEditProduct } from '../../js/cardEditProduct.js';
 import { Notification } from '../../js/notificacion.js';
 import { createSearchContainerCard, RadioProductList } from '../../js/utils.js';
 import { Producto } from '../../js/producto.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
+import { Footer } from '../../js/footer.js';
+import { ButtonContainer } from '../../js/btnsContainer.js';
 
 export class EditProductPage {
     constructor(productId) {
@@ -13,13 +15,15 @@ export class EditProductPage {
         this.createHeader();
         this.createMain();
         this.agregarCss();
+        this.createFooter();
+        this.createButtonsFooter();
     }
     agregarCss() {
         const style = document.createElement("style");
         style.textContent = ` 
             .fondo-results {
                 position: fixed;
-                top: 135px;
+                top: 155px;
                 width: calc(100vw - 32px);
                 max-width: 400px;
                 margin: 0 auto;
@@ -66,11 +70,16 @@ export class EditProductPage {
 
     createMain() {
         const main = document.createElement("main");
+        main.classList.add("main-container");
+
+        // Contenedor para el buscador
+        const searchContainerDiv = document.createElement("div");
+        searchContainerDiv.classList.add("search-container");
 
         const productSearch = createSearchContainerCard(
             this.handleSearch.bind(this),
             RadioProductList,
-            "calc(100vh - 200px)"
+            "auto"
         );
         main.appendChild(productSearch);
 
@@ -216,6 +225,19 @@ export class EditProductPage {
 
     hideFondoResults() {
         this.fondoResults.style.display = 'none';
+    }
+
+    
+    createFooter(){
+        this.footer = new Footer()
+        document.body.appendChild(this.footer.getElement());
+        return
+    }
+
+    createButtonsFooter(){
+        const footerProduct= document.querySelector(".footer-container");
+        this.botones= new ButtonContainer("Guardar", "Cancelar", ()=>{console.log("se guardó pedido");},()=>{console.log("se eliminó pedido");}, iconoGuardar, iconoCancel )
+        footerProduct.appendChild(this.botones.getButtonContainer());
     }
 
 }

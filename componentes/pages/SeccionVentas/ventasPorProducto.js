@@ -6,6 +6,7 @@ import { iconoDescargar, iconoVolver } from '../../js/iconosSVG.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 import { Notification } from '../../js/notificacion.js';
 
+
 export class ProductosVendidos {
     constructor() {
         document.body.innerHTML = '';
@@ -18,7 +19,7 @@ export class ProductosVendidos {
             // Limpia también el título de la card si existe
             const productoElegido = document.querySelector('.card-title');
             if (productoElegido) {
-                productoElegido.textContent = '';
+                productoElegido.textContent = 'Nombre_del_producto';
             }
         });
 
@@ -81,7 +82,10 @@ export class ProductosVendidos {
     }
 
     createHeader() {
-        this.header = new Header('Ventas por producto', iconoVolver, null, () => { navigateToPage('MenuVentas') });
+        this.header = new Header('Ventas por producto', iconoVolver, null, () => { 
+            localStorage.removeItem("selectedProduct"); // para que al presionar "volver" se limpie el h2.card-title
+            navigateToPage('MenuVentas')
+        });
         document.body.appendChild(this.header.getElement());
     }
 

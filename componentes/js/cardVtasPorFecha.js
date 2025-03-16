@@ -30,7 +30,7 @@ export class CardVtasPorFecha extends CardVtasPorProducto {
         
         // Validar que, si se eligió HASTA, no sea anterior a DESDE
         if (this._fechaHasta && this._fechaHasta < this._fechaDesde) {
-            new Notification('../../img/emojis/error.png', 'La fecha HASTA no puede ser anterior a la fecha DESDE.', 'error');
+            new Notification('../../img/emojis/pare.png', 'La fecha HASTA no puede ser anterior<br> a la fecha DESDE.', 'error');
             return;
         }
         

@@ -2,7 +2,8 @@ import { Header } from "../../js/header.js";
 import { iconoVolver, iconoMenu, iconoCancelViolet, iconoGuardar } from "../../js/iconosSVG.js";
 import Main from "../../js/main.js";
 import { CrearInput , CrearTextArea} from "../../js/formulariosvarios.js";
-// import { conexionAPI } from "../../../public/js/services/conectionFakeApi.js";
+import { conexionAPI } from "../../../public/js/services/conectionFakeApi.js";
+import { Footer } from "../../js/footer.js";
 import { ButtonContainer } from "../../js/btnsContainer.js";
 import { navigateToPage } from '../../js/navigateToPage.js';
 import { Notification } from "../../js/notificacion.js";
@@ -15,6 +16,7 @@ export class NuevoProveedor {
         this.mainPedido=this.createMain();
         this.createInputs();
         this.createTextArea();
+        this.createFooter();
         this.createButtonsForm();
     }
 

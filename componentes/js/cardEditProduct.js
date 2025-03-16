@@ -3,6 +3,15 @@ import { CardNewProduct } from './cardNewProduct.js';
 export class CardEditProduct extends CardNewProduct {
     constructor(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback) {
         super(btnPrimary, btnSecondary, btnPrimaryCallback, btnSecondaryCallback);
+
+        const style = document.createElement("style");
+        style.textContent = ` 
+            .card-edit-product { // quita los margin del cardNewProduct
+                margin-top: -18px;
+                margin-bottom: 0; 
+            }
+        `;
+        document.head.appendChild(style);
     }
 
     createProductInput() {

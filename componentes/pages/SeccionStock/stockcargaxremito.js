@@ -4,7 +4,7 @@ import { MostrarRemito, TablaEncabezado, TablaDetalles, TablaFooter, BtnFlotante
 import { Footer } from "../../js/footer.js";
 import { ButtonContainer } from "../../js/btnsContainer.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
-import { iconoCancelViolet, iconoCargarStock, iconoVolver } from "../../js/iconosSVG.js";
+import { iconoCancel, iconoCargarStock, iconoVolver } from "../../js/iconosSVG.js";
 import { conexionAPI } from "../../js/services/conectionFakeApi.js"
 
 
@@ -152,31 +152,31 @@ export class PlanillaStockCargaxRemito {
         return
     }
 
-    createButtonsFooter=()=>{
-        const footerRegistro= document.querySelector(".footer-container");
-        this.botones= new ButtonContainer(
-                "Guardar", 
-                "Cancelar", 
-                async()=>{
-                    const remito = await conexionAPI.mostrarRemito(this.id);
+    // createButtonsFooter=()=>{
+    //     const footerRegistro= document.querySelector(".footer-container");
+    //     this.botones= new ButtonContainer(
+    //             "Guardar", 
+    //             "Cancelar", 
+    //             async()=>{
+    //                 const remito = await conexionAPI.mostrarRemito(this.id);
                     
-                        await conexionAPI.actualizarRemito(remito.id, remito.numero,remito.fecha,remito.proveedor,remito.lista)
-                        alert("remito actualizado correctamente")
-                        loadView("stocknuevoremito");
+    //                     await conexionAPI.actualizarRemito(remito.id, remito.numero,remito.fecha,remito.proveedor,remito.lista)
+    //                     alert("remito actualizado correctamente")
+    //                     loadView("stocknuevoremito");
                     
                     
-                },
-                async()=>{
-                    await conexionAPI.borrarRemito(this.id);
-                    alert("se canceló ingreso remito");
-                    loadView("stocknuevoremito");
-                },
-                "save2",
-                "cancelViolet" 
-            )
-        footerRegistro.appendChild(this.botones.getButtonContainer());
-        return
-    }//fin createButtonsFooter
+    //             },
+    //             async()=>{
+    //                 await conexionAPI.borrarRemito(this.id);
+    //                 alert("se canceló ingreso remito");
+    //                 loadView("stocknuevoremito");
+    //             },
+    //             iconoCancel,
+    //             iconoCargarStock 
+    //         )
+    //     footerRegistro.appendChild(this.botones.getButtonContainer());
+    //     return
+    // }//fin createButtonsFooter
 
 
 

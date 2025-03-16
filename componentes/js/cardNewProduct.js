@@ -1,3 +1,4 @@
+// import { Footer } from "./footer.js";
 import { ButtonContainer } from './btnsContainer.js';
 import { navigateToPage } from './navigateToPage.js';
 import { Notification } from './notificacion.js';
@@ -16,6 +17,8 @@ export class CardNewProduct {
         if (!verificarCss('nuevo-producto-form')) this.agregarCss();
         this._modal = null;
         this.initModal();   
+        // this.createFooter();
+        // this.createButtonContainer();
     }
 
     get btnPrimary(){ return this._btnPrimary;  }
@@ -47,7 +50,7 @@ export class CardNewProduct {
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: var(--background-color);
+            // background-color: var(--background-color);
             padding: 10px;
 
         .input-group {
@@ -97,6 +100,11 @@ export class CardNewProduct {
                     margin: 0;
                 }
             }
+        }
+
+        .card-edit-producto {
+            margin-top: 0;
+            margin-bottom: 0;
         }
 
         .costo-porcentaje {
@@ -316,7 +324,7 @@ export class CardNewProduct {
         style.textContent = `
             .modal {
                 display: none;
-                position: fixed;
+                // position: fixed;
                 top: 0;
                 left: 0;
                 width: 100%;
@@ -326,7 +334,7 @@ export class CardNewProduct {
             }
 
             .modal-content-proveedor {
-                position: fixed;
+                // position: fixed;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
@@ -403,6 +411,7 @@ export class CardNewProduct {
         select.selectedIndex = 0; // Esto selecciona la primera opción (por defecto "Selecciona el proveedor")
         }
 
+// Maneja el envío de los datos
 handleProveedorSubmit(e) {
     e.preventDefault();
     
@@ -442,7 +451,6 @@ handleProveedorSubmit(e) {
         form.appendChild(this.createPrecioVenta());
         form.appendChild(this.createDivider());
         form.appendChild(this.createPedidoOptional());
-        form.appendChild(this.createButtonContainer()); 
 
         return form;
     }
@@ -596,17 +604,6 @@ handleProveedorSubmit(e) {
         return pedidoOptional;
     }
 
-    createButtonContainer() {
-        const btnsContainer = new ButtonContainer(
-            this.btnPrimary, 
-            this.btnSecondary, 
-            this.btnPrimaryCallback, 
-            this.btnSecondaryCallback, 
-            iconoGuardar, 
-            iconoCancel
-        );
-        return btnsContainer.getButtonContainer();
-    }
 
     resetForm() {
         document.querySelector('.productInput').value = '';
@@ -663,4 +660,23 @@ handleProveedorSubmit(e) {
             stockMinimo: parseInt(document.querySelector('.stock-check input').value, 10) || 0
         };
     }
+
+    
+    // createFooter() {
+    //     this.footer = new Footer();
+    //     this.createButtonContainer();
+    //     document.body.appendChild(this.footer.getElement());
+        
+    // }
+    // createButtonContainer() {
+    //     this.btnsContainer = new ButtonContainer(
+    //         this.btnPrimary, 
+    //         this.btnSecondary, 
+    //         this.btnPrimaryCallback, 
+    //         this.btnSecondaryCallback, 
+    //         iconoGuardar, 
+    //         iconoCancel
+    //     );
+    //     this.footer.getElement().appendChild(this.btnsContainer.getElement());
+    // }
 }

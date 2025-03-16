@@ -1,10 +1,12 @@
 import { Header } from '../../js/header.js';
-import { iconoVolver, iconoMenu } from '../../js/iconosSVG.js';
+import { iconoVolver, iconoMenu, iconoCancel, iconoGuardar } from '../../js/iconosSVG.js';
 import { CardNewProduct } from '../../js/cardNewProduct.js';
 import { Notification } from '../../js/notificacion.js';
 // import { Producto } from '../../js/producto.js';
 import { ModalInput } from '../../js/modalInput.js'; 
 import { navigateToPage } from "../../js/navigateToPage.js";
+import { Footer } from '../../js/footer.js';
+import { ButtonContainer } from '../../js/btnsContainer.js';
 
 
 export class NewProductPage {
@@ -12,6 +14,8 @@ export class NewProductPage {
         document.body.innerHTML = ''; 
         this.createHeader();
         this.createMain();
+        this.createFooter();
+        this.createButtonsFooter();
     }
     getElement() {
         return this.element;
@@ -143,7 +147,17 @@ export class NewProductPage {
         }
     }
     
+    createFooter(){
+            this.footer = new Footer()
+            document.body.appendChild(this.footer.getElement());
+            return
+        }
     
+    createButtonsFooter(){
+            const footerProduct= document.querySelector(".footer-container");
+            this.botones= new ButtonContainer("Cancelar", "Guardar", ()=>{console.log("se guardó pedido");},()=>{console.log("se eliminó pedido");}, iconoGuardar, iconoCancel )
+            footerProduct.appendChild(this.botones.getButtonContainer());
+        }
     
 }
 
