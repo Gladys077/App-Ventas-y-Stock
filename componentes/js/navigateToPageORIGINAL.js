@@ -4,12 +4,8 @@ export function navigateToPage(page) {
     */
     document.body.innerHTML = '';
 
-    const [pageName,params] = page.split("?");
 
-    const urlParams = new URLSearchParams(params)
-    const Id = urlParams.get("id");
-
-    switch(pageName) {
+    switch(page) {
         //---------------Primeras Páginas
         case 'Login':
             import('../pages/PrimerasPaginas/LoginPage.js').then(module => {
@@ -232,15 +228,15 @@ export function navigateToPage(page) {
             });
             break; 
         
-        case 'PerfilSolicitado':
-            import('../pages/SeccionPerfiles/perfilsolicitado.js').then(module =>{
+        case 'perfilsolicitado':
+            import('../../public/pages/perfilsolicitado.js').then(module =>{
                 new module.SolicitarPerfil();
             });
             break;       
 
         case 'PerfilModificar':
             import('../pages/SeccionPerfiles/perfilModificar.js').then(module => {
-                new module.ModificarPerfil(Id);
+                new module.ModificarPerfil();
             });
             break;      
 

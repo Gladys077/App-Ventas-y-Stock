@@ -4,7 +4,7 @@ import { navigateToPage } from "../../js/navigateToPage.js";
 
 import Main from "../../js/main.js";
 import { CrearInput , CrearSectionOptions} from "../../js/formulariosvarios.js"
-// import { conexionAPI } from "../js/services/conectionFakeApi.js"
+import { conexionAPI } from "../js/services/conectionFakeApi.js"
 import { ButtonContainer } from "../../js/btnsContainer.js"
 
 
