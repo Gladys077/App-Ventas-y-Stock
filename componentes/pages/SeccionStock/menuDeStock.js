@@ -1,12 +1,12 @@
 import { Header } from "../../js/header.js";
 import { iconoAjustes, iconoVolver, iconoCargarStock, iconoStock, iconoEditarProducto, iconoNuevoProducto, iconoEliminarProducto, iconoProveedores, iconoProximoPedido, iconoHistorial, iconoCerrarSesion } from "../../js/iconosSVG.js";
-import { createMenuPrincipal } from "../../js/utils.js";
+import { createMenuPrincipal, verificaContenedorPrincipal } from "../../js/utils.js";
 import { Footer } from "../../js/footer.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
 
 export class MenuStockPage {
     constructor() {
-        document.body.innerHTML = ''; 
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         this.createHeader();
         this.createMain();
         this.createFooter();
@@ -20,7 +20,7 @@ export class MenuStockPage {
     createHeader() {
         this.header = new Header('Administrador', iconoVolver, iconoAjustes, ()=> { navigateToPage('Login') }, ()=> { navigateToPage('Config') });
         
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
     }
 
     createMain() {
@@ -32,7 +32,7 @@ export class MenuStockPage {
         menu.appendChild(createMenuStock());
 
         main.appendChild(menu);
-        document.body.appendChild(main);
+        this.contenedorPrincipal.appendChild(main);
     }
 
     createFooter() {
@@ -59,7 +59,7 @@ export class MenuStockPage {
         // footerElement.appendChild(logoutContainer);
      
         footerElement.appendChild(logoutContainer);
-        document.body.appendChild(footerElement);
+        this.contenedorPrincipal.appendChild(footerElement);
 
     }
 

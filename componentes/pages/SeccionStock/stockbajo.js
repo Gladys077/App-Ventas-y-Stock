@@ -4,13 +4,13 @@ import { navigateToPage } from "../../js/navigateToPage.js";
 import Main from "../../js/main.js";
 import { TablaEncabezado, MostrarMainNav, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
 import { Footer } from '../../js/footer.js';
-import { FabButton, handleDownloadClick } from '../../js/utils.js';
+import { FabButton, handleDownloadClick, verificaContenedorPrincipal } from '../../js/utils.js';
 import { conexionAPI } from "../../js/services/conectionFakeApi.js"
  
 
 export class PlanillaStockBajo {
     constructor(){
-        document.body.innerHTML = '';
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         
         this.createHeader();
         this.mainPedido=this.createMain();
@@ -26,13 +26,13 @@ export class PlanillaStockBajo {
 
     createHeader=()=>{
         this.header = new Header("Stock bajo", iconoVolver, iconoMenu, ()=>{ navigateToPage('VerStock') }, ()=>{ navigateToPage('MenuStock') });
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
         return
     }
 
     createMain=()=>{
         this.main = new Main()
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return
     }
 

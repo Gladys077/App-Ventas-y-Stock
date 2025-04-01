@@ -1,12 +1,12 @@
 import { Header } from '../../js/header.js';
 import { iconoVolver } from '../../js/iconosSVG.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
-import { verificarCss } from '../../js/utils.js';
+import { verificarCss, verificaContenedorPrincipal } from '../../js/utils.js';
 import { Notification } from '../../js/notificacion.js';
 
 export class ChangePassword {
     constructor() {
-        document.body.innerHTML = ''; 
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         if (!verificarCss('button-change-passw')) this.agregarCss();
         this.createHeader();
         this.createMain();
@@ -71,7 +71,7 @@ export class ChangePassword {
 
     createHeader() {
         this.header = new Header('Cambio de contraseña', iconoVolver, null, ()=>navigateToPage('MenuVentas'));
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
     }
 
     createMain() {
@@ -129,7 +129,7 @@ export class ChangePassword {
             // Validar campos vacíos
             if (!currentPassword || !newPassword || !confirmNewPassword) {
                 new Notification(
-                    '../../../img/emojis/pensando.png',
+                    '../../img/emojis/pensando.png',
                     'Falta completar alguno de los campos',
                     'error'
                 );
@@ -139,7 +139,7 @@ export class ChangePassword {
             // Validar contraseña actual
             if (currentPassword !== storedPassword) {
                 new Notification(
-                    '../../../img/emojis/pare.png',
+                    '../../img/emojis/pare.png',
                     'Contraseña actual incorrecta',
                     'error'
                 );
@@ -149,7 +149,7 @@ export class ChangePassword {
             // Validar coincidencia de las nuevas contraseñas
             if (newPassword !== confirmNewPassword) {
                 new Notification(
-                    '../../../img/emojis/triste.png',
+                    '../../img/emojis/triste.png',
                     'No coinciden las nuevas contraseñas',
                     'error'
                 );
@@ -158,7 +158,7 @@ export class ChangePassword {
 
             // Si pasa todas las validaciones
             new Notification(
-                '../../../img/emojis/feliz.png',
+                '../../img/emojis/feliz.png',
                 'Contraseña cambiada exitosamente',
                 'success'
             );
@@ -180,7 +180,7 @@ export class ChangePassword {
         container.appendChild(button);
 
         main.appendChild(container);
-        document.body.appendChild(main); 
+        this.contenedorPrincipal.appendChild(main);
 
     }
 }    

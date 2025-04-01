@@ -1,11 +1,11 @@
 import { Header } from '../../js/header.js';
 import { iconoCandado, iconoComercio, iconoTema, iconoTutorial, iconoVolver } from '../../js/iconosSVG.js'
 import { navigateToPage } from '../../js/navigateToPage.js';
-import { verificarCss } from '../../js/utils.js';
+import { verificarCss, verificaContenedorPrincipal } from '../../js/utils.js';
 
 export class ConfigurationPage {
     constructor() {
-        document.body.innerHTML = ''; 
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         if (!verificarCss('button-change-passw')) this.agregarCss();
         this.createHeader();
         this.createMain();
@@ -48,12 +48,12 @@ export class ConfigurationPage {
 
     createHeader() {
         this.header = new Header('Configuración', iconoVolver, null, ()=> navigateToPage('MenuVentas'));
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
     }
 
     createMain() {
         const main = document.createElement('main');
-        document.body.appendChild(main);
+        this.contenedorPrincipal.appendChild(main);
 
         const configList = document.createElement('div');
         configList.id = 'configList'; 
@@ -93,7 +93,7 @@ export class ConfigurationPage {
     } 
 
     toggleTheme() {
-        document.body.classList.toggle('dark-mode');
+        this.contenedorPrincipal.classList.toggle('dark-mode');
     }
 }
 

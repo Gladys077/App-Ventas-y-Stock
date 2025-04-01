@@ -629,26 +629,26 @@ handleProveedorSubmit(e) {
         document.getElementById('porcentaje').style.borderColor = 'var(--color-secundario)';
     
         if (!nombre.trim()) {
-            new Notification('../../img/emojis/pare.png', 'Por favor, ingresa el nombre del producto.', 'error');
+            new Notification('../img/emojis/pare.png', 'Por favor, ingresa el nombre del producto.', 'error');
             return false;
         } 
         
         if (proveedor === 'Selecciona el proveedor') {
-            new Notification('../../img/emojis/pare.png', 'Por favor, selecciona un proveedor.', 'error');
+            new Notification('../img/emojis/pare.png', 'Por favor, selecciona un proveedor.', 'error');
             return false;
         } 
         
         if (isNaN(costo) || costo <= 0) {
-            new Notification('../../img/emojis/pare.png', 'Por favor, ingresa un costo válido.', 'error');
+            new Notification('../img/emojis/pare.png', 'Por favor, ingresa un costo válido.', 'error');
             return false;
         } 
         
         if (isNaN(porcentaje) || porcentaje < 0) {
-            new Notification('../../img/emojis/pare.png', 'Por favor, ingresa un porcentaje válido.', 'error');
+            new Notification('../img/emojis/pare.png', 'Por favor, ingresa un porcentaje válido.', 'error');
             return false;
         }
     
-        return true; // Todos los datos son válidos
+        return true; 
     }
 
     obtenerDatosProducto() { 
@@ -661,22 +661,4 @@ handleProveedorSubmit(e) {
         };
     }
 
-    
-    // createFooter() {
-    //     this.footer = new Footer();
-    //     this.createButtonContainer();
-    //     document.body.appendChild(this.footer.getElement());
-        
-    // }
-    // createButtonContainer() {
-    //     this.btnsContainer = new ButtonContainer(
-    //         this.btnPrimary, 
-    //         this.btnSecondary, 
-    //         this.btnPrimaryCallback, 
-    //         this.btnSecondaryCallback, 
-    //         iconoGuardar, 
-    //         iconoCancel
-    //     );
-    //     this.footer.getElement().appendChild(this.btnsContainer.getElement());
-    // }
 }

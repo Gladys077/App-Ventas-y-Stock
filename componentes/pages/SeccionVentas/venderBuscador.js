@@ -1,15 +1,14 @@
 import { Header } from '../../js/header.js';
-import { createSearchContainer, ProductList, ExtendedFabButton, verificarCss } from '../../js/utils.js';
+import { createSearchContainer, ProductList, ExtendedFabButton, verificaContenedorPrincipal } from '../../js/utils.js';
 import { Footer } from '../../js/footer.js';
 import { iconoVerPedido, iconoVolver } from '../../js/iconosSVG.js';
 import { ModalInput } from '../../js/modalInput.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 import { Notification } from '../../js/notificacion.js';
-import { Producto } from '../../js/producto.js';
 
 export class VenderProductSearchPage {
     constructor() {
-        document.body.innerHTML = ''; 
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         this.selectedProducts = [];
         this.createHeader();
         this.createMain();
@@ -27,7 +26,7 @@ export class VenderProductSearchPage {
 
     createHeader() {
         const header = new Header('Vender', iconoVolver, null, function() { navigateToPage('MenuVentas')});
-        document.body.appendChild(header.getElement());
+        this.contenedorPrincipal.appendChild(header.getElement());
     }
 
     createMain() {
@@ -45,12 +44,12 @@ export class VenderProductSearchPage {
         this.resultContainer.classList.add('search-results-ventas');
         main.appendChild(this.resultContainer);
 
-        document.body.appendChild(main);
+        this.contenedorPrincipal.appendChild(main);
     }
     
     createFooter() {
         this.footer = new Footer();
-        document.body.appendChild(this.footer.getElement());
+        this.contenedorPrincipal.appendChild(this.footer.getElement());
 
 
         // Fab extended (ver venta actual)
@@ -83,7 +82,7 @@ export class VenderProductSearchPage {
                 this.selectedProducts.push(selectedProduct);
                 localStorage.setItem('selectedProducts', JSON.stringify(this.selectedProducts));
 
-                new Notification('../../../img/emojis/like.png', 'Producto añadido al carrito', 'success');
+                new Notification('../../img/emojis/like.png', 'Producto añadido al carrito', 'success');
             }, '1');
     }
 
@@ -93,7 +92,7 @@ export class VenderProductSearchPage {
         const productListElement = productList.render();
 
         if (productListElement.children.length === 0) {
-            new Notification('../../../img/emojis/asombro.png', '¡No hay producto en stock!', 'error');
+            new Notification('../../img/emojis/asombro.png', '¡No hay producto en stock!', 'error');
         }
 
         this.resultContainer.appendChild(productListElement);

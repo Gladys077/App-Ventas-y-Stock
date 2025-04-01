@@ -1,12 +1,12 @@
 import { Header } from "../../js/header.js";
 import { iconoVolver, iconoAjustes, iconoVender, iconoMovimientoDelDia, iconoVentasPorPersona, iconoVtasPorProducto, iconoVtasPorFecha, iconoCerrarSesion } from '../../js/iconosSVG.js'
-import { createMenuPrincipal } from "../../js/utils.js";
+import { createMenuPrincipal, verificaContenedorPrincipal } from "../../js/utils.js";
 import { Footer } from "../../js/footer.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
 
 export class PageMenuVentas {
     constructor() {
-        document.body.innerHTML = ''; 
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         this.createHeader();
         this.createMain();
         this.createFooter();
@@ -20,7 +20,7 @@ export class PageMenuVentas {
     createHeader() {
         this.header = new Header('Menú Ventas', iconoVolver, iconoAjustes, ()=> { navigateToPage('Login') }, ()=> { navigateToPage('Config') });
         
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
     }
 
     createMain() {
@@ -33,7 +33,7 @@ export class PageMenuVentas {
         menu.appendChild(createMenuVentas());
 
         main.appendChild(menu);
-        document.body.appendChild(main);
+        this.contenedorPrincipal.appendChild(main);
     }
 
     createFooter() {
@@ -57,7 +57,7 @@ export class PageMenuVentas {
         logoutContainer.appendChild(logoutText);
 
         footerElement.appendChild(logoutContainer);
-        document.body.appendChild(footerElement);
+        this.contenedorPrincipal.appendChild(footerElement);
 
     }
 

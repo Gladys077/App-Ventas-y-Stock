@@ -2,14 +2,15 @@ import { Header } from "../../js/header.js";
 import {iconoVolver, iconoMenu, iconoGuardar, iconoCancelViolet} from "../../js/iconosSVG.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
 import Main from "../../js/main.js";
-import { TablaEncabezado, TablaDetalles} from "../../js/registros.js"
-import { Footer } from "../../js/footer.js"
-import { ButtonContainer } from "../../js/btnsContainer.js"
+import { TablaEncabezado, TablaDetalles} from "../../js/registros.js";
+import { Footer } from "../../js/footer.js";
+import { ButtonContainer } from "../../js/btnsContainer.js";
+import { verificaContenedorPrincipal } from "../../js/utils.js";
 // import { conexionAPI } from "../js/services/conectionFakeApi.js"
 
 export class PlanillaPedidoHistorial {
     constructor(){
-        document.body.innerHTML = "";
+        this.contenedorPrincipal = verificaContenedorPrincipal();
 
         this.createHeader();
         this.mainPedido=this.createMain();
@@ -26,13 +27,13 @@ export class PlanillaPedidoHistorial {
 
     createHeader=()=>{
         this.header = new Header ("Historial de Pedidos", iconoVolver, iconoMenu,  ()=>window.history.back(), ()=>{navigateToPage("MenuStock")});
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
         return
     }
 
     createMain=()=>{
         this.main=new Main()
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return
     }
 
@@ -69,7 +70,7 @@ export class PlanillaPedidoHistorial {
                         const btnVerPedido=document.createElement("button");
                             btnVerPedido.className="verPedido";
                             const imgVer=document.createElement("img");
-                                imgVer.src="../img/iconos/pedido2.png";
+                                imgVer.src="../../img/iconos/pedido2.png";
                                 imgVer.title=`Ver contenido de ${descripcion}`;
                                 imgVer.alt="Icon ver";
                         btnVerPedido.appendChild(imgVer);
@@ -77,7 +78,7 @@ export class PlanillaPedidoHistorial {
                         const btnCopiar=document.createElement("button");
                             btnCopiar.className= "copiarPedido";
                             const imgCopiar = document.createElement("img");
-                                imgCopiar.src = "../img/iconos/saveGreen.png";
+                                imgCopiar.src = "../../img/iconos/saveGreen.png";
                                 imgCopiar.title = "Hacer copia pedido";
                                 imgCopiar.alt = "Icon copiar";
                         btnCopiar.appendChild(imgCopiar);
@@ -85,7 +86,7 @@ export class PlanillaPedidoHistorial {
                         const btnBorrar=document.createElement("button");
                             btnBorrar.className= "borrarPedido";
                             const imgBorrar = document.createElement("img");
-                                imgBorrar.src = "../img/iconos/trashRojo.PNG";
+                                imgBorrar.src = "../../img/iconos/trashRojo.PNG";
                                 imgBorrar.title = "Borrar pedido del Historial";
                                 imgBorrar.alt = "Icon Borrar";
                         btnBorrar.appendChild(imgBorrar);
@@ -142,7 +143,7 @@ export class PlanillaPedidoHistorial {
 
     createFooter=()=>{
         this.footer = new Footer()
-        document.body.appendChild(this.footer.getElement());
+        this.contenedorPrincipal.appendChild(this.footer.getElement());
         return
     }
 

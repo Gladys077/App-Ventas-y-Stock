@@ -5,7 +5,8 @@ import { Footer } from "../../js/footer.js";
 import { ButtonContainer } from "../../js/btnsContainer.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
 import { iconoCancel, iconoCargarStock, iconoVolver } from "../../js/iconosSVG.js";
-import { conexionAPI } from "../../js/services/conectionFakeApi.js"
+import { verificaContenedorPrincipal }  from "../../js/utils.js";
+import { conexionAPI } from "../../js/services/conectionFakeApi.js";
 
 
 export class PlanillaStockCargaxRemito {
@@ -15,7 +16,7 @@ export class PlanillaStockCargaxRemito {
     }
 
     async init() {
-        document.body.innerHTML = '';
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         this.createHeader();
         this.mainPedido = this.createMain();
         await this.traerRemito(); // Espera que se obtengan los datos antes de continuar
@@ -41,13 +42,13 @@ export class PlanillaStockCargaxRemito {
 
     createHeader=()=>{
         this.header = new Header("Carga de stock por remito", iconoVolver, null,()=>{navigateToPage("MenuCargaDeStock")});
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
         return
     }
 
     createMain=()=>{
         this.main = new Main()
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return
     }
 
@@ -89,7 +90,7 @@ export class PlanillaStockCargaxRemito {
     
                         const buttonEliminar= document.createElement("button");
                             const iconEliminar = document.createElement("img");
-                            iconEliminar.src= "../img/iconos/cancel2rojo.png"
+                            iconEliminar.src= "../../img/iconos/cancel2rojo.png"
                             iconEliminar.className = "iconEliminar";
                             iconEliminar.addEventListener("click", (e) =>{
                                 e.preventDefault();
@@ -148,7 +149,7 @@ export class PlanillaStockCargaxRemito {
 
     createFooter=()=>{
         this.footer = new Footer()
-        document.body.appendChild(this.footer.getElement());
+        this.contenedorPrincipal.appendChild(this.footer.getElement());
         return
     }
 

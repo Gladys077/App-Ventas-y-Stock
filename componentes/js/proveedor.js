@@ -17,7 +17,7 @@ export class Proveedor {
     }
     set empresaProveedora(value) { 
         if (!value || typeof value !== 'string') {
-            throw new Notification('../../img/emojis/pare.png', 'El campo no puede quedar vacío', 'error');
+            throw new Notification('../img/emojis/pare.png', 'El campo no puede quedar vacío', 'error');
         }
         this._empresaProveedora = value; 
     }
@@ -27,7 +27,7 @@ export class Proveedor {
     }
     set nombreVendedor(value) { 
         if (!value || typeof value !== 'string') {
-            throw new Notification('../../img/emojis/pare.png', 'El campo no puede quedar vacío', 'error');
+            throw new Notification('../img/emojis/pare.png', 'El campo no puede quedar vacío', 'error');
         }
         this._nombreVendedor = value; 
     }
@@ -38,7 +38,7 @@ export class Proveedor {
     set telefonoCelular(value) { 
         const telefonoRegex = /^\d{10,}$/; //para que tenga 10 o más dígitos
         if (!telefonoRegex.test(value)) {
-            throw new Notification('../../img/emojis/pare.png', 'Te faltan dígitos', 'error');
+            throw new Notification('../img/emojis/pare.png', 'Te faltan dígitos', 'error');
         }
         this._telefonoCelular = value; 
     }
@@ -49,7 +49,7 @@ export class Proveedor {
     set email(value) { 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(value)) {
-            throw new Notification('../../img/emojis/pare.png', 'El mail no es válido', 'error');
+            throw new Notification('../img/emojis/pare.png', 'El mail no es válido', 'error');
         }
         this._email = value; 
     }

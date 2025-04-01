@@ -5,10 +5,11 @@ import Main from "../../js/main.js";
 import { CrearInput } from "../../js/formulariosvarios.js";
 import { conexionAPI } from "../../js/services/conectionFakeApi.js";
 import { ButtonContainer } from "../../js/btnsContainer.js";
+import { verificaContenedorPrincipal } from "../../js/utils.js";
 
 export class DatosComercio {
     constructor(){
-        document.body.innerHTML = '';
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         this.createHeader();
         this.mainPedido=this.createMain();
         this.createInputs();
@@ -17,13 +18,13 @@ export class DatosComercio {
     
     createHeader=()=>{
         this.header = new Header("Datos del Comercio", iconoVolver, iconoMenu, ()=>navigateToPage('Config'), ()=>navigateToPage('MenuVentas'));
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
         return
     }
 
     createMain=()=>{
         this.main = new Main();
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return
     }
 

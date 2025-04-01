@@ -4,13 +4,13 @@ import Main from "../../js/main.js";
 import { TablaEncabezado, MostrarVendedor, FiltroFecha, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
 import { navigateToPage } from "../../js/navigateToPage.js";
 import { Footer } from '../../js/footer.js';
-import { FabButton, handleDownloadClick } from '../../js/utils.js';
+import { FabButton, handleDownloadClick, verificaContenedorPrincipal } from '../../js/utils.js';
 
  
 
 export class PlanillaVtasxVendedor {
     constructor(){
-        document.body.innerHTML = '';
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         this.createHeader();
         this.mainPedido=this.createMain();
         this.createMostrarVendedor();
@@ -23,13 +23,13 @@ export class PlanillaVtasxVendedor {
 
     createHeader=()=>{
         this.header = new Header("Ventas por Vendedor", iconoVolver, iconoMenu, ()=>{ navigateToPage('VentasPorVendedor') },()=>{ navigateToPage('MenuVentas') });
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
         return
     }
 
     createMain=()=>{
         this.main = new Main()
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return
     }
 
@@ -69,7 +69,7 @@ export class PlanillaVtasxVendedor {
     createFooter() {
         this.footer = new Footer();
         this.createBtnFlotante();
-        document.body.appendChild(this.footer.getElement());
+        this.contenedorPrincipal.appendChild(this.footer.getElement());
     }
      
     createBtnFlotante= ()=>{

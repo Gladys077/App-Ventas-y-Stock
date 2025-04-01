@@ -4,12 +4,13 @@ import { navigateToPage } from "../../js/navigateToPage.js";
 import Main from "../../js/main.js";
 import { Footer } from "../../js/footer.js";
 import { ButtonContainer } from "../../js/btnsContainer.js";
-import { CrearInput } from "../../js/formulariosvarios.js"
+import { CrearInput } from "../../js/formulariosvarios.js";
+import { verificaContenedorPrincipal } from "../../js/utils.js";
 import { conexionAPI } from "../../js/services/conectionFakeApi.js"
 
 export class NuevoRemito{
     constructor(){
-        document.body.innerHTML = '';
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         this.createHeader();
         this.mainPedido=this.createMain();
         this.createCrearInput();
@@ -21,13 +22,13 @@ export class NuevoRemito{
 
     createHeader=()=>{
         this.header = new Header("Carga de stock por remito", iconoVolver,null,()=>{navigateToPage('MenuCargaDeStock')});
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
         return
     }
 
     createMain=()=>{
         this.main = new Main()
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return
     }
 
@@ -107,7 +108,7 @@ export class NuevoRemito{
 
     createFooter=()=>{
         this.footer = new Footer()
-        document.body.appendChild(this.footer.getElement());
+        this.contenedorPrincipal.appendChild(this.footer.getElement());
         return
     }
 

@@ -3,11 +3,14 @@ import Main from "../../js/main.js";
 import { TablaEncabezado, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
 import { Footer } from "../../js/footer.js"
 import { ButtonContainer } from "../../js/btnsContainer.js"
+import { verificaContenedorPrincipal } from "../../js/utils.js"
 import { conexionAPI } from "../js/services/conectionFakeApi.js"
 
 
 export class PlanillaPedidoCopia {
     constructor(){
+        this.contenedorPrincipal = verificaContenedorPrincipal();
+        
         this.createHeader();
         this.mainPedido=this.createMain();
 
@@ -28,13 +31,13 @@ export class PlanillaPedidoCopia {
 
     createHeader=()=>{
         this.header = new Header("Copia - pedido", iconoVolver, iconoMenu,null,()=>{loadView("pedidolistaxproveedor")});
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
         return
     }
 
     createMain=()=>{
         this.main = new Main()
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return
     }
 
@@ -122,7 +125,7 @@ export class PlanillaPedidoCopia {
             const btnMas = document.createElement("button");
             btnMas.className= "mostrar-mas";
                 const imgMas = document.createElement("img");
-                imgMas.src = "../img/iconos/masgris.png";
+                imgMas.src = "../../img/iconos/masgris.png";
                 imgMas.title = "Mostrar lista de proveedores";
                 imgMas.alt = "Ver Proveedores";
             btnMas.appendChild(imgMas);
@@ -130,7 +133,7 @@ export class PlanillaPedidoCopia {
             const btnMenos = document.createElement("button");
             btnMenos.className= "mostrar-menos _oculto";
                 const imgMenos = document.createElement("img");
-                imgMenos.src = "../img/iconos/menosgris.png";
+                imgMenos.src = "../../img/iconos/menosgris.png";
                 imgMenos.title = "Ocultar lista de proveedores";
                 imgMenos.alt = "Ocultar Proveedores";
             btnMenos.appendChild(imgMenos);
@@ -185,7 +188,7 @@ export class PlanillaPedidoCopia {
 
     createFooter=()=>{
         this.footer = new Footer()
-        document.body.appendChild(this.footer.getElement());
+        this.contenedorPrincipal.appendChild(this.footer.getElement());
         return
     }
 

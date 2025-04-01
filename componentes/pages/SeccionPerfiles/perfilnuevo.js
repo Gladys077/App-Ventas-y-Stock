@@ -5,11 +5,12 @@ import { CrearInput , CrearSectionOptions} from "../../js/formulariosvarios.js"
 // import { conexionAPI } from "../js/services/conectionFakeApi.js"
 import { ButtonContainer } from "../../js/btnsContainer.js"
 import { navigateToPage } from "../../js/navigateToPage.js";
+import { verificaContenedorPrincipal } from "../../js/utils.js";
 
 
 export class NuevoPerfil {
     constructor(){
-        document.body.innerHTML= '';
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         this.createHeader();
         this.createMain();
         this.createInputs();
@@ -20,13 +21,13 @@ export class NuevoPerfil {
 
     createHeader=()=>{
         this.header = new Header("Creando Nuevo Perfil", iconoVolver, iconoMenu, ()=> { navigateToPage('MenuPerfiles') }, ()=> { navigateToPage('MenuVentas') });
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
         return
     }
 
     createMain=()=>{
         this.main = new Main();
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return
     }
 

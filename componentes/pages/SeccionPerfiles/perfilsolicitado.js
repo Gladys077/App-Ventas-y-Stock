@@ -1,14 +1,17 @@
 import { Header } from "../../js/header.js";
 import {iconoVolver, iconoMenu} from "../../js/iconosSVG.js";
 import Main from "../../js/main.js";
-import { Footer } from "../../js/footer.js"
-import { conexionAPI } from "../js/services/conectionFakeApi.js"
-import { ButtonContainer } from "../../js/btnsContainer.js"
+import { Footer } from "../../js/footer.js";
+import { conexionAPI } from "../js/services/conectionFakeApi.js";
+import { ButtonContainer } from "../../js/btnsContainer.js";
+import { verificaContenedorPrincipal } from "../../js/utils.js";
 // import { navigateToPage } from "../../js/navigateToPage.js";
 
 
 export class SolicitarPerfil {
     constructor(){
+        this.contenedorPrincipal = verificaContenedorPrincipal();
+        
         this.createHeader();
         this.createMain();
         this.createLineaPerfil();
@@ -21,13 +24,13 @@ export class SolicitarPerfil {
 
     createHeader=()=>{
         this.header = new Header("Ver o Editar Perfil", iconoVolver, iconoMenu, ()=> { navigateToPage('MenuPerfiles') }, ()=> { navigateToPage('MenuVentas')} );
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
         return
     }
 
     createMain=()=>{
         this.main = new Main();
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return
     }
 
@@ -76,7 +79,7 @@ export class SolicitarPerfil {
 
     createFooter=()=>{
         this.footer = new Footer()
-        document.body.appendChild(this.footer.getElement());
+        this.contenedorPrincipal.appendChild(this.footer.getElement());
         return
     }
 

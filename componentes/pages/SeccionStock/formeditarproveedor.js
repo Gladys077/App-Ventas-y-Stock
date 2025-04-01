@@ -3,11 +3,13 @@ import Main from "../../js/main.js";
 import { CrearInput , CrearTextArea} from "../../js/formulariosvarios.js"
 import { navigateToPage } from '../../js/navigateToPage.js';
 // import { conexionAPI } from "../../../public/js/services/conectionFakeApi.js"
-import { ButtonContainer } from "../../js/btnsContainer.js"
+import { ButtonContainer } from "../../js/btnsContainer.js";
+import { verificaContenedorPrincipal } from "../../js/utils.js";
 
 
 export class EditarProveedor {
     constructor(){
+        this.contenedorPrincipal = verificaContenedorPrincipal(); 
         this.createHeader();
         this.mainPedido=this.createMain();
         this.createInputs();
@@ -18,13 +20,13 @@ export class EditarProveedor {
 
     createHeader=()=>{
         this.header = new Header("Proveedor", iconoVolver, iconoMenu,() => navigateToPage('stockcargaxremito'),() => navigateToPage('pedidolistaxproveedor'));
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
         return
     }
 
     createMain=()=>{
         this.main = new Main()
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return
     }
 

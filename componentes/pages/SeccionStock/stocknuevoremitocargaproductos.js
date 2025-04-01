@@ -1,15 +1,17 @@
 import { Header, iconoVolver, iconoMenu, navigateToMenu } from "../../js/header.js";
 import Main from "../../js/main.js";
-import {TablaDetalles} from "../js/registros.js"
-import { conexionAPI } from "../js/services/conectionFakeApi.js"
-import { Footer } from "../js/footer.js";
+import {TablaDetalles} from "../../js/registros.js"
+import { conexionAPI } from "../../js/services/conectionFakeApi.js"
+import { Footer } from "../../js/footer.js";
 import { ButtonContainer } from "../js/btnsContainer.js";
+import { verificaContenedorPrincipal } from "../../js/utils.js";
 
 let productosSeleccionados = [];
 
 export class BuscadorProductos{
 
     constructor(id){
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         
         this.id=id;
         this.createHeader();
@@ -21,13 +23,13 @@ export class BuscadorProductos{
 
     createHeader=()=>{
         this.header = new Header("Carga de stock por remito ", iconoVolver, iconoMenu,null,()=>{loadView(stockcargaxremitol)});
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
         return
     }//fin createHeader
 
     createMain=()=>{
         this.main = new Main()
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return
     }//fin createMain
 
@@ -78,7 +80,7 @@ export class BuscadorProductos{
     
     createFooter=()=>{
         this.footer = new Footer()
-        document.body.appendChild(this.footer.getElement());
+        this.contenedorPrincipal.appendChild(this.footer.getElement());
         return
     }//fin createFooter
 

@@ -1,12 +1,12 @@
 import { Header } from "../../js/header.js";
 import { iconoAjustes, iconoPerfil, iconoPerfilEdit, iconoVolver, iconoCerrarSesion } from "../../js/iconosSVG.js";
-import { createMenuPrincipal } from "../../js/utils.js";
+import { createMenuPrincipal, verificaContenedorPrincipal } from "../../js/utils.js";
 import { Footer } from "../../js/footer.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
 
 export class MenuPerfiles {
     constructor() {
-        document.body.innerHTML = ''; 
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         this.createHeader();
         this.createMain();
         this.createFooter();
@@ -20,8 +20,7 @@ export class MenuPerfiles {
 
     createHeader() {
         this.header = new Header('Administrador', iconoVolver, iconoAjustes, ()=> { navigateToPage('Login') }, ()=> { navigateToPage('Config') });
-        
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
     }
 
     createMain() {
@@ -33,7 +32,7 @@ export class MenuPerfiles {
         menu.appendChild(createMenuPerfiles());
 
         main.appendChild(menu);
-        document.body.appendChild(main);
+        this.contenedorPrincipal.appendChild(main);
     }
 
     createFooter() {
@@ -56,7 +55,7 @@ export class MenuPerfiles {
         logoutContainer.appendChild(logoutText);
 
         footerElement.appendChild(logoutContainer);
-        document.body.appendChild(footerElement);
+        this.contenedorPrincipal.appendChild(footerElement);
     }
 
     setActiveTab(tabName) {
@@ -77,7 +76,7 @@ export function createMenuPerfiles() {
 
     const buttonsData = [
         { icon: iconoPerfil, alt: '', text: 'Agrega nuevo perfil', page: 'PerfilNuevo' },
-        { icon: iconoPerfilEdit, alt: '', text: 'Ver / editar perfil', page: 'PerfilSolicitado' }
+        { icon: iconoPerfilEdit, alt: '', text: 'Ver / editar perfil', page: 'PerfilSolicitado' },
         { icon: iconoPerfilEdit, alt: '', text: 'Ver / editar perfil', page: 'perfilsolicitado' }
     ];
 

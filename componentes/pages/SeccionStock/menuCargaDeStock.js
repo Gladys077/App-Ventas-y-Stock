@@ -1,12 +1,12 @@
 import { Header } from "../../js/header.js";
 import { iconoAjustes, iconoVolver, iconoNuevoProducto, iconoCerrarSesion, iconoRemito } from "../../js/iconosSVG.js";
-import { createMenuPrincipal, verificarCss } from "../../js/utils.js";
+import { createMenuPrincipal, verificarCss, verificaContenedorPrincipal } from "../../js/utils.js";
 import { Footer } from "../../js/footer.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
 
 export class CargaDeStock {
     constructor() {
-        document.body.innerHTML = ''; 
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         if (!verificarCss('menu')) this.agregarCss();
         this.createHeader();
         this.createMain();
@@ -183,7 +183,7 @@ export class CargaDeStock {
     createHeader() {
         this.header = new Header('Administrador', iconoVolver, iconoAjustes, ()=> { navigateToPage('MenuStock') }, ()=> { navigateToPage('Config') });
         
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
     }
 
     createMain() {
@@ -195,7 +195,7 @@ export class CargaDeStock {
         menu.appendChild(createMenuCargaDeStock());
 
         main.appendChild(menu);
-        document.body.appendChild(main);
+        this.contenedorPrincipal.appendChild(main);
     }
 
     createFooter() {
@@ -217,7 +217,7 @@ export class CargaDeStock {
 
         footerElement.appendChild(logoutContainer);
 
-        document.body.appendChild(footerElement);
+        this.contenedorPrincipal.appendChild(footerElement);
     }
 
     setActiveTab(tabName) {

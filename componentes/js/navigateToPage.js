@@ -2,7 +2,8 @@ export function navigateToPage(page) {
 /*
     window.history.pushState(null, '', `/${page}`); // Esto muestra la página en el navegador
     */
-    document.body.innerHTML = '';
+    const contenedorPrincipal = document.querySelector(".contendorPrincipal");
+    if(contenedorPrincipal) contenedorPrincipal.innerHTML = '';
 
     const [pageName,params] = page.split("?");
 

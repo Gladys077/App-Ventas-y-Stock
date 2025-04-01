@@ -285,7 +285,7 @@ export class CardVtasPorProducto {
             productoElegido === "Nombre_del_producto" || 
             productoElegido === "Nombre del producto") {
             console.log("Mostrando notificación de producto faltante");
-            new Notification('../../img/emojis/señalar.png', '¡Le faltó elegir un producto!', 'error');
+            new Notification('../img/emojis/señalar.png', '¡Le faltó elegir un producto!', 'error');
             return;
         }
     
@@ -303,13 +303,13 @@ export class CardVtasPorProducto {
         // Verificar si se ingresó la fecha desde
         if (!this._fechaDesde || this._fechaDesde === "") {
             console.log("Mostrando notificación de fecha desde faltante");
-            new Notification('../../img/emojis/señalar.png', '¡Le faltó ingresar la fecha DESDE!', 'error');
+            new Notification('../img/emojis/señalar.png', '¡Le faltó ingresar la fecha DESDE!', 'error');
             return;
         }
         
         // Verificar si las fechas son válidas cuando ambas están presentes
         if (this._fechaDesde && this._fechaHasta && this._fechaHasta < this._fechaDesde) {
-            new Notification('../../img/emojis/pare.png', 'La fecha HASTA no puede ser anterior<br> a la fecha DESDE.', 'error');
+            new Notification('../img/emojis/pare.png', 'La fecha HASTA no puede ser anterior<br> a la fecha DESDE.', 'error');
             return;
         }
     
@@ -318,7 +318,7 @@ export class CardVtasPorProducto {
     
         // Verificar si hay resultados
         if (!this.ventasFiltradas || this.ventasFiltradas.length === 0) {
-            new Notification('../../img/emojis/triste.png', 'No hubo ventas en esas fechas para el producto elegido.', 'success');
+            new Notification('../img/emojis/triste.png', 'No hubo ventas en esas fechas para el producto elegido.', 'success');
             return;
         }
     

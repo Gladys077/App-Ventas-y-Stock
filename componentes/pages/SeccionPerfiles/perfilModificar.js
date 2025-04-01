@@ -1,15 +1,16 @@
 import { Header } from "../../js/header.js";
 import { iconoVolver, iconoMenu,  iconoCancel, iconoGuardar } from "../../js/iconosSVG.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
-
+import { verificaContenedorPrincipal } from "../../js/utils.js";
 import Main from "../../js/main.js";
-import { CrearInput , CrearSectionOptions} from "../../js/formulariosvarios.js"
-import { conexionAPI } from "../js/services/conectionFakeApi.js"
-import { ButtonContainer } from "../../js/btnsContainer.js"
-
+import { CrearInput , CrearSectionOptions} from "../../js/formulariosvarios.js";
+import { conexionAPI } from "../js/services/conectionFakeApi.js";
+import { ButtonContainer } from "../../js/btnsContainer.js";
 
 export class ModificarPerfil {
     constructor(idPerfil){
+        this.contenedorPrincipal = verificaContenedorPrincipal();
+        
         this.idPerfil=idPerfil;
         this.init()
     }
@@ -22,18 +23,17 @@ export class ModificarPerfil {
         await this.traerPerfil();
         this.createButtonsForm();
         
-        
     }
 
     createHeader=()=>{
         this.header = new Header("Modificar Perfil", iconoVolver, iconoMenu, ()=> { navigateToPage('MenuPerfiles') }, ()=> { navigateToPage('MenuVentas') });
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
         return
     }
 
     createMain=()=>{
         this.main = new Main();
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return
     }
 

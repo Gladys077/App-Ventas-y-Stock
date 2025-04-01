@@ -2,13 +2,13 @@ import { Header } from '../../js/header.js';
 import { CardVtasPorFecha } from '../../js/cardVtasPorFecha.js';
 import { iconoVolver, iconoDescargar } from '../../js/iconosSVG.js';
 import { Footer } from '../../js/footer.js';
-import { FabButton, handleDownloadClick } from '../../js/utils.js';
+import { FabButton, handleDownloadClick, verificaContenedorPrincipal } from '../../js/utils.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 import { Notification } from '../../js/notificacion.js';
 
 export class VentasPorFechaPage {
     constructor() {
-        document.body.innerHTML = ''; 
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         this.ventasPorFecha = null;
         this.createHeader();
         this.createMain();
@@ -16,7 +16,7 @@ export class VentasPorFechaPage {
     }
     createHeader() {
         this.header = new Header('Ventas por fecha', iconoVolver, null, ()=>navigateToPage('MenuVentas'));
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
     }
 
     createMain() {
@@ -26,13 +26,12 @@ export class VentasPorFechaPage {
         const cardElement = this.ventasPorFecha.armarCardVtasPorProducto();
         main.appendChild(cardElement);
 
-        // Agrego el main al body
-        document.body.appendChild(main);
+        this.contenedorPrincipal.appendChild(main);
     }
 
     createFooter() {
         this.footer = new Footer();
-        document.body.appendChild(this.footer.getElement());
+        this.contenedorPrincipal.appendChild(this.footer.getElement());
         this.createBtnFlotante();
         }
     

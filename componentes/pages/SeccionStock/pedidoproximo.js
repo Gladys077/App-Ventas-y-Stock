@@ -8,12 +8,13 @@ import { ButtonContainer } from "../../js/btnsContainer.js";
 import { Notification } from "../../js/notificacion.js";
 import { ModalDialogo } from "../../js/modalDialogo.js";
 import { ModalInput } from "../../js/modalInput.js";
+import { verificaContenedorPrincipal } from "../../js/utils.js";
 // import { conexionAPI } from "../js/services/conectionFakeApi.js"
 
 
 export class PlanillaPedidoProximo {
     constructor(){
-        document.body.innerHTML = '';
+        this.contenedorPrincipal = verificaContenedorPrincipal();
 
         this.createHeader();
         this.mainPedido=this.createMain();
@@ -34,13 +35,13 @@ export class PlanillaPedidoProximo {
 
     createHeader=()=>{
         this.header = new Header("Próximo pedido", iconoVolver, iconoHistorial, ()=>{ navigateToPage("MenuStock")}, ()=>{ navigateToPage("PedidoHistorial")});
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
         return
     }
 
     createMain=()=>{
         this.main = new Main()
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return
     }
 
@@ -131,7 +132,7 @@ export class PlanillaPedidoProximo {
             const btnMas = document.createElement("button");
             btnMas.className= "mostrar-mas";
                 const imgMas = document.createElement("img");
-                imgMas.src = "../img/iconos/masgris.png";
+                imgMas.src = "../../img/iconos/masgris.png";
                 imgMas.title = "Mostrar lista de proveedores";
                 imgMas.alt = "Ver Proveedores";
             btnMas.appendChild(imgMas);
@@ -139,7 +140,7 @@ export class PlanillaPedidoProximo {
             const btnMenos = document.createElement("button");
             btnMenos.className= "mostrar-menos _oculto";
                 const imgMenos = document.createElement("img");
-                imgMenos.src = "../img/iconos/menosgris.png";
+                imgMenos.src = "../../img/iconos/menosgris.png";
                 imgMenos.title = "Ocultar lista de proveedores";
                 imgMenos.alt = "Ocultar Proveedores";
             btnMenos.appendChild(imgMenos);
@@ -194,7 +195,7 @@ export class PlanillaPedidoProximo {
 
     createFooter=()=>{
         this.footer = new Footer()
-        document.body.appendChild(this.footer.getElement());
+        this.contenedorPrincipal.appendChild(this.footer.getElement());
         return
     }
 
@@ -210,13 +211,13 @@ export class PlanillaPedidoProximo {
         // Verificar si la planilla está vacía
         const productos = document.querySelectorAll(".tabla_lineaArticulo");
         if (productos.length === 0) {
-            new Notification('../../../img/emojis/pensando.png', 'No hay ningún producto en esta lista', 'error');
+            new Notification('../../img/emojis/pensando.png', 'No hay ningún producto en esta lista', 'error');
             return;
         }
     
         // Crear un modal para confirmar la acción
         new ModalDialogo(
-            "../../../img/iconos/warning.png",
+            "../../img/iconos/warning.png",
             "Tu pedido se guardará en el historial y se vaciará la planilla",
             () => {
                 // Si el usuario confirma, mostrar un input para el nombre del pedido
@@ -236,7 +237,7 @@ export class PlanillaPedidoProximo {
                         localStorage.setItem('historialPedidos', JSON.stringify(historialPedidos));
     
                         // Mostrar notificación de éxito
-                        new Notification('../../../img/emojis/like.png', 'Pedido guardado exitosamente en el historial.', 'success');
+                        new Notification('../../img/emojis/like.png', 'Pedido guardado exitosamente en el historial.', 'success');
     
                         // Limpiar la planilla
                         const tablaDetalles = document.querySelector(".tabla_detalles");
@@ -245,7 +246,7 @@ export class PlanillaPedidoProximo {
                         }
                         calcularTotal();
                     } else {
-                        new Notification('../../../img/emojis/preocupado.png', 'Debe ingresar un nombre para el pedido.', 'error');
+                        new Notification('../../img/emojis/preocupado.png', 'Debe ingresar un nombre para el pedido.', 'error');
                     }
                 });
             }

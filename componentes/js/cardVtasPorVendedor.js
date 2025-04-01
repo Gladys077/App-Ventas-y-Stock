@@ -295,14 +295,14 @@ export class CardVtasPorVendedor {
 
   handleButtonClick() {
     if (!this._selectedVendedor) {
-      new Notification('../../../img/emojis/pare.png', 'No has elegido un vendedor', 'error');
+      new Notification('../img/emojis/pare.png', 'No has elegido un vendedor', 'error');
       return;
     }
 
     this._fecha = this.input.value; // Obtiene el valor del input de fecha
 
     if (!this._fecha) {
-      new Notification('../../../img/emojis/pare.png', 'No has elegido una fecha', 'error');
+      new Notification('../img/emojis/pare.png', 'No has elegido una fecha', 'error');
       return;
     }
 
@@ -314,7 +314,7 @@ export class CardVtasPorVendedor {
       }
     } catch (error) {
       console.error('Error al procesar la búsqueda:', error);
-      new Notification('../../../img/emojis/pare.png', 'Error al procesar la búsqueda', 'error');
+      new Notification('../img/emojis/pare.png', 'Error al procesar la búsqueda', 'error');
     }
   }
 

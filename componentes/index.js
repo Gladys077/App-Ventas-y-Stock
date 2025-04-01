@@ -1,8 +1,4 @@
-// import { ModalDialogo } from './modalDialogo.js';
-// import { Notification } from './notificacion.js';
-// import { ModalInput } from "./modalCantidad.js";
-// import { Header, iconoMenu, iconoVolver, iconoEditar } from './header.js';
-// import { ButtonContainer } from './btnsContainer.js';
+// import {VerificaContenedorPrincipal} from './js/utils.js';
 
 
 //-------------Primeras Screens------------

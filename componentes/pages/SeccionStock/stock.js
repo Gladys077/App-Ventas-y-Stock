@@ -5,7 +5,7 @@ import { navigateToPage } from '../../js/navigateToPage.js';
 import { createSearchContainer, RadioProductList, verificarCss } from '../../js/utils.js';
 import { TablaEncabezado, MostrarMainNav, TablaDetalles, TablaFooter} from "../../js/registros.js";
 import { Footer } from '../../js/footer.js';
-import { FabButton, handleDownloadClick } from '../../js/utils.js';
+import { FabButton, handleDownloadClick, verificaContenedorPrincipal } from '../../js/utils.js';
 
 import { ModalInput } from "../../js/modalInput.js";
 import { Notification } from "../../js/notificacion.js";
@@ -13,7 +13,7 @@ import { conexionAPI } from "../../js/services/conectionFakeApi.js"
 
 export class PlanillaStock {
     constructor() {
-        document.body.innerHTML = '';
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         if(!verificarCss('search-results-eliminar')) this.agregarCss();
         
         this.selectedProducts = [];
@@ -69,12 +69,12 @@ export class PlanillaStock {
             () => navigateToPage('MenuStock'), 
             () => this.openProductSearch()
         ); 
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
     }
 
     createMain() {
         this.main = new Main();
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return;
     }
 
@@ -185,12 +185,12 @@ export class PlanillaStock {
         closeButton.style.zIndex = '902';
 
         closeButton.addEventListener('click', () => {
-            document.body.removeChild(overlay);
+            this.contenedorPrincipal.removeChild(overlay);
         });
 
         overlay.appendChild(closeButton);
         overlay.appendChild(productSearch);
-        document.body.appendChild(overlay);
+        this.contenedorPrincipal.appendChild(overlay);
     }
 
     // Maneja la selección de un producto en la lista
@@ -220,7 +220,7 @@ updateStockList(selectedProduct) {
     createFooter() {
         this.footer = new Footer();
         this.createBtnFlotante();
-        document.body.appendChild(this.footer.getElement());
+        this.contenedorPrincipal.appendChild(this.footer.getElement());
         }
     
     createBtnFlotante= ()=>{

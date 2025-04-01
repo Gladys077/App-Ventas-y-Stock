@@ -1,5 +1,5 @@
 import { Header } from '../../js/header.js';
-import { createSearchContainer, RadioProductList, ExtendedFabButton, verificarCss } from '../../js/utils.js';
+import { createSearchContainer, RadioProductList, ExtendedFabButton, verificaContenedorPrincipal } from '../../js/utils.js';
 import { Footer } from "../../js/footer.js";
 import { ButtonContainer } from "../../js/btnsContainer.js";
 import { iconoVolver, iconoMenu, iconoRemito, iconoAgregarArticulo } from '../../js/iconosSVG.js';
@@ -9,14 +9,13 @@ import { Notification } from '../../js/notificacion.js';
 
 export class CargandoRemitoNro {
     constructor() {
-        document.body.innerHTML = ''; 
+        this.contenedorPrincipal = verificaContenedorPrincipal(); 
         this.selectedProducts = [];
         this.createHeader();
         this.createMain();
         this.createFooter();
         this.createButtonsFooter();
-        // if (!verificarCss("ul-product-list"))  
-            this.agregarCss();
+        this.agregarCss();
     }
 
     getElement() {
@@ -54,7 +53,7 @@ export class CargandoRemitoNro {
 
     createHeader() {
         const header = new Header('Cargando Remito N°', iconoVolver, iconoMenu, ()=>{ navigateToPage('StockCargaXRemito')}, ()=>{ navigateToPage('MenuCargaDeStock')});
-        document.body.appendChild(header.getElement());
+        this.contenedorPrincipal.appendChild(header.getElement());
     }
 
     createMain(){
@@ -69,12 +68,12 @@ export class CargandoRemitoNro {
         this.resultContainer.classList.add('search-results-stock');
         main.appendChild(this.resultContainer);
 
-        document.body.appendChild(main);
+        this.contenedorPrincipal.appendChild(main);
     }
     
     createFooter=()=>{
         this.footer = new Footer()
-        document.body.appendChild(this.footer.getElement());
+        this.contenedorPrincipal.appendChild(this.footer.getElement());
         return
     }
     createButtonsFooter=()=>{

@@ -5,11 +5,15 @@ import { navigateToPage } from "../../js/navigateToPage.js";
 import { TablaEncabezado, TablaDetalles, TablaFooter,  BtnFlotante } from "../../js/registros.js"
 import { Footer } from "../../js/footer.js";
 import { ButtonContainer } from "../../js/btnsContainer.js";
-import { conexionAPI } from "../../js/services/conectionFakeApi.js"
+import { conexionAPI } from "../../js/services/conectionFakeApi.js";
+import { verificaContenedorPrincipal } from "../../js/utils.js";
+;
  
 
 export class PlanillaVentaActual {
     constructor(){
+        this.contenedorPrincipal = verificaContenedorPrincipal();
+    
         this.createHeader();
         this.mainPedido=this.createMain();
         this.createTablaEncabezado();
@@ -24,13 +28,13 @@ export class PlanillaVentaActual {
 
     createHeader=()=>{
         this.header = new Header("Venta Actual", iconoVolver, iconoMenu, () => navigateToPage('BuscadorParaVender'), () => navigateToPage('MenuVentas'));
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
         return
     }
 
     createMain=()=>{
         this.main = new Main()
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return
     }
 
@@ -72,7 +76,7 @@ export class PlanillaVentaActual {
 
                     const buttonEliminar= document.createElement("button");
                         const iconEliminar = document.createElement("img");
-                        iconEliminar.src= "../img/iconos/cancel2rojo.png"
+                        iconEliminar.src= "../../img/iconos/cancel2rojo.png"
                         iconEliminar.className = "iconEliminar";
                         iconEliminar.addEventListener("click", (event) =>{
                             const art = document.getElementById(`${id}`)
@@ -130,7 +134,7 @@ export class PlanillaVentaActual {
 
     createFooter=()=>{
         this.footer = new Footer()
-        document.body.appendChild(this.footer.getElement());
+        this.contenedorPrincipal.appendChild(this.footer.getElement());
         return
     }
 

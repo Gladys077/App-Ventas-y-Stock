@@ -1,5 +1,5 @@
 import { Header } from '../../js/header.js';
-import { createSearchContainer, RadioProductList, ExtendedFabButton, verificarCss } from '../../js/utils.js';
+import { createSearchContainer, RadioProductList, ExtendedFabButton, verificaContenedorPrincipal } from '../../js/utils.js';
 import { Footer } from '../../js/footer.js';
 import { iconoAgregarArticulo, iconoVolver } from '../../js/iconosSVG.js';
 import { ModalInput } from '../../js/modalInput.js';
@@ -8,7 +8,7 @@ import { Notification } from '../../js/notificacion.js';
 
 export class CargarStockSearchPage {
     constructor() {
-        document.body.innerHTML = ''; 
+        this.contenedorPrincipal = verificaContenedorPrincipal(); 
         this.selectedProducts = [];
         this.createHeader();
         this.createMain();
@@ -56,7 +56,7 @@ export class CargarStockSearchPage {
 
     createHeader() {
         const header = new Header('Cargar stock por producto', iconoVolver, null, ()=>{ navigateToPage('MenuCargaDeStock')});
-        document.body.appendChild(header.getElement());
+        this.contenedorPrincipal.appendChild(header.getElement());
     }
 
     createMain(){
@@ -75,12 +75,12 @@ export class CargarStockSearchPage {
         this.resultContainer.classList.add('search-results-stock');
         main.appendChild(this.resultContainer);
 
-        document.body.appendChild(main);
+        this.contenedorPrincipal.appendChild(main);
     }
     
     createFooter() {
         this.footer = new Footer();
-        document.body.appendChild(this.footer.getElement());
+        this.contenedorPrincipal.appendChild(this.footer.getElement());
 
         // Fab extended 
         const iconSVG = iconoAgregarArticulo; 

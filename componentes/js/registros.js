@@ -77,7 +77,7 @@ export class FiltroFecha{
                     btonFiltro.className="filtrarFecha";
                     btonFiltro.title="Filtrar fechas";
                     const btn = document.createElement("img");
-                    btn.src =`../../img/iconos/filtro.png`;
+                    btn.src =`../img/iconos/filtro.png`;
                 btonFiltro.appendChild(btn); 
                 
       

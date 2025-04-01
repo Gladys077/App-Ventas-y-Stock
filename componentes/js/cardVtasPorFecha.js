@@ -24,13 +24,13 @@ export class CardVtasPorFecha extends CardVtasPorProducto {
         
         // Validar que se haya elegido la fecha DESDE
         if (!this._fechaDesde) {
-            new Notification('../../img/emojis/señalar.png', '¡Le faltó elegir la primer fecha!', 'error');
+            new Notification('../img/emojis/señalar.png', '¡Le faltó elegir la primer fecha!', 'error');
             return;
         }
         
         // Validar que, si se eligió HASTA, no sea anterior a DESDE
         if (this._fechaHasta && this._fechaHasta < this._fechaDesde) {
-            new Notification('../../img/emojis/pare.png', 'La fecha HASTA no puede ser anterior<br> a la fecha DESDE.', 'error');
+            new Notification('../img/emojis/pare.png', 'La fecha HASTA no puede ser anterior<br> a la fecha DESDE.', 'error');
             return;
         }
         
@@ -59,7 +59,7 @@ export class CardVtasPorFecha extends CardVtasPorProducto {
         
         // Si no se encontraron ventas en el rango, se muestra eta notificación
         if (ventasFiltradas.length === 0) {
-            new Notification('../../img/emojis/triste.png', 'No hubo ventas en esas fechas.', 'error');
+            new Notification('../img/emojis/triste.png', 'No hubo ventas en esas fechas.', 'error');
             return;
         }
         

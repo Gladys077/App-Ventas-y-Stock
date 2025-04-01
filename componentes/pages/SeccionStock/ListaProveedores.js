@@ -5,17 +5,16 @@ import { navigateToPage } from '../../js/navigateToPage.js';
 import { Notification } from '../../js/notificacion.js';
 
 import { Footer } from '../../js/footer.js';
-import { ExtendedFabButton } from '../../js/utils.js';
+import { ExtendedFabButton, verificaContenedorPrincipal } from '../../js/utils.js';
 
 export class ListaProveedores {
     constructor() {
-        document.body.innerHTML = ''; 
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         this.proveedor = [];
         this.createHeader();
         this.createMain();
         this.createFooter();
-        // if (!verificarCss("ul-product-list"))  
-            this.agregarCss();
+        this.agregarCss();
     }
 
     getElement() {
@@ -57,7 +56,7 @@ export class ListaProveedores {
 
     createHeader() {
         const header = new Header('Lista de Proveedores', iconoVolver, null, ()=> { navigateToPage('MenuStock')});
-        document.body.appendChild(header.getElement());
+        this.contenedorPrincipal.appendChild(header.getElement());
     }
 
     createMain(){
@@ -71,7 +70,7 @@ export class ListaProveedores {
         // this.resultContainer.classList.add('search-results-stock');
         main.appendChild(this.resultContainer);
 
-        document.body.appendChild(main);
+        this.contenedorPrincipal.appendChild(main);
     }
  
     onProductClick(proveedores, event) {
@@ -82,7 +81,7 @@ export class ListaProveedores {
 
     createFooter() {
         this.footer = new Footer();
-        document.body.appendChild(this.footer.getElement());
+        this.contenedorPrincipal.appendChild(this.footer.getElement());
 
         // Fab extended (nuevo proveedor)
         const iconSVG = iconoProveedores; 
@@ -92,19 +91,7 @@ export class ListaProveedores {
         footerElement.appendChild(extendedFabButton.getElement());
     }
 
-   
 
-    // updateProductList(searchWord) {
-    //     this.resultContainer.innerHTML = ''; 
-    //     const listaProveedores = new RadioProveedorList(searchWord, this.onProductClick.bind(this), 'calc(100vh - 60px)');
-    //     const listaProveedoresElement = listaProveedores.render();
-
-    //     if (listaProveedoresElement.children.length === 0) {
-    //         new Notification('../../img/emojis/asombro.png', '¡No hay producto en stock!', 'error');
-    //     }
-
-    //     this.resultContainer.appendChild(listaProveedoresElement);
-    // }
 }
 
 new ListaProveedores();

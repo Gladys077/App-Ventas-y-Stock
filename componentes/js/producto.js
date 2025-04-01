@@ -36,7 +36,7 @@ export class Producto {
         return this._precioVenta;
     }
     set precioVenta(value) {
-        if (value < 0) throw new Notification('../../img/emojis/pare.png', 'El precio de venta no puede ser negativo.', 'error');
+        if (value < 0) throw new Notification('../img/emojis/pare.png', 'El precio de venta no puede ser negativo.', 'error');
         this._precioVenta = value;
     }
 
@@ -44,7 +44,7 @@ export class Producto {
         return this._stockMinimo;
     }
     set stockMinimo(value) {
-        if (value < 0) throw new Notification('../../img/emojis/asombro.png', 'El stock mínimo no puede ser negativo.', 'error');
+        if (value < 0) throw new Notification('../img/emojis/asombro.png', 'El stock mínimo no puede ser negativo.', 'error');
         this._stockMinimo = value;
     }
 

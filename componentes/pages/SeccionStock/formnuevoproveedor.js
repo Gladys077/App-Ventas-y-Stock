@@ -7,11 +7,12 @@ import { Footer } from "../../js/footer.js";
 import { ButtonContainer } from "../../js/btnsContainer.js";
 import { navigateToPage } from '../../js/navigateToPage.js';
 import { Notification } from "../../js/notificacion.js";
+import { verificaContenedorPrincipal } from "../../js/utils.js";
 
 
 export class NuevoProveedor {
     constructor(){
-        document.body.innerHTML = ''; 
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         this.createHeader();
         this.mainPedido=this.createMain();
         this.createInputs();
@@ -22,13 +23,13 @@ export class NuevoProveedor {
 
     createHeader=()=>{
         this.header = new Header("Nuevo proveedor", iconoVolver, iconoMenu, ()=>window.history.back(), ()=>navigateToPage('MenuStock'));
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
         return
     }
 
     createMain=()=>{
         this.main = new Main()
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return
     }
 
@@ -93,19 +94,19 @@ async function agregarProveedor(e){
     // Verificar campos obligatorios
     if (!nombre) {
         new Notification(
-            '../../../img/emojis/pare.png',
+            '../../img/emojis/pare.png',
             'Faltan completar el nombre de la empresa proveedora',
             'error'
         );
     } else if (!vendedor) {
             new Notification(
-                '../../../img/emojis/pare.png',
+                '../../img/emojis/pare.png',
                 'Faltan completar el nombre del vendedor',
                 'error'
             );
     } else if (!cel) {
                 new Notification(
-                    '../../../img/emojis/pare.png',
+                    '../../img/emojis/pare.png',
                     'Falta completar el número de teléfono o celular',
                     'error'
                 );
@@ -115,7 +116,7 @@ async function agregarProveedor(e){
                 // await conexionAPI.nuevoproveedor(nombre, [], vendedor, cel, email, notas);
 
                 new Notification(
-                    '../../../img/emojis/like.png',
+                    '../../img/emojis/like.png',
                     '¡Proveedor guardado exitosamente!',
                     'success'
                 );
@@ -129,14 +130,14 @@ async function agregarProveedor(e){
 
         // Notificación de éxito
         new Notification(
-            '../../../img/emojis/like.png',
+            '../../img/emojis/like.png',
             '¡El proveedor se guardó correctamente!',
             'success'
         );
     } catch (error) {
         console.error(error);
         new Notification(
-            '../../../img/emojis/triste.png',
+            '../../img/emojis/triste.png',
             'Hubo un error al guardar el proveedor.',
             'error'
         );

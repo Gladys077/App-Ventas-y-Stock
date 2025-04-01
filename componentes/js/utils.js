@@ -11,6 +11,21 @@ function cambiarFondo(seccion) {
 // Llama a la función cuando se carga una sección
 cambiarFondo("stock"); // O "ventas" o "perfiles" según la sección
 
+// Trae y vacía, o crea el div.contenedorPrincipal
+export function verificaContenedorPrincipal() {
+    let contenedorPrincipal = document.querySelector('.contenedorPrincipal');
+    if (contenedorPrincipal) {
+        contenedorPrincipal.innerHTML = ''; // Vacía el contenido si ya existe
+    } else {
+        contenedorPrincipal = document.createElement('div');
+        contenedorPrincipal.classList.add('contenedorPrincipal');
+        document.body.appendChild(contenedorPrincipal);
+    }
+    return contenedorPrincipal;
+}
+
+
+
 
 export class Fecha{
     constructor(){
@@ -27,38 +42,6 @@ export class Fecha{
         return this.element
     }
 }/*fin class FiltroFecha */
-// ---------- Valida fecha ---------- 
-// export function isValidDate(dateString) {
-//     const regex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
-//     if (!regex.test(dateString)) return false;
-//     const [, day, month, year] = dateString.match(regex);
-//     const date = new Date(year, month - 1, day);
-//     return date.getFullYear() == year && (date.getMonth() + 1) == parseInt(month) && date.getDate() == parseInt(day);
-// };
-
-// ---------- Formato fecha ---------- 
-// export function formatDateInput(e) {
-//     let input = e.target;
-//     let value = input.value.replace(/\D/g, '');
-//     if (value.length > 8) value = value.slice(0, 8);
-//     let formattedValue = '';
-    
-//     if (value.length > 0) {
-//         let day = value.slice(0, 2);
-//         if (parseInt(day) > 31) day = '31';
-//         formattedValue += day;
-//     }
-//     if (value.length > 2) {
-//         let month = value.slice(2, 4);
-//         if (parseInt(month) > 12) month = '12';
-//         formattedValue += '/' + month;
-//     }
-//     if (value.length > 4) {
-//         formattedValue += '/' + value.slice(4, 8);
-//     }
-    
-//     input.value = formattedValue;
-// }
 
 // ------------------Crea Btn (Fab) para descargar-----------
 export class FabButton {
@@ -111,9 +94,9 @@ export function handleDownloadClick(filename = 'reporte_ventas.pdf') {
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
         }
         html2pdf().set(options).from(mainContent).save();
-        new Notification('../../../img/emojis/like.png', '¡Descarga exitosa!', 'success');
+        new Notification('../img/emojis/like.png', '¡Descarga exitosa!', 'success');
     } else {
-        new Notification('../../../img/emojis/asombro.png', 'No hay datos para descargar', 'error');
+        new Notification('../img/emojis/asombro.png', 'No hay datos para descargar', 'error');
     }
 }
 
@@ -195,7 +178,7 @@ export function createSearchContainer(onProductClick, ProductListClass = Product
 
         resultContainer.innerHTML = '';
         if (productListElement.children.length === 0) {
-            new Notification('../../img/emojis/pare.png', noResultsMessage, 'error');
+            new Notification('../img/emojis/pare.png', noResultsMessage, 'error');
         } else {
             resultContainer.appendChild(productListElement);
         }

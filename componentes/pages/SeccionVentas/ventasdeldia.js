@@ -3,13 +3,13 @@ import { Footer } from "../../js/footer.js";
 import Main from "../../js/main.js";
 import { navigateToPage } from "../../js/navigateToPage.js";
 import { iconoVolver, iconoDescargar } from "../../js/iconosSVG.js"
-import { FabButton, handleDownloadClick } from '../../js/utils.js';
+import { FabButton, handleDownloadClick, verificaContenedorPrincipal } from '../../js/utils.js';
 // import { ButtonContainer } from "../../js/btnsContainer.js";
 import { TablaEncabezado, MostrarMontoTotal, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
 
 export class PlanillaVtasdelDia {
     constructor(){
-        document.body.innerHTML = '';
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         this.createHeader();
         this.mainPedido=this.createMain();
         this.createMostrarMonto();
@@ -21,13 +21,13 @@ export class PlanillaVtasdelDia {
 
     createHeader=()=>{
         this.header = new Header("Ventas del Día", iconoVolver, null, ()=>{ navigateToPage('MenuVentas'); });
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
         return
     }
 
     createMain=()=>{
         this.main = new Main()
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return
     }
 
@@ -60,7 +60,7 @@ export class PlanillaVtasdelDia {
     createFooter() {
         this.footer = new Footer();
         this.createBtnFlotante();
-        document.body.appendChild(this.footer.getElement());
+        this.contenedorPrincipal.appendChild(this.footer.getElement());
     }
 
     createBtnFlotante= ()=>{

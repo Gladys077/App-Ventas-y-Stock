@@ -1,7 +1,7 @@
 import { Header } from '../../js/header.js';
 import { Footer } from '../../js/footer.js';
 import { iconoVolver, iconoEliminarProducto, iconoCancel } from '../../js/iconosSVG.js';
-import { createSearchContainer, RadioProductList, verificarCss } from '../../js/utils.js';
+import { createSearchContainer, RadioProductList, verificarCss, verificaContenedorPrincipal } from '../../js/utils.js';
 import { ButtonContainer } from '../../js/btnsContainer.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 import { Notification } from '../../js/notificacion.js';
@@ -9,7 +9,7 @@ import { ModalDialogo } from '../../js/modalDialogo.js';
 
 export class EliminarProductosPage {
     constructor() {
-            document.body.innerHTML = ''; 
+        this.contenedorPrincipal = verificaContenedorPrincipal(); 
             if(!verificarCss('search-results-eliminar')) this.agregarCss();
             this.selectedProduct = [];
             this.createHeader();
@@ -53,7 +53,7 @@ export class EliminarProductosPage {
     }
     createHeader() {
         this.header = new Header('Elige el producto a eliminar', iconoVolver, null, ()=> { navigateToPage('MenuStock')}, ()=> { navigateToPage('')});
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
     }
 
     createMain(){
@@ -67,7 +67,7 @@ export class EliminarProductosPage {
         this.resultContainer.classList.add('search-results-eliminar');
         main.appendChild(this.resultContainer);
 
-        document.body.appendChild(main);
+        this.contenedorPrincipal.appendChild(main);
 
     }
 
@@ -82,7 +82,7 @@ export class EliminarProductosPage {
             iconoCancel
         );
         this.footer.getElement().appendChild(buttonContainer.getButtonContainer());
-        document.body.appendChild(this.footer.getElement());
+        this.contenedorPrincipal.appendChild(this.footer.getElement());
     }
 
 // Verifica que haya un producto seleccionado. Muestra un modal de confirmación. 

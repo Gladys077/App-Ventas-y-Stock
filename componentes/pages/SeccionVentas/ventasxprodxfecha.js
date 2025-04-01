@@ -5,17 +5,17 @@ import Main from "../../js/main.js";
 import { TablaEncabezado, MostrarProducto, FiltroFecha, TablaDetalles, TablaFooter, BtnFlotante } from "../../js/registros.js"
 import { conexionAPI } from "../../js/services/conectionFakeApi.js";
 import { Footer } from '../../js/footer.js';
-import { FabButton, handleDownloadClick } from '../../js/utils.js';
+import { FabButton, handleDownloadClick, verificaContenedorPrincipal } from '../../js/utils.js';
 
 
 export class PlanillaVtasxFecha {
     constructor(){//cuando esté completo hay que agregar los parametros id, fechadesde y fechahasta
+        this.contenedorPrincipal = verificaContenedorPrincipal(); 
         this.init();
     }
 
     async init(){
-        document.body.innerHTML = ''; 
-
+        
         this.createHeader();
         this.mainPedido=this.createMain();
 
@@ -91,13 +91,13 @@ export class PlanillaVtasxFecha {
 //Listado venta por producto
     createHeader=()=>{
         this.header = new Header("Listado por Fecha", iconoVolver, iconoMenu,()=>{ navigateToPage("ventasPorProducto")}, ()=>{ navigateToPage("MenuVentas")});
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
         return
     }
 
     createMain=()=>{
         this.main = new Main()
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return
     }
 ///Agregar nombre producto
@@ -197,7 +197,7 @@ createMostrarNombreProducto= async()=>{
      createFooter() {
             this.footer = new Footer();
             this.createBtnFlotante();
-            document.body.appendChild(this.footer.getElement());
+            this.contenedorPrincipal.appendChild(this.footer.getElement());
     }
          
     createBtnFlotante = () => {

@@ -2,13 +2,13 @@ import { Header } from '../../js/header.js';
 import { iconoVolver, iconoDescargar } from '../../js/iconosSVG.js'
 import { CardVtasPorVendedor } from '../../js/cardVtasPorVendedor.js';
 import { Footer } from '../../js/footer.js';
-import { FabButton, handleDownloadClick } from '../../js/utils.js';
+import { FabButton, handleDownloadClick, verificaContenedorPrincipal } from '../../js/utils.js';
 import { Notification } from '../../js/notificacion.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 
 export class VentasPorVendedorPage {
     constructor() {
-        document.body.innerHTML = ''; 
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         window.ventasPage = this; // Guarda la instancia para acceder desde la card
 
         this.createHeader();
@@ -24,7 +24,7 @@ export class VentasPorVendedorPage {
 
     createHeader() {
         this.header = new Header('Ventas por vendedor', iconoVolver, null, ()=>{ navigateToPage('MenuVentas')});
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
     }
 
     createMain() {
@@ -34,7 +34,7 @@ export class VentasPorVendedorPage {
         this.cardVtasPorVendedor = new CardVtasPorVendedor('', 'DIA', 'Buscar' , 'VentasPorVendedorPlanilla'); // Inicializa con una lista vacía
         main.appendChild(this.cardVtasPorVendedor.getElement());
 
-        document.body.appendChild(main); 
+        this.contenedorPrincipal.appendChild(main); 
     }
 
     handleSearchBBDD(seller, date) {
@@ -43,7 +43,7 @@ export class VentasPorVendedorPage {
         this.salesDate = this.datosDePrueba(seller, date);
 
         if (this.salesDate.length === 0) {
-            new Notification('../../../img/emojis/pare.png', 'En esa fecha no hubo ventas', 'error');
+            new Notification('../../img/emojis/pare.png', 'En esa fecha no hubo ventas', 'error');
             // Limpiar el monto mostrado cuando no hay ventas
             this.cardVtasPorVendedor.actualizarMonto(0);
             return;
@@ -65,7 +65,7 @@ export class VentasPorVendedorPage {
     createFooter() {
         this.footer = new Footer();
         this.createBtnFlotante();
-        document.body.appendChild(this.footer.getElement());
+        this.contenedorPrincipal.appendChild(this.footer.getElement());
         }
     
     createBtnFlotante= ()=>{

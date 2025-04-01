@@ -1,7 +1,7 @@
 import { Header } from '../../js/header.js';
 import { CardVtasPorProducto } from '../../js/cardVtasPorProducto.js';
 import { Footer } from '../../js/footer.js';
-import { FabButton, handleDownloadClick, createSearchContainerCard, RadioProductList } from '../../js/utils.js';
+import { FabButton, handleDownloadClick, createSearchContainerCard, RadioProductList, verificaContenedorPrincipal } from '../../js/utils.js';
 import { iconoDescargar, iconoVolver } from '../../js/iconosSVG.js';
 import { navigateToPage } from '../../js/navigateToPage.js';
 import { Notification } from '../../js/notificacion.js';
@@ -9,7 +9,7 @@ import { Notification } from '../../js/notificacion.js';
 
 export class ProductosVendidos {
     constructor() {
-        document.body.innerHTML = '';
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         this.ventasPorProducto = null;
 
         // Limpia el producto seleccionado al salir de la página ("beforeunload es un evento del navegador que se activa cuando el usuario cierra la pestaña o ventana del navegador; cuando recarga la pág., o cuando se navega a otra pág.")
@@ -86,7 +86,7 @@ export class ProductosVendidos {
             localStorage.removeItem("selectedProduct"); // para que al presionar "volver" se limpie el h2.card-title
             navigateToPage('MenuVentas')
         });
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
     }
 
     createMain() {
@@ -108,7 +108,7 @@ export class ProductosVendidos {
 
         main.appendChild(this.fondoResults);
  
-        document.body.appendChild(main);
+        this.contenedorPrincipal.appendChild(main);
 
         const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
         const selectedProductName = selectedProduct ? selectedProduct.nombre : 'Nombre_del_producto';
@@ -120,12 +120,11 @@ export class ProductosVendidos {
             'Ventas por producto', 
             'Ver la lista por fecha', 
             'VentasXProdXFecha');
-        // document.body.appendChild(this.ventasPorProducto.getElement());
         main.appendChild(this.ventasPorProducto.getElement());
 
         
         
-        document.body.appendChild(main);
+        this.contenedorPrincipal.appendChild(main);
 
 
     }
@@ -169,7 +168,7 @@ export class ProductosVendidos {
 
         if (productListElement.children.length === 0) {
             new Notification(
-                "../../../img/emojis/asombro.png",
+                "../../img/emojis/asombro.png",
                 "¡No hay producto en stock!",
                 "error"
             );
@@ -190,7 +189,7 @@ export class ProductosVendidos {
      createFooter() {
          this.footer = new Footer();
          this.createBtnFlotante();
-         document.body.appendChild(this.footer.getElement());
+         this.contenedorPrincipal.appendChild(this.footer.getElement());
          }
      
      createBtnFlotante= ()=>{

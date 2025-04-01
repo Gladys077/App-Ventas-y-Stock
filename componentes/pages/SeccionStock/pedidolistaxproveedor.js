@@ -2,7 +2,8 @@ import { Header } from "../../js/header.js";
 import { iconoVolver, iconoMenu, iconoDescargar } from "../../js/iconosSVG.js";
 import { navigateToPage } from "../../js/navigateToPage.js"; 
 import Main from "../../js/main.js";
-import { BtnFlotante } from "../../js/registros.js"
+import { BtnFlotante } from "../../js/registros.js";
+import { verificaContenedorPrincipal } from "../../js/utils.js";
 // import { conexionAPI } from "../js/services/conectionFakeApi.js"
 
 
@@ -10,6 +11,8 @@ import { BtnFlotante } from "../../js/registros.js"
 export class PlanillaPedidoListaxProveedor{
 
     constructor(){
+        this.contenedorPrincipal = verificaContenedorPrincipal();
+        
         this.createHeader();
         this.mainPedido=this.createMain();
 
@@ -21,13 +24,13 @@ export class PlanillaPedidoListaxProveedor{
 
     createHeader=()=>{
         this.header = new Header("Pedido listado x proveedor", iconoVolver, iconoMenu,()=>navigateToPage("ProximoPedido"),()=>navigateToPage("MenuStock"));
-        document.body.appendChild(this.header.getElement());
+        this.contenedorPrincipal.appendChild(this.header.getElement());
         return
     }
 
     createMain=()=>{
         this.main = new Main()
-        document.body.appendChild(this.main.getElement());
+        this.contenedorPrincipal.appendChild(this.main.getElement());
         return
     }
 

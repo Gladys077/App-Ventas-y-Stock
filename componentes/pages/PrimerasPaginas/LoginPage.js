@@ -1,10 +1,10 @@
 import { Notification } from "../../js/notificacion.js";
 import { navigateToPage } from '../../js/navigateToPage.js';
-import { verificarCss } from '../../js/utils.js';
+import { verificarCss, verificaContenedorPrincipal } from '../../js/utils.js';
 
 export class createLoginPage {
     constructor() {
-        document.body.innerHTML = '';
+        this.contenedorPrincipal = verificaContenedorPrincipal();
         if (!verificarCss('login')) this.agregarCss();
         this.createMain();
     }
@@ -88,6 +88,8 @@ createMain(){
     loginContainer.className = 'login';
     loginContainer.method = 'POST';
 
+    const fragment = document.createDocumentFragment();
+
     const titulo = document.createElement('h1');
     titulo.innerHTML = 'Bienvenido <br> a la Tienda';
     titulo.className = 'title-login';
@@ -122,15 +124,15 @@ createMain(){
 
         // Valido si el usuario está en el array userNameList
         if (userNameValue === '') {
-            new Notification('../../../img/emojis/pensando.png', '¿Olvidaste completar algún dato?', 'error');
+            new Notification('../../img/emojis/pensando.png', '¿Olvidaste completar algún dato?', 'error');
             return;
         }
         else if (!userNameList.includes(userNameValue)) {
-            new Notification('../../../img/emojis/pare.png', 'No tienes acceso. Contacta al administrador para ser agregado como nuevo vendedor.', 'error');
+            new Notification('../../img/emojis/pare.png', 'No tienes acceso. Contacta al administrador para ser agregado como nuevo vendedor.', 'error');
             return;
         }
         else if (!userPasswordList.includes(passwordValue)) {
-            new Notification('../../../img/emojis/pare.png', 'Credenciales inválidas', 'error');
+            new Notification('../../img/emojis/pare.png', 'Credenciales inválidas', 'error');
         } else {
             navigateToPage('MenuVentas');
         }
@@ -144,13 +146,15 @@ createMain(){
     forgotPassword.className = 'forgot-password';
     forgotPassword.addEventListener('click', ()=>  navigateToPage('RecoverPassword'));
 
-    loginContainer.appendChild(titulo);
-    loginContainer.appendChild(userName);
-    loginContainer.appendChild(passwordInput);
-    loginContainer.appendChild(loginButton);
-    loginContainer.appendChild(forgotPassword);
+    fragment.appendChild(titulo);
+    fragment.appendChild(userName);
+    fragment.appendChild(passwordInput);
+    fragment.appendChild(loginButton);
+    fragment.appendChild(forgotPassword);
 
-    document.body.appendChild(loginContainer);
+    loginContainer.appendChild(fragment)
+
+    this.contenedorPrincipal.appendChild(loginContainer);
 }
     
 }
